@@ -1,0 +1,13 @@
+name: Formatter and lint jobs
+on: [workflow_call]
+jobs:
+
+  Spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+      - name: Spell Check Repo
+        uses: crate-ci/typos@v1.44.0
+        # with:
+        #   files: docs/
