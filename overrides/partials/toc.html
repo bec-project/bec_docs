@@ -1,22 +1,31 @@
-{#-
-  Custom TOC partial for BEC docs.
-  Keeps the built-in page TOC and optionally renders related links from
-  page metadata:
-
-  related:
-    - title: Some page
-      url: getting-started/some-page.html
--#}
+{#- Custom TOC partial for BEC docs. Keeps the built-in page TOC and optionally renders grouped related links from page metadata. -#}
 {% import "partials/language.html" as lang with context %}
+
+
+{% macro related_group_key(url) -%}
+  {%- if "getting-started/" in url -%}getting-started
+  {%- elif "how-to/" in url -%}how-to
+  {%- elif "learn/" in url -%}learn
+  {%- elif "references/" in url -%}references
+  {%- else -%}other
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro related_group_title(group_key) -%}
+  {%- if group_key == "getting-started" -%}Related Tutorials
+  {%- elif group_key == "how-to" -%}Related How-tos
+  {%- elif group_key == "learn" -%}Related Learning Material
+  {%- elif group_key == "references" -%}Related References
+  {%- else -%}Other
+  {%- endif -%}
+{%- endmacro %}
+
 {% set title = lang.t("toc") %}
-{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}
-  {% set title = config.mdx_configs.toc.title %}
-{% endif %}
+{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}{% set title = config.mdx_configs.toc.title %}{% endif %}
+
 {% set toc = page.toc %}
 {% set first = toc | first %}
-{% if first and first.level == 1 %}
-  {% set toc = first.children %}
-{% endif %}
+{% if first and first.level == 1 %}{% set toc = first.children %}{% endif %}
 
 {% if toc %}
 <nav class="md-nav md-nav--secondary" aria-label="{{ title | e }}">
@@ -25,27 +34,34 @@
     {{ title }}
   </label>
   <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-    {% for toc_item in toc %}
-      {% include "partials/toc-item.html" %}
-    {% endfor %}
+    {% for toc_item in toc %}{% include "partials/toc-item.html" %}{% endfor %}
   </ul>
 </nav>
 {% endif %}
 
 {% if page.meta and page.meta.related %}
-<nav class="md-nav md-nav--secondary md-nav--related" aria-label="Related pages">
-  <label class="md-nav__title">
-    <span class="md-nav__icon md-icon"></span>
-    Related pages
-  </label>
-  <ul class="md-nav__list">
-    {% for item in page.meta.related %}
-      <li class="md-nav__item">
-        <a href="{{ item.url | url }}" class="md-nav__link">
-          {{ item.title }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-</nav>
+{% set related_groups = namespace(keys=[]) %}
+{% for item in page.meta.related %}
+  {% set group_key = related_group_key(item.url) %}
+  {% if group_key not in related_groups.keys %}{% set related_groups.keys = related_groups.keys + [group_key] %}{% endif %}
+{% endfor %}
+
+{% for group_key in related_groups.keys %}
+  {% set group_title = related_group_title(group_key) %}
+  <nav class="md-nav md-nav--secondary md-nav--related" aria-label="{{ group_title | e }}">
+    <label class="md-nav__title">
+      <span class="md-nav__icon md-icon"></span>
+      {{ group_title }}
+    </label>
+    <ul class="md-nav__list">
+      {% for item in page.meta.related %}
+        {% if related_group_key(item.url) == group_key %}
+        <li class="md-nav__item">
+          <a href="{{ item.url | url }}" class="md-nav__link">{{ item.title }}</a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+{% endfor %}
 {% endif %}
