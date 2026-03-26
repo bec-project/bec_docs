@@ -1,6 +1,7 @@
 {#- Custom TOC partial for BEC docs. Keeps the built-in page TOC and optionally renders grouped related links from page metadata. -#}
 {% import "partials/language.html" as lang with context %}
 
+{% macro related_link(url) -%}{{ url | replace(".md", ".html") }}{%- endmacro %}
 
 {% macro related_group_key(url) -%}
   {%- if "getting-started/" in url -%}getting-started
@@ -57,7 +58,7 @@
       {% for item in page.meta.related %}
         {% if related_group_key(item.url) == group_key %}
         <li class="md-nav__item">
-          <a href="{{ item.url | url }}" class="md-nav__link">{{ item.title }}</a>
+          <a href="{{ related_link(item.url) | url }}" class="md-nav__link">{{ item.title }}</a>
         </li>
         {% endif %}
       {% endfor %}
