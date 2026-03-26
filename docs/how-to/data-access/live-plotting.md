@@ -6,6 +6,8 @@ related:
     url: how-to/data-access/strip-tool.html
   - title: Data fitting GUI
     url: how-to/data-fitting/gui.html
+  - title: File Writer
+    url: learn/bec-core/file-writers.html
 ---
 
 # Live plotting
