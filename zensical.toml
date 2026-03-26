@@ -34,6 +34,10 @@ nav = [
   ]},
   { "How-to Guides" = [
     "how-to/index.md",
+    { "General" = [
+      "how-to/general/index.md",
+      { "Update BEC to a new version" = "how-to/general/update-deployment.md" },
+    ] },
     { "Devices and scans" = [
       { Devices = [
         "how-to/devices/index.md",
