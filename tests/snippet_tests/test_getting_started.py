@@ -4,6 +4,12 @@ from abc import ABC, abstractmethod
 
 import pytest
 
+from bec_docs_pymdown_extensions.matchers import (
+    ContainsExpectedOutputMatcher,
+    ExpectedOutputMatcher,
+)
+from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
+
 
 @pytest.fixture
 def bec(bec_ipython_client_fixture):
@@ -14,28 +20,13 @@ class TestSetupError(TypeError):
     """A failure to define the test correctly"""
 
 
-class ExpectedOutputMatcher(ABC):
-    def __init__(self, expected_output: str) -> None:
-        self._expected_output = expected_output
-
-    @abstractmethod
-    def check(self, output) -> bool: ...
-
-
-class ContainsExpectedOutputMatcher(ExpectedOutputMatcher):
-    def check(self, output):
-        return self._expected_output in output
-
-
 @pytest.fixture(autouse=True)
 def expected_output_check(capsys, request: pytest.FixtureRequest):
     mark = request.node.get_closest_marker("expected_output")
     if mark is None:
         yield
     else:
-        if (len(mark.args) != 1) or not isinstance(
-            matcher := mark.args[0], ExpectedOutputMatcher
-        ):
+        if (len(mark.args) != 1) or not isinstance(matcher := mark.args[0], ExpectedOutputMatcher):
             raise TestSetupError("Mark your test with an expected output matcher!")
         yield
         captured = capsys.readouterr()
@@ -104,6 +95,17 @@ SHOW_ALL_COMMANDS_OUTPUT = """\
 @pytest.mark.expected_output(ContainsExpectedOutputMatcher(SHOW_ALL_COMMANDS_OUTPUT))
 def test_show_all_commands(bec):
     bec.show_all_commands()
+
+
+LOAD_CONFIG_OUTPUT = f"""\
+A recovery config was written to {PLACEHOLDER_TOKEN}\
+"""
+
+
+@pytest.mark.timeout(100)
+@pytest.mark.expected_output(ContainsExpectedOutputMatcher(LOAD_CONFIG_OUTPUT))
+def test_load_demo_config(bec):
+    bec.config.load_demo_config()
 
 
 DEV_OUTPUT = """\
@@ -352,6 +354,5 @@ DEV_OUTPUT = """\
 
 @pytest.mark.timeout(100)
 @pytest.mark.expected_output(ContainsExpectedOutputMatcher(DEV_OUTPUT))
-def test_load_demo_config_show_devices(bec):
-    bec.config.load_demo_config()
+def test_show_all_devices(bec):
     dev.show_all()

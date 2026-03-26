@@ -33,6 +33,11 @@ jobs:
     if: needs.check_pr_status.outputs.branch-pr == ''
     uses: ./.github/workflows/linting_and_formatting.yml
 
+  unit_test_extensions:
+    needs: check_pr_status
+    if: needs.check_pr_status.outputs.branch-pr == ''
+    uses: ./.github/workflows/unit_tests.yml
+
   test-code-snippets:
     needs: [check_pr_status, linting_and_formatting]
     if: needs.check_pr_status.outputs.branch-pr == ''

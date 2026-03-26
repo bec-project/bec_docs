@@ -24,23 +24,19 @@ connecting to real hardware.
 
 Load that demo configuration now:
 
-```python
-bec.config.load_demo_config()
-```
+--[]->[]--test_snippet--test_getting_started.py:test_load_demo_config:load the demo config
 
 ## 2. Check the available devices
 
 Inspect the devices currently available in the session:
 
-```python
-dev.show_all()
-```
+--[]->[]--test_snippet--test_getting_started.py:test_show_all_devices:show all the devices in the session
 
 You should see a list of simulated devices, including motors such as `samx` and `samy`.
 
 !!! tip
-    BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and
-    attributes, or `scans.` to explore the scan interface.
+
+    BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and attributes, or `scans.` to explore the scan interface.
 
 ## 3. Inspect one device
 
@@ -76,5 +72,3 @@ difference between blocking and non-blocking motion commands.
 
 Continue with [04 Move a device](move-a-device.md), where you will use the newly loaded motors for your first controlled
 move.
-
-
