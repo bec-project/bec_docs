@@ -13,7 +13,7 @@ hide:
         A modular platform for data acquisition, device control, and scan orchestration at large research facilities.
       </p>
       <div class="bec-home__actions">
-        <a class="md-button md-button--primary" href="user/user.html">Get started</a>
+        <a class="md-button md-button--primary" href="getting-started/">Get started</a>
         <a class="md-button" href="developer/getting_started/architecture.html">See architecture</a>
       </div>
       <div class="bec-home__meta">

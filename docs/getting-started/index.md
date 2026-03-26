@@ -1,19 +1,29 @@
 # Getting started
 
-This section is the new entry point for first-time BEC users.
+Start here if you are new to BEC. This section gives you a guided first path through startup, configuration, motion,
+scans, and the GUI, then points you toward the deeper task-oriented material.
 
-The pages below are placeholders for the rewritten onboarding flow and mark where the new getting-started content will live.
+## Choose your path
 
-Start with the `Quick start` sequence for the core first-run tutorials, then continue with the task-focused pages that follow.
+Use **Quick Start** if you want a guided sequence with one concrete outcome per page.
 
-## Overview
+Use **Next Steps** after **Quick Start** if you want to move from first use into real beamline tasks such as adding
+devices, exporting configs, or writing macros.
 
-Placeholder.
+!!! note "PSI-specific content"
 
-## Included pages
+    Throughout the documentation, pages marked with the PSI logo in the navigation or page heading describe PSI-specific environments, tooling, or workflows.
 
-Placeholder.
+## How to use this section
 
-## Status
+Follow the **Quick Start** tutorials in order. Tutorials [01 Open BEC at PSI](quick-start/01-open-bec-at-psi.md)
+and [02 Open BEC outside of PSI](quick-start/02-open-bec-outside-psi.md) are alternative starting points, so choose the
+one that matches your environment and then continue with tutorial [03 Load your first config](quick-start/03-load-your-first-config.md).
 
-Placeholder.
+After **Quick Start**, continue with the **Next Steps** pages when you are ready to work with your own configs, devices,
+data, and automation.
+
+!!! warning "Use a safe session for the Quick Start tutorials"
+
+    Tutorials 03 to 06 assume you are working in a safe training, local, or test session where loading the demo
+    configuration is acceptable.
