@@ -39,8 +39,8 @@ dev.show_all()
 You should see a list of simulated devices, including motors such as `samx` and `samy`.
 
 !!! tip
-BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and
-attributes, or `scans.` to explore the scan interface.
+    BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and
+    attributes, or `scans.` to explore the scan interface.
 
 ## 3. Inspect one device
 
