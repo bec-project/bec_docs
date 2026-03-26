@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bec-docs"
+version = "0.1.0"
+description = "Unified BEC documentation"
+requires-python = ">=3.11"
+dependencies = ["zensical", "mkdocstrings-python", "pymdown-extensions"]
+
+
+[tool.hatch.build.targets.wheel]
+include = ["*"]
+exclude = ["docs/**", "tests/**"]
+
+[tool.hatch.build.targets.sdist]
+include = ["*"]
+exclude = ["docs/**", "tests/**"]

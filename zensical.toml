@@ -1,0 +1,232 @@
+[project]
+site_name = "BEC Documentation"
+site_url = "https://bec-project.github.io/bec_docs/"
+site_author = "BEC developers"
+site_description = "Unified BEC documentation organized with the Diataxis framework"
+docs_dir = "docs"
+use_directory_urls = false
+repo_name = "bec-project"
+repo_url = "https://github.com/bec-project"
+copyright = "Copyright &copy; BEC contributors"
+extra_css = ["stylesheets/extra.css"]
+nav = [
+  { Home = "index.md" },
+  { "Getting started" = [
+    "getting-started/index.md",
+    { "Quick start" = [
+      "getting-started/quick-start/index.md",
+      { "01 Open BEC at PSI" = "getting-started/open-bec-at-psi.md" },
+      { "02 Open BEC outside of PSI" = "getting-started/open-bec-outside-psi.md" },
+      { "03 Load your first config" = "getting-started/load-your-first-config.md" },
+      { "04 Move a device" = "getting-started/move-a-device.md" },
+      { "05 Inspect a device" = "getting-started/inspect-a-device.md" },
+      { "06 Run your first scan" = "getting-started/run-your-first-scan.md" },
+      { "07 Create your first GUI" = "getting-started/create-your-first-gui.md" },
+    ]},
+    { "Next steps" = [
+      "getting-started/next-steps/index.md",
+      { "Add your first device" = "getting-started/add-your-first-device.md" },
+      { "Load and export a config" = "getting-started/load-and-export-a-config.md" },
+      { "Access scan data" = "getting-started/access-scan-data.md" },
+      { "Run an alignment scan" = "getting-started/run-an-alignment-scan.md" },
+      { "Write your first macro" = "getting-started/write-your-first-macro.md" },
+    ]},
+  ]},
+  { "How-to Guides" = [
+    "how-to/index.md",
+    { "Devices and scans" = [
+      { Devices = [
+        "how-to/devices/index.md",
+        { "Add a device" = "how-to/devices/add-a-device.md" },
+        { GUI = "how-to/devices/gui.md" },
+        { "Config file" = "how-to/devices/config-file.md" },
+        { "Write a new ophyd class" = "how-to/devices/write-a-new-ophyd-class.md" },
+        { "Add a pseudo motor" = "how-to/devices/add-a-pseudo-motor.md" },
+        { "Add a processed signal" = "how-to/devices/add-a-processed-signal.md" },
+      ]},
+      { Scans = [
+        "how-to/scans/index.md",
+        { "Step scan" = "how-to/scans/step-scan.md" },
+        { "Fly scan" = "how-to/scans/fly-scan.md" },
+      ]},
+    ]},
+    { "Development and GUI" = [
+      { Plugins = [
+        "how-to/plugins/index.md",
+        { "Update your plugin code on Gitea" = "how-to/plugins/update-your-plugin-code-on-gitea.md" },
+        { Push = "how-to/plugins/push.md" },
+        { Pull = "how-to/plugins/pull.md" },
+        { Commit = "how-to/plugins/commit.md" },
+        { Merge = "how-to/plugins/merge.md" },
+        { "Write a simple GUI" = "how-to/plugins/write-a-simple-gui.md" },
+        { Designer = "how-to/plugins/designer.md" },
+        { "Profiles and loading profiles through the CLI" = "how-to/plugins/profiles-and-cli-loading.md" },
+        { "Write BECWidget class" = "how-to/plugins/write-becwidget-class.md" },
+        { "Updating BEC" = "how-to/plugins/updating-bec.md" },
+      ]},
+      { Scripting = [
+        "how-to/scripting/index.md",
+        { Procedures = "how-to/scripting/procedures.md" },
+        { Macros = "how-to/scripting/macros.md" },
+        { IDE = "how-to/scripting/ide.md" },
+      ]},
+    ]},
+    { "Operations and settings" = [
+      { Settings = [
+        "how-to/settings/index.md",
+        { "Set account" = "how-to/settings/set-account.md" },
+        { "ACLs in the future" = "how-to/settings/acls-in-the-future.md" },
+        { "Work with configs" = "how-to/settings/work-with-configs.md" },
+      ]},
+      { "Notification settings" = [
+        "how-to/notification-settings/index.md",
+        { Alarms = "how-to/notification-settings/alarms.md" },
+        { "Scilog, Signal, Teams" = "how-to/notification-settings/scilog-signal-teams.md" },
+      ]},
+      { Automation = [
+        "how-to/automation/index.md",
+        { "BL states" = "how-to/automation/bl-states.md" },
+        { Actors = "how-to/automation/actors.md" },
+        { Procedures = "how-to/automation/procedures.md" },
+      ]},
+      { "Accessing logs" = [
+        "how-to/accessing-logs/index.md",
+        { Grafana = "how-to/accessing-logs/grafana.md" },
+        { "File logs" = "how-to/accessing-logs/file-logs.md" },
+        { Tmux = "how-to/accessing-logs/tmux.md" },
+        { "Log viewer" = "how-to/accessing-logs/log-viewer.md" },
+      ]},
+    ]},
+    { "Data and analysis" = [
+      { "Data fitting" = [
+        "how-to/data-fitting/index.md",
+        { GUI = "how-to/data-fitting/gui.md" },
+        { CLI = "how-to/data-fitting/cli.md" },
+      ]},
+      { "Data access" = [
+        "how-to/data-access/index.md",
+        { "Plot from history" = "how-to/data-access/plot-from-history.md" },
+        { "Live plotting" = "how-to/data-access/live-plotting.md" },
+        { "Strip tool" = "how-to/data-access/strip-tool.md" },
+        { "BEC history data access" = "how-to/data-access/bec-history-data-access.md" },
+      ]},
+    ]},
+  ]},
+  { Learn = [
+    "learn/index.md",
+    { "BEC Core" = [
+      "learn/bec-core/index.md",
+      { "Service architecture" = "learn/bec-core/service-architecture.md" },
+      { "What services exist" = "learn/bec-core/what-services-exist.md" },
+      { "How they interact" = "learn/bec-core/how-they-interact.md" },
+      { "How they are started and stopped" = "learn/bec-core/how-they-are-started-and-stopped.md" },
+      { "What is a device session in BEC?" = "learn/bec-core/what-is-a-device-session.md" },
+      { "How the Redis connector works internally" = "learn/bec-core/how-the-redis-connector-works.md" },
+      { "How the async and sync file writers work" = "learn/bec-core/file-writers.md" },
+      { "How plugins are fetched and loaded" = "learn/bec-core/how-plugins-are-fetched-and-loaded.md" },
+      { "Run a service with a different log level" = "learn/bec-core/run-a-service-with-a-different-log-level.md" },
+      { "How the plugin system works" = "learn/bec-core/how-the-plugin-system-works.md" },
+      { "How the device manager subscribes to events" = "learn/bec-core/how-the-device-manager-subscribes-to-events.md" },
+      { "Device config file fields and behavior" = "learn/bec-core/device-config-file-fields-and-behavior.md" },
+      { "Device proxy objects and real device connections" = "learn/bec-core/device-proxy-objects-and-real-device-connections.md" },
+      { "ophyd.Kind and readoutPriority during scans" = "learn/bec-core/ophyd-kind-and-readout-priority-during-scans.md" },
+    ]},
+    { "BEC Widgets" = [
+      "learn/bec-widgets/index.md",
+      { Architecture = "learn/bec-widgets/architecture.md" },
+      { "RPC interface" = "learn/bec-widgets/rpc-interface.md" },
+      { "Why use SafeSlot, SafeProperty and SafeConnect?" = "learn/bec-widgets/safe-helpers.md" },
+      { "Why widget cleanup matters" = "learn/bec-widgets/widget-cleanup.md" },
+      { "How the BEC Dispatcher works" = "learn/bec-widgets/bec-dispatcher.md" },
+      { "BECWidget class and BECConnector" = "learn/bec-widgets/becwidget-class-and-becconnector.md" },
+    ]},
+    { "Ophyd devices" = [
+      "learn/ophyd-devices/index.md",
+      { "Ophyd subscription system and events" = "learn/ophyd-devices/subscription-system-and-events.md" },
+      { "Effect on readout behavior" = "learn/ophyd-devices/effect-on-readout-behavior.md" },
+      { "EpicsMotor, EpicsMotorEC, EpicsUserMotorVME" = "learn/ophyd-devices/epics-motors.md" },
+      { "EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV" = "learn/ophyd-devices/epics-signals.md" },
+      { "Ophyd devices that do not use EPICS" = "learn/ophyd-devices/non-epics-devices.md" },
+      { "Ophyd lifecycle hooks" = "learn/ophyd-devices/lifecycle-hooks.md" },
+      { "BECSignals" = "learn/ophyd-devices/becsignals.md" },
+    ]},
+  ]},
+  { References = [
+    "references/index.md",
+    { "BEC Core" = [
+      "references/bec-core/index.md",
+      { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
+      { "Scans" = "references/bec-core/scans.md" },
+    ]},
+    { "BEC Widgets" = [
+      "references/bec-widgets/index.md",
+      { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
+      { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
+    ]},
+    { "Ophyd devices" = [
+      "references/ophyd-devices/index.md",
+      { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
+      { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
+      { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
+      { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
+      { Devices = "references/ophyd-devices/devices.md" },
+    ]},
+  ]},
+]
+
+[project.theme]
+name = "material"
+logo = "assets/bec-app-icon.png"
+favicon = "assets/bec-app-icon.png"
+custom_dir = "overrides"
+features = [
+  "content.code.annotate",
+  "navigation.tabs",
+  "navigation.sections",
+  "navigation.indexes",
+  "navigation.footer",
+  "navigation.top",
+  "navigation.tracking",
+  "content.code.copy",
+  "content.tooltips",
+  "search.suggest",
+  "search.highlight",
+  "search.share",
+  "toc.follow",
+]
+
+[project.theme.font]
+text = "Roboto"
+code = "Roboto Mono"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "black"
+accent = "indigo"
+
+[project.theme.palette.toggle]
+icon = "material/toggle-switch-off"
+name = "Switch to light mode"
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+
+[project.theme.palette.toggle]
+icon = "material/toggle-switch"
+name = "Switch to dark mode"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = [
+  "../bec/bec_lib",
+  "../bec/bec_server",
+  "../bec/bec_ipython_client",
+  "../bec-widgets",
+  "../ophyd_devices",
+]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+show_source = true
+show_root_heading = true
+heading_level = 2

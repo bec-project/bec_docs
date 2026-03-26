@@ -1,0 +1,51 @@
+{#-
+  Custom TOC partial for BEC docs.
+  Keeps the built-in page TOC and optionally renders related links from
+  page metadata:
+
+  related:
+    - title: Some page
+      url: getting-started/some-page.html
+-#}
+{% import "partials/language.html" as lang with context %}
+{% set title = lang.t("toc") %}
+{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}
+  {% set title = config.mdx_configs.toc.title %}
+{% endif %}
+{% set toc = page.toc %}
+{% set first = toc | first %}
+{% if first and first.level == 1 %}
+  {% set toc = first.children %}
+{% endif %}
+
+{% if toc %}
+<nav class="md-nav md-nav--secondary" aria-label="{{ title | e }}">
+  <label class="md-nav__title" for="__toc">
+    <span class="md-nav__icon md-icon"></span>
+    {{ title }}
+  </label>
+  <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    {% for toc_item in toc %}
+      {% include "partials/toc-item.html" %}
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
+
+{% if page.meta and page.meta.related %}
+<nav class="md-nav md-nav--secondary md-nav--related" aria-label="Related pages">
+  <label class="md-nav__title">
+    <span class="md-nav__icon md-icon"></span>
+    Related pages
+  </label>
+  <ul class="md-nav__list">
+    {% for item in page.meta.related %}
+      <li class="md-nav__item">
+        <a href="{{ item.url | url }}" class="md-nav__link">
+          {{ item.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
