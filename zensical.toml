@@ -22,7 +22,7 @@ nav = [
       { "05 Inspect a device" = "getting-started/inspect-a-device.md" },
       { "06 Run your first scan" = "getting-started/run-your-first-scan.md" },
       { "07 Create your first GUI" = "getting-started/create-your-first-gui.md" },
-    ]},
+    ] },
     { "Next steps" = [
       "getting-started/next-steps/index.md",
       { "Add your first device" = "getting-started/add-your-first-device.md" },
@@ -30,24 +30,28 @@ nav = [
       { "Access scan data" = "getting-started/access-scan-data.md" },
       { "Run an alignment scan" = "getting-started/run-an-alignment-scan.md" },
       { "Write your first macro" = "getting-started/write-your-first-macro.md" },
-    ]},
-  ]},
+    ] },
+  ] },
   { "How-to Guides" = [
     "how-to/index.md",
-    { "General" = [
-      "how-to/general/index.md",
+    { General = [
       { "Update BEC to a new version" = "how-to/general/update-deployment.md" },
+    ] },
+    { "Working with Git" = [
+      "how-to/git/index.md",
+      { "Add changes to your plugin repository" = "how-to/git/add-changes-to-plugin-repository.md" },
+      { "Merge changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
     { "Devices and scans" = [
       { Devices = [
         "how-to/devices/index.md",
         { "Add an EpicsMotor" = "how-to/devices/add-an-epics-motor.md" },
-      ]},
+      ] },
       { Scans = [
         "how-to/scans/index.md",
-      ]},
-    ]},
-  ]},
+      ] },
+    ] },
+  ] },
   { Learn = [
     "learn/index.md",
     { "BEC Core" = [
@@ -66,7 +70,7 @@ nav = [
       { "Device config file fields and behavior" = "learn/bec-core/device-config-file-fields-and-behavior.md" },
       { "Device proxy objects and real device connections" = "learn/bec-core/device-proxy-objects-and-real-device-connections.md" },
       { "ophyd.Kind and readoutPriority during scans" = "learn/bec-core/ophyd-kind-and-readout-priority-during-scans.md" },
-    ]},
+    ] },
     { "BEC Widgets" = [
       "learn/bec-widgets/index.md",
       { Architecture = "learn/bec-widgets/architecture.md" },
@@ -75,7 +79,7 @@ nav = [
       { "Why widget cleanup matters" = "learn/bec-widgets/widget-cleanup.md" },
       { "How the BEC Dispatcher works" = "learn/bec-widgets/bec-dispatcher.md" },
       { "BECWidget class and BECConnector" = "learn/bec-widgets/becwidget-class-and-becconnector.md" },
-    ]},
+    ] },
     { "Ophyd devices" = [
       "learn/ophyd-devices/index.md",
       { "Ophyd subscription system and events" = "learn/ophyd-devices/subscription-system-and-events.md" },
@@ -85,20 +89,20 @@ nav = [
       { "Ophyd devices that do not use EPICS" = "learn/ophyd-devices/non-epics-devices.md" },
       { "Ophyd lifecycle hooks" = "learn/ophyd-devices/lifecycle-hooks.md" },
       { "BECSignals" = "learn/ophyd-devices/becsignals.md" },
-    ]},
-  ]},
+    ] },
+  ] },
   { References = [
     "references/index.md",
     { "BEC Core" = [
       "references/bec-core/index.md",
       { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
       { "Scans" = "references/bec-core/scans.md" },
-    ]},
+    ] },
     { "BEC Widgets" = [
       "references/bec-widgets/index.md",
       { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
       { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
-    ]},
+    ] },
     { "Ophyd devices" = [
       "references/ophyd-devices/index.md",
       { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
@@ -106,8 +110,8 @@ nav = [
       { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
       { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
       { Devices = "references/ophyd-devices/devices.md" },
-    ]},
-  ]},
+    ] },
+  ] },
 ]
 
 [project.theme]
