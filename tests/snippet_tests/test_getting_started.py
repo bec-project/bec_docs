@@ -6,34 +6,9 @@ import pytest
 
 from bec_docs_pymdown_extensions.matchers import (
     ContainsExpectedOutputMatcher,
-    ExpectedOutputMatcher,
+    SimilarExpectedOutputMatcher,
 )
 from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
-
-
-@pytest.fixture
-def bec(bec_ipython_client_fixture):
-    return bec_ipython_client_fixture
-
-
-class TestSetupError(TypeError):
-    """A failure to define the test correctly"""
-
-
-@pytest.fixture(autouse=True)
-def expected_output_check(capsys, request: pytest.FixtureRequest):
-    mark = request.node.get_closest_marker("expected_output")
-    if mark is None:
-        yield
-    else:
-        if (len(mark.args) != 1) or not isinstance(matcher := mark.args[0], ExpectedOutputMatcher):
-            raise TestSetupError("Mark your test with an expected output matcher!")
-        yield
-        captured = capsys.readouterr()
-        assert matcher.check(
-            captured.out
-        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}"
-
 
 SHOW_ALL_COMMANDS_OUTPUT = """\
               User macros              
@@ -353,6 +328,16 @@ DEV_OUTPUT = """\
 
 
 @pytest.mark.timeout(100)
-@pytest.mark.expected_output(ContainsExpectedOutputMatcher(DEV_OUTPUT))
+@pytest.mark.expected_output(SimilarExpectedOutputMatcher(DEV_OUTPUT))
 def test_show_all_devices(bec):
     dev.show_all()
+
+
+@pytest.mark.timeout(100)
+def test_inspect_samx(bec):
+    dev.samx
+
+
+@pytest.mark.timeout(100)
+def test_samx_read(bec):
+    dev.samx.read()

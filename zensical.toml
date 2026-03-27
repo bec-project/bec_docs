@@ -137,7 +137,7 @@ features = [
 
 [project.theme.font]
 text = "Roboto"
-code = "Roboto Mono"
+code = "Jetbrains Mono"
 
 [[project.theme.palette]]
 scheme = "slate"

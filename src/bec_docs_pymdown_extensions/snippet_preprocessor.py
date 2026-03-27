@@ -20,19 +20,24 @@ def _replace_placeholders(s: str) -> str:
     return s
 
 
-def _replacement(title: str, code: str, expected_output: str):
-    return f"""
-/// tab | {title}
-```python 
-{code}
-```
-///
-/// tab | expected output
-```
-{_replace_placeholders(expected_output)}
-```
-///
-"""
+def _replacement(title: str, code: str, expected_output: str | None) -> list[str]:
+    """If expected output is provided, return a tabset with code and the output, with
+    the title of the code tab set to title. Otherwise, return a titled code block."""
+
+    if expected_output:
+        return [
+            f"/// tab | {title}",
+            "```python",
+            *code.splitlines(),
+            "```",
+            "///",
+            "/// tab | expected output",
+            "```",
+            *_replace_placeholders(expected_output).splitlines(),
+            "```",
+            "///",
+        ]
+    return [f'```python title="{title}"', *code.splitlines(), "```"]
 
 
 def _resolve_f_string_component(v: ast.expr) -> str:
@@ -50,7 +55,7 @@ def _process_str(node: ast.Assign):
         return "".join(_resolve_f_string_component(v) for v in node.value.values)
     if not isinstance(node.value, ast.Constant):
         return "[redirected constant - only use simply assigned constants as expected text]"
-    return node.value.value
+    return str(node.value.value)
 
 
 def _get_id_value(tree: ast.Module, id: str):
@@ -59,41 +64,50 @@ def _get_id_value(tree: ast.Module, id: str):
             target = node.targets[0]
             if isinstance(target, ast.Name):
                 if target.id == id:
-
                     value = _process_str(node)
                     return value
 
 
+def _get_expected_value(tree: ast.Module, func: ast.FunctionDef) -> str | None:
+    for decorator in func.decorator_list:
+        if decorator.func.attr == "expected_output":
+            return _get_id_value(tree, decorator.args[0].args[0].id)
+
+
+def _extract_function(tree: ast.Module, name: str) -> ast.FunctionDef | None:
+    function_defs = filter(lambda x: isinstance(x, ast.FunctionDef), tree.body)
+    test_functions: list[ast.FunctionDef] = list(filter(lambda x: x.name == name, function_defs))
+    if len(test_functions) == 0:
+        return None
+    return test_functions[0]
+
+
 def _transform_lines(lines: list[str]):
-    for i, line in enumerate(lines):
+    out_lines = []
+    for line in lines:
         if line.startswith(_CODE_SEQUENCE):
             line = line.removeprefix(_CODE_SEQUENCE).split(":")
             if len(line) != 3:
-                lines[i] = "Incorrect syntax for tested code snippet!"
+                out_lines.append("Incorrect syntax for tested code snippet!")
                 continue
             file, test_name, title = line
             try:
                 with open(TEST_SNIPPET_DIR / file) as f:
                     file_text = f.read()
                 file_tree = ast.parse(file_text)
-                function_defs = filter(lambda x: isinstance(x, ast.FunctionDef), file_tree.body)
-                test_functions: list[ast.FunctionDef] = list(
-                    filter(lambda x: x.name == test_name, function_defs)
-                )
-                if len(test_functions) == 0:
-                    lines[i] = f"Failed to find test {test_name} in {file}"
-                test_function = test_functions[0]
+                if (test_function := _extract_function(file_tree, test_name)) is None:
+                    out_lines.append(f"Failed to find test {test_name} in {file}")
+                    continue
                 code = "\n".join(
                     file_text.splitlines()[test_function.lineno : test_function.end_lineno]
                 )
-                expected_value = None
-                for decorator in test_function.decorator_list:
-                    if decorator.func.attr == "expected_output":
-                        expected_value = _get_id_value(file_tree, decorator.args[0].args[0].id)
-                lines[i] = _replacement(title, dedent(code), expected_value)
+                expected_value = _get_expected_value(file_tree, test_function)
+                out_lines.extend(_replacement(title, dedent(code), expected_value))
             except Exception as e:
-                lines[i] = f"Failed to process code snippet file: {file} \n {e}"
-    return lines
+                out_lines.append(f"Failed to process code snippet file: {file} \n {e}")
+        else:
+            out_lines.append(line)
+    return out_lines
 
 
 class TestSnippetsPreprocessor(Preprocessor):

@@ -16,3 +16,8 @@ def transform_with_f_string():
 @pytest.mark.expected_output(ContainsExpectedOutputMatcher(CONSTANT_STRING))
 def transform_with_constant_string():
     code = 2
+
+
+def snippet_with_no_output():
+    code = 3
+    run_function()
