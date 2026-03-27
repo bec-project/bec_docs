@@ -17,7 +17,7 @@ nav = [
     "getting-started/index.md",
     { "Quick start" = [
       "getting-started/quick-start/index.md",
-      { "01 Open BEC at PSI" = "getting-started/open-bec-at-psi.md" },
+      { "01 Open BEC" = "getting-started/open-bec-at-psi.md" },
       { "02 Open BEC outside of PSI" = "getting-started/open-bec-outside-psi.md" },
       { "03 Load your first config" = "getting-started/load-your-first-config.md" },
       { "04 Move a device" = "getting-started/move-a-device.md" },
@@ -102,6 +102,11 @@ nav = [
     ] },
   ] },
 ]
+
+[project.extra.page_badges.psi]
+light = "assets/psi_01_sp.png"
+dark = "assets/psi_01_sn.png"
+alt = "PSI-specific"
 
 [project.theme]
 name = "material"

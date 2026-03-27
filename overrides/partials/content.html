@@ -1,0 +1,24 @@
+{% set page_badges = config.extra.page_badges | d({}, true) %}
+{% set badge_name = page.meta.badge if page.meta and page.meta.badge else none %}
+{% set badge = page_badges[badge_name] if badge_name and badge_name in page_badges else none %}
+
+{% include "partials/actions.html" %}
+{% if "\u003ch1" not in page.content %}
+  {% set heading = page.meta.heading if page.meta and page.meta.heading else page.title | d(config.site_name, true) %}
+  {% if badge %}
+    <div class="bec-page-heading">
+      <h1 id="__skip">{{ heading }}</h1>
+      <div class="bec-page-brand bec-page-brand--{{ badge_name }}">
+        <img class="bec-page-brand__logo bec-page-brand__logo--light" src="{{ badge.light | url }}" alt="{{ badge.alt | d(badge_name | upper, true) }}">
+        <img class="bec-page-brand__logo bec-page-brand__logo--dark" src="{{ badge.dark | url }}" alt="{{ badge.alt | d(badge_name | upper, true) }}">
+      </div>
+    </div>
+  {% else %}
+    <h1 id="__skip">{{ heading }}</h1>
+  {% endif %}
+{% endif %}
+{{ page.content }}
+{% include "partials/tags.html" %}
+{% include "partials/source-file.html" %}
+{% include "partials/feedback.html" %}
+{% include "partials/comments.html" %}
