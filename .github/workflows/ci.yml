@@ -1,0 +1,49 @@
+name: Full CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      BEC_WIDGETS_BRANCH:
+        description: "Branch of BEC Widgets to install"
+        required: false
+        type: string
+      BEC_CORE_BRANCH:
+        description: "Branch of BEC Core to install"
+        required: false
+        type: string
+      OPHYD_DEVICES_BRANCH:
+        description: "Branch of Ophyd Devices to install"
+        required: false
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+
+jobs:
+  check_pr_status:
+    uses: ./.github/workflows/check_pr.yml
+
+  linting_and_formatting:
+    needs: check_pr_status
+    if: needs.check_pr_status.outputs.branch-pr == ''
+    uses: ./.github/workflows/linting_and_formatting.yml
+
+  unit_test_extensions:
+    needs: check_pr_status
+    if: needs.check_pr_status.outputs.branch-pr == ''
+    uses: ./.github/workflows/unit_tests.yml
+
+  test-code-snippets:
+    needs: [check_pr_status, linting_and_formatting]
+    if: needs.check_pr_status.outputs.branch-pr == ''
+    uses: ./.github/workflows/test_snippets.yml
+    with:
+      BEC_WIDGETS_BRANCH: ${{ inputs.BEC_WIDGETS_BRANCH || 'main' }}
+      BEC_CORE_BRANCH: ${{ inputs.BEC_CORE_BRANCH || 'main' }}
+      OPHYD_DEVICES_BRANCH: ${{ inputs.OPHYD_DEVICES_BRANCH || 'main' }}
+      PYTHON_VERSION: "3.12"

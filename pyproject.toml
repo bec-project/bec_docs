@@ -9,11 +9,32 @@ description = "Unified BEC documentation"
 requires-python = ">=3.11"
 dependencies = ["zensical", "mkdocstrings-python", "pymdown-extensions"]
 
+[project.optional-dependencies]
+dev = ["pytest"]
 
 [tool.hatch.build.targets.wheel]
+packages = ["src/bec_docs_pymdown_extensions"]
 include = ["*"]
 exclude = ["docs/**", "tests/**"]
 
 [tool.hatch.build.targets.sdist]
+packages = ["src/bec_docs_pymdown_extensions"]
 include = ["*"]
 exclude = ["docs/**", "tests/**"]
+
+[project.entry-points."markdown.extensions"]
+snippet_preprocessor = "bec_docs_pymdown_extensions.snippet_preprocessor:make_extension"
+
+[tool.black]
+line-length = 100
+skip-magic-trailing-comma = true
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+known_first_party = ["bec_lib", "bec_server", "bec_ipython_client"]
+
+[tool.pytest]
+markers = ["expected_output"]
