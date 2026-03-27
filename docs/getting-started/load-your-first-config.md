@@ -42,9 +42,7 @@ You should see a list of simulated devices, including motors such as `samx` and 
 
 Start with one of the simulated motors:
 
-```python
-dev.samx
-```
+--[]->[]--test_snippet--test_getting_started.py:test_inspect_samx:inspect the samx motor
 
 This prints a device overview with the most important metadata, current values, and config signals. Use this overview
 when you want to understand what a device is, whether it is enabled, what limits it has, and which
@@ -52,11 +50,7 @@ signals are currently changing.
 
 ## 4. Inspect the live values directly
 
-If you want only the live readings, call:
-
-```python
-dev.samx.read()
-```
+--[]->[]--test_snippet--test_getting_started.py:test_samx_read:read from the samx motor
 
 `.read()` returns the current readback values for the device and is the quickest way to inspect its live state from the
 shell.

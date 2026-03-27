@@ -26,7 +26,16 @@ def test_transform_with_f_string(preprocessor_module):
     out_lines = preprocessor_module._transform_lines(in_lines)
     expected_lines = [
         "a",
-        "\n/// tab | transform with f-string\n```python \ncode = 1\n```\n///\n/// tab | expected output\n```\ninterpolated f-string\n```\n///\n",
+        "/// tab | transform with f-string",
+        "```python",
+        "code = 1",
+        "```",
+        "///",
+        "/// tab | expected output",
+        "```",
+        "interpolated f-string",
+        "```",
+        "///",
         "b",
     ]
     assert out_lines == expected_lines
@@ -41,7 +50,30 @@ def test_transform_with_constant_string(preprocessor_module):
     out_lines = preprocessor_module._transform_lines(in_lines)
     expected_lines = [
         "a",
-        "\n/// tab | transform with constant string\n```python \ncode = 2\n```\n///\n/// tab | expected output\n```\nconstant string\n```\n///\n",
+        "/// tab | transform with constant string",
+        "```python",
+        "code = 2",
+        "```",
+        "///",
+        "/// tab | expected output",
+        "```",
+        "constant string",
+        "```",
+        "///",
         "b",
+    ]
+    assert out_lines == expected_lines
+
+
+def test_snippet_with_no_output(preprocessor_module):
+    in_lines = [
+        "--[]->[]--test_snippet--preprocessor_test_data.py:snippet_with_no_output:snippet with no output"
+    ]
+    out_lines = preprocessor_module._transform_lines(in_lines)
+    expected_lines = [
+        '```python title="snippet with no output"',
+        "code = 3",
+        "run_function()",
+        "```",
     ]
     assert out_lines == expected_lines
