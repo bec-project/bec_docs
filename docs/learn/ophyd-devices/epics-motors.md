@@ -1,15 +1,27 @@
+---
+related:
+  - title: Add an EPICS motor
+    url: ../../how-to/devices/add-an-epics-motor.md
+  - title: Write a new ophyd class
+    url: ../../how-to/devices/write-a-new-ophyd-class.html
+  - title: Add a pseudo motor
+    url: ../../how-to/devices/add-a-pseudo-motor.html
+---
+
 # EpicsMotor, EpicsMotorEC, EpicsUserMotorVME
 
-Placeholder for the conceptual page on EPICS-backed motor classes.
+BEC exposes three closely related EPICS motor classes through `ophyd_devices`:
 
-## Overview
+- `ophyd_devices.EpicsMotor`
+- `ophyd_devices.EpicsMotorEC`
+- `ophyd_devices.EpicsUserMotorVME`
 
-Placeholder.
+## Which one should I use?
 
-## Key points
+The right choice depends on your EPICS motor implementation. 
 
-Placeholder.
+- If you have an ECMC-based motor, choose `ophyd_devices.EpicsMotorEC` to get ECMC-specific signals and checks.
+- If you have a VME user motor, choose `ophyd_devices.EpicsUserMotorVME` to get VME-specific signals and behavior.
+- For everything else, start with `ophyd_devices.EpicsMotor` as the normal default.
 
-## Related topics
 
-Placeholder.
