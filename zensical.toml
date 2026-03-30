@@ -10,27 +10,6 @@ repo_url = "https://github.com/bec-project"
 copyright = "Copyright &copy; BEC contributors"
 extra_css = ["stylesheets/extra.css"]
 
-[project.extra.analytics]
-provider = "google"
-property = "G-GKREZ8B06M"
-
-[project.extra.analytics.feedback]
-title = "Was this page helpful?"
-
-[[project.extra.analytics.feedback.ratings]]
-icon = "material/thumb-up-outline"
-name = "This page was helpful"
-data = 1
-note = "Thanks for your feedback!"
-
-[[project.extra.analytics.feedback.ratings]]
-icon = "material/thumb-down-outline"
-name = "This page could be improved"
-data = 0
-note = """
-Thanks for your feedback! Help us improve this page by opening a
-<a href="https://github.com/bec-project/bec_docs/issues/new?title=%5BFeedback%5D+%7Btitle%7D+-+%7Burl%7D" target="_blank" rel="noopener">documentation feedback issue</a>.
-"""
 
 nav = [
   { Home = "index.md" },
@@ -221,3 +200,26 @@ heading_level = 2
 [project.markdown_extensions.pymdownx.blocks.tab]
 alternate_style = true
 [project.markdown_extensions.bec_docs_pymdown_extensions]
+
+
+[project.extra.analytics]
+provider = "google"
+property = "G-GKREZ8B06M"
+
+[project.extra.analytics.feedback]
+title = "Was this page helpful?"
+
+[[project.extra.analytics.feedback.ratings]]
+icon = "material/thumb-up-outline"
+name = "This page was helpful"
+data = 1
+note = "Thanks for your feedback!"
+
+[[project.extra.analytics.feedback.ratings]]
+icon = "material/thumb-down-outline"
+name = "This page could be improved"
+data = 0
+note = """
+Thanks for your feedback! Help us improve this page by opening a
+<a href="https://github.com/bec-project/bec_docs/issues/new?title=%5BFeedback%5D+%7Btitle%7D+-+%7Burl%7D" target="_blank" rel="noopener">documentation feedback issue</a>.
+"""
