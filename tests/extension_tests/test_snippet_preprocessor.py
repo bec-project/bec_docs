@@ -26,12 +26,12 @@ def test_transform_with_f_string(preprocessor_module):
     out_lines = preprocessor_module._transform_lines(in_lines)
     expected_lines = [
         "a",
-        "/// tab | transform with f-string",
+        "/// tab | :material-import: transform with f-string",
         "```python",
         "code = 1",
         "```",
         "///",
-        "/// tab | expected output",
+        "/// tab | :material-export: output",
         "```",
         "interpolated f-string",
         "```",
@@ -50,12 +50,12 @@ def test_transform_with_constant_string(preprocessor_module):
     out_lines = preprocessor_module._transform_lines(in_lines)
     expected_lines = [
         "a",
-        "/// tab | transform with constant string",
+        "/// tab | :material-import: transform with constant string",
         "```python",
         "code = 2",
         "```",
         "///",
-        "/// tab | expected output",
+        "/// tab | :material-export: output",
         "```",
         "constant string",
         "```",
