@@ -441,3 +441,29 @@ body[data-md-color-scheme="slate"] .md-sidebar--primary .bec-nav-badge__logo--da
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.md-typeset .tabbed-set.tabbed-alternate > .tabbed-labels > label[data-tab-icon="true"] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.md-typeset .tabbed-set.tabbed-alternate > .tabbed-labels > label[data-tab-icon="true"]::before {
+  content: "";
+  display: block;
+  flex: 0 0 auto;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: -0.08em;
+  background-color: currentColor;
+  -webkit-mask-image: var(--bec-tab-icon);
+  mask-image: var(--bec-tab-icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: right center;
+  mask-position: right center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: translateX(0.14em);
+}
