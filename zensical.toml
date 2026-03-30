@@ -46,6 +46,7 @@ nav = [
       { Devices = [
         "how-to/devices/index.md",
         { "Add an EpicsMotor" = "how-to/devices/add-an-epics-motor.md" },
+        { "Add an EpicsSignal" = "how-to/devices/add-an-epics-signal.md" },
       ] },
       { Scans = [
         "how-to/scans/index.md",
