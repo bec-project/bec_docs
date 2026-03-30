@@ -2,6 +2,8 @@
 related:
   - title: File writing
     url: ../../learn/file-writer/index.md
+  - title: File references from devices
+    url: ../../learn/file-writer/file-references.md
 ---
 
 # Add a custom NeXuS structure for the file writer
@@ -16,7 +18,7 @@ related:
 
 !!! learn "[Learn about file writing in BEC](../../learn/file-writer/index.md){ data-preview }"
 
-## Create a custom writer format class
+## Create a custom writer format
 
 - Create a new module in your plugin under `<bec_plugin>.file_writer.<module>`.
 
@@ -109,10 +111,10 @@ class BeamlineNeXusFormat(DefaultFormat):
 
 !!! warning "Important"
 
-    BEC relies on a consistent data structure under `entry/collection` for functionality such as history access. This structure is written automatically by the FileWriter. Custom formats should not overwrite it, as doing so may break this functionality.
+    BEC relies on a consistent data structure under `entry/collection` for functionality such as history access. This structure is written automatically by the file writer. Custom formats should not overwrite it, as doing so may break this functionality.
 
 ## Expose the custom format in the plugin module
-BEC automatically discovers file-writer plugins from the module. You can simply add your class to the `__init__.py` of the file writer module.
+BEC automatically discovers file writer plugins from the module. You can simply add your class to the `__init__.py` of the file writer module.
 
 ``` py
 # <bec_plugin>/file_writer/__init__.py
@@ -124,6 +126,5 @@ from .custom_nexus import BeamlineNeXusFormat
 
 ## Common Pitfalls
 - Not exposing the custom format class in the file writer module `<bec_plugin>.file_writer.__init__.py`.
-- Returning a dictionary from `format()`. The method should mutate `self.storage` and return `None`.
-- Treating `self.file_references["eiger"]` as a plain dictionary. Entries are `FileMessage` objects.
-- The BEC server needs to be restarted after plugin changes are made.
+- Restarting the BEC server after plugin changes are made. The server needs to be restarted to load the new plugin code.
+- Treating `self.file_references["eiger"]` as plain dictionaries. Entries are individual `bec_lib.messages.FileMessage` objects.

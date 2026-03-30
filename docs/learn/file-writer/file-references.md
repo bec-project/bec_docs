@@ -14,7 +14,7 @@ Some devices create their own files instead of sending their data to BEC. These 
 
 BEC supports this by letting devices report file information through ophyd-side helper signals, i.e. `FileEventSignal` in `ophyd_devices.utils.bec_signals`. Devices can also indicate hinted entries in their files that the master file should link to. This allows the master file to link specific datasets in the external file instead of linking to the root of the file.
 
-<!-- TODO: Add link to BEC Signals -->
+!!! learn "[Learn about BEC signal classes](../devices/bec-signals.md){ data-preview }"
 
 ## How `DefaultFormat` uses file references
 

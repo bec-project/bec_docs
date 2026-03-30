@@ -6,7 +6,7 @@ related:
     url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
-# Customizing the File Writer from a Plugin Repository
+# Customizing the File Writer
 
 BEC discovers custom file-writer formats from the plugin repository entry point group `bec.file_writer`.
 

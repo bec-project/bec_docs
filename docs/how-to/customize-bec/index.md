@@ -1,25 +1,21 @@
-<!-- ---
+---
 related:
-  - title: Add a device
-    url: how-to/devices/add-a-device.html
-  - title: Config file
-    url: how-to/devices/config-file.html
-  - title: Write a new ophyd class
-    url: how-to/devices/write-a-new-ophyd-class.html
---- -->
+  - title: File writing
+    url: ../../learn/file-writer/index.md
+  - title: BEC Signals
+    url: ../../learn/devices/bec-signals.md
+---
 
-# Devices
+# Customize BEC
 
-Placeholder hub for customization how-to guides.
+Customize BEC behavior by extending plugin-based integrations for file writing and custom device signal forwarding.
 
-## Overview
+## Included guides
 
-Placeholder.
+- [Add a custom NeXuS structure for the file writer](add-a-custom-nexus-structure.md)
 
-## Included pages
+## Learn first
 
-Placeholder.
+!!! learn "[Learn about file writing in BEC](../../learn/file-writer/index.md){ data-preview }"
 
-## Status
-
-Placeholder.
+!!! learn "[Learn about BEC signal classes](../../learn/devices/bec-signals.md){ data-preview }"

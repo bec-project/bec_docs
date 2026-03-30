@@ -4,45 +4,35 @@ related:
     url: index.md
   - title: DefaultFormat and the default HDF5 layout
     url: default-format.md
+  - title: BEC Signals
+    url: ../../../learn/devices/bec-signals.md
 ---
 
 # Async and Sync File Writing
 
-BEC uses two complementary file-writing paths.
+BEC file writing has two complementary responsibilities:
+
+- write asynchronous device data continuously during the scan
+- write the final master file after the scan from data collected in scan storage
+
+Both are important in beamline operation. High-throughput data cannot always be buffered safely until the end of a scan, and delaying all writes until completion would increase memory pressure and delay finishing the scan.
+
+We will refer to the two different operation modes of the file writer service as "sync writing" and "async writing". The former refers to the final master file write that happens after the scan completes, while the latter refers to the continuous writing of async device data during the scan.
 
 ## Sync writing
 
-The main master file is written by the normal file-writer path after the scan storage is ready.
+The main master file is written by the normal file-writer path after the scan completes.
 
-Conceptually, this path:
-
-- collects scan segments and baseline data in scan storage
-- collects announced external file references
-- assembles the final device and metadata structures
-- writes the master `.h5` file through `HDF5FileWriter`
-
-This is the path that uses `DefaultFormat` or a custom subclass of it.
+Synchronous data is collected continuously during the scan and bundled in scan storage. In a step scan, this includes readings from all normal and hinted signals of monitored devices. Typical examples are BPMs and temperature sensors on scanning motors. These readings are triggered by BEC.
 
 ## Async writing
 
-Async device data is handled separately by `AsyncWriter`.
+At the same time, asynchronous data flows are also collected. Devices that produce asynchronous data are usually more complex and push data to BEC at their own pace. Examples include NIDAQ, PandaBox, Falcon detectors, and multi-channel scaler cards.
 
-This writer listens to async device streams during the scan and writes their content incrementally into a temporary HDF5 file under `/entry/collection/devices`.
+The amount of async data can differ significantly from sync data and can vary strongly between devices. For this reason, BEC treats asynchronous data separately and writes it continuously during the scan. This design allows BEC to handle high data volumes robustly.
 
-It supports multiple async update modes:
+The async writer supports multiple async update modes to accommodate different device behaviors and data patterns:
 
 - `add`
 - `add_slice`
 - `replace`
-
-The final master-file write can then append to the already opened file handle if async data was written first.
-
-## Why there are two paths
-
-The split exists because some device data is only available once the scan is complete, while other device data arrives continuously and needs to be written during the scan.
-
-Using both paths allows BEC to:
-
-- preserve a coherent master-file layout
-- stream large or incremental async data efficiently
-- publish file status updates while writing is still in progress
