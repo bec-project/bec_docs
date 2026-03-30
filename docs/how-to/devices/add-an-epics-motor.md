@@ -7,60 +7,87 @@ related:
   - title: Add a pseudo motor
     url: how-to/devices/add-a-pseudo-motor.html
 ---
-
-# Add an EpicsMotor
-This is a how-to guide on adding an *EpicsMotor* to the device config in BEC. We will show you how to add the motor through both the YAML config file and the GUI.
-
+# Add an EpicsMotor to the config
 !!! Info "Goal"
-    You have an *EpicsMotor* at your beamline that you want to add to the device config in BEC. How would you do that?
+
+    This How-to guide will show you how to add an *EpicsMotor* to your BEC config.
+
+Below, we show two alternative ways to add an *EpicsMotor* to your BEC config: either by editing the YAML config file directly, or through the Device Manager view in the BEC main application.
+To do this, you need to provide enough information for the *EpicsMotor* configuration.
+
+At minimum, we will need to provide:
+* deviceClass: The ophyd class for the device, in this case *ophyd_devices.EpicsMotor*.
+* deviceConfig: The device configuration, which includes the motor prefix.
+* description: A brief description of the motor.
+* enabled: Whether the motor is enabled or not. Default is true.
+* readoutPriority: The readout priority for the motor. For a motor, we typically recommend 'baseline'.
+
+If you would like to read more about the configuration options in detail, please check out the [...missing link...].
 
 ## Steps
 
-Placeholder.
+1. Choose a name for your motor, for example *samx*.
 
-## Related pages
+2. Determine the prefix for your motor, for example *X01DA-MO-USER:*.
 
-Placeholder.
+3. Prepare the device definition and add it to your config, either through the YAML file or through the GUI.
 
+=== "YAML config"
 
+    You can add the *EpicsMotor* to your YAML config file by adding a new entry for the motor with the relevant information. 
+    For example, you can add the following configuration to your YAML file:
 
-## Pre-requisites
-- You decided for a name for the motor in BEC, for example `samx`
-- You already know the IOC prefix for the motor you want to add, for example `X01DA-MO-USER-01:`
-- You are working at the beamline and the IOC is accessible in the beamline network
+    ``` yaml
+    samx:
+      deviceClass: ophyd_devices.EpicsMotor
+      deviceConfig:
+        prefix: 'X01DA-MO-USER-01:'
+      description: Beamline sample stage X motor
+      enabled: true
+      readoutPriority: baseline
+    ```
 
-## Using the YAML config
-The most direct way to add the *EpicsMotor*  is to add it to the YAML config file relevant to your experiment. Simply add the following configuration to the file:
+=== "Device Manager GUI"
 
-``` yaml
-samx:
-  readoutPriority: baseline
-  description: Beamline sample stage X motor
-  deviceClass: ophyd_devices.EpicsMotor
-  deviceConfig:
-    prefix: 'X01DA-MO-USER-01:'
-  deviceTags:
-    - motor
-  onFailure: retry
-  enabled: true
-  readOnly: false
-  softwareTrigger: false
-```
+    You can also add the *EpicsMotor* through the Device Manager view in the BEC main application.
+    The video below shows you how to do that.
 
-Save the file and reload the config in BEC. For example through the BEC command line interface:
+    <figure>
+      <video autoplay muted loop playsinline controls width="100%" preload="metadata">
+        <source src="add_an_epics_motor_assets/add_epics_motor_dmview_docs.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>Device Manager workflow for adding an EpicsMotor.</figcaption>
+    </figure>
 
-``` py
-bec.config.update_session_with_file("<my-config.yaml>")
-```
-
-## Using the GUI
-You can also add the *EpicsMotor* through the BEC main application. Open the Device Manager (DM) view, load your config file, and click on the "Add Device" button. Fill in the form with the relevant information for your motor, and click "Add Device".
-The device will be added to your config, and you can either first save the new config to a file before loading it into BEC, or directly load the updated config into BEC using the "Update Config" button. 
-
-In the video below, we show you the full process of adding an *EpicsMotor* to the config through the GUI, and then loading the updated config into BEC. 
-
-<!-- Add video here -->
-
-??? success "Congratulations!"
+!!! success "Congratulations!"
     You have successfully added an *EpicsMotor* to your BEC config. You can now use this motor in your scans and other operations in BEC. The device should now be available in the GUIs and in the device container of the command line interface `dev.samx`.
+
+## Common Pitfalls
+
+* You added the device to the config, but you forgot to save the YAML file.
+* Incorrect indentation or formatting in the YAML file can prevent the device from loading in BEC.
+* If the device is not connected, BEC will disable it (`enabled=false`) and raise a warning.
+
+## Next Steps
+
+You can now load the updated config into BEC, either through the command line or through the Device Manager view in the main application.
+
+=== "Command line interface"
+
+    1. Make sure you saved the YAML file.
+    2. Go to the terminal with your current bec session. Run the following command to load the updated config into BEC:
+    ``` py
+    bec.config.update_session_with_file("<my-config.yaml>")
+    ```
+
+=== "Device Manager GUI"
+
+    1. Review the prepared config in the table of the Device Manager view.
+    2. Click the "Upload Config" button in the toolbar to load the updated config into BEC.
+    3. Optional: Run a connectivity test prior to uploading the config, to make sure that all devices can be connected to.
+
+
+
+
 
