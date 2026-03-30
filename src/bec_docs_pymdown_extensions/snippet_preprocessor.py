@@ -1,5 +1,6 @@
 import ast
 from pathlib import Path
+import re
 from textwrap import dedent
 
 from markdown.extensions import Extension
@@ -11,12 +12,29 @@ TEST_SNIPPET_DIR = Path(__file__).parent / "../../tests/snippet_tests/"
 PLACEHOLDER_TOKEN = "{{ placeholder }}"
 _F_STRING_TOKENS = {"PLACEHOLDER_TOKEN": PLACEHOLDER_TOKEN}
 _TOKEN_REPLACEMENTS = {PLACEHOLDER_TOKEN: "..."}
+_DOCS_DISPLAY_RE = re.compile(
+    r"^(?P<indent>\s*)print\((?P<expr>.+)\)\s*#\s*docs-display\s*$"
+)
+_DOCS_HIDE_RE = re.compile(r"^\s*.*#\s*docs-hide\s*$")
 
 
 def _replace_placeholders(s: str) -> str:
     for k, v in _TOKEN_REPLACEMENTS.items():
         s = s.replace(k, v)
     return s
+
+
+def _rewrite_docs_display_wrappers(code: str) -> str:
+    out_lines = []
+    for line in code.splitlines():
+        if _DOCS_HIDE_RE.match(line):
+            continue
+        match = _DOCS_DISPLAY_RE.match(line)
+        if match:
+            out_lines.append(f"{match.group('indent')}{match.group('expr')}")
+        else:
+            out_lines.append(line)
+    return "\n".join(out_lines)
 
 
 def _replacement(title: str, code: str, expected_output: str | None) -> list[str]:
@@ -97,11 +115,10 @@ def _transform_lines(lines: list[str]):
                 if (test_function := _extract_function(file_tree, test_name)) is None:
                     out_lines.append(f"Failed to find test {test_name} in {file}")
                     continue
-                code = "\n".join(
-                    file_text.splitlines()[test_function.lineno : test_function.end_lineno]
-                )
+                code = "\n".join(file_text.splitlines()[test_function.lineno : test_function.end_lineno])
+                code = _rewrite_docs_display_wrappers(dedent(code))
                 expected_value = _get_expected_value(file_tree, test_function)
-                out_lines.extend(_replacement(title, dedent(code), expected_value))
+                out_lines.extend(_replacement(title, code, expected_value))
             except Exception as e:
                 out_lines.append(f"Failed to process code snippet file: {file} \n {e}")
         else:

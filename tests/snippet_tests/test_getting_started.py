@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+from pprint import pformat
+
 import pytest
 
 from bec_docs_pymdown_extensions.matchers import (
     ContainsExpectedOutputMatcher,
+    SignalArrayOutputMatcher,
     SimilarExpectedOutputMatcher,
 )
 from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
@@ -331,11 +334,102 @@ def test_show_all_devices(bec):
     dev.show_all()
 
 
+INSPECT_OUTPUT = """\
+              SimPositioner: samx
+ Enabled           True
+ Description
+ Read only         False
+ Software Trigger  False
+ Device class      ophyd_devices.SimPositioner
+ Readout Priority  baseline
+ Device tags       user motors
+ Limits            [-50, 50]
+
+                  Current Values
+ Signal                Value  Timestamp
+ samx                  0      2026-03-30 13:35:46
+ samx_setpoint         0      2026-03-30 13:35:46
+ samx_motor_is_moving  0      2026-03-30 13:35:46
+
+  Config Signals
+ Signal     Value
+ tolerance  0.01
+ """
+
+
 @pytest.mark.timeout(100)
-def test_inspect_samx(bec):
+@pytest.mark.output_capture("manual")
+@pytest.mark.expected_output(SimilarExpectedOutputMatcher(INSPECT_OUTPUT, ratio=0.6))
+def test_inspect_samx(bec, render_ipython_pretty, assert_expected_output):
     dev.samx
+    # ``dev.samx`` is displayed through IPython pretty-printing, not normal stdout capture.
+    rendered = render_ipython_pretty(dev.samx)  # docs-hide
+    assert_expected_output(rendered)  # docs-hide
+
+
+READ_OUTPUT = """\
+{'samx': {'value': 0, 'timestamp': 1774874622.037339},
+ 'samx_setpoint': {'value': 0, 'timestamp': 1774873374.7518551},
+ 'samx_motor_is_moving': {'value': 0, 'timestamp': 1774873374.751864}}
+"""
 
 
 @pytest.mark.timeout(100)
-def test_samx_read(bec):
+@pytest.mark.output_capture("manual")
+@pytest.mark.expected_output(SimilarExpectedOutputMatcher(READ_OUTPUT, ratio=0.75))
+def test_samx_read(bec, assert_expected_output):
     dev.samx.read()
+    # ``read()`` is documented as a formatted dict; validate that representation explicitly.
+    readback = dev.samx.read()  # docs-hide
+    assert_expected_output(pformat(readback, sort_dicts=False))  # docs-hide
+
+
+WM_OUTPUT = """\
+┏━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┓
+┃      ┃ readback ┃ setpoint ┃  limits   ┃
+┡━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━┩
+│ samx │  0.0000  │  0.0000  │ [-50, 50] │
+└──────┴──────────┴──────────┴───────────┘
+"""
+
+
+@pytest.mark.timeout(100)
+@pytest.mark.expected_output(ContainsExpectedOutputMatcher(WM_OUTPUT))
+def test_samx_wm(bec):
+    dev.samx.wm
+
+
+WM_MOVE_OUTPUT = """\
+PASSED [100%] samx:      0.00 ━━━━━━━━━━━━━━━       9.99 /      10.00 / 100 % 0:00:00 0:00:00
+┏━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┓
+┃      ┃ readback ┃ setpoint ┃  limits   ┃
+┡━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━┩
+│ samx │ 10.0000  │ 10.0000  │ [-50, 50] │
+└──────┴──────────┴──────────┴───────────┘
+"""
+
+
+@pytest.mark.timeout(100)
+@pytest.mark.output_capture("fd")
+@pytest.mark.expected_output(SimilarExpectedOutputMatcher(WM_MOVE_OUTPUT, ratio=0.7))
+def test_samx_blocking_move(bec):
+    scans.umv(dev.samx, 10, relative=False)  # make the move
+    dev.samx.wm  # check the move is done
+
+
+SCAN_HISTORY_SIGNAL_OUTPUT = """\
+{'timestamp': array([1.77496343e+09, 1.77496343e+09, 1.77496343e+09, 1.77496344e+09,
+        1.77496344e+09]),
+ 'value': array([-0.99140924, -0.49119309, -0.00282538,  0.49814051,  0.99329906])}
+"""
+
+
+@pytest.mark.timeout(100)
+@pytest.mark.output_capture("fd")
+@pytest.mark.expected_output(
+    SignalArrayOutputMatcher(SCAN_HISTORY_SIGNAL_OUTPUT, value_atol=0.05, value_rtol=0.01)
+)
+def test_scan_history_signal_arrays(bec):
+    scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
+    latest = bec.history[-1]
+    print(latest.devices.samx.samx.read())  # docs-display
