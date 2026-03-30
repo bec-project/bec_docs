@@ -47,8 +47,8 @@ nav = [
     { "Devices and scans" = [
       { Devices = [
         "how-to/devices/index.md",
-        { "Add an EpicsMotor" = "how-to/devices/add-an-epics-motor.md" },
-        { "Add an EpicsSignal" = "how-to/devices/add-an-epics-signal.md" },
+        { "Add an EPICS motor" = "how-to/devices/add-an-epics-motor.md" },
+        { "Add an EPICS signal" = "how-to/devices/add-an-epics-signal.md" },
         { "Add a preview signal to a custom device" = "how-to/devices/add-a-preview-signal-to-a-custom-device.md" },
         { "Add an async signal to a custom device" = "how-to/devices/add-an-async-signal-to-a-custom-device.md" },
         { "Report progress and file events from a custom device" = "how-to/devices/report-progress-and-file-events-from-a-custom-device.md" },
@@ -63,8 +63,8 @@ nav = [
       "learn/system-architecture/index.md",
     ] },
     { Devices = [
-      { "EpicsMotor, EpicsMotorEC, EpicsUserMotorVME" = "learn/devices/epics-motors.md" },
-      { "EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV" = "learn/devices/epics-signals.md" },
+      { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
+      { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
     ] },
     { "Scans and execution" = [
       "learn/scans-and-execution/index.md",
