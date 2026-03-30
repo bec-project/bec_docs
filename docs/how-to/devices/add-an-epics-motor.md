@@ -24,7 +24,7 @@ related:
 - You decided for a name for the motor in BEC, for example `samx`
 - You already know the IOC prefix for the motor you want to add, for example `X01DA-MO-USER-01:`
 - You are working at the beamline and the IOC is accessible in the beamline network
-- You already know which device class you want to use for the motor (e.g. `ophyd_devices.EpicsMotor`). If you are not sure, see 
+- You already know which device class variant you want to use for the motor (e.g. `ophyd_devices.EpicsMotor`). If you are not sure, see 
 
     !!! learn "[Learn about EPICS motor classes](../../learn/ophyd-devices/epics-motors.md){ data-preview }" 
   
@@ -49,6 +49,7 @@ samx:
 
 !!! learn "[Learn more about the config options](../../learn/bec-core/device-config-file-fields-and-behavior.md){ data-preview }"
 
+If you want to use a different EPICS motor class variant, simply change the `deviceClass` field to the relevant class.
 
 Save the file and reload the config in BEC. For example through the BEC command line interface:
 
