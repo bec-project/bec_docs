@@ -1,15 +1,37 @@
+---
+related:
+  - title: Add an EPICS signal
+    url: ../../how-to/devices/add-an-epics-signal.md
+  - title: Device config file fields and behavior
+    url: ../../learn/bec-core/device-config-file-fields-and-behavior.html
+  - title: Effect on readout behavior
+    url: ../../learn/ophyd-devices/effect-on-readout-behavior.html
+---
+
 # EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV
 
-Placeholder for the conceptual page on EPICS-backed signal classes.
+BEC exposes three common EPICS-backed signal classes through `ophyd_devices`:
 
-## Overview
+- `ophyd_devices.EpicsSignal`
+- `ophyd_devices.EpicsSignalRO`
+- `ophyd_devices.EpicsSignalWithRBV`
 
-Placeholder.
+Use these classes when you want to expose a single EPICS process variable in BEC instead of a full motor-style device.
 
-## Key points
+## Which one should I use?
 
-Placeholder.
+The right choice depends on whether the PV is writable and how EPICS exposes its readback:
 
-## Related topics
+- Choose `ophyd_devices.EpicsSignal` for a normal read/write signal.
+- Choose `ophyd_devices.EpicsSignalRO` for a read-only signal that BEC should monitor but never write to.
+- Choose `ophyd_devices.EpicsSignalWithRBV` when the EPICS record has a setpoint PV and a separate readback PV following the usual `prefix` and `prefix_RBV` pattern.
 
-Placeholder.
+## What goes into `deviceConfig`?
+
+Each class expects a slightly different `deviceConfig` section in the BEC config:
+
+- `ophyd_devices.EpicsSignal`: `read_pv`, and optionally `write_pv` if the write PV differs from the read PV
+- `ophyd_devices.EpicsSignalRO`: `read_pv`
+- `ophyd_devices.EpicsSignalWithRBV`: `prefix`
+
+
