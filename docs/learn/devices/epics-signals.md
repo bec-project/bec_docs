@@ -2,10 +2,6 @@
 related:
   - title: Add an EPICS signal
     url: ../../how-to/devices/add-an-epics-signal.md
-  - title: Device config file fields and behavior
-    url: ../../learn/bec-core/device-config-file-fields-and-behavior.html
-  - title: Effect on readout behavior
-    url: ../../learn/ophyd-devices/effect-on-readout-behavior.html
 ---
 
 # EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV
@@ -33,5 +29,3 @@ Each class expects a slightly different `deviceConfig` section in the BEC config
 - `ophyd_devices.EpicsSignal`: `read_pv`, and optionally `write_pv` if the write PV differs from the read PV
 - `ophyd_devices.EpicsSignalRO`: `read_pv`
 - `ophyd_devices.EpicsSignalWithRBV`: `prefix`
-
-
