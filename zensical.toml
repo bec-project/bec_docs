@@ -171,10 +171,3 @@ show_source = true
 show_root_heading = true
 heading_level = 2
 
-[project.markdown_extensions.admonition]
-[project.markdown_extensions.pymdownx.details]
-[project.markdown_extensions.pymdownx.highlight]
-[project.markdown_extensions.pymdownx.superfences]
-[project.markdown_extensions.pymdownx.blocks.tab]
-alternate_style = true
-[project.markdown_extensions.bec_docs_pymdown_extensions]
