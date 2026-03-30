@@ -1,5 +1,4 @@
 import ast
-from collections import defaultdict
 from pathlib import Path
 from textwrap import dedent
 
@@ -26,12 +25,12 @@ def _replacement(title: str, code: str, expected_output: str | None) -> list[str
 
     if expected_output:
         return [
-            f"/// tab | {title}",
+            f"/// tab | :material-import: {title}",
             "```python",
             *code.splitlines(),
             "```",
             "///",
-            "/// tab | expected output",
+            "/// tab | :material-export: output",
             "```",
             *_replace_placeholders(expected_output).splitlines(),
             "```",
