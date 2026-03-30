@@ -7,9 +7,7 @@ related:
   - title: Add a pseudo motor
     url: how-to/devices/add-a-pseudo-motor.html
   - title: EPICS motor classes
-    url: learn/ophyd-devices/epics-motors.html
-  - title: Device config file fields and behavior
-    url: learn/bec-core/device-config-file-fields-and-behavior.html
+    url: learn/devices/epics-motors.html
 ---
 
 # Add an EPICS motor to the device config
@@ -26,7 +24,7 @@ related:
 - You are working at the beamline and the IOC is accessible in the beamline network
 - You already know which device class variant you want to use for the motor (e.g. `ophyd_devices.EpicsMotor`). If you are not sure, see 
 
-    !!! learn "[Learn about EPICS motor classes](../../learn/ophyd-devices/epics-motors.md){ data-preview }" 
+    !!! learn "[Learn about EPICS motor classes](../../learn/devices/epics-motors.md){ data-preview }" 
   
 
 ## Using the YAML config
@@ -47,8 +45,6 @@ samx:
   softwareTrigger: false
 ```
 
-!!! learn "[Learn more about the config options](../../learn/bec-core/device-config-file-fields-and-behavior.md){ data-preview }"
-
 If you want to use a different EPICS motor class variant, simply change the `deviceClass` field to the relevant class.
 
 Save the file and reload the config in BEC. For example through the BEC command line interface:
@@ -67,4 +63,3 @@ In the video below, we show you the full process of adding an EPICS motor to the
 
 !!! success "Congratulations!"
     You have successfully added an EPICS motor to your BEC config. You can now use this motor in your scans and other operations in BEC. The device should now be available in the GUIs and in the device container of the command line interface `dev.samx`.
-

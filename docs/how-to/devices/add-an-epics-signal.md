@@ -5,9 +5,7 @@ related:
   - title: Write a new ophyd class
     url: how-to/devices/write-a-new-ophyd-class.html
   - title: EPICS signal classes
-    url: learn/ophyd-devices/epics-signals.html
-  - title: Device config file fields and behavior
-    url: learn/bec-core/device-config-file-fields-and-behavior.html
+    url: learn/devices/epics-signals.html
 ---
 
 # Add an EPICS signal to the device config
@@ -22,7 +20,7 @@ related:
 - You are working at the beamline and the IOC is accessible in the beamline network
 - You already know which signal class you want to use. If you are not sure, see
 
-    !!! learn "[Learn about EPICS signal classes](../../learn/ophyd-devices/epics-signals.md){ data-preview }"
+    !!! learn "[Learn about EPICS signal classes](../../learn/devices/epics-signals.md){ data-preview }"
 
 ## Using the YAML config
 
@@ -85,8 +83,6 @@ detector_acquire:
   readOnly: false
   softwareTrigger: false
 ```
-
-!!! learn "[Learn more about the config options](../../learn/bec-core/device-config-file-fields-and-behavior.md){ data-preview }"
 
 Save the file and reload the config in BEC. For example through the BEC command line interface:
 
