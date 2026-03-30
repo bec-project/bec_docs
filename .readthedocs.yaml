@@ -10,5 +10,6 @@ build:
     build:
       html:
         - zensical build
-        - mkdir -p "$READTHEDOCS_OUTPUT/html"
-        - cp -a site/. "$READTHEDOCS_OUTPUT/html/"
+    post_build:
+      - mkdir -p $READTHEDOCS_OUTPUT/html/
+      - cp --recursive site/. $READTHEDOCS_OUTPUT/html/
