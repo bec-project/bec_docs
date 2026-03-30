@@ -22,10 +22,6 @@ class ExpectedOutputMatcher(ABC):
 
 
 class ContainsExpectedOutputMatcher(ExpectedOutputMatcher):
-    def __init__(self, expected_output: str) -> None:
-        super().__init__(expected_output)
-        self._differ = Differ()
-
     def check(self, output):
         return self._expected_output.replace(PLACEHOLDER_TOKEN, "") in output
 
