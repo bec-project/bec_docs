@@ -4,7 +4,7 @@ related:
     url: ../../how-to/devices/add-an-epics-signal.md
 ---
 
-# EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV
+# EPICS Signal Variants
 
 BEC exposes three common EPICS-backed signal classes through `ophyd_devices`:
 

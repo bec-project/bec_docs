@@ -8,7 +8,7 @@ related:
     url: ../../how-to/devices/add-a-pseudo-motor.html
 ---
 
-# EpicsMotor, EpicsMotorEC, EpicsUserMotorVME
+# EPICS Motor Variants
 
 BEC exposes three closely related EPICS motor classes through `ophyd_devices`:
 
