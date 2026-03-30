@@ -49,6 +49,7 @@ nav = [
         "how-to/devices/index.md",
         { "Add an EpicsMotor" = "how-to/devices/add-an-epics-motor.md" },
         { "Add an EpicsSignal" = "how-to/devices/add-an-epics-signal.md" },
+        { "Add a custom EPICS device" = "how-to/devices/add-a-custom-epics-device.md" },
         { "Add a preview signal to a custom device" = "how-to/devices/add-a-preview-signal-to-a-custom-device.md" },
         { "Add an async signal to a custom device" = "how-to/devices/add-an-async-signal-to-a-custom-device.md" },
         { "Report progress and file events from a custom device" = "how-to/devices/report-progress-and-file-events-from-a-custom-device.md" },
