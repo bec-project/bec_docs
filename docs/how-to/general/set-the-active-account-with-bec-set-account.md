@@ -6,7 +6,7 @@ related:
     url: ../../learn/operations-and-deployment/index.md
 ---
 
-# Set the Active Account with bec-set-account
+# Set the Active Account with `bec-set-account`
 
 !!! Info "Goal"
     Set the active account for the BEC server using the local `bec-set-account` wrapper from the beamline config directory.
