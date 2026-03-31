@@ -51,6 +51,7 @@ nav = [
         "how-to/devices/index.md",
         { "Add an EPICS motor" = "how-to/devices/add-an-epics-motor.md" },
         { "Add an EPICS signal" = "how-to/devices/add-an-epics-signal.md" },
+        { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
       ] },
       { Scans = [
         "how-to/scans/index.md",
@@ -68,6 +69,7 @@ nav = [
     { Devices = [
       { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
       { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
+      { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
       { "BEC Signals" = "learn/devices/bec-signals.md" },
     ] },
     { "Scans and execution" = [
