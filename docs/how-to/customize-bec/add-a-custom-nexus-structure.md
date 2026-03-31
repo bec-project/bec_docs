@@ -18,12 +18,11 @@ related:
 
 !!! learn "[Learn about file writing in BEC](../../learn/file-writer/index.md){ data-preview }"
 
-## Create a custom writer format
+## 1. Create a custom writer format class
 
-- Create a new module in your plugin under `<bec_plugin>.file_writer.<module>`.
+Create a new module in your plugin under `<bec_plugin>.file_writer.<module>`.
 
 ``` py
-# <bec_plugin>/file_writer/custom_nexus.py
 from bec_server.file_writer.default_writer import DefaultFormat
 
 
@@ -31,27 +30,14 @@ class BeamlineNeXusFormat(DefaultFormat):
     """Beamline-specific NeXuS structure for BEC output files."""
 
     def format(self) -> None:
-        """
-        Prepare the NeXus file format.
-        Override this method in file writer plugins to customize the HDF5 file format.
-
-        The class provides access to the following attributes:
-        - self.storage: The HDF5Storage object.
-        - self.data: The data dictionary.
-        - self.file_references: The file references dictionary.
-        - self.device_manager: The DeviceManagerBase object.
-
-        See also: :class:`bec_server.file_writer.file_writer.HDF5Storage`.
-
-        """
         pass
 ```
 
-- Implement the `format()` method to extend the NeXuS structure. You can use `self.storage` to create groups, datasets, and links. Use helper accessors such as `self.get_entry(...)` when you want values from device data.
+## 2. Implement the custom layout
 
+Extend the `format()` method with the groups, datasets, and links you want to add.
 
 ``` py
-# <bec_plugin>/file_writer/custom_nexus.py
 from bec_server.file_writer.default_writer import DefaultFormat
 
 
@@ -69,12 +55,15 @@ class BeamlineNeXusFormat(DefaultFormat):
         control.create_dataset(name="integral", data=self.get_entry("bpm4i"))
 ```
 
-- Create a soft link to an existing dataset or an external link through a file reference.
+Use helper accessors such as `self.get_entry(...)` when you want values from device data.
 
-    !!! learn "[Learn about file_references from devices](../../learn/file-writer/file-references.md){ data-preview }"
+## 3. Add file references or links if needed
+
+If a detector writes its own file, you can add an external link through a file reference.
+
+!!! learn "[Learn about file references from devices](../../learn/file-writer/file-references.md){ data-preview }"
 
 ``` py
-# <bec_plugin>/file_writer/custom_nexus.py
 from bec_server.file_writer.default_writer import DefaultFormat
 
 
@@ -91,7 +80,7 @@ class BeamlineNeXusFormat(DefaultFormat):
         control.create_dataset(name="mode", data="monitor")
         control.create_dataset(name="integral", data=self.get_entry("bpm4i"))
 
-        # Add an external link to a file reference
+        # Add an external link from a file reference
         if "eiger" in self.device_manager.devices:
             instrument = entry.create_group("instrument")
             instrument.attrs["NX_class"] = "NXinstrument"
@@ -113,18 +102,27 @@ class BeamlineNeXusFormat(DefaultFormat):
 
     BEC relies on a consistent data structure under `entry/collection` for functionality such as history access. This structure is written automatically by the file writer. Custom formats should not overwrite it, as doing so may break this functionality.
 
-## Expose the custom format in the plugin module
-BEC automatically discovers file writer plugins from the module. You can simply add your class to the `__init__.py` of the file writer module.
+## 4. Expose the custom format in the plugin module
+
+Add the class to the `__init__.py` of the file writer module so BEC can discover it.
 
 ``` py
-# <bec_plugin>/file_writer/__init__.py
 from .custom_nexus import BeamlineNeXusFormat
 ```
+
+## 5. Restart BEC and verify the result
+
+Restart the file writer service or the entire BEC server so the updated plugin code is loaded, then run a small test scan and inspect the produced file.
+
+Check that:
+
+- the custom groups are present in the output file
+- links point to the expected datasets or external files
 
 !!! success "Congratulations!"
     You have successfully added a custom NeXuS structure to the BEC file writer. BEC can now write files using your beamline-specific layout.
 
-## Common Pitfalls
+## Common pitfalls
 - Not exposing the custom format class in the file writer module `<bec_plugin>.file_writer.__init__.py`.
 - Restarting the BEC server after plugin changes are made. The server needs to be restarted to load the new plugin code.
 - Treating `self.file_references["eiger"]` as plain dictionaries. Entries are individual `bec_lib.messages.FileMessage` objects.

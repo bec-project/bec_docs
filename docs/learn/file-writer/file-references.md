@@ -10,9 +10,9 @@ related:
 
 # File References from Devices
 
-Some devices create their own files instead of sending their data to BEC. These are most often large-area detectors with their own backend for writing HDF5 files.
+Some devices create their own files instead of sending their data to BEC. These are most often large area detectors with their own backend for writing HDF5 files.
 
-BEC supports this by letting devices report file information through ophyd-side helper signals, i.e. `FileEventSignal` in `ophyd_devices.utils.bec_signals`. Devices can also indicate hinted entries in their files that the master file should link to. This allows the master file to link specific datasets in the external file instead of linking to the root of the file.
+BEC supports this by letting devices report file information through ophyd-side helper signals such as `FileEventSignal` in `ophyd_devices.utils.bec_signals`. Devices can also indicate hinted entries in their files that the master file should link to. This allows the master file to link to specific datasets in the external file instead of linking to the file root.
 
 !!! learn "[Learn about BEC signal classes](../devices/bec-signals.md){ data-preview }"
 
@@ -20,7 +20,7 @@ BEC supports this by letting devices report file information through ophyd-side 
 
 `DefaultFormat.write_bec_entries()` creates `/entry/collection/file_references`.
 
-File references from all devices are collected in that group as external links. 
+File references from all devices are collected in that group as external links.
 For each hinted entry, `DefaultFormat` creates an external link with the hinted name. If there are no hints, it creates a fallback link named `data` that points to the root of the external file.
 
 That means custom file-writer plugins can reuse the collected references through `self.file_references` and place additional external links wherever their NeXuS layout needs them.
