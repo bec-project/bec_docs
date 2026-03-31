@@ -4,7 +4,7 @@ related:
     url: how-to/git/add-changes-to-plugin-repository.html
 ---
 
-# Update BEC to the latest version
+# Update BEC to the Latest Version
 
 !!! Info "Goal"
     This is a how-to guide on updating BEC to the latest version. This will re-install BEC and all its dependencies in a fresh environment.

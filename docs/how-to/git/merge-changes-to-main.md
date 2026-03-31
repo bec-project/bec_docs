@@ -1,12 +1,12 @@
 ---
 related:
-  - title: Add changes to your plugin repository
+  - title: Add Changes to Your Plugin Repository
     url: how-to/git/add-changes-to-plugin-repository.html
   - title: Update BEC to the latest version
     url: how-to/general/update-deployment.html
 ---
 
-# Merge changes to `main`
+# Merge Changes to `main`
 
 !!! Info "Goal"
     This is a how-to guide on merging your changes into the `main` branch of your plugin repository.
