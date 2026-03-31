@@ -37,6 +37,7 @@ nav = [
   { "How-to Guides" = [
     "how-to/index.md",
     { General = [
+      { "Connect to the BEC VM with xfreerdp" = "how-to/general/connect-to-the-bec-vm-with-xfreerdp.md" },
       { "Update BEC to a new version" = "how-to/general/update-deployment.md" },
     ] },
     { "Working with Git" = [
