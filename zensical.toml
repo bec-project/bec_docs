@@ -39,12 +39,12 @@ nav = [
     { General = [
       { "Connect to the BEC VM with xfreerdp" = "how-to/general/connect-to-the-bec-vm-with-xfreerdp.md" },
       { "Set the Active Account with bec-set-account" = "how-to/general/set-the-active-account-with-bec-set-account.md" },
-      { "Update BEC to a new version" = "how-to/general/update-deployment.md" },
+      { "Update BEC to the Latest Version" = "how-to/general/update-deployment.md" },
     ] },
-    { "Working with Git" = [
+    { "Working With Git" = [
       "how-to/git/index.md",
-      { "Add changes to your plugin repository" = "how-to/git/add-changes-to-plugin-repository.md" },
-      { "Merge changes to main" = "how-to/git/merge-changes-to-main.md" },
+      { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
+      { "Merge Changes to `main`" = "how-to/git/merge-changes-to-main.md" },
     ] },
     { "Devices and scans" = [
       { Devices = [
