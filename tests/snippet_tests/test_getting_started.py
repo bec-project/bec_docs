@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-
 import pytest
 
 from bec_docs_pymdown_extensions.matchers import (
