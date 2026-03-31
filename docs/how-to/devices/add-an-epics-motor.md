@@ -45,6 +45,8 @@ samx:
   softwareTrigger: false
 ```
 
+!!! learn "[Learn about device definition](../../learn/devices/device-definition.md){ data-preview }" 
+
 If you want to use a different EPICS motor class variant, simply change the `deviceClass` field to the relevant class.
 
 Save the file and reload the config in BEC. For example through the BEC command line interface:
