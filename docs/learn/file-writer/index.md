@@ -4,12 +4,15 @@ related:
     url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
-# File writing
+# File Writing
 
-This section explains how BEC writes HDF5 and NeXuS data, describes the default file format, and covers how the format can be customized.
+BEC writes scan data to HDF5 files. It does not strictly enforce a NeXuS convention by default, but beamlines can define their own HDF5 or NeXuS-style structure through a plugin-based file-writer format.
+
+This section explains how BEC writes HDF5 data, describes the default file format, and covers how beamline-specific structures can be customized.
 
 ## What to read first
 
+- [Where files are written](where-files-are-written.md)
 - [DefaultFormat and the default HDF5 layout](default-format.md)
 - [Customizing the file writer from a plugin repository](plugin-repository-integration.md)
 - [Async and sync file writing](async-and-sync-writers.md)

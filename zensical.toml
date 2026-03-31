@@ -71,12 +71,13 @@ nav = [
     { "Scans and execution" = [
       "learn/scans-and-execution/index.md",
     ] },
-    { "File writing" = [
+    { "File Writing" = [
       "learn/file-writer/index.md",
-      { "Default HDF5 layout" = "learn/file-writer/default-format.md" },
-      { "Customizing the file writer" = "learn/file-writer/plugin-repository-integration.md" },
-      { "Async and sync file writing" = "learn/file-writer/async-and-sync-writers.md" },
-      { "File references from devices" = "learn/file-writer/file-references.md" },
+      { "Where Files Are Written" = "learn/file-writer/where-files-are-written.md" },
+      { "Default HDF5 Layout" = "learn/file-writer/default-format.md" },
+      { "Customizing the File Writer" = "learn/file-writer/plugin-repository-integration.md" },
+      { "Async and Sync File Writing" = "learn/file-writer/async-and-sync-writers.md" },
+      { "File References from Devices" = "learn/file-writer/file-references.md" },
     ] },
     { "Operations and deployment" = [
       "learn/operations-and-deployment/index.md",
