@@ -46,57 +46,58 @@ related:
 
 1. After you have made your changes, add them to Git, commit them, and push them to the remote repository.
 
-    === "Terminal"
+    /// tab | Terminal
 
-        1. Stage changes to tracked files:
+    1. Stage changes to tracked files:
 
-            ```bash
-            git add -u
-            ```
+        ```bash
+        git add -u
+        ```
 
-            If you created a new file, add it explicitly:
+        If you created a new file, add it explicitly:
 
-            ```bash
-            git add path/to/new-file
-            ```
+        ```bash
+        git add path/to/new-file
+        ```
 
-            Check the result with:
+        Check the result with:
 
-            ```bash
-            git status
-            ```
+        ```bash
+        git status
+        ```
 
-        1. Commit your changes with a meaningful commit message, for example:
+    1. Commit your changes with a meaningful commit message, for example:
 
-            ```bash
-            git commit -m "Update device configuration for the Eiger detector"
-            ```
+        ```bash
+        git commit -m "Update device configuration for the Eiger detector"
+        ```
 
-        1. Push your changes:
+    1. Push your changes:
 
-            ```bash
-            git push
-            ```
+        ```bash
+        git push
+        ```
+    ///
 
-    === "VS Code"
+    /// tab | VS Code
 
-        1. Open the repository folder in VS Code.
+    1. Open the repository folder in VS Code.
 
-        1. Go to the **Source Control** view.
+    1. Go to the **Source Control** view.
 
-        1. Review the changed files.
+    1. Review the changed files.
 
-            Files under **Changes** are modified tracked files.
-            Files under **Untracked Changes** are new files that still need to be added to Git.
+        Files under **Changes** are modified tracked files.
+        Files under **Untracked Changes** are new files that still need to be added to Git.
 
-        1. Stage the files you want to include in the commit.
+    1. Stage the files you want to include in the commit.
 
-            You can stage individual files with the `+` button, or stage all changes from the Source Control menu.
+        You can stage individual files with the `+` button, or stage all changes from the Source Control menu.
 
-        1. Enter a meaningful commit message in the message box and commit the changes.
+    1. Enter a meaningful commit message in the message box and commit the changes.
 
-        1. Push the changes using **Sync Changes** or **Push** in the Source Control menu.
-
+    1. Push the changes using **Sync Changes** or **Push** in the Source Control menu.
+    ///
 
 1. After pushing your changes, you can open the Gitea repository:
 
