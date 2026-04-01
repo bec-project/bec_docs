@@ -15,7 +15,7 @@ class TestSetupError(TypeError):
 
 
 @pytest.fixture(autouse=True)
-def expected_output_check(capsys, request: pytest.FixtureRequest):
+def expected_output_check(capfd, request: pytest.FixtureRequest):
     mark = request.node.get_closest_marker("expected_output")
     if mark is None:
         yield
@@ -23,13 +23,13 @@ def expected_output_check(capsys, request: pytest.FixtureRequest):
         if (len(mark.args) != 1) or not isinstance(matcher := mark.args[0], ExpectedOutputMatcher):
             raise TestSetupError("Mark your test with an expected output matcher!")
         yield
-        captured = capsys.readouterr()
+        captured = capfd.readouterr()
         if matcher.check(captured.out):
             pass
         else:
             # Retry after waiting to finish
             sleep(1)
-            captured = capsys.readouterr()
+            captured = capfd.readouterr()
             assert matcher.check(
                 captured.out
             ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured.out)}"
