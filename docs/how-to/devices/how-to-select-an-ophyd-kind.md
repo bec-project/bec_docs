@@ -4,7 +4,7 @@ related:
     url: ../../learn/devices/ophyd-kinds.md
   - title: ReadoutPriority in BEC
     url: ../../learn/devices/readout-priority.md
-  - title: How to select a readout priority
+  - title: Select a Readout Priority
     url: ../../how-to/devices/how-to-select-readout-priority.md
 
 ---

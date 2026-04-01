@@ -52,8 +52,8 @@ nav = [
         { "Add an EPICS motor" = "how-to/devices/add-an-epics-motor.md" },
         { "Add an EPICS signal" = "how-to/devices/add-an-epics-signal.md" },
         { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
-        { "Select a signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
-        { "Select a readout priority" = "how-to/devices/how-to-select-readout-priority.md" },
+        { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
+        { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
       ] },
       { Scans = [
         "how-to/scans/index.md",
