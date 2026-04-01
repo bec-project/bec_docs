@@ -1,9 +1,9 @@
 ---
 related:
   - title: File writing
-    url: ../../learn/file-writer/index.md
+    url: learn/file-writer/index.md
   - title: File references from devices
-    url: ../../learn/file-writer/file-references.md
+    url: learn/file-writer/file-references.md
 ---
 
 # Add a custom NeXuS structure for the file writer

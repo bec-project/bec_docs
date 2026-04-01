@@ -1,9 +1,9 @@
 ---
 related:
   - title: Connect to the BEC VM with xfreerdp
-    url: ../../how-to/general/connect-to-the-bec-vm-with-xfreerdp.md
+    url: how-to/general/connect-to-the-bec-vm-with-xfreerdp.md
   - title: Operations and deployment
-    url: ../../learn/operations-and-deployment/index.md
+    url: learn/operations-and-deployment/index.md
 ---
 
 # Set the Active Account with `bec-set-account`
@@ -60,4 +60,3 @@ Account p12345 has been set successfully.
 - Using a process-group value that does not match the required format `p` followed by exactly five digits.
 - Running the command outside the config directory that contains the wrapper.
 - Running the command on a machine that cannot reach the BEC server environment.
-

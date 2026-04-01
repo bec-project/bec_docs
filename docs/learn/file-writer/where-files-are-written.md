@@ -1,7 +1,7 @@
 ---
 related:
   - title: File writing
-    url: ../../learn/file-writer/index.md
+    url: learn/file-writer/index.md
 ---
 
 # Where Files Are Written
@@ -135,5 +135,4 @@ Users cannot escape this base path from the client side.
 - BEC checks that the resolved file path stays inside the configured base path.
 
 This prevents one user from writing into another user's directory.
-
 

@@ -1,11 +1,11 @@
 ---
 related:
   - title: File writing
-    url: index.md
+    url: learn/file-writer/index.md
   - title: DefaultFormat and the default HDF5 layout
-    url: default-format.md
+    url: learn/file-writer/default-format.md
   - title: BEC Signals
-    url: ../../../learn/devices/bec-signals.md
+    url: learn/devices/bec-signals.md
 ---
 
 # Async and Sync File Writing

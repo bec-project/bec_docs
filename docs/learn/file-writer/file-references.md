@@ -1,11 +1,11 @@
 ---
 related:
   - title: File writing
-    url: index.md
+    url: learn/file-writer/index.md
   - title: DefaultFormat and the default HDF5 layout
-    url: default-format.md
+    url: learn/file-writer/default-format.md
   - title: Add a custom NeXuS structure for the file writer
-    url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
+    url: how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
 # File References from Devices

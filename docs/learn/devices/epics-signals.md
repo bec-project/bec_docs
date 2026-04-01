@@ -1,7 +1,7 @@
 ---
 related:
   - title: Add an EPICS signal
-    url: ../../how-to/devices/add-an-epics-signal.md
+    url: how-to/devices/add-an-epics-signal.md
 ---
 
 # EPICS Signal Variants

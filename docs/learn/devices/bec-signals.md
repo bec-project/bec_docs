@@ -1,9 +1,9 @@
 ---
 related:
   - title: Customize BEC
-    url: ../../how-to/customize-bec/index.md
+    url: how-to/customize-bec/index.md
   - title: File writing
-    url: ../../learn/file-writer/index.md
+    url: learn/file-writer/index.md
 ---
 
 # BEC Signals for Custom Devices

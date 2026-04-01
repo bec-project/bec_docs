@@ -1,13 +1,13 @@
 ---
 related:
   - title: Add an EPICS motor
-    url: ../../how-to/devices/add-an-epics-motor.md
+    url: how-to/devices/add-an-epics-motor.md
   - title: Pseudo positioners
-    url: ../../learn/devices/pseudo-positioners.md
+    url: learn/devices/pseudo-positioners.md
   - title: EPICS motor classes
-    url: ../../learn/devices/epics-motors.md
+    url: learn/devices/epics-motors.md
   - title: Device config templates
-    url: ../../references/ophyd-devices/device-config-templates.md
+    url: references/ophyd-devices/device-config-templates.md
 ---
 
 # Add a Pseudo Positioner
