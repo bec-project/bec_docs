@@ -16,17 +16,16 @@ related:
 ## Prerequisites
 
 - You are writing a custom ophyd device class for BEC.
-- For background on how BEC uses `Kind`, see:
-
-    !!! learn "[How BEC uses ophyd Kind](../../learn/devices/ophyd-kinds.md){ data-preview }"
 
 ## 1. Choose the signal purpose
 
 For each signal, the `Kind` attribute decides how the signal is treated in runtime. Most of the time we can classify your device signals into three categories:
 
 - Primary monitored readings, use `Kind.hinted` and `Kind.normal`
-- Configuration metadata, use `Kind.config`
+- Configuration values, use `Kind.config`
 - Internal controls, use `Kind.omitted`
+
+!!! learn "[More information about ophyd Kind](../../learn/devices/ophyd-kinds.md){ data-preview }"
 
 In the ophyd read interface, this maps to:
 

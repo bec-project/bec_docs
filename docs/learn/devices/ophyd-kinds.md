@@ -4,14 +4,13 @@ related:
     url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
 ---
 
-# Ophyd Kind and scan data in BEC
+# Ophyd Kind
 
 Every signal component in an ophyd device carries a `Kind` attribute that controls how that
-signal is treated at runtime. It determines whether a signal is included in `read()`,
-`read_configuration()`, or neither of the two methods. 
-BEC will read devices during scans using the `read()` method, while it reads device configuration on demand using `read_configuration()`. Therefore, the `Kind` attribute of signals in a device determines whether they contribute to scan data, are stored as configuration data, or are excluded from both.
+signal is treated at runtime. It determines whether a signal is included in `device.read()`,
+`device.read_configuration()`.
 
-??? example "Example Ophyd Device"
+!!! example "Example Ophyd Device"
 
     Example device with signals of different `Kind`:
     ```python
@@ -31,6 +30,13 @@ BEC will read devices during scans using the `read()` method, while it reads dev
     device.read_configuration()
     OrderedDict([('device_signal_config',
               {'value': 0.0, 'timestamp': 1775022455.419599})])
+    ```
+
+Omitted signals are excluded from both `device.read()` and `device.read_configuration()`. This is the right choice for internal control handles (triggers, reset commands) and low-level hardware state that is not needed in the data record. They can be read directly from the device interface.
+!!! example
+    ```python
+    device.signal_omitted.read()
+    {'device_signal_omitted': {'value': 0.0, 'timestamp': 1775022455.4195719}}
     ```
 
 ## The four Kind values
@@ -78,28 +84,6 @@ integrations are:
               {'value': 0.0, 'timestamp': 1775022455.4196732})])
     ```
 
-## How BEC reads signals
+## Readings in BEC
 
-There are two relevant factors to understand how BEC reads signals from devices:
-
-- The device configuration in BEC with its parameter `readoutPriority` classifies devices into `baseline`, `monitored`, and `async` categories. During scans, this determines which devices are read and when.
-
-    !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
-
-- For each device, the `Kind` attribute of its signals determines which signals are included in `read()` and `read_configuration()`. This determines whether a signal contributes to step-wise scan data, is stored as configuration data, or is excluded from both.
-
-### 1. Scan data
-
-During a scan, BEC calls `device.read()` on every device with `readoutPriority = 'monitored'` for every step to collect
-measurement values. The `Kind` attribute therefore determines whether a signal contributes to
-step-wise scan data.
-
-### 2. Device configuration
-
-The configuration of a device is read on demand via `device.read_configuration()`. Values for signals with `Kind.config` are
-collected and stored in BEC as configuration data, which avoids reading them continuously during each scan
-step. This is done for all devices with `readoutPriority` of `monitored` or `baseline`.
-
-
-!!! info "Kind.omitted"
-    Signals with `Kind.omitted` are excluded from both `read()` and `read_configuration()`. BEC does not read or publish them during normal operation. This is the right choice for internal control handles (triggers, reset commands) and low-level hardware state that is not needed in the data record.
+As explained above, the `Kind` attribute determines which signals are included in `device.read()` and `device.read_configuration()`. If you would like to understand further how BEC uses these methods to acquire data during scans, please check the learning material about [*ReadoutPriority in BEC*](../../learn/devices/readout-priority.md){ data-preview } or consult the how-to guide on [*Select a Readout Priority*](../../how-to/devices/how-to-select-readout-priority.md){ data-preview }.
