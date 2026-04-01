@@ -32,10 +32,13 @@ class ExpectedOutputMatcher(ABC):
     @abstractmethod
     def check(self, output) -> bool: ...
 
+    def _normalized_expected_output(self) -> str:
+        return self._expected_output.replace(PLACEHOLDER_TOKEN, "")
+
     def diff(self, output) -> str:
         return "\n".join(
             self._differ.compare(
-                self._expected_output.replace(PLACEHOLDER_TOKEN, "").splitlines(),
+                self._normalized_expected_output().splitlines(),
                 output.splitlines(),
             )
         )
@@ -45,7 +48,7 @@ class ContainsExpectedOutputMatcher(ExpectedOutputMatcher):
     """Require the expected text to appear verbatim in the live output."""
 
     def check(self, output):
-        return self._expected_output.replace(PLACEHOLDER_TOKEN, "") in output
+        return self._normalized_expected_output() in output
 
 
 class SimilarExpectedOutputMatcher(ExpectedOutputMatcher):
@@ -60,7 +63,10 @@ class SimilarExpectedOutputMatcher(ExpectedOutputMatcher):
         self._expected_ratio = ratio
 
     def check(self, output):
-        return SequenceMatcher(None, self._expected_output, output).ratio() >= self._expected_ratio
+        return (
+            SequenceMatcher(None, self._normalized_expected_output(), output).ratio()
+            >= self._expected_ratio
+        )
 
 
 class SignalArrayOutputMatcher(ExpectedOutputMatcher):
