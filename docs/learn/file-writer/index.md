@@ -1,7 +1,7 @@
 ---
 related:
   - title: Add a custom NeXuS structure for the file writer
-    url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
+    url: how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
 # File Writing

@@ -1,11 +1,11 @@
 ---
 related:
   - title: File writing
-    url: ../../learn/file-writer/index.md
+    url: learn/file-writer/index.md
   - title: Customizing the file writer
-    url: ../../learn/file-writer/plugin-repository-integration.md
+    url: learn/file-writer/plugin-repository-integration.md
   - title: Add a custom NeXuS structure for the file writer
-    url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
+    url: how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
 # Default HDF5 Layout
@@ -59,4 +59,3 @@ Some common operations include:
 - add datasets with `create_dataset(...)`
 - add data through links, either soft links to existing groups or datasets with `create_soft_link(...)` or external links to datasets in external files with `create_ext_link(...)`.
 - use helper methods such as `self.get_entry(...)` to access device values from scan data
-

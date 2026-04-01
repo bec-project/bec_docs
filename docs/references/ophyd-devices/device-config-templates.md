@@ -1,13 +1,13 @@
 ---
 related:
   - title: EpicsMotor, EpicsMotorEC, EpicsUserMotorVME
-    url: ../../learn/devices/epics-motors.html
+    url: learn/devices/epics-motors.html
   - title: EpicsSignal, EpicsSignalRO, EpicsSignalWithRBV
-    url: ../../learn/devices/epics-signals.html
+    url: learn/devices/epics-signals.html
   - title: Add an EPICS motor
-    url: ../../how-to/devices/add-an-epics-motor.html
+    url: how-to/devices/add-an-epics-motor.html
   - title: Add an EPICS signal
-    url: ../../how-to/devices/add-an-epics-signal.html
+    url: how-to/devices/add-an-epics-signal.html
 ---
 
 # Device config templates

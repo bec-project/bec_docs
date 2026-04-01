@@ -1,9 +1,9 @@
 ---
 related:
   - title: Add a Pseudo Positioner
-    url: ../../how-to/devices/add-a-pseudo-motor.md
+    url: how-to/devices/add-a-pseudo-motor.md
   - title: EPICS motor classes
-    url: ../../learn/devices/epics-motors.md
+    url: learn/devices/epics-motors.md
 ---
 
 # Pseudo Positioners

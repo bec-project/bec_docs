@@ -1,9 +1,9 @@
 ---
 related:
   - title: File writing
-    url: ../../learn/file-writer/index.md
+    url: learn/file-writer/index.md
   - title: BEC Signals
-    url: ../../learn/devices/bec-signals.md
+    url: learn/devices/bec-signals.md
 ---
 
 # Customize BEC

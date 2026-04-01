@@ -1,9 +1,9 @@
 ---
 related:
   - title: Update BEC to a new version
-    url: ../../how-to/general/update-deployment.md
+    url: how-to/general/update-deployment.md
   - title: Operations and deployment
-    url: ../../learn/operations-and-deployment/index.md
+    url: learn/operations-and-deployment/index.md
 ---
 
 # Connect to the BEC VM with xfreerdp
@@ -65,4 +65,3 @@ When you are done:
 ## Common pitfalls
 - Using the wrong hostname for the VM.
 - Trying to connect from outside the PSI or beamline network.
-

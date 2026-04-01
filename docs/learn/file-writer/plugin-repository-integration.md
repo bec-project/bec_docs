@@ -1,9 +1,9 @@
 ---
 related:
   - title: File writing
-    url: index.md
+    url: learn/file-writer/index.md
   - title: Add a custom NeXuS structure for the file writer
-    url: ../../how-to/customize-bec/add-a-custom-nexus-structure.md
+    url: how-to/customize-bec/add-a-custom-nexus-structure.md
 ---
 
 # Customizing the File Writer
