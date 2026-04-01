@@ -1,9 +1,9 @@
 ---
 related:
-  - title: Select a signal Kind
+  - title: Select a Signal Kind
     url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
-  - title: Relation between Ophyd Kind and data in BEC
-    url: ophyd-kinds.md
+  - title: Ophyd Kind in BEC
+    url: ../../learn/devices/ophyd-kinds.md
 ---
 
 # ReadoutPriority in BEC

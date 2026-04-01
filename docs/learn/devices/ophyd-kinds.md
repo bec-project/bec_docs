@@ -4,12 +4,34 @@ related:
     url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
 ---
 
-# Ophyd Kind and data in BEC
+# Ophyd Kind and scan data in BEC
 
 Every signal component in an ophyd device carries a `Kind` attribute that controls how that
 signal is treated at runtime. It determines whether a signal is included in `read()`,
 `read_configuration()`, or neither of the two methods. 
 BEC will read devices during scans using the `read()` method, while it reads device configuration on demand using `read_configuration()`. Therefore, the `Kind` attribute of signals in a device determines whether they contribute to scan data, are stored as configuration data, or are excluded from both.
+
+??? example "Example Ophyd Device"
+
+    Example device with signals of different `Kind`:
+    ```python
+    from ophyd import Kind, Device, Component as Cpt, Signal
+
+    class MainDevice(Device):
+        signal = Cpt(Signal, kind=Kind.normal)
+        signal_config = Cpt(Signal, kind=Kind.config)
+        signal_omitted = Cpt(Signal, kind=Kind.omitted)
+    
+    device = MainDevice(name="device")
+
+    device.read()
+    OrderedDict([('device_signal',
+              {'value': 0.0, 'timestamp': 1775022455.4195719})])
+
+    device.read_configuration()
+    OrderedDict([('device_signal_config',
+              {'value': 0.0, 'timestamp': 1775022455.419599})])
+    ```
 
 ## The four Kind values
 
@@ -23,9 +45,12 @@ integrations are:
 | `config` | 2 | Signal represents configuration data. It is returned by `read_configuration()` on the device. |
 | `omitted` | 0 | Signal is excluded from both `read()` and `read_configuration()` on the device. |
 
-??? note "Ophyd sub-device and `Kind` attributes"
 
-    `Kind` is a flag enum, and its values are combined. Ophyd allows sub-devices to be added as components. Each devices may carry its own signals with `Kind` attributes. Now if the sub-device is implemented with `Kind=Kind.config`, the `Kind` of all signals from the sub-device are the combined `Kind` flag enums. 
+## Combining Kind values
+
+`Kind` is a flag enum, which means that its values can be combined using bitwise AND (`&`) operations. This is relevant when you have sub-devices in your ophyd device class. If a sub-device is added with `Kind.config`, then all signals from that sub-device will be combined with `Kind.config`. This means that signals with `Kind.normal` in the sub-device will become `Kind.omitted` when accessed through the root device, and signals with `Kind.config` will remain `Kind.config`. 
+
+??? example "Ophyd Device with Sub-device"
     
     ``` py 
     from ophyd import Kind, Device, Component as Cpt, Signal
@@ -34,12 +59,13 @@ integrations are:
         sub_signal = Cpt(Signal, kind=Kind.normal)
         sub_config_signal = Cpt(Signal, kind=Kind.config)
 
-    class RootDevice(Device):
+    class MainDevice(Device):
         signal = Cpt(Signal, kind=Kind.normal)
         signal_config = Cpt(Signal, kind=Kind.config)
+        signal_omitted = Cpt(Signal, kind=Kind.omitted)
         sub_device = Cpt(SubDevice, kind=Kind.config)
     
-    device = RootDevice(name="device")
+    device = MainDevice(name="device")
 
     device.read()
     OrderedDict([('device_signal',
@@ -51,13 +77,12 @@ integrations are:
              ('device_sub_device_sub_config_signal',
               {'value': 0.0, 'timestamp': 1775022455.4196732})])
     ```
-    In particular, this means `Kind.config & Kind.config = Kind.config` and `Kind.config & Kind.normal = Kind.omitted`. This means that `Kind.normal` signals of a sub-device are excluded from a `device.read()` on the root device if the sub-device is added with `Kind.config`.
 
 ## How BEC reads signals
 
 There are two relevant factors to understand how BEC reads signals from devices:
 
-- The device configuration and `readoutPriority` classifies devices into `baseline`, `monitored`, and `async` categories. During scans, this determines which devices are read and when.
+- The device configuration in BEC with its parameter `readoutPriority` classifies devices into `baseline`, `monitored`, and `async` categories. During scans, this determines which devices are read and when.
 
     !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
 
