@@ -4,6 +4,8 @@ related:
     url: ../../learn/devices/ophyd-kinds.md
   - title: ReadoutPriority in BEC
     url: ../../learn/devices/readout-priority.md
+  - title: How to select a readout priority
+    url: ../../how-to/devices/how-to-select-readout-priority.md
 
 ---
 # Select a signal Kind
@@ -32,11 +34,13 @@ In the ophyd read interface, this maps to:
 - `read_configuration()` includes `Kind.config`.
 - `Kind.omitted` is excluded from both.
 
-!!! information "hinted"
+!!! info "hinted"
 
     The `Kind.hinted` value is a special flag that indicates the most important `Kind.normal` signal from a device. It highlights that this signal should be the primary signal for plotting and display in GUIs.
 
-## 2. Apply `kind=` in your device class
+## 2. Setup your device class
+
+When defining your custom ophyd device, set the `kind` argument of each signal component to the appropriate `Kind` value based on its purpose. For example:
 
 ```python
 from ophyd import Component as Cpt, Device, EpicsSignal, EpicsSignalRO, Kind
