@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pprint import pformat
+from time import sleep
 
 import pytest
 
@@ -430,6 +431,13 @@ SCAN_HISTORY_SIGNAL_OUTPUT = """\
     SignalArrayOutputMatcher(SCAN_HISTORY_SIGNAL_OUTPUT, value_atol=0.05, value_rtol=0.01)
 )
 def test_scan_history_signal_arrays(bec):
-    scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
-    latest = bec.history[-1]
+    scan_report = scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
+    scan_report.wait(num_points=True, file_written=True)  # docs-hide
+    for _ in range(70):  # docs-hide
+        latest = bec.history.get_by_scan_id(scan_report.scan.scan_id)  # docs-hide
+        if latest is not None:  # docs-hide
+            break  # docs-hide
+        sleep(0.1)  # docs-hide
+    else:  # docs-hide
+        raise AssertionError("Timed out waiting for the scan to appear in bec.history")  # docs-hide
     print(latest.devices.samx.samx.read())  # docs-display
