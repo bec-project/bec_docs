@@ -124,3 +124,27 @@ def test_snippet_replaces_placeholder_token_in_rendered_output(preprocessor_modu
         "///",
     ]
     assert out_lines == expected_lines
+
+
+def test_transform_with_html_string(preprocessor_module):
+    in_lines = [
+        "a",
+        "--[]->[]--test_snippet--preprocessor_test_data.py:transform_with_html_string:transform with html string",
+        "b",
+    ]
+    out_lines = preprocessor_module._transform_lines(in_lines)
+    expected_lines = [
+        "a",
+        "/// tab | :material-import: transform with html string",
+        "```python",
+        "code = 1",
+        "```",
+        "///",
+        "/// tab | :material-export: output",
+        "<pre>",
+        "code = 1",
+        "</pre>",
+        "///",
+        "b",
+    ]
+    assert out_lines == expected_lines

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pprint import pformat
 import re
+from pprint import pformat
 from time import sleep
 
 import pytest
@@ -337,31 +337,43 @@ def test_show_all_devices(bec):
 
 
 INSPECT_OUTPUT = """\
-              SimPositioner: samx
- Enabled           True
- Description
- Read only         False
- Software Trigger  False
- Device class      ophyd_devices.SimPositioner
- Readout Priority  baseline
- Device tags       user motors
- Limits            [-50, 50]
+<style>
+.r1 {font-style: italic}
+.r2 {color: #008080; text-decoration-color: #008080}
+.r3 {color: #c0c0c0; text-decoration-color: #c0c0c0}
+.r4 {font-weight: bold}
+.r5 {color: #808000; text-decoration-color: #808000}
+.r6 {color: #7f7f7f; text-decoration-color: #7f7f7f}
+.r7 {color: #008000; text-decoration-color: #008000}
+</style>
+<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit"><span class="r1">              SimPositioner: samx              </span>
+<span class="r2"> Enabled          </span><span class="r3"> True                        </span>
+<span class="r2"> Description      </span><span class="r3">                             </span>
+<span class="r2"> Read only        </span><span class="r3"> False                       </span>
+<span class="r2"> Software Trigger </span><span class="r3"> False                       </span>
+<span class="r2"> Device class     </span><span class="r3"> ophyd_devices.SimPositioner </span>
+<span class="r2"> Readout Priority </span><span class="r3"> baseline                    </span>
+<span class="r2"> Device tags      </span><span class="r3"> user motors                 </span>
+<span class="r2"> Limits           </span><span class="r3"> [-50, 50]                   </span>
 
-                  Current Values
- Signal                Value  Timestamp
- samx                  0      2026-03-30 13:35:46
- samx_setpoint         0      2026-03-30 13:35:46
- samx_motor_is_moving  0      2026-03-30 13:35:46
+<span class="r1">                       Current Values                        </span>
+<span class="r4"> Signal                Value             Timestamp           </span>
+<span class="r2"> samx                 </span><span class="r5"> 9.99789260545663 </span><span class="r6"> 2026-04-01 14:43:52 </span>
+<span class="r2"> samx_setpoint        </span><span class="r5"> 10.0             </span><span class="r6"> 2026-04-01 14:43:52 </span>
+<span class="r2"> samx_motor_is_moving </span><span class="r5"> 0                </span><span class="r6"> 2026-04-01 14:43:52 </span>
 
-  Config Signals
- Signal     Value
- tolerance  0.01
- """
+<span class="r1">  Config Signals  </span>
+<span class="r4"> Signal     Value </span>
+<span class="r2"> tolerance </span><span class="r7"> 0.01  </span>
+</code></pre>
+"""
 
 
 @pytest.mark.timeout(100)
 @pytest.mark.output_capture("manual")
-@pytest.mark.expected_output(SimilarExpectedOutputMatcher(INSPECT_OUTPUT, ratio=0.6))
+@pytest.mark.expected_output(
+    SimilarExpectedOutputMatcher(INSPECT_OUTPUT, ratio=0.7, contains_html=True)
+)
 def test_inspect_samx(bec, render_ipython_pretty, assert_expected_output):
     dev.samx
     # ``dev.samx`` is displayed through IPython pretty-printing, not normal stdout capture.
