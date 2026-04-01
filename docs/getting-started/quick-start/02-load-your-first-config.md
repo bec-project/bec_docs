@@ -1,7 +1,7 @@
 ---
 related:
-- title: Load and export a config
-  url: getting-started/next-steps/load-and-export-a-config.md
+  - title: Load and export a config
+    url: getting-started/next-steps/load-and-export-a-config.md
 ---
 
 # Load your first config
@@ -31,15 +31,21 @@ Load that demo configuration now:
 
 Inspect the devices currently available in the session:
 
---[]->[]--test_snippet--test_getting_started.py:test_show_all_devices:Show all devices
+```python
+dev.show_all()
+```
 
-You should see a list of simulated devices, including motors such as `samx` and `samy`.
+The output is a table of the devices currently available in your session, including whether they are enabled and how
+BEC classifies them. In the demo configuration, this list includes simulated motors, detectors, and cameras. For the
+next steps of the tutorial, pay attention to motors such as `samx` and `samy`, which will be used in the first motion
+and scan examples.
+
+![dev_show_all.png](../assets/dev_show_all.png)
 
 !!! tip "Tab completion"
 
     BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and attributes, or `scans.` to explore the scan interface.
     ![tab_completion.gif](../assets/tab_completion.gif)
-
 
 ## 3. Inspect one device
 
@@ -72,5 +78,6 @@ shell.
 
 ## Next step
 
-Continue with [03 Move a device](03-move-a-device.md), where you will use the newly loaded motors for your first controlled
+Continue with [03 Move a device](03-move-a-device.md), where you will use the newly loaded motors for your first
+controlled
 move.
