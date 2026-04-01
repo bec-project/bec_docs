@@ -29,7 +29,6 @@ Choose the priority based on when BEC should read this device:
 - Use `baseline` for setup-state values that are mostly static during a scan.
 - Use `on_request` for devices you only want to read explicitly.
 - Use `async` for devices producing asynchronous data streams.
-- Use `continuous` for continuously emitted data handled outside normal monitored/baseline reads.
 
 ## 2. Set it in the device config
 
@@ -68,7 +67,6 @@ Run a short scan 'line_scan' and confirm the device is read at the expected poin
 If you are interested in more details on how `readoutPriority` works in BEC, please check the learning material on the topic:
     
 !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
-
 
 
 
