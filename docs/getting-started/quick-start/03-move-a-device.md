@@ -54,5 +54,5 @@ For Quick start, prefer `umv` because it is easier to reason about while you are
 
 ## Next step
 
-Continue with [05 Inspect a device](05-inspect-a-device.md), where you will look past motion and into the device object
-itself.
+Continue with [04 Run your first scan](04-run-your-first-scan.md), where you will use the same training devices in your first
+simple scan.

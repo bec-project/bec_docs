@@ -16,12 +16,11 @@ nav = [
   { "Getting started" = [
     "getting-started/index.md",
     { "Quick start" = [
-      { "01 Open BEC" = "getting-started/quick-start/01-open-bec-at-psi.md" },
-      { "02 Open BEC outside of PSI" = "getting-started/quick-start/02-open-bec-outside-psi.md" },
-      { "03 Load your first config" = "getting-started/quick-start/03-load-your-first-config.md" },
-      { "04 Move a device" = "getting-started/quick-start/04-move-a-device.md" },
-      { "05 Run your first scan" = "getting-started/quick-start/05-run-scan.md" },
-      { "06 Create your first GUI" = "getting-started/quick-start/06-create-gui.md" },
+      { "01 Open BEC" = "getting-started/quick-start/01-open-bec.md" },
+      { "02 Load your first config" = "getting-started/quick-start/02-load-your-first-config.md" },
+      { "03 Move a device" = "getting-started/quick-start/03-move-a-device.md" },
+      { "04 Run your first scan" = "getting-started/quick-start/04-run-your-first-scan.md" },
+      { "05 Create your first GUI" = "getting-started/quick-start/05-create-your-first-gui.md" },
     ] },
     { "Next steps" = [
       { "Add your first device" = "getting-started/next-steps/add-your-first-device.md" },

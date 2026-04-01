@@ -95,5 +95,5 @@ recorded series for later plotting, fitting, or custom analysis workflows.
 
 ## Next step
 
-Continue with [06 Create your first GUI](06-create-gui.md), where you will start using the companion Dock Area and
+Continue with [05 Create your first GUI](05-create-your-first-gui.md), where you will start using the companion Dock Area and
 connect a few widgets to the same live BEC session from the GUI.

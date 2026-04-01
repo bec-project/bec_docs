@@ -16,9 +16,8 @@ devices, exporting configs, or writing macros.
 
 ## How to use this section
 
-Follow the **Quick Start** tutorials in order. Tutorials [01 Open BEC at PSI](quick-start/01-open-bec-at-psi.md)
-and [02 Open BEC outside of PSI](quick-start/02-open-bec-outside-psi.md) are alternative starting points, so choose the
-one that matches your environment and then continue with tutorial [03 Load your first config](quick-start/03-load-your-first-config.md).
+Follow the **Quick Start** tutorials in order. Start with [01 Open BEC](quick-start/01-open-bec.md), choose the
+startup tab that matches your environment, and then continue with [02 Load your first config](quick-start/02-load-your-first-config.md).
 
 After **Quick Start**, continue with the **Next Steps** pages when you are ready to work with your own configs, devices,
 data, and automation.

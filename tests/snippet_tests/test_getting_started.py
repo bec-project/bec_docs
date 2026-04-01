@@ -364,7 +364,6 @@ INSPECT_OUTPUT = """\
 @pytest.mark.expected_output(SimilarExpectedOutputMatcher(INSPECT_OUTPUT, ratio=0.6))
 def test_inspect_samx(bec, render_ipython_pretty, assert_expected_output):
     dev.samx
-    # ``dev.samx`` is displayed through IPython pretty-printing, not normal stdout capture.
     rendered = render_ipython_pretty(dev.samx)  # docs-hide
     assert_expected_output(rendered)  # docs-hide
 
@@ -381,7 +380,6 @@ READ_OUTPUT = """\
 @pytest.mark.expected_output(SimilarExpectedOutputMatcher(READ_OUTPUT, ratio=0.75))
 def test_samx_read(bec, assert_expected_output):
     dev.samx.read()
-    # ``read()`` is documented as a formatted dict; validate that representation explicitly.
     readback = dev.samx.read()  # docs-hide
     assert_expected_output(pformat(readback, sort_dicts=False))  # docs-hide
 
