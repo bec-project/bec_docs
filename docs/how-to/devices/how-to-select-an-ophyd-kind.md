@@ -43,21 +43,21 @@ In the ophyd read interface, this maps to:
 When defining your custom ophyd device, set the `kind` argument of each signal component to the appropriate `Kind` value based on its purpose. For example:
 
 ```python
-from ophyd import Component as Cpt, Device, EpicsSignal, EpicsSignalRO, Kind
+from ophyd import Component as Cpt, Device, Signal, Kind
 
 
 class MyDetector(Device):
     # Primary scan value
-    counts = Cpt(EpicsSignalRO, ":Counts", kind=Kind.hinted)
+    counts = Cpt(Signal, name="counts", kind=Kind.hinted)
 
     # Additional scan value
-    elapsed_time = Cpt(EpicsSignalRO, ":ElapsedTime", kind=Kind.normal)
+    elapsed_time = Cpt(Signal, name="elapsed_time", kind=Kind.normal)
 
     # Configuration metadata
-    acquisition_time = Cpt(EpicsSignal, ":AcqTime", kind=Kind.config)
+    acquisition_time = Cpt(Signal, name="acquisition_time", kind=Kind.config)
 
     # Internal control signal
-    acquire = Cpt(EpicsSignal, ":Acquire", kind=Kind.omitted)
+    acquire = Cpt(Signal, name="acquire", kind=Kind.omitted)
 ```
 
 ## 3. Verify the result
@@ -66,7 +66,19 @@ After loading your device:
 
 - Check `device.read()` and confirm only scan signals appear.
 - Check `device.read_configuration()` and confirm setup signals appear.
-- Confirm internal controls are absent from both outputs.
+
+```python
+det = MyDetector(name="det")
+
+det.read()
+OrderedDict([('det_counts', {'value': 0.0, 'timestamp': 1775030964.884717}),
+             ('det_elapsed_time',
+              {'value': 0.0, 'timestamp': 1775030964.884744})])
+              
+det.read_configuration()
+OrderedDict([('det_acquisition_time',
+              {'value': 0.0, 'timestamp': 1775030964.8847628})])
+```
 
 !!! success "Congratulations!"
 

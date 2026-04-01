@@ -4,8 +4,8 @@ related:
     url: ../../learn/devices/ophyd-kinds.md
   - title: ReadoutPriority in BEC
     url: ../../learn/devices/readout-priority.md
-  - title: Device definition
-    url: ../../learn/devices/device-definition.md
+  - title: Device Configuration in BEC
+    url: ../../learn/devices/device-config-in-bec.md
   - title: How to select an Ophyd Kind
     url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
 ---
@@ -35,7 +35,7 @@ Choose the priority based on when BEC should read this device:
 
 Set `readoutPriority` on the device definition in your BEC device configuration.
 
-!!! learn "[Device definition in BEC](../../learn/devices/device-definition.md){ data-preview }"
+!!! learn "[Device Configuration in BEC](../../learn/devices/device-config-in-bec.md){ data-preview }"
 
 Example:
 
@@ -49,7 +49,7 @@ ring_current:
   enabled: true
 ```
 
-!!! info "DeviceManager View in the BEC APP"
+!!! tip "DeviceManager View in the BEC App"
 
     If you are configuring devices from the GUI, select the desired `readoutPriority` value in the device's configuration form.
 
@@ -61,9 +61,15 @@ Run a short scan 'line_scan' and confirm the device is read at the expected poin
 - `baseline`: A single reading is included.
 - `on_request`: No readings are included.
 
-If you are interested in more details on how `readoutPriority` works in BEC, please check the learning material on the topic:
+!!! success "Congratulations!"
+    
+    You have successfully selected a `readoutPriority` for your device. This will control when BEC reads signals from this device during scans, which is crucial for ensuring the right data is collected at the right time.
 
+If you are interested in more details on how `readoutPriority` works in BEC, please check the learning material on the topic:
+    
 !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
+
+
 
 
 

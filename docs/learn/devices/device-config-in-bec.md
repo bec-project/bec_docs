@@ -12,7 +12,7 @@ related:
     url: ../../how-to/devices/how-to-select-readout-priority.md
 ---
 
-# Device definition
+# Device Configuration in BEC
 
 Section to explain the device definition model in BEC that defines how devices are represented and configured in the device config files.
 

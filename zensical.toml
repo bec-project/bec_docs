@@ -61,7 +61,7 @@ nav = [
     ] },
     { "Customize BEC" = [
       "how-to/customize-bec/index.md",
-      { "Add a custom NeXuS structure for the file writer" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
+      { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
     ] },
   ] },
   { Learn = [
@@ -69,7 +69,7 @@ nav = [
       "learn/system-architecture/index.md",
     ] },
     { Devices = [
-      { "Device Definition" = "learn/devices/device-definition.md" },
+      { "Device Config in BEC" = "learn/devices/device-config-in-bec.md" },
       { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
       { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
       { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },

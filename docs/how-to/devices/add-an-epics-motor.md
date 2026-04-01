@@ -1,13 +1,13 @@
 ---
 related:
-  - title: Config file
-    url: how-to/devices/config-file.html
-  - title: Write a new ophyd class
+  - title: Write a new Ophyd Class
     url: how-to/devices/write-a-new-ophyd-class.html
-  - title: Add a pseudo motor
+  - title: Add a Pseudo Motor
     url: how-to/devices/add-a-pseudo-motor.html
-  - title: EPICS motor classes
+  - title: EPICS Motor Classes
     url: learn/devices/epics-motors.html
+  - title: Device Configuration in BEC
+    url: learn/devices/device-config-in-bec.md
 ---
 
 # Add an EPICS motor to the device config
@@ -45,7 +45,7 @@ samx:
   softwareTrigger: false
 ```
 
-!!! learn "[Learn about device definition](../../learn/devices/device-definition.md){ data-preview }" 
+!!! learn "[Learn about device configuration in BEC](../../learn/devices/device-config-in-bec.md){ data-preview }" 
 
 If you want to use a different EPICS motor class variant, simply change the `deviceClass` field to the relevant class.
 
