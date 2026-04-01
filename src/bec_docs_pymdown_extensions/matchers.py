@@ -10,10 +10,10 @@ Keep matchers focused on how the output should be validated:
 - ``SignalArrayOutputMatcher`` for structured numeric arrays with tolerances
 """
 
-from abc import ABC, abstractmethod
-from difflib import Differ, SequenceMatcher
 import math
 import re
+from abc import ABC, abstractmethod
+from difflib import Differ, SequenceMatcher
 
 from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
 
@@ -25,21 +25,33 @@ class ExpectedOutputMatcher(ABC):
     the reference text used by the pytest snippet suite.
     """
 
-    def __init__(self, expected_output: str) -> None:
+    def __init__(self, expected_output: str, contains_html: bool = False) -> None:
         self._expected_output = expected_output
+        self.contains_html = contains_html
         self._differ = Differ()
+
+    def strip_html(self, input: str) -> str:
+        if not self.contains_html:
+            return input
+        # 1. Extract content inside <pre>...</pre>
+        match = re.search(r"<pre.*?>(.*?)</pre>", input, flags=re.DOTALL | re.IGNORECASE)
+        if not match:
+            return ""
+        pre_content = match.group(1)
+        # 2. Remove all HTML tags inside <pre> (keep text + spacing)
+        clean = re.sub(r"<[^>]+>", "", pre_content)
+        return clean
 
     @abstractmethod
     def check(self, output) -> bool: ...
 
     def _normalized_expected_output(self) -> str:
-        return self._expected_output.replace(PLACEHOLDER_TOKEN, "")
+        return self.strip_html(self._expected_output.replace(PLACEHOLDER_TOKEN, ""))
 
     def diff(self, output) -> str:
         return "\n".join(
             self._differ.compare(
-                self._normalized_expected_output().splitlines(),
-                output.splitlines(),
+                self._normalized_expected_output().splitlines(), output.splitlines()
             )
         )
 
@@ -58,8 +70,10 @@ class SimilarExpectedOutputMatcher(ExpectedOutputMatcher):
     differences make exact matching too brittle.
     """
 
-    def __init__(self, expected_output: str, ratio: float = 0.9) -> None:
-        super().__init__(expected_output)
+    def __init__(
+        self, expected_output: str, ratio: float = 0.9, contains_html: bool = False
+    ) -> None:
+        super().__init__(expected_output, contains_html=contains_html)
         self._expected_ratio = ratio
 
     def check(self, output):
@@ -87,8 +101,9 @@ class SignalArrayOutputMatcher(ExpectedOutputMatcher):
         value_atol: float = 0.05,
         value_rtol: float = 0.0,
         require_monotonic_timestamps: bool = True,
+        contains_html: bool = False,
     ) -> None:
-        super().__init__(expected_output)
+        super().__init__(expected_output, contains_html)
         self._value_atol = value_atol
         self._value_rtol = value_rtol
         self._require_monotonic_timestamps = require_monotonic_timestamps

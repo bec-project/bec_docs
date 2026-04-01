@@ -35,3 +35,15 @@ def snippet_with_docs_display_and_hidden_lines():
 @pytest.mark.expected_output(ContainsExpectedOutputMatcher(PLACEHOLDER_STRING))
 def snippet_with_placeholder_output():
     run_placeholder_demo()
+
+
+HTML = """\
+<pre>
+code = 1
+</pre>
+"""
+
+
+@pytest.mark.expected_output(ContainsExpectedOutputMatcher(HTML, contains_html=True))
+def transform_with_html_string():
+    code = 1

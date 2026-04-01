@@ -1,6 +1,6 @@
 import ast
-from pathlib import Path
 import re
+from pathlib import Path
 from textwrap import dedent
 
 from markdown.extensions import Extension
@@ -12,9 +12,7 @@ TEST_SNIPPET_DIR = Path(__file__).parent / "../../tests/snippet_tests/"
 PLACEHOLDER_TOKEN = "{{ placeholder }}"
 _F_STRING_TOKENS = {"PLACEHOLDER_TOKEN": PLACEHOLDER_TOKEN}
 _TOKEN_REPLACEMENTS = {PLACEHOLDER_TOKEN: "..."}
-_DOCS_DISPLAY_RE = re.compile(
-    r"^(?P<indent>\s*)print\((?P<expr>.+)\)\s*#\s*docs-display\s*$"
-)
+_DOCS_DISPLAY_RE = re.compile(r"^(?P<indent>\s*)print\((?P<expr>.+)\)\s*#\s*docs-display\s*$")
 _DOCS_HIDE_RE = re.compile(r"^\s*.*#\s*docs-hide\s*$")
 
 
@@ -37,22 +35,34 @@ def _rewrite_docs_display_wrappers(code: str) -> str:
     return "\n".join(out_lines)
 
 
-def _replacement(title: str, code: str, expected_output: str | None) -> list[str]:
+def _replacement(
+    title: str, code: str, expected_output: str | None, html: bool = False
+) -> list[str]:
     """If expected output is provided, return a tabset with code and the output, with
     the title of the code tab set to title. Otherwise, return a titled code block."""
 
     if expected_output:
+        if html:
+            output = [
+                "/// tab | :material-export: output",
+                *_replace_placeholders(expected_output).splitlines(),
+                "///",
+            ]
+        else:
+            output = [
+                "/// tab | :material-export: output",
+                "```",
+                *_replace_placeholders(expected_output).splitlines(),
+                "```",
+                "///",
+            ]
         return [
             f"/// tab | :material-import: {title}",
             "```python",
             *code.splitlines(),
             "```",
             "///",
-            "/// tab | :material-export: output",
-            "```",
-            *_replace_placeholders(expected_output).splitlines(),
-            "```",
-            "///",
+            *output,
         ]
     return [f'```python title="{title}"', *code.splitlines(), "```"]
 
@@ -85,10 +95,14 @@ def _get_id_value(tree: ast.Module, id: str):
                     return value
 
 
-def _get_expected_value(tree: ast.Module, func: ast.FunctionDef) -> str | None:
+def _get_expected_value(tree: ast.Module, func: ast.FunctionDef) -> tuple[str | None, bool]:
     for decorator in func.decorator_list:
         if decorator.func.attr == "expected_output":
-            return _get_id_value(tree, decorator.args[0].args[0].id)
+            expected_value = _get_id_value(tree, decorator.args[0].args[0].id)
+            kwargs = {item.arg: item.value.value for item in decorator.args[0].keywords}
+            html = kwargs.get("contains_html", False)
+            return expected_value, html
+    return None, False
 
 
 def _extract_function(tree: ast.Module, name: str) -> ast.FunctionDef | None:
@@ -115,10 +129,12 @@ def _transform_lines(lines: list[str]):
                 if (test_function := _extract_function(file_tree, test_name)) is None:
                     out_lines.append(f"Failed to find test {test_name} in {file}")
                     continue
-                code = "\n".join(file_text.splitlines()[test_function.lineno : test_function.end_lineno])
+                code = "\n".join(
+                    file_text.splitlines()[test_function.lineno : test_function.end_lineno]
+                )
                 code = _rewrite_docs_display_wrappers(dedent(code))
-                expected_value = _get_expected_value(file_tree, test_function)
-                out_lines.extend(_replacement(title, code, expected_value))
+                expected_value, html = _get_expected_value(file_tree, test_function)
+                out_lines.extend(_replacement(title, code, expected_value, html))
             except Exception as e:
                 out_lines.append(f"Failed to process code snippet file: {file} \n {e}")
         else:
