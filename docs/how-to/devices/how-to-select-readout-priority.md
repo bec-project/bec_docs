@@ -1,13 +1,13 @@
 ---
 related:
   - title: Ophyd Kind in BEC
-    url: ../../learn/devices/ophyd-kinds.md
+    url: learn/devices/ophyd-kinds.md
   - title: ReadoutPriority in BEC
-    url: ../../learn/devices/readout-priority.md
+    url: learn/devices/readout-priority.md
   - title: Device Configuration in BEC
-    url: ../../learn/devices/device-config-in-bec.md
+    url: learn/devices/device-config-in-bec.md
   - title: How to select an Ophyd Kind
-    url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
+    url: how-to/devices/how-to-select-an-ophyd-kind.md
 ---
 # Select a readout priority
 
@@ -67,7 +67,6 @@ Run a short scan 'line_scan' and confirm the device is read at the expected poin
 If you are interested in more details on how `readoutPriority` works in BEC, please check the learning material on the topic:
     
 !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
-
 
 
 
