@@ -1,17 +1,21 @@
 ---
 related:
+  - title: Introduction to ophyd
+    url: learn/devices/introduction-to-ophyd.md
   - title: Ophyd Kind in BEC
-    url: ../../learn/devices/ophyd-kinds.md
+    url: learn/devices/ophyd-kinds.md
   - title: ReadoutPriority in BEC
-    url: ../../learn/devices/readout-priority.md
+    url: learn/devices/readout-priority.md
   - title: Select a Readout Priority
-    url: ../../how-to/devices/how-to-select-readout-priority.md
+    url: how-to/devices/how-to-select-readout-priority.md
 
 ---
-# Select a signal Kind
+# Select a Signal Kind
 
 !!! Info "Overview"
     Choosing `Kind` for a signal in your custom ophyd device determines how BEC will handle the signal and its associated data.
+
+!!! learn "[Learn more about ophyd](../../learn/devices/introduction-to-ophyd.md){ data-preview }"
 
 ## Prerequisites
 
@@ -86,6 +90,5 @@ OrderedDict([('det_acquisition_time',
 !!! important "ReadoutPriority and Kind"
 
     BEC's readout priorities (e.g. `monitored`, `baseline`, `async`) determine when signals are read during a scan, while `Kind` determines how signals from a device are read. Both attributes work together to define the behavior of signals in BEC.
-
 
 

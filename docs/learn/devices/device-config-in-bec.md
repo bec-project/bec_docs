@@ -65,11 +65,9 @@ Supported values are:
 - `baseline`
 - `monitored`
 - `async`
-- `continuous`
 
 For BEC-controlled readouts, `on_request`, `baseline`, and `monitored` are the
-most common categories. `async` and `continuous` are used for asynchronous and
-continuously produced data streams.
+most common categories. `async` is used for asynchronous data streams.
 
 !!! learn "[ReadoutPriority in BEC](../../learn/devices/readout-priority.md){ data-preview }"
 
@@ -162,4 +160,3 @@ Signal-level behavior is defined in the ophyd class, including `Kind` values on
 signals.
 
 !!! learn "[Ophyd Kind and scan data in BEC](../../learn/devices/ophyd-kinds.md){ data-preview }"
-

@@ -1,16 +1,18 @@
 ---
 related:
+  - title: Introduction to ophyd
+    url: ../../learn/devices/introduction-to-ophyd.md
   - title: Select an ophyd Kind for your device signals
     url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
 ---
 
-# Ophyd Kind
+# ophyd `Kind`
 
 Every signal component in an ophyd device carries a `Kind` attribute that controls how that
 signal is treated at runtime. It determines whether a signal is included in `device.read()`,
-`device.read_configuration()`.
+`device.read_configuration()`, or excluded from both.
 
-!!! example "Example Ophyd Device"
+!!! example "Example ophyd device"
 
     Example device with signals of different `Kind`:
     ```python
@@ -32,31 +34,40 @@ signal is treated at runtime. It determines whether a signal is included in `dev
               {'value': 0.0, 'timestamp': 1775022455.419599})])
     ```
 
-Omitted signals are excluded from both `device.read()` and `device.read_configuration()`. This is the right choice for internal control handles (triggers, reset commands) and low-level hardware state that is not needed in the data record. They can be read directly from the device interface.
+Signals with `Kind.omitted` are excluded from both `device.read()` and
+`device.read_configuration()`. This is the right choice for internal control handles
+(triggers, reset commands) and low-level hardware state that is not needed in the data
+record. These signals can still be accessed directly from the device interface.
 !!! example
     ```python
     device.signal_omitted.read()
     {'device_signal_omitted': {'value': 0.0, 'timestamp': 1775022455.4195719}}
     ```
 
-## The four Kind values
+## The four `Kind` values
 
-Ophyd defines `Kind` as a flag enumeration in `ophyd.Kind`. The four values used in BEC device
-integrations are:
+ophyd defines `Kind` as a flag enumeration in `ophyd.Kind`. The following values are available:
 
-| Kind | Integer | Role in BEC |
+| Kind | Integer | Meaning |
 |---|---|---|
-| `hinted` | 5 | Signal should be monitored and carries a flag for highlighting in plots. It is returned by `read()` on the device. |
-| `normal` | 1 | Signal should be monitored. It is returned by `read()` on the device. |
-| `config` | 2 | Signal represents configuration data. It is returned by `read_configuration()` on the device. |
-| `omitted` | 0 | Signal is excluded from both `read()` and `read_configuration()` on the device. |
+| `hinted` | 5 | The signal is included in `read()` and marked as especially important for plotting or analysis. |
+| `normal` | 1 | The signal is included in `read()` and intended for general monitoring. This is the default kind if not specified. |
+| `config` | 2 | The signal represents configuration data and is included in `read_configuration()`. |
+| `omitted` | 0 | The signal is excluded from both `read()` and `read_configuration()`. |
 
 
-## Combining Kind values
+## Combining `Kind` values
 
-`Kind` is a flag enum, which means that its values can be combined using bitwise AND (`&`) operations. This is relevant when you have sub-devices in your ophyd device class. If a sub-device is added with `Kind.config`, then all signals from that sub-device will be combined with `Kind.config`. This means that signals with `Kind.normal` in the sub-device will become `Kind.omitted` when accessed through the root device, and signals with `Kind.config` will remain `Kind.config`. 
+`Kind` is a flag enum. In practice, this becomes relevant when you have sub-devices in an
+ophyd device class, because the `Kind` of the parent component is combined with the `Kind`
+of the signals inside that sub-device.
 
-??? example "Ophyd Device with Sub-device"
+For example, if a sub-device is added with `Kind.config`, its signals are filtered through
+that parent `Kind`. A signal that is `Kind.normal` inside the sub-device becomes
+`Kind.omitted` when viewed from the root device, while a signal that is already
+`Kind.config` remains `Kind.config`.
+
+??? example "ophyd device with sub-device"
     
     ``` py 
     from ophyd import Kind, Device, Component as Cpt, Signal
@@ -84,6 +95,9 @@ integrations are:
               {'value': 0.0, 'timestamp': 1775022455.4196732})])
     ```
 
-## Readings in BEC
+## `Kind` in BEC
 
-As explained above, the `Kind` attribute determines which signals are included in `device.read()` and `device.read_configuration()`. If you would like to understand further how BEC uses these methods to acquire data during scans, please check the learning material about [*ReadoutPriority in BEC*](../../learn/devices/readout-priority.md){ data-preview } or consult the how-to guide on [*Select a Readout Priority*](../../how-to/devices/how-to-select-readout-priority.md){ data-preview }.
+The `Kind` attribute determines which signals are included in `device.read()` and
+`device.read_configuration()`. To understand when BEC calls these methods during data
+acquisition, see [*Readout Priority*](../../learn/devices/readout-priority.md){ data-preview }
+or the how-to guide on [*Select a readout priority*](../../how-to/devices/how-to-select-readout-priority.md){ data-preview }.

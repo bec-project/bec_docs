@@ -69,13 +69,14 @@ nav = [
       "learn/system-architecture/index.md",
     ] },
     { Devices = [
+      { "Introduction to ophyd" = "learn/devices/introduction-to-ophyd.md" },
+      { "ophyd Kind Values" = "learn/devices/ophyd-kinds.md" },
+      { "Readout Priority" = "learn/devices/readout-priority.md" },
       { "Device Config in BEC" = "learn/devices/device-config-in-bec.md" },
       { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
       { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
       { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
       { "BEC Signals" = "learn/devices/bec-signals.md" },
-      { "Ophyd Kind in BEC" = "learn/devices/ophyd-kinds.md" },
-      { "Readout Priority in BEC" = "learn/devices/readout-priority.md" },
     ] },
     { "Scans and execution" = [
       "learn/scans-and-execution/index.md",
