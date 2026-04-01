@@ -1,12 +1,3 @@
----
-related:
-  - title: Step scan
-    url: how-to/scans/step-scan.html
-  - title: Fly scan
-    url: how-to/scans/fly-scan.html
-  - title: Data access
-    url: how-to/data-access/index.html
----
 
 # Scans
 

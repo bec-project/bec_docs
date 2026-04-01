@@ -2,8 +2,6 @@
 related:
   - title: Add an EPICS motor
     url: how-to/devices/add-an-epics-motor.md
-  - title: Write a new ophyd class
-    url: how-to/devices/write-a-new-ophyd-class.html
   - title: Add a pseudo motor
     url: how-to/devices/add-a-pseudo-motor.html
 ---

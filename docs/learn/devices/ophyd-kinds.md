@@ -1,9 +1,9 @@
 ---
 related:
   - title: Introduction to ophyd
-    url: ../../learn/devices/introduction-to-ophyd.md
+    url: learn/devices/introduction-to-ophyd.md
   - title: Select an ophyd Kind for your device signals
-    url: ../../how-to/devices/how-to-select-an-ophyd-kind.md
+    url: how-to/devices/how-to-select-an-ophyd-kind.md
 ---
 
 # ophyd `Kind`

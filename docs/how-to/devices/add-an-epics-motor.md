@@ -1,7 +1,5 @@
 ---
 related:
-  - title: Write a new Ophyd Class
-    url: how-to/devices/write-a-new-ophyd-class.html
   - title: Add a Pseudo Motor
     url: how-to/devices/add-a-pseudo-motor.html
   - title: EPICS Motor Classes

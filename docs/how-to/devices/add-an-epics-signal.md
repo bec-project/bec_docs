@@ -1,9 +1,5 @@
 ---
 related:
-  - title: Config file
-    url: how-to/devices/config-file.html
-  - title: Write a new ophyd class
-    url: how-to/devices/write-a-new-ophyd-class.html
   - title: EPICS signal classes
     url: learn/devices/epics-signals.html
 ---

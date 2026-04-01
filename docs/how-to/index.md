@@ -1,12 +1,3 @@
----
-related:
-  - title: Devices
-    url: how-to/devices/index.html
-  - title: Scans
-    url: how-to/scans/index.html
-  - title: Plugins
-    url: how-to/plugins/index.html
----
 
 # How to...
 
