@@ -21,7 +21,7 @@ integrations are:
 | `hinted` | 5 | Signal should be monitored and carries a flag for highlighting in plots. It is returned by `read()` on the device. |
 | `normal` | 1 | Signal should be monitored. It is returned by `read()` on the device. |
 | `config` | 2 | Signal represents configuration data. It is returned by `read_configuration()` on the device. |
-| `omitted` | 0 | Signal is excluded from both `read()` and `read_configuration()`. Can only be read on demand.|
+| `omitted` | 0 | Signal is excluded from both `read()` and `read_configuration()` on the device. |
 
 ??? note "Ophyd sub-device and `Kind` attributes"
 
@@ -76,5 +76,5 @@ collected and stored in BEC as configuration data, which avoids reading them con
 step. This is done for all devices with `readoutPriority` of `monitored` or `baseline`.
 
 
-!!! information "Kind.omitted"
+!!! info "Kind.omitted"
     Signals with `Kind.omitted` are excluded from both `read()` and `read_configuration()`. BEC does not read or publish them during normal operation. This is the right choice for internal control handles (triggers, reset commands) and low-level hardware state that is not needed in the data record.

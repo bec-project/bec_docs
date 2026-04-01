@@ -29,6 +29,6 @@ If the user requests to scan a motor that is not configured as `monitored`, BEC 
 - Choose `async` for devices like large-area detectors that produce asynchronous data streams.
 - Choose `continuous` for continuously emitted device data.
 
-!!! information "Keep choices orthogonal to ophyd `Kind`"
+!!! info "Keep choices orthogonal to ophyd `Kind`"
 
-    `Kind` controls the inclusion of signals in the `read()` and `read_configuration()` interface of a device, while `readoutPriority` controls when BEC includes that device in it scan readouts. The two attributes work together, but are configured independently. This also allows you to dynamically change the `readoutPriority` of a device to exclude it from scans, e.g. scan motors, while keeping the general device readout interface intact.
+    `Kind` controls the inclusion of signals in the `read()` and `read_configuration()` interface of a device, while `readoutPriority` controls when BEC includes that device in its scan readouts. The two attributes work together, but are configured independently. This also allows you to dynamically change the `readoutPriority` of a device to exclude it from scans, e.g. scan motors, while keeping the general device readout interface intact.
