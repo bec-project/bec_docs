@@ -14,9 +14,8 @@ related:
 
 ## Before you start
 
-Continue in the same BEC session you opened in [01 Open BEC at PSI](01-open-bec-at-psi.md) or
-[02 Open BEC outside of PSI](02-open-bec-outside-psi.md). For this tutorial, use a training, local, or test deployment
-rather than a production beamline session.
+Continue in the same BEC session you opened in [01 Open BEC](01-open-bec.md). For this tutorial, use a
+training, local, or test deployment rather than a production beamline session.
 
 ## 1. Load the demo configuration
 
@@ -73,5 +72,5 @@ shell.
 
 ## Next step
 
-Continue with [04 Move a device](04-move-a-device.md), where you will use the newly loaded motors for your first controlled
+Continue with [03 Move a device](03-move-a-device.md), where you will use the newly loaded motors for your first controlled
 move.
