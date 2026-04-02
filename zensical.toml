@@ -93,28 +93,25 @@ nav = [
     #{ "Plugins and extensions" = [
     #] },
   ] },
-  #{ References = [ TODO add references again once available
-  #  "references/index.md",
-  #  { "BEC Core" = [
-  #    "references/bec-core/index.md",
+  { References = [ 
+    "references/index.md",
+  #  { "BEC Core" = [ TODO add references again once available
   #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
   #    { "Scans" = "references/bec-core/scans.md" },
   #  ] },
   #  { "BEC Widgets" = [
-  #    "references/bec-widgets/index.md",
   #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
   #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
   #  ] },
-  #  { "Ophyd devices" = [
-  #    "references/ophyd-devices/index.md",
+    { "Ophyd devices" = [
   #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
   #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
   #    { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
   #    { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
-  #    { "Device config templates" = "references/ophyd-devices/device-config-templates.md" },
+      { "Device config templates" = "references/ophyd-devices/device-config-templates.md" },
   #    { Devices = "references/ophyd-devices/devices.md" },
-  #  ] },
-  #] },
+    ] },
+  ] },
 ]
 
 [project.extra.page_badges.psi]
