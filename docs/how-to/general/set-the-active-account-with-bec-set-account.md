@@ -2,8 +2,6 @@
 related:
   - title: Connect to the BEC VM with xfreerdp
     url: how-to/general/connect-to-the-bec-vm-with-xfreerdp.md
-  - title: Operations and deployment
-    url: learn/operations-and-deployment/index.md
 ---
 
 # Set the Active Account with `bec-set-account`
