@@ -6,7 +6,7 @@ related:
     url: learn/file-writer/file-references.md
 ---
 
-# Add a custom NeXuS structure for the file writer
+# Add a Custom NeXuS Structure for the File Writer
 
 !!! Info "Overview"
 

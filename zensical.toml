@@ -17,17 +17,17 @@ nav = [
     "getting-started/index.md",
     { "Quick start" = [
       { "01 Open BEC" = "getting-started/quick-start/01-open-bec.md" },
-      { "02 Load your first config" = "getting-started/quick-start/02-load-your-first-config.md" },
-      { "03 Move a device" = "getting-started/quick-start/03-move-a-device.md" },
-      { "04 Run your first scan" = "getting-started/quick-start/04-run-your-first-scan.md" },
-      { "05 Create your first plot" = "getting-started/quick-start/05-create-your-first-gui.md" },
+      { "02 Load Your First Config" = "getting-started/quick-start/02-load-your-first-config.md" },
+      { "03 Move a Device" = "getting-started/quick-start/03-move-a-device.md" },
+      { "04 Run Your First Scan" = "getting-started/quick-start/04-run-your-first-scan.md" },
+      { "05 Create Your First GUI" = "getting-started/quick-start/05-create-your-first-gui.md" },
     ] },
     { "Next steps" = [
-      { "Add your first device" = "getting-started/next-steps/add-your-first-device.md" },
-      { "Load and export a config" = "getting-started/next-steps/load-and-export-a-config.md" },
-      { "Access scan data" = "getting-started/next-steps/access-scan-data.md" },
-      { "Run an alignment scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
-      { "Write your first macro" = "getting-started/next-steps/write-your-first-macro.md" },
+      #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
+      #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
+      { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
+      #{ "Run an Alignment Scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
+      #{ "Write Your First Macro" = "getting-started/next-steps/write-your-first-macro.md" },
     ] },
   ] },
   { "How-to Guides" = [
@@ -36,7 +36,7 @@ nav = [
       { "Connect to the BEC VM with xfreerdp" = "how-to/general/connect-to-the-bec-vm-with-xfreerdp.md" },
       { "Set the Active Account with bec-set-account" = "how-to/general/set-the-active-account-with-bec-set-account.md" },
       { "Update BEC to the Latest Version" = "how-to/general/update-deployment.md" },
-      { "Install BEC locally" = "how-to/general/install-bec-locally.md" },
+      { "Install BEC Locally" = "how-to/general/install-bec-locally.md" },
     ] },
     { "Working With Git" = [
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
@@ -44,8 +44,8 @@ nav = [
     ] },
     { "Devices and scans" = [
       { Devices = [
-        { "Add an EPICS motor" = "how-to/devices/add-an-epics-motor.md" },
-        { "Add an EPICS signal" = "how-to/devices/add-an-epics-signal.md" },
+        { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
+        { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
         { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
         { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
         { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },

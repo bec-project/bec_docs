@@ -1,4 +1,4 @@
-# Run your first scan
+# Run Your First Scan
 
 !!! Info "Goal"
 

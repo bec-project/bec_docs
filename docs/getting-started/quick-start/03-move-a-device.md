@@ -1,4 +1,4 @@
-# Move a device
+# Move a Device
 
 !!! Info "Goal"
 

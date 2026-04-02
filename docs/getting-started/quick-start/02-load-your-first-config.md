@@ -4,7 +4,7 @@ related:
     url: getting-started/next-steps/load-and-export-a-config.md
 ---
 
-# Load your first config
+# Load Your First Config
 
 A "config" in BEC usually refers to a [device configuration](../../learn/devices/device-config-in-bec.md){ data-preview },
 which specifies all the devices with which BEC can communicate and use in scans.

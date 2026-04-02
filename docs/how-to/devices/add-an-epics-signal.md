@@ -4,7 +4,7 @@ related:
     url: learn/devices/epics-signals.html
 ---
 
-# Add an EPICS signal to the device config
+# Add an EPICS Signal to the Device Config
 
 !!! Info "Overview"
     Add a simple EPICS-backed signal to your BEC device configuration using the YAML config file or the GUI.
