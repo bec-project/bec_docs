@@ -247,6 +247,12 @@ body[data-md-color-scheme="slate"] .md-sidebar--primary .bec-nav-badge__logo--da
   animation: bec-float 8s ease-in-out infinite;
 }
 
+.bec-home__frame--transparent {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .bec-home__badge {
   position: absolute;
   padding: 0.45rem 0.75rem;
@@ -264,20 +270,30 @@ body[data-md-color-scheme="slate"] .md-sidebar--primary .bec-nav-badge__logo--da
 }
 
 .bec-home__badge--one {
-  top: -0.5rem;
-  right: 1.2rem;
+  top: 0.8rem;
+  right: 0.6rem;
+  transform: none;
 }
 
 .bec-home__badge--two {
-  left: -0.4rem;
-  bottom: 4rem;
+  top: 38%;
+  left: -1rem;
+  transform: none;
   animation-delay: 0.8s;
 }
 
 .bec-home__badge--three {
-  right: 2rem;
-  bottom: -0.6rem;
+  bottom: 0.6rem;
+  right: -0.4rem;
+  transform: none;
   animation-delay: 1.4s;
+}
+
+.bec-home__badge--four {
+  bottom: 18%;
+  left: -0.6rem;
+  transform: none;
+  animation-delay: 2s;
 }
 
 .bec-home__strip {
