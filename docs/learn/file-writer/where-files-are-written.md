@@ -1,7 +1,7 @@
 ---
 related:
   - title: File writing
-    url: learn/file-writer/index.md
+    url: learn/file-writer/introduction.md
 ---
 
 # Where Files Are Written

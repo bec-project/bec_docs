@@ -1,3 +1,0 @@
-# GUI framework
-
-Coming soon.

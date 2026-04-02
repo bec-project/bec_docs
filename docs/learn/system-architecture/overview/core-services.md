@@ -72,7 +72,7 @@ This separation is important because beamlines may need both a stable default fi
 beamline-specific extensions, while some async data streams are too large or too frequent to delay
 until the end of the scan.
 
-!!! learn "[File writing](../../file-writer/index.md){ data-preview }"
+!!! learn "[File writing](../../file-writer/introduction.md){ data-preview }"
 
 ## SciHub Connector
 

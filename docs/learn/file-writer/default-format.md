@@ -1,7 +1,7 @@
 ---
 related:
   - title: File writing
-    url: learn/file-writer/index.md
+    url: learn/file-writer/introduction.md
   - title: Customizing the file writer
     url: learn/file-writer/plugin-repository-integration.md
   - title: Add a custom NeXuS structure for the file writer

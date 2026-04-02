@@ -1,3 +1,0 @@
-# System architecture
-
-Coming soon.

@@ -38,13 +38,11 @@ nav = [
       { "Update BEC to the Latest Version" = "how-to/general/update-deployment.md" },
     ] },
     { "Working With Git" = [
-      "how-to/git/index.md",
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
     { "Devices and scans" = [
       { Devices = [
-        "how-to/devices/index.md",
         { "Add an EPICS motor" = "how-to/devices/add-an-epics-motor.md" },
         { "Add an EPICS signal" = "how-to/devices/add-an-epics-signal.md" },
         { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
@@ -52,11 +50,10 @@ nav = [
         { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
       ] },
       { Scans = [
-        "how-to/scans/index.md",
+        "how-to/scans/index.md"
       ] },
     ] },
     { "Customize BEC" = [
-      "how-to/customize-bec/index.md",
       { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
     ] },
   ] },
@@ -81,10 +78,9 @@ nav = [
       { "BEC Signals" = "learn/devices/bec-signals.md" },
     ] },
     { "Scans and execution" = [
-      "learn/scans-and-execution/index.md",
     ] },
     { "File Writing" = [
-      "learn/file-writer/index.md",
+      { "Introduction" = "learn/file-writer/introduction.md" },
       { "Where Files Are Written" = "learn/file-writer/where-files-are-written.md" },
       { "Default HDF5 Layout" = "learn/file-writer/default-format.md" },
       { "Customizing the File Writer" = "learn/file-writer/plugin-repository-integration.md" },
@@ -92,13 +88,10 @@ nav = [
       { "File References from Devices" = "learn/file-writer/file-references.md" },
     ] },
     { "Operations and deployment" = [
-      "learn/operations-and-deployment/index.md",
     ] },
     { "GUI framework" = [
-      "learn/gui-framework/index.md",
     ] },
     { "Plugins and extensions" = [
-      "learn/plugins-and-extensions/index.md",
     ] },
   ] },
   { References = [
