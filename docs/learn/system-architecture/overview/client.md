@@ -1,12 +1,3 @@
----
-related:
-  - title: Overview
-    url: learn/system-architecture/overview.md
-  - title: Core Services
-    url: learn/system-architecture/core-services.md
-  - title: Data Flow
-    url: learn/system-architecture/data-flow.md
----
 
 # Clients
 
