@@ -100,14 +100,14 @@ def expected_output_check(request: pytest.FixtureRequest):
             return
         capture = request.getfixturevalue(capture_fixture_name)
         yield
-        captured = capture.readouterr()
+        captured = capture.readouterr().out
         for _ in range(3):
-            if matcher.check(captured.out):
+            if matcher.check(captured):
                 break
             else:
                 # Retry after waiting to finish
                 sleep(1)
-                captured = capture.readouterr()
+                captured += capture.readouterr().out
         assert matcher.check(
-            captured.out
-        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured.out)}"
+            captured
+        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"

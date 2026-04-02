@@ -83,6 +83,35 @@ class SimilarExpectedOutputMatcher(ExpectedOutputMatcher):
         )
 
 
+class NumberUUIDSimilarOutputMatcher(SimilarExpectedOutputMatcher):
+    """Validates scan output table by replacing UUIDs, ints, and floats, with preformatted replacements of the same length"""
+
+    @staticmethod
+    def _sanitize(input: str):
+        input = re.sub(
+            r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b",
+            lambda m: "".join("U" if c != "-" else "-" for c in m.group(0)),
+            input,
+        )
+
+        def replace_float(match):
+            return "".join("F" if c.isdigit() else c for c in match.group(0))
+
+        input = re.sub(r"\b-?\d+\.\d+\b", replace_float, input)
+
+        def replace_int(match):
+            return "".join("I" if c.isdigit() else c for c in match.group(0))
+
+        input = re.sub(r"\b-?\d+\b", replace_int, input)
+
+        return input
+
+    def check(self, output: str):
+        expected = self._sanitize(self._normalized_expected_output())
+        out = self._sanitize(output.split("\n", 1)[1] if "\n" in output else "")
+        return SequenceMatcher(None, expected, out).ratio() >= self._expected_ratio
+
+
 class SignalArrayOutputMatcher(ExpectedOutputMatcher):
     """Validate scan-history style ``{'timestamp': array(...), 'value': array(...)}`` output.
 
