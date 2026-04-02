@@ -41,7 +41,7 @@ source ./bec_venv/bin/activate  # or the command that matches your environment
 
     Please make sure that you have a local BEC environment set up and installed. If you have not done this yet, follow the instructions in [Install BEC locally](../../how-to/general/install-bec-locally.md) first.
 
-    Also, make sure that your BEC server and redis are running, as the client will not be able to work properly without them.
+    Also, make sure that your BEC server and Redis are running, as the client will not be able to work properly without them.
 
 ### 2. Start the client
 Now you can start the BEC client without the GUI using the `bec` command:
