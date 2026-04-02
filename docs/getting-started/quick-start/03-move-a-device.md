@@ -13,13 +13,13 @@ Continue in a session where the demo configuration is already loaded, so `dev.sa
 
 Start by printing the current state of the motor:
 
---[]->[]--test_snippet--test_getting_started.py:test_samx_wm:Check the motor info
+--[]->[]--test_snippet--test_quickstart.py:test_samx_wm:Check the motor info
 
 ## 2. Make and confirm a blocking move
 
 Use `umv` for a blocking move that waits until the device reaches the requested position:
 
---[]->[]--test_snippet--test_getting_started.py:test_samx_blocking_move:Make a move with umv
+--[]->[]--test_snippet--test_quickstart.py:test_samx_blocking_move:Make a move with umv
 
 While the motor is moving, BEC shows a progress bar in the terminal so you can follow the motion until the requested
 position is reached.

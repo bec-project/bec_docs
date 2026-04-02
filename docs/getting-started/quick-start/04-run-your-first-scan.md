@@ -2,14 +2,13 @@
 
 !!! Info "Goal"
 
-    In this tutorial you will submit a simple line scan and inspect the result from history. By the end, you will have seen the
-    core scan loop that underpins most everyday BEC operation.
+    In this tutorial you will submit a simple line scan and observe the result.
 
 ## Before you start
 
 Continue in the same session with the demo configuration loaded and the tutorial motor `samx` available.
 
-!!! tip "TAB completion for scans"
+!!! tip "Tab completion for scans"
     BEC provides tab completion for the full scan interface. Type `scans.` and press `TAB` to discover available scan
     commands and their names.
 
@@ -19,7 +18,7 @@ If you are not sure which parameters a scan expects, ask the IPython client dire
 scans.line_scan?
 ```
 
-That opens the scan docstring together with its signature and an **example** of use:
+This will display the scan documentation, including its signature and an **example** of use:
 
 ```python
 • default@bec [4/19] ❯❯ scans.line_scan?
@@ -53,47 +52,29 @@ Type:      function
 
 ## 1. Submit a simple line scan
 
-Run a short absolute line scan over `samx`:
+Run a short line scan over the simulated `samx` motor:
 
-```python
-scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
-```
+--[]->[]--test_snippet--test_quickstart.py:test_samx_line_scan:Run a line scan with the `samx` motor
+
+<!-- TODO: link to learn about signals -->
+This runs a scan where the `samx` motor is moved from the position `-1` to `1`, and all the 
+"[monitored](../../learn/devices/readout-priority.md){ data-preview }" devices and signals in BEC are recorded at each of five points,
+evenly spaced along this trajectory. For devices which expect an exposure time, `exp_time=0.1` indicates that they should
+expose for `0.1` seconds. The keyword `relative` determines whether the start and end positions are relative to the
+current motor position or absolute positions.
 
 BEC shows a progress bar while the scan runs, together with a table of the monitored devices used during the scan.
 
 ## 2. Let the scan finish in the client
 
-For this short tutorial scan, you can simply let the CLI report complete before moving on to the history view.
-
-## 3. Inspect the latest scan from history
-
-Fetch the most recent scan history entry:
-
---[]->[]--test_snippet--test_getting_started.py:test_scan_history_container_summary:Inspect the latest scan container
-
-This gives you a handle to the scan data after execution.
-
-!!! tip "Scan history is a list of all past scans"
-    `bec.history` behaves like a normal Python list. Index `0` accesses the first stored scan, while negative indices such as `-1`
-    access entries from the end, so `bec.history[-1]` gives you the most recent scan.
-
-## 4. Read one signal from the stored result
-
-For example, inspect the recorded motor values for `samx`:
-
-This returns arrays of timestamps and values collected during the scan, which you can use for further analysis:
-
---[]->[]--test_snippet--test_getting_started.py:test_scan_history_signal_arrays:Read one signal from scan history
-
-Each entry represents one sampled point from the scan, so history is not just a final snapshot. It preserves the full
-recorded series for later plotting, fitting, or custom analysis workflows.
+For this short tutorial scan, you can simply let the scan complete and observe the output in the console.
 
 !!! success "What you have learned"
 
-    You submitted a line scan, watched the live scan report in the client, and retrieved the latest result from `bec.history`.
-    You also saw that scan history stores arrays of recorded values and timestamps, which makes it the starting point for later analysis or GUI workflows.
+    You submitted a line scan, and observed the output in the BEC console.
 
 ## Next step
 
-Continue with [05 Create your first GUI](05-create-your-first-gui.md), where you will start using the companion Dock Area and
-connect a few widgets to the same live BEC session from the GUI.
+Continue with [05 Create your first GUI](05-create-gui.md){ data-preview }, where you will start using the Dock Area and connect a few widgets to the live BEC session.
+
+Alternatively, you can check out the more in-depth tutorial on [accessing your scan data](../next-steps/access-scan-data.md){ data-preview }.
