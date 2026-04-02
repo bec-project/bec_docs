@@ -1,0 +1,40 @@
+name: Check for any TODOs
+on: [pull_request]
+jobs:
+
+  Check-for-todos:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+
+      - name: grep for todo
+        id: grep-todo
+        run: |
+          result=$(grep -r "TODO:" docs/ || true)
+          echo "todos<<EOF" >> $GITHUB_OUTPUT
+          echo "$result" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+            issue-number: ${{ github.event.pull_request.number }}
+            comment-author: 'github-actions[bot]'
+            body-includes: 'Remaining TODOs in the docs:'
+        
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Remaining TODOs in the docs:
+            ```
+            ${{ steps.grep-todo.outputs.todos }}
+            ```
+          edit-mode: replace
