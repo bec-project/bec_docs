@@ -13,16 +13,16 @@ extra_css = ["stylesheets/extra.css"]
 
 nav = [
   { Home = "index.md" },
-  { "Getting started" = [
+  { "Getting Started" = [
     "getting-started/index.md",
-    { "Quick start" = [
+    { "Quick Start" = [
       { "01 Open BEC" = "getting-started/quick-start/01-open-bec.md" },
       { "02 Load Your First Config" = "getting-started/quick-start/02-load-your-first-config.md" },
       { "03 Move a Device" = "getting-started/quick-start/03-move-a-device.md" },
       { "04 Run Your First Scan" = "getting-started/quick-start/04-run-your-first-scan.md" },
       { "05 Create Your First GUI" = "getting-started/quick-start/05-create-your-first-gui.md" },
     ] },
-    { "Next steps" = [
+    { "Next Steps" = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
@@ -104,12 +104,12 @@ nav = [
   #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
   #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
   #  ] },
-    { "Ophyd devices" = [
+    { "Ophyd Devices" = [
   #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
   #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
   #    { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
   #    { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
-      { "Device config templates" = "references/ophyd-devices/device-config-templates.md" },
+      { "Device Config Templates" = "references/ophyd-devices/device-config-templates.md" },
   #    { Devices = "references/ophyd-devices/devices.md" },
     ] },
   ] },

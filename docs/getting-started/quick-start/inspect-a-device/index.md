@@ -1,4 +1,4 @@
-# Inspect a device
+# Inspect a Device
 
 Placeholder for the rewritten getting-started guide for inspecting devices from the CLI and related tools.
 

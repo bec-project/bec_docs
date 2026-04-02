@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 Start here if you are new to BEC. This section gives you a guided first path through startup, configuration, motion,
 scans, and the GUI, then points you toward the deeper task-oriented material.

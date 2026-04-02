@@ -1,4 +1,4 @@
-# Write your First Macro
+# Write Your First Macro
 
 Placeholder for the rewritten getting-started guide for writing a first macro.
 

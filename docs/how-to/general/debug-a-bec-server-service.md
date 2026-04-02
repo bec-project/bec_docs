@@ -181,6 +181,3 @@ For most cases, this is enough:
 - Putting breakpoints too deep before first confirming the request path.
 - Turning on `TRACE` immediately and making the output harder to read.
 
-## Related topics
-
-- [`Operations and deployment`](../../learn/operations-and-deployment/index.md)

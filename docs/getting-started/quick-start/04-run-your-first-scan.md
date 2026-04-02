@@ -75,6 +75,6 @@ For this short tutorial scan, you can simply let the scan complete and observe t
 
 ## Next step
 
-Continue with [05 Create your first GUI plot](05-create-gui.md){ data-preview }, where you will start using the Dock Area and draw a plot from a scan.
+Continue with [05 Create your first GUI plot](05-create-your-first-gui.md){ data-preview }, where you will start using the Dock Area and draw a plot from a scan.
 
 Alternatively, you can check out the more in-depth tutorial on [accessing your scan data](../next-steps/access-scan-data.md){ data-preview }.
