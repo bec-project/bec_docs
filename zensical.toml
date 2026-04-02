@@ -63,11 +63,10 @@ nav = [
   ] },
   { Learn = [
     { "System Architecture" = [
-      "learn/system-architecture/index.md",
       { Overview = [
         "learn/system-architecture/overview/index.md",
         { "Core Services" = "learn/system-architecture/overview/core-services.md" },
-        { Clients = "learn/system-architecture/overview/clients-and-data-flow.md" },
+        { Client = "learn/system-architecture/overview/client.md" },
         { "Data Flow" = "learn/system-architecture/overview/data-flow.md" },
       ] },
     ] },
