@@ -84,7 +84,7 @@ class SimilarExpectedOutputMatcher(ExpectedOutputMatcher):
 
 
 class NumberUUIDSimilarOutputMatcher(SimilarExpectedOutputMatcher):
-    """Validates scan output table by replacing UUIDs, ints, and floats, with preformatted replacements of the same length"""
+    """Validates eg. scan output table by replacing UUIDs, ints, and floats, with preformatted replacements of the same length"""
 
     @staticmethod
     def _sanitize(input: str):

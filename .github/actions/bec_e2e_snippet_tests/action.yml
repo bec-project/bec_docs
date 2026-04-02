@@ -77,4 +77,4 @@ runs:
         python ./bec_ipython_client/tests/end-2-end/_ensure_requirements_container.py
         cd ../..
         pip install -e .
-        pytest -v --start-servers --random-order  ./tests/snippet_tests
+        pytest -v --start-servers ./tests/snippet_tests
