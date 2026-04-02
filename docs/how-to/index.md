@@ -22,8 +22,7 @@ Each guide is written to help you complete one job correctly and efficiently. In
 - a sequence of steps you can follow in your own environment
 - checks, pitfalls, or next steps when they help you finish the task safely
 
-If you need concepts, background, or a full description of a feature, follow the linked pages in **Learn** or
-**References** rather than expecting the how-to itself to teach the topic in depth.
+If you need concepts, background, or a full description of a feature, follow the linked pages in **Learn** rather than expecting the how-to itself to teach the topic in depth.
 
 ## How to use this section
 
