@@ -15,7 +15,7 @@ This page explains how the system is organized, how the core services interact, 
 makes it easy to build new clients, services, and graphical interfaces without duplicating the
 backend logic.
 
-![BEC architecture overview](../../assets/BEC_architecture.png)
+![BEC architecture overview](../../../assets/BEC_architecture.png)
 
 ## Architecture model
 

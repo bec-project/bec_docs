@@ -63,7 +63,12 @@ nav = [
   { Learn = [
     { "System Architecture" = [
       "learn/system-architecture/index.md",
-      { Overview = "learn/system-architecture/overview.md" },
+      { Overview = [
+        "learn/system-architecture/overview/index.md",
+        { "Core Services" = "learn/system-architecture/overview/core-services.md" },
+        { Clients = "learn/system-architecture/overview/clients-and-data-flow.md" },
+        { "Data Flow" = "learn/system-architecture/overview/data-flow.md" },
+      ] },
     ] },
     { Devices = [
       { "Introduction to ophyd" = "learn/devices/introduction-to-ophyd.md" },
