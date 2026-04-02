@@ -5,60 +5,27 @@ heading: Open BEC
 
 !!! info "Goal"
 
-    In this tutorial you will start BEC either from a PSI-managed workstation or from a local environment outside PSI.
-    By the end, you will have a running BEC IPython client and know how to recognize that the session is ready for the
-    rest of the Quick Start sequence.
-
-Choose the startup path that matches your environment, then continue with the common startup checks in section 5.
+    In this tutorial you will start BEC either from a PSI-managed console or from a local environment. By the end, you
+    will have a running BEC IPython client and know how to recognize that the session is ready for the rest of the Quick Start sequence.
 
 /// tab | :material-office-building: PSI-managed Beamline Console
 
 ### 1. Open the BEC Launcher
 
-Use a beamline workstation or PSI-managed machine where BEC is already prepared. You should see a BEC icon in the dock
-that opens the BEC Launcher where you can choose the deployment and application mode. Start BEC by clicking the BEC
-icon on the beamline workstation.
+Use a beamline console. You should see a BEC icon in the dock that opens the BEC Launcher where you can choose the
+deployment and application mode. Start BEC by clicking the BEC icon on the beamline console.
+
+![Taskbar with BEC icon](../assets/taskbar.png)
 
 If you do not see the icon, ask your local support team to set up BEC for you.
 
-### 2. Select the deployment
+### 2. Start the BEC terminal
 
-If your beamline has multiple deployments, choose the one you want to work with in the first step of the launcher.
+![BEC launcher](../assets/launcher.png)
 
-Typical reasons for multiple deployments are:
-
-1. production and test environments
-2. multiple instrument or branch setups
-3. development deployments alongside the main one
-
-If there is only one deployment available, the launcher can skip this choice automatically.
-
-### 3. Choose how you want to interact with BEC
-
-After choosing the deployment, the launcher offers three application modes:
-
-1. `Terminal`
-   Starts the `BECIPythonClient` in a terminal without a graphical interface.
-2. `Terminal + Dock`
-   Starts the `BECIPythonClient` together with the companion Dock Area window for BEC Widgets.
-3. `BEC App`
-   Starts the full BEC desktop application environment.
-
-You can mark both the deployment and the launch mode as default in the launcher. When both defaults are set, the
-launcher can reopen BEC the same way the next time you start it.
-
-If you have already set defaults but want to change them later, right-click the BEC icon in the dock and choose
-`Open BEC Launcher`. This opens the launcher again so you can adjust the saved deployment and launch mode.
-
-### 4. For this tutorial, start the terminal client
-
-To keep the first steps simple, choose `Terminal`.
-
-This opens the `BECIPythonClient` in a terminal, which is the best place to learn the basic session objects before
-adding GUI workflows.
-
-If you prefer to keep the companion Dock Area open as well, you can choose `Terminal + Dock`. The same CLI commands
-from the rest of this tutorial still apply.
+The launcher offers three application modes. To keep the first steps simple, choose `Terminal`. This opens the `BECIPythonClient` in a terminal, which will be used to learn the basic BEC tools in the following tutorial pages.
+<!-- TODO: link to different application modes. -->
+<!-- TODO: link to information about deployments. -->
 
 ///
 /// tab | :material-laptop: Local environment outside PSI
@@ -193,24 +160,17 @@ Open a new terminal, activate the same Python environment, and start the client:
 bec
 ```
 
-If you need the shell only, you can suppress the GUI:
+This will launch `bec` in the terminal, as well as an additional BEC widgets GUI window. If you only need the shell, you can suppress the GUI:
 
 ```bash
 bec --nogui
 ```
 
-If BEC Widgets is installed and you do not use `--nogui`, BEC starts the CLI together with the companion Dock Area
-workflow.
-
 ///
 
-## 5. Recognize a successful startup
+## 3. Recognize a successful startup
 
-After the terminal opens, look for three signs that the session is ready:
-
-1. The prompt changes to the BEC prompt and shows your user, the session name, the current command number, and the next scan number.
-2. The objects `bec`, `dev`, and `scans` are available in the shell.
-3. If you launched with the GUI enabled, the `gui` object is available as well.
+After the terminal opens, wait for the session to be ready. After some diagnostic output, the prompt changes to the BEC prompt and shows your user, the session name, the current command number, and the next scan number.
 
 !!! tip "BECIPython Client prompt"
 
@@ -220,19 +180,24 @@ After the terminal opens, look for three signs that the session is ready:
 Try the following in the shell:
 
 ```python
-bec
+dev.show_all()
 ```
 
+This may show an empty list, in a fresh environment, or it may show the devices already loaded if you are at a beamline.
+In the next session, you will learn how to load a configuration.
 
-## 6. Keep this session open
+![A fresh BEC session](../assets/fresh_terminal.png)
 
-Leave the BEC terminal running. The remaining Quick Start tutorials continue in this same client session.
+
+## 4. Keep this session open
+
+Leave the BEC terminal running - the remaining Quick Start tutorials continue in this same client session.
 
 !!! success "What you have learned"
 
-    You started BEC through the path that matches your environment, either from the PSI launcher or from a local stack
-    outside PSI. You also saw the core signs of a successful startup and confirmed that the main session objects are
-    ready for the rest of the Quick Start sequence.
+    You started BEC through the path that matches your environment, either from the PSI launcher or in a local
+    environment on a non-PSI managed machine. You also confirmed that the main session objects are ready for the rest of
+    the Quick Start sequence.
 
 ## Next step
 

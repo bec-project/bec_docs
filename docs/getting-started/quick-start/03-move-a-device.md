@@ -17,7 +17,7 @@ Start by printing the current state of the motor:
 
 ## 2. Make and confirm a blocking move
 
-Use `umv` for a blocking move that waits until the device reaches the requested position:
+Use `umv` to issues a move command which waits until the device reaches the requested position:
 
 --[]->[]--test_snippet--test_quickstart.py:test_samx_blocking_move:Make a move with umv
 
@@ -37,20 +37,9 @@ Return to a neutral position:
 umv(dev.samx, 0)
 ```
 
-## 4. Know the non-blocking alternative
-
-For later work, BEC also offers `mv`, which submits the move but does not wait for completion:
-
-```python
-mv(dev.samx, 1)
-```
-
-For Quick start, prefer `umv` because it is easier to reason about while you are learning.
-
 !!! success "What you have learned"
 
-    You checked a motor state, executed a safe blocking move, and confirmed the result from the shell. You also saw that
-    `mv` exists for non-blocking workflows, but that `umv` is the better teaching tool for a first session.
+    You checked a motor state, executed a safe blocking move, and confirmed the result from the shell.
 
 ## Next step
 
