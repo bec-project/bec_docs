@@ -6,7 +6,7 @@ related:
     url: getting-started/quick-start/02-load-your-first-config.md
 ---
 
-# Install BEC locally
+# Install BEC Locally
 
 !!! Info "Goal"
     Install BEC in a local Python environment, start the required services, and open a working BEC client session on
@@ -65,7 +65,7 @@ Use this if you want a working local BEC environment and do not need to edit the
 ```bash
 pip install bec_lib
 pip install bec_ipython_client
-pip install bec-server
+pip install bec_server
 pip install ophyd_devices
 ```
 
@@ -169,7 +169,7 @@ dev.show_all()
 
 ## 6. Continue with your local session
 
-At this point, BEC is running locally and ready for configuration loading, device work, or further development.
+At this point, BEC is running locally and ready for you.
 
 !!! Success "Congratulations!"
     You have successfully installed BEC locally and started a working client session.
@@ -177,9 +177,6 @@ At this point, BEC is running locally and ready for configuration loading, devic
 ## Common pitfalls
 - Installing the Python packages without first activating the intended environment.
 - Starting the client before `redis-server` or the BEC services are running.
-- Using different Python environments for `bec-server` and `bec`.
-- Forgetting that `bec-server start` usually launches the stack in `tmux`.
-- Running Redis in a directory without enough free disk space.
 
 ## Next Steps
 - Continue with [Open BEC](../../getting-started/quick-start/01-open-bec.md) if you want the full startup context.
