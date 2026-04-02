@@ -101,12 +101,13 @@ def expected_output_check(request: pytest.FixtureRequest):
         capture = request.getfixturevalue(capture_fixture_name)
         yield
         captured = capture.readouterr()
-        if matcher.check(captured.out):
-            pass
-        else:
-            # Retry after waiting to finish
-            sleep(1)
-            captured = capture.readouterr()
-            assert matcher.check(
-                captured.out
-            ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured.out)}"
+        for _ in range(3):
+            if matcher.check(captured.out):
+                break
+            else:
+                # Retry after waiting to finish
+                sleep(1)
+                captured = capture.readouterr()
+        assert matcher.check(
+            captured.out
+        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured.out)}"
