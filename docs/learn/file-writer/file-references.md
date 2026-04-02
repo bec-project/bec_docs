@@ -1,7 +1,7 @@
 ---
 related:
   - title: File writing
-    url: learn/file-writer/index.md
+    url: learn/file-writer/introduction.md
   - title: DefaultFormat and the default HDF5 layout
     url: learn/file-writer/default-format.md
   - title: Add a custom NeXuS structure for the file writer

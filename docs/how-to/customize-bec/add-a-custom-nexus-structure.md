@@ -1,7 +1,7 @@
 ---
 related:
   - title: File writing
-    url: learn/file-writer/index.md
+    url: learn/file-writer/introduction.md
   - title: File references from devices
     url: learn/file-writer/file-references.md
 ---
@@ -16,7 +16,7 @@ related:
 - A beamline plugin repository is available and installed.
 - Write access (beamline manager) to the beamline plugin package.
 
-!!! learn "[Learn about file writing in BEC](../../learn/file-writer/index.md){ data-preview }"
+!!! learn "[Learn about file writing in BEC](../../learn/file-writer/introduction.md){ data-preview }"
 
 ## 1. Create a custom writer format class
 
