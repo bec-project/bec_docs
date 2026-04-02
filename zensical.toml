@@ -155,22 +155,22 @@ text = "Roboto"
 code = "Jetbrains Mono"
 
 [[project.theme.palette]]
-scheme = "slate"
-primary = "black"
-accent = "indigo"
-
-[project.theme.palette.toggle]
-icon = "material/toggle-switch-off"
-name = "Switch to light mode"
-
-[[project.theme.palette]]
 scheme = "default"
 primary = "indigo"
 accent = "indigo"
 
 [project.theme.palette.toggle]
-icon = "material/toggle-switch"
+icon = "material/toggle-switch-off"
 name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "black"
+accent = "indigo"
+
+[project.theme.palette.toggle]
+icon = "material/toggle-switch"
+name = "Switch to light mode"
 
 [project.plugins.mkdocstrings.handlers.python]
 paths = [
