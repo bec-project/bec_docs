@@ -37,7 +37,7 @@ This is one of the most important architectural decisions in BEC. Instead of req
 or workflow to import and own devices locally, the device server centralizes live device access in
 one service.
 
-!!! learn "[Introduction to ophyd](../../learn/devices/introduction-to-ophyd.md){ data-preview }"
+!!! learn "[Introduction to ophyd](../../devices/introduction-to-ophyd.md){ data-preview }"
 
 ## Scan Bundler
 
@@ -72,7 +72,7 @@ This separation is important because beamlines may need both a stable default fi
 beamline-specific extensions, while some async data streams are too large or too frequent to delay
 until the end of the scan.
 
-!!! learn "[File writing](../../learn/file-writer/index.md){ data-preview }"
+!!! learn "[File writing](../../file-writer/index.md){ data-preview }"
 
 ## SciHub Connector
 

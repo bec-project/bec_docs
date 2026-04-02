@@ -20,7 +20,7 @@ BEC currently supports three main client modes:
 
 The terminal client is the most direct way to work with BEC. It is typically centered around the
 BEC IPython client and is well suited for interactive beamline control, scripting and macros. It 
-usually gives users to most flexibility and direct access to the underlying system, but it may require more familiarity with the command line and Python.
+usually gives users the most flexible interface and a direct access to the underlying system, but it may require more familiarity with the command line and Python.
 
 This mode is a good fit when users want:
 
@@ -45,7 +45,7 @@ The GUI is always launched as a separate process, so it can be closed and reopen
 
 ### BEC App
 
-The BEC App provides a more fully graphical entry point into the system. In this mode, users can
+The BEC App provides a fully-fledged application for the system. In this mode, users can
 work primarily through application windows and widgets rather than through the terminal.
 
 This is useful when users want:
