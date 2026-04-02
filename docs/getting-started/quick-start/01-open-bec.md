@@ -39,7 +39,7 @@ source ./bec_venv/bin/activate  # or the command that matches your environment
 
 !!! warning "Local setup pre-requisites"
 
-    Please make sure that you have a local BEC environment set up and installed. If you have not done this yet, follow the instructions in [Install BEC locally](../general/install-bec-locally.md) first.
+    Please make sure that you have a local BEC environment set up and installed. If you have not done this yet, follow the instructions in [Install BEC locally](../../how-to/general/install-bec-locally.md) first.
 
     Also, make sure that your BEC server and redis are running, as the client will not be able to work properly without them.
 
