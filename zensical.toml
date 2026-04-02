@@ -2,7 +2,7 @@
 site_name = "BEC Documentation"
 site_url = "https://bec-project.github.io/bec_docs/"
 site_author = "BEC developers"
-site_description = "Unified BEC documentation organized with the Diataxis framework"
+site_description = "BEC - The Beamline and Experiment Control System for Large Research Facilities"
 docs_dir = "docs"
 use_directory_urls = false
 repo_name = "bec-project"
@@ -71,7 +71,7 @@ nav = [
       { "ophyd Kind Values" = "learn/devices/ophyd-kinds.md" },
       { "Readout Priority" = "learn/devices/readout-priority.md" },
       { "Device Config in BEC" = "learn/devices/device-config-in-bec.md" },
-      { "Managing Device Configs"= "learn/devices/managing-device-configs.md" },
+      { "Managing Device Configs" = "learn/devices/managing-device-configs.md" },
       { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
       { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
       { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
@@ -94,23 +94,23 @@ nav = [
     #{ "Plugins and extensions" = [
     #] },
   ] },
-  { References = [ 
+  { References = [
     "references/index.md",
-  #  { "BEC Core" = [ TODO add references again once available
-  #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
-  #    { "Scans" = "references/bec-core/scans.md" },
-  #  ] },
-  #  { "BEC Widgets" = [
-  #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
-  #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
-  #  ] },
+    #  { "BEC Core" = [ TODO add references again once available
+    #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
+    #    { "Scans" = "references/bec-core/scans.md" },
+    #  ] },
+    #  { "BEC Widgets" = [
+    #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
+    #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
+    #  ] },
     { "Ophyd Devices" = [
-  #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
-  #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
-  #    { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
-  #    { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
+      #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
+      #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
+      #    { "ProgressSignal" = "references/ophyd-devices/progress-signal.md" },
+      #    { "PSIDeviceBase" = "references/ophyd-devices/psi-device-base.md" },
       { "Device Config Templates" = "references/ophyd-devices/device-config-templates.md" },
-  #    { Devices = "references/ophyd-devices/devices.md" },
+      #    { Devices = "references/ophyd-devices/devices.md" },
     ] },
   ] },
 ]
