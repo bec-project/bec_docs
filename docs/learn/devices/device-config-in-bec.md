@@ -139,22 +139,3 @@ initialization. Defaults to `5.0` seconds.
 ### `userParameter` (dictionary)
 
 `userParameter` stores user-managed auxiliary metadata for a device.
-
-## Combining config files
-
-Device configurations are often split into multiple files for maintainability
-and then combined using YAML include patterns.
-
-Conceptually, this allows teams to keep base, endstation, or subsystem device
-groups separate while still loading one effective session configuration.
-
-This page focuses on understanding the model. A dedicated how-to can cover
-authoring patterns for combined configuration files.
-
-## Relation to signal-level structure
-
-Device configuration defines device-level construction and BEC-level behavior.
-Signal-level behavior is defined in the ophyd class, including `Kind` values on
-signals.
-
-!!! learn "[Ophyd Kind and scan data in BEC](../../learn/devices/ophyd-kinds.md){ data-preview }"
