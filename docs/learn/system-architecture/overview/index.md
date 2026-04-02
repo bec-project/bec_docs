@@ -4,8 +4,6 @@ related:
     url: learn/devices/device-config-in-bec.md
   - title: File writing
     url: learn/file-writer/introduction.md
-  - title: Access BEC history
-    url: how-to/scans/access-bec-history.md
 ---
 
 # Overview
