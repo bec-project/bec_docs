@@ -62,8 +62,9 @@ nav = [
     ] },
   ] },
   { Learn = [
-    { "System architecture" = [
+    { "System Architecture" = [
       "learn/system-architecture/index.md",
+      { Overview = "learn/system-architecture/overview.md" },
     ] },
     { Devices = [
       { "Introduction to ophyd" = "learn/devices/introduction-to-ophyd.md" },
