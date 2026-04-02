@@ -24,5 +24,5 @@ data, and automation.
 
 !!! warning "Use a safe session for the Quick Start tutorials"
 
-    Tutorials 03 to 06 assume you are working in a safe training, local, or test session where loading the demo
+    Tutorials 02 to 05 assume you are working in a safe training, local, or test session where loading the demo
     configuration is acceptable.

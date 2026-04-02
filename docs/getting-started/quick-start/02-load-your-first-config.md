@@ -6,6 +6,9 @@ related:
 
 # Load your first config
 
+A "config" in BEC usually refers to a [device configuration](../../learn/devices/device-config-in-bec.md){ data-preview },
+which specifies all the devices with which BEC can communicate and use in scans.
+
 !!! Info "Goal"
 
     In this tutorial you will load the demo device configuration and use it to explore the first devices in your BEC
@@ -14,14 +17,12 @@ related:
 
 ## Before you start
 
-Continue in the same BEC session you opened in [01 Open BEC](01-open-bec.md). For this tutorial, use a
-training, local, or test deployment rather than a production beamline session.
+Continue with the same BEC session you opened in [01 Open BEC](01-open-bec.md).
 
 ## 1. Load the demo configuration
 
-BEC ships with a simulated device framework for development, testing, and onboarding. The demo configuration mimics a
-small beamline environment with multiple positioners, detectors, and cameras, so you can learn the workflow without
-connecting to real hardware.
+We will load a config with simulated devices, including motors and detectors. This mimics a beamline environment for the
+purposes of learning and testing.
 
 Load that demo configuration now:
 
@@ -31,12 +32,10 @@ Load that demo configuration now:
 
 Inspect the devices currently available in the session:
 
---[]->[]--test_snippet--test_quickstart.py:test_show_all_devices:Show all devices
+--[]->[]--test_snippet--test_quickstart.py:test_show_all_devices:Show all the loaded devices
 
 The output is a table of the devices currently available in your session, including whether they are enabled and how
-BEC classifies them. In the demo configuration, this list includes simulated motors, detectors, and cameras. For the
-next steps of the tutorial, pay attention to motors such as `samx` and `samy`, which will be used in the first motion
-and scan examples.
+BEC classifies them. In the demo configuration.
 
 ![dev_show_all.png](../assets/dev_show_all.png)
 
@@ -49,18 +48,16 @@ and scan examples.
 
 Start with one of the simulated motors:
 
---[]->[]--test_snippet--test_quickstart.py:test_inspect_samx:inspect the samx motor
+--[]->[]--test_snippet--test_quickstart.py:test_inspect_samx:Inspect the samx motor
 
 This prints a device overview with the most important metadata, current values, and config signals. Use this overview
-when you want to understand what a device is, whether it is enabled, what limits it has, and which
-signals are currently changing.
+when you want to understand what a device is, whether it is enabled, what limits it has, and so on.
 
 ## 4. Inspect the live values directly
 
 --[]->[]--test_snippet--test_quickstart.py:test_samx_read:read from the samx motor
 
-`.read()` returns the current readback values for the device and is the quickest way to inspect its live state from the
-shell.
+`.read()` returns the current state of the device and is the quickest way to inspect it from the shell.
 
 !!! tip "Use `wm` for one or more devices"
 
@@ -70,12 +67,11 @@ shell.
 !!! success "What you have learned"
 
     You loaded the demo configuration, saw that BEC includes a simulated beamline for training and development, inspected
-    the available devices, and learned the two most useful shell entry points for a first inspection: `dev.samx` for the
-    device overview and `dev.samx.read()` for live values. In the next step you will start moving a device and learn the
+    the available devices, and learned the two most useful shell entry points for a first inspection: `dev.____` for the
+    device overview and `dev.____.read()` for live values. In the next step you will start moving a device and learn the
     difference between blocking and non-blocking motion commands.
 
 ## Next step
 
 Continue with [03 Move a device](03-move-a-device.md), where you will use the newly loaded motors for your first
-controlled
-move.
+controlled move.
