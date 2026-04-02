@@ -10,7 +10,7 @@ related:
     url: how-to/devices/add-an-epics-signal.html
 ---
 
-# Device config templates
+# Device Config Templates
 
 This page lists the currently supported `deviceConfig` templates for common EPICS-backed device classes exposed through `ophyd_devices`.
 

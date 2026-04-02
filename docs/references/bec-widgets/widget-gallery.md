@@ -1,4 +1,4 @@
-# Widget gallery
+# Widget Gallery
 
 Placeholder for the widget gallery reference page.
 

@@ -1,9 +1,7 @@
 <!-- ---
 related:
   - title: Update BEC to a new version
-    url: ../../how-to/general/update-deployment.md
-  - title: Operations and deployment
-    url: ../../learn/operations-and-deployment/index.md
+    url: how-to/general/update-deployment.md
 --- -->
 
 # Access Logs

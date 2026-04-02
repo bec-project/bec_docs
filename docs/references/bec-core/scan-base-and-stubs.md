@@ -1,4 +1,4 @@
-# Scan Base and stubs
+# Scan Base and Stubs
 
 Placeholder for the reference page on `ScanBase` and scan stubs.
 

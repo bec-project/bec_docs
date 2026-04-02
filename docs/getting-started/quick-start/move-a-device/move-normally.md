@@ -1,4 +1,4 @@
-# Move normally
+# Move Normally
 
 Placeholder for the rewritten getting-started guide for moving a device under normal conditions.
 
