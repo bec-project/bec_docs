@@ -8,7 +8,7 @@ related:
     url: learn/devices/device-config-in-bec.md
 ---
 
-# Add an EPICS motor to the device config
+# Add an EPICS Motor to the Device Config
 
 
 !!! Info "Overview"

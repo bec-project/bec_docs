@@ -1,4 +1,4 @@
-# Load and export a config
+# Load and Export a Config
 
 Placeholder for the rewritten getting-started guide for importing and exporting configuration files.
 

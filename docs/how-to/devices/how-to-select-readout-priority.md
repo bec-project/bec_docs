@@ -9,7 +9,7 @@ related:
   - title: How to select an Ophyd Kind
     url: how-to/devices/how-to-select-an-ophyd-kind.md
 ---
-# Select a readout priority
+# Select a Readout Priority
 
 !!! Info "Overview"
     Selecting a `readoutPriority` for your device in the device config file determines when signals from that device are read during a scan. This is an important choice that affects readings from your device during scans.

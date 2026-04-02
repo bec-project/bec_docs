@@ -1,4 +1,4 @@
-# Access scan data
+# Access Scan Data
 
 A guide to accessing scan data after acquisition. This guide assumes you are comfortable with [running a simple scan](../quick-start/04-run-scan){ data-preview } and observing the live data.
 
