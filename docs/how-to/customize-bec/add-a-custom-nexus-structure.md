@@ -92,10 +92,10 @@ class BeamlineNeXusFormat(DefaultFormat):
                 # file_ref is a FileMessage with file_path and hinted_h5_entries
                 eiger.create_ext_link("data", file_ref.file_path, "/entry/data/data")
 
-            # Add a soft link to the external link above
-            main_data = entry.create_group("data")
-            main_data.attrs["NX_class"] = "NXdata"
-            main_data.create_soft_link(name="data", target="/entry/instrument/eiger/data")
+                # Add a soft link to the external link above
+                main_data = entry.create_group("data")
+                main_data.attrs["NX_class"] = "NXdata"
+                main_data.create_soft_link(name="data", target="/entry/instrument/eiger/data")
 ```
 
 !!! warning "Important"
@@ -121,6 +121,11 @@ Check that:
 
 !!! success "Congratulations!"
     You have successfully added a custom NeXuS structure to the BEC file writer. BEC can now write files using your beamline-specific layout.
+    The diagram below shows the effective NeXuS and HDF5 structure created in this guide. We also include here the automatic `/entry/collection` subtree written by `write_bec_entries()` and the custom groups added in the guide's `format()` example.
+
+    ![Block diagram of the resulting NeXuS structure for the custom format example](./custom-nexus-structure-layout.svg)
+
+    Please note that the `eiger` group is only created if a device with this name exists and a file reference is available for the eiger.
 
 ## Common pitfalls
 - Not exposing the custom format class in the file writer module `<bec_plugin>.file_writer.__init__.py`.
