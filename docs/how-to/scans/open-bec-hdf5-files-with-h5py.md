@@ -10,7 +10,7 @@ related:
 
 # Open BEC HDF5 Files with h5py
 
-!!! info "Goal"
+!!! info "Overview"
     Open a BEC scan file with `h5py`, inspect its metadata and recorded datasets, and locate linked external files when present.
 
 ## Pre-requisites

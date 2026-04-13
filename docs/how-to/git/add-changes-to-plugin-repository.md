@@ -8,7 +8,7 @@ related:
 
 # Add Changes to Your Plugin Repository
 
-!!! Info "Goal"
+!!! Info "Overview"
     This is a how-to guide on how to add changes to your plugin repository. This will allow you to update your plugin with new features, bug fixes or config changes.
 
     If you are familiar with Git, this How-To will be straightforward for you. If you are new to Git, don't worry, we will guide you through the process step by step.

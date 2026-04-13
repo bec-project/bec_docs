@@ -12,7 +12,7 @@ related:
 
 # Add a Pseudo Positioner
 
-!!! Info "Goal"
+!!! Info "Overview"
     Create a pseudo positioner for BEC by subclassing `ophyd_devices.interfaces.base_classes.PSIPseudoMotorBase`, wiring it to existing motors, and exposing it in your beamline plugin or `ophyd_devices` package.
 
 !!! tip

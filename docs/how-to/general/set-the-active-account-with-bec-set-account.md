@@ -6,7 +6,7 @@ related:
 
 # Set the Active Account with `bec-set-account`
 
-!!! Info "Goal"
+!!! Info "Overview"
     Set the active account for the BEC server using the local `bec-set-account` wrapper from the beamline config directory.
 
     This is a PSI-specific guide. It assumes that you already know the correct process-group account, for example `p12345`.

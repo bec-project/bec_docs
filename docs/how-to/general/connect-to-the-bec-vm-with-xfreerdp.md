@@ -6,7 +6,7 @@ related:
 
 # Connect to the BEC VM with xfreerdp
 
-!!! Info "Goal"
+!!! Info "Overview"
     Open a remote desktop session to the BEC virtual machine from a Linux workstation using `xfreerdp`.
 
     This is a PSI-specific guide. It assumes that your beamline provides a BEC VM that is reachable from your current network.

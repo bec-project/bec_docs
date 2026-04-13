@@ -8,7 +8,7 @@ related:
 
 # Merge Changes to `main`
 
-!!! Info "Goal"
+!!! Info "Overview"
     This is a how-to guide on merging your changes into the `main` branch of your plugin repository.
 
     Use this after you have committed and pushed your changes to a branch and you want to make them part of the main line of development.

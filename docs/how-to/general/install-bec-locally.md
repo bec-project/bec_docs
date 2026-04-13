@@ -8,7 +8,7 @@ related:
 
 # Install BEC Locally
 
-!!! Info "Goal"
+!!! Info "Overview"
     Install BEC in a local Python environment, start the required services, and open a working BEC client session on
     your own machine.
 

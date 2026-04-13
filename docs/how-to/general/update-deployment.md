@@ -6,7 +6,7 @@ related:
 
 # Update BEC to the Latest Version
 
-!!! Info "Goal"
+!!! Info "Overview"
     This is a how-to guide on updating BEC to the latest version. This will re-install BEC and all its dependencies in a fresh environment.
     
     Please note that this is a PSI-specific guide and will not be applicable to other installations of BEC. For other installations, please refer to the installation guide.
