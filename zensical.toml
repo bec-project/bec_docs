@@ -42,14 +42,12 @@ nav = [
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
-    { "Devices and Scans" = [
-      { Devices = [
-        { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
-        { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
-        { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
-        { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
-        { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
-      ] },
+    { "Devices" = [
+      { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
+      { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
+      { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
+      { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
+      { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
     ] },
     { "Data Access" = [
       { "Access BEC History" = "how-to/scans/access-bec-history.md" },
