@@ -42,7 +42,7 @@ nav = [
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
-    { "Devices and scans" = [
+    { "Devices and Scans" = [
       { Devices = [
         { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
         { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
@@ -50,8 +50,11 @@ nav = [
         { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
         { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
       ] },
-      #{ Scans = [ TODO add again once scans v4 release
-      #] },
+    ] },
+    { "Data Access" = [
+      { "Access BEC History" = "how-to/scans/access-bec-history.md" },
+      { "Open BEC HDF5 Files with h5py" = "how-to/scans/open-bec-hdf5-files-with-h5py.md" },
+      { "Open BEC HDF5 Files with silx" = "how-to/scans/open-bec-hdf5-files-with-silx.md" },
     ] },
     { "Customize BEC" = [
       { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
