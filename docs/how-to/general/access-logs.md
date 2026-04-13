@@ -6,7 +6,7 @@ related:
 
 # Access Logs
 
-!!! Info "Goal"
+!!! Info "Overview"
     Open a remote desktop session to the BEC virtual machine from a Linux workstation using `xfreerdp`.
 
     This is a PSI-specific guide. It assumes that your beamline provides a BEC VM that is reachable from your current network.
@@ -63,4 +63,3 @@ When you are done:
 ## Common pitfalls
 - Using the wrong hostname for the VM.
 - Trying to connect from outside the PSI or beamline network.
-

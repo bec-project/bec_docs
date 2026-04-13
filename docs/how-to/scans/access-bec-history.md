@@ -6,7 +6,7 @@ related:
 
 # Access BEC History
 
-!!! Info "Goal"
+!!! Info "Overview"
     Retrieve previous scans from `bec.history` and inspect their metadata and data in a BEC client session.
 
 ## Pre-requisites
