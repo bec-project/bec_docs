@@ -62,7 +62,7 @@ when you want to understand what a device is, whether it is enabled, what limits
 !!! tip "Use `wm` for one or more devices"
 
     The `wm` command is convenient when you want a compact position overview. You can use it for a single device such as
-    `wm(dev.samx)` or for multiple devices at once, for example `wm(dev.samx, dev.samy)`.
+    `dev.samx.wm` or for multiple devices at once, for example `dev.wm(dev.samx, dev.samy)`. You can also use wildcard expressions, such as `dev.wm("sam*")` to show all devices whose name starts with "sam". Find out more about `wm` by calling `dev.wm?` in the shell.
 
 !!! success "What you have learned"
 
