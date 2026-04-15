@@ -44,11 +44,19 @@ nav = [
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
     { "Devices" = [
-      { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
-      { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
-      { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
-      { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
-      { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
+      { "Adding Devices" = [
+        { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
+        { "Add an EPICS Signal" = "how-to/devices/add-an-epics-signal.md" },
+        { "Add a Pseudo Positioner" = "how-to/devices/add-a-pseudo-motor.md" },
+      ] },
+      { "Readout Behavior" = [
+        { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
+        { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
+      ] },
+      { "Client Usage" = [
+        { "Inspect a Device from the BEC IPython Client" = "how-to/devices/inspect-a-device-from-the-bec-ipython-client.md" },
+        { "Change Config Signals from the BEC IPython Client" = "how-to/devices/change-config-signals-from-the-bec-ipython-client.md" },
+      ] },
     ] },
     { "Data Access" = [
       { "Access BEC History" = "how-to/scans/access-bec-history.md" },
