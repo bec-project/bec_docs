@@ -6,13 +6,15 @@ from textwrap import dedent
 from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
 
-_CODE_SEQUENCE = "--[]->[]--test_snippet--"
+_CODE_SEQUENCE = re.compile(r"(\s*)--\[\]->\[\]--test_snippet--(.*)")
 TEST_SNIPPET_DIR = Path(__file__).parent / "../../tests/snippet_tests/"
 
 PLACEHOLDER_TOKEN = "{{ placeholder }}"
 _F_STRING_TOKENS = {"PLACEHOLDER_TOKEN": PLACEHOLDER_TOKEN}
 _TOKEN_REPLACEMENTS = {PLACEHOLDER_TOKEN: "..."}
-_DOCS_DISPLAY_RE = re.compile(r"^(?P<indent>\s*)print\((?P<expr>.+)\)\s*#\s*docs-display\s*$")
+_DOCS_DISPLAY_RE = re.compile(
+    r"^(?P<indent>\s*)print\((?P<expr>.+)\)\s*#\s*docs-display\s*$"
+)
 _DOCS_HIDE_RE = re.compile(r"^\s*.*#\s*docs-hide\s*$")
 
 
@@ -36,7 +38,11 @@ def _rewrite_docs_display_wrappers(code: str) -> str:
 
 
 def _replacement(
-    title: str, code: str, expected_output: str | None, html: bool = False
+    title: str,
+    code: str,
+    expected_output: str | None,
+    html: bool = False,
+    prefix: str = "",
 ) -> list[str]:
     """If expected output is provided, return a tabset with code and the output, with
     the title of the code tab set to title. Otherwise, return a titled code block."""
@@ -57,12 +63,12 @@ def _replacement(
                 "///",
             ]
         return [
-            f"/// tab | :material-import: {title}",
-            "```python",
-            *code.splitlines(),
-            "```",
-            "///",
-            *output,
+            prefix + f"/// tab | :material-import: {title}",
+            prefix + "```python",
+            *(prefix + line for line in code.splitlines()),
+            prefix + "```",
+            prefix + "///",
+            *(prefix + line for line in output),
         ]
     return [f'```python title="{title}"', *code.splitlines(), "```"]
 
@@ -95,7 +101,9 @@ def _get_id_value(tree: ast.Module, id: str):
                     return value
 
 
-def _get_expected_value(tree: ast.Module, func: ast.FunctionDef) -> tuple[str | None, bool]:
+def _get_expected_value(
+    tree: ast.Module, func: ast.FunctionDef
+) -> tuple[str | None, bool]:
     for decorator in func.decorator_list:
         if decorator.func.attr == "expected_output":
             expected_value = _get_id_value(tree, decorator.args[0].args[0].id)
@@ -107,7 +115,9 @@ def _get_expected_value(tree: ast.Module, func: ast.FunctionDef) -> tuple[str | 
 
 def _extract_function(tree: ast.Module, name: str) -> ast.FunctionDef | None:
     function_defs = filter(lambda x: isinstance(x, ast.FunctionDef), tree.body)
-    test_functions: list[ast.FunctionDef] = list(filter(lambda x: x.name == name, function_defs))
+    test_functions: list[ast.FunctionDef] = list(
+        filter(lambda x: x.name == name, function_defs)
+    )
     if len(test_functions) == 0:
         return None
     return test_functions[0]
@@ -116,8 +126,8 @@ def _extract_function(tree: ast.Module, name: str) -> ast.FunctionDef | None:
 def _transform_lines(lines: list[str]):
     out_lines = []
     for line in lines:
-        if line.startswith(_CODE_SEQUENCE):
-            line = line.removeprefix(_CODE_SEQUENCE).split(":")
+        if match := _CODE_SEQUENCE.match(line):
+            line = match.group(2).split(":")
             if len(line) != 3:
                 out_lines.append("Incorrect syntax for tested code snippet!")
                 continue
@@ -130,11 +140,15 @@ def _transform_lines(lines: list[str]):
                     out_lines.append(f"Failed to find test {test_name} in {file}")
                     continue
                 code = "\n".join(
-                    file_text.splitlines()[test_function.lineno : test_function.end_lineno]
+                    file_text.splitlines()[
+                        test_function.lineno : test_function.end_lineno
+                    ]
                 )
                 code = _rewrite_docs_display_wrappers(dedent(code))
                 expected_value, html = _get_expected_value(file_tree, test_function)
-                out_lines.extend(_replacement(title, code, expected_value, html))
+                out_lines.extend(
+                    _replacement(title, code, expected_value, html, match.group(1))
+                )
             except Exception as e:
                 out_lines.append(f"Failed to process code snippet file: {file} \n {e}")
         else:
@@ -149,7 +163,9 @@ class TestSnippetsPreprocessor(Preprocessor):
 
 class TestSnippets(Extension):
     def extendMarkdown(self, md):
-        md.preprocessors.register(TestSnippetsPreprocessor(md), "snippets_preprocessor", 100000000)
+        md.preprocessors.register(
+            TestSnippetsPreprocessor(md), "snippets_preprocessor", 100000000
+        )
 
 
 def make_extension(**kwargs):
