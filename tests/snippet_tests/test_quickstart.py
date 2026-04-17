@@ -453,3 +453,49 @@ Starting scan 4.
 @pytest.mark.expected_output(NumberUUIDSimilarOutputMatcher(SCAN_OUTPUT, ratio=0.6))
 def test_samx_line_scan(bec):
     scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
+
+
+AVAILABLE_WIDGETS_OUTPUT = """\
+                                                Available widgets for BEC CLI usage                                               
+┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Widget Name           ┃ Description                                                                                           ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ BECMainWindow         │ No description available                                                                              │
+│ BECProgressBar        │ A custom progress bar with smooth transitions. The displayed text can be customized using a template. │
+│ BECQueue              │ Widget to display the BEC queue.                                                                      │
+│ BECShell              │ A WebConsole pre-configured to run the BEC shell.                                                     │
+│ BECStatusBox          │ An autonomous widget to display the status of BEC services.                                           │
+│ DapComboBox           │ The DAPComboBox widget is an extension to the QComboBox with all avaialble DAP model from BEC.        │
+│ DeviceBrowser         │ DeviceBrowser is a widget that displays all available devices in the current BEC session.             │
+│ Heatmap               │ Heatmap widget for visualizing 2d grid data with color mapping for the z-axis.                        │
+│ Image                 │ Image widget for displaying 2D data.                                                                  │
+│ LogPanel              │ Displays a log panel                                                                                  │
+│ Minesweeper           │ No description available                                                                              │
+│ MonacoWidget          │ A simple Monaco editor widget                                                                         │
+│ MotorMap              │ Motor map widget for plotting motor positions in 2D including a trace of the last points.             │
+│ MultiWaveform         │ MultiWaveform widget for displaying multiple waveforms emitted by a single signal.                    │
+│ PdfViewerWidget       │ A widget to display PDF documents with toolbar controls.                                              │
+│ PositionIndicator     │ Display a position within a defined range, e.g. motor limits.                                         │
+│ PositionerBox         │ Simple Widget to control a positioner in box form                                                     │
+│ PositionerBox2D       │ Simple Widget to control two positioners in box form                                                  │
+│ PositionerControlLine │ A widget that controls a single device.                                                               │
+│ PositionerGroup       │ Simple Widget to control a positioner in box form                                                     │
+│ ResumeButton          │ A button that continue scan queue.                                                                    │
+│ RingProgressBar       │ No description available                                                                              │
+│ SBBMonitor            │ A widget to display the SBB monitor website.                                                          │
+│ ScanControl           │ Widget to submit new scans to the queue.                                                              │
+│ ScanProgressBar       │ Widget to display a progress bar that is hooked up to the scan progress of a scan.                    │
+│ ScatterWaveform       │ No description available                                                                              │
+│ SignalLabel           │ No description available                                                                              │
+│ TextBox               │ A widget that displays text in plain and HTML format                                                  │
+│ Waveform              │ Widget for plotting waveforms.                                                                        │
+│ WebConsole            │ A simple widget to display a website                                                                  │
+│ WebsiteWidget         │ A simple widget to display a website                                                                  │
+└───────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────┘
+"""
+
+
+@pytest.mark.timeout(100)
+@pytest.mark.expected_output(ContainsExpectedOutputMatcher(AVAILABLE_WIDGETS_OUTPUT))
+def test_available_widgets(gui):
+    gui.available_widgets

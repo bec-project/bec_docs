@@ -37,6 +37,8 @@ runs:
       run: |
         sudo apt-get update
         sudo apt-get install -y tmux
+        sudo apt-get install -y libgl1 libegl1 x11-utils libxkbcommon-x11-0 libdbus-1-3 xvfb
+        sudo apt-get -y install libnss3 libxdamage1 libasound2t64 libatomic1 libxcursor1
 
     - name: Create subdirectory for e2e tests
       shell: bash -el {0}
@@ -59,6 +61,13 @@ runs:
         ref: ${{ inputs.OPHYD_DEVICES_BRANCH }}
         path: ./_e2e_test_checkout_/ophyd_devices
 
+    - name: Checkout BEC Widgets
+      uses: actions/checkout@v4
+      with:
+        repository: bec-project/bec_widgets
+        ref: ${{ inputs.BEC_WIDGETS_BRANCH }}
+        path: ./_e2e_test_checkout_/bec_widgets
+
     - name: Checkout Testing Plugin
       uses: actions/checkout@v4
       with:
@@ -72,6 +81,7 @@ runs:
         cd ./_e2e_test_checkout_/bec
         source ./bin/install_bec_dev.sh -t
         pip install -e ../ophyd_devices
+        pip install -e ../bec_widgets
         pip install -e ../bec_testing_plugin
         podman pod create --network=host local_bec
         python ./bec_ipython_client/tests/end-2-end/_ensure_requirements_container.py

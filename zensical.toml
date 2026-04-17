@@ -20,7 +20,8 @@ nav = [
       { "02 Load Your First Config" = "getting-started/quick-start/02-load-your-first-config.md" },
       { "03 Move a Device" = "getting-started/quick-start/03-move-a-device.md" },
       { "04 Run Your First Scan" = "getting-started/quick-start/04-run-your-first-scan.md" },
-      { "05 Create Your First GUI" = "getting-started/quick-start/05-create-your-first-gui.md" },
+      { "05 Plot Your First Waveform" = "getting-started/quick-start/05-plot-your-first-waveform.md" },
+      { "06 Create Your First GUI" = "getting-started/quick-start/06-create-your-first-gui.md" },
     ] },
     { "Next Steps" = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },

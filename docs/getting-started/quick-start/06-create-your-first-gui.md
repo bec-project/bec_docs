@@ -49,4 +49,4 @@ Click on the green `Start` button in the scan control widget to run the scan and
 
 ## Next step
 
-This is the end of the quick-start guide. If you want to continue, you can take a look at the tutorials in the "Next Steps" category, or if you have a specific task in mind, you might find some help in the [how-to](../../how-to/index.md) section.
+You can take a look at the tutorials in the "Next Steps" category, or if you have a specific task in mind, you might find some help in the [how-to](../../how-to/index.md) section.
