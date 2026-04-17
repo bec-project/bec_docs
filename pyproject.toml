@@ -41,3 +41,9 @@ markers = [
     "expected_output: attach an expected-output matcher to a docs snippet test",
     "output_capture(mode): choose capture backend for a docs snippet test; supported: 'sys', 'fd', 'manual'",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true

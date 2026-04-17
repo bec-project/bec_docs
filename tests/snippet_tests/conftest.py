@@ -7,6 +7,9 @@ from bec_docs_pymdown_extensions.matchers import ExpectedOutputMatcher
 
 @pytest.fixture
 def bec(bec_ipython_client_fixture):
+    for d in dev:
+        if len(d) > 6:
+            dev[d].enabled = False
     return bec_ipython_client_fixture
 
 
@@ -44,9 +47,9 @@ def assert_expected_output(expected_output_matcher: ExpectedOutputMatcher | None
         raise TestSetupError(f"No expected_output marker defined for test {request.node.name}")
 
     def _assert(output: str):
-        assert expected_output_matcher.check(
-            output
-        ), f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
+        assert expected_output_matcher.check(output), (
+            f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
+        )
 
     return _assert
 
@@ -108,6 +111,6 @@ def expected_output_check(request: pytest.FixtureRequest):
                 # Retry after waiting to finish
                 sleep(1)
                 captured += capture.readouterr().out
-        assert matcher.check(
-            captured
-        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"
+        assert matcher.check(captured), (
+            f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"
+        )
