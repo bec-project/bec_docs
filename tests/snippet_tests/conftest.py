@@ -1,6 +1,8 @@
+import random
 from time import sleep
 
 import pytest
+from bec_widgets.cli.client_utils import BECGuiClient
 
 from bec_docs_pymdown_extensions.matchers import ExpectedOutputMatcher
 
@@ -11,6 +13,27 @@ def bec(bec_ipython_client_fixture):
         if len(d) > 6:
             dev[d].enabled = False
     return bec_ipython_client_fixture
+
+
+@pytest.fixture
+def gui_id():
+    """New gui id each time, to ensure no 'gui is alive' zombie key can perturb"""
+    return f"figure_{random.randint(0,100)}"  # make a new gui id each time, to ensure no 'gui is alive' zombie key can perturb
+
+
+@pytest.fixture
+def gui(bec, gui_id, qtbot):
+    gui = BECGuiClient(gui_id=gui_id)
+    try:
+        gui.start(wait=True)
+        qtbot.waitUntil(lambda: hasattr(gui, "bec"), timeout=5000)
+        gui.bec.delete_all()  # ensure clean state
+        qtbot.waitUntil(lambda: len(gui.bec.widget_list()) == 0, timeout=10000)
+        yield gui
+    finally:
+        gui.bec.delete_all()  # ensure clean state
+        qtbot.waitUntil(lambda: len(gui.bec.widget_list()) == 0, timeout=10000)
+        gui.kill_server()
 
 
 class TestSetupError(TypeError):
@@ -47,9 +70,9 @@ def assert_expected_output(expected_output_matcher: ExpectedOutputMatcher | None
         raise TestSetupError(f"No expected_output marker defined for test {request.node.name}")
 
     def _assert(output: str):
-        assert expected_output_matcher.check(output), (
-            f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
-        )
+        assert expected_output_matcher.check(
+            output
+        ), f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
 
     return _assert
 
@@ -111,6 +134,6 @@ def expected_output_check(request: pytest.FixtureRequest):
                 # Retry after waiting to finish
                 sleep(1)
                 captured += capture.readouterr().out
-        assert matcher.check(captured), (
-            f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"
-        )
+        assert matcher.check(
+            captured
+        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"

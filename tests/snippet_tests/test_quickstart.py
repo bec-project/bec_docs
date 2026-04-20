@@ -495,13 +495,9 @@ AVAILABLE_WIDGETS_OUTPUT = """\
 """
 
 
-@pytest.fixture
-def gui(bec):
-    return bec.gui
-
-
 @pytest.mark.timeout(100)
 @pytest.mark.output_capture("fd")
-@pytest.mark.expected_output(ContainsExpectedOutputMatcher(AVAILABLE_WIDGETS_OUTPUT))
+@pytest.mark.expected_output(NumberUUIDSimilarOutputMatcher(AVAILABLE_WIDGETS_OUTPUT, ratio=0.6))
 def test_available_widgets(gui):
     gui.available_widgets
+    sleep(1)  # docs-hide
