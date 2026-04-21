@@ -1,3 +1,13 @@
+---
+related:
+  - title: File writing
+    url: learn/file-writer/where-files-are-written.md
+  - title: Open BEC HDF5 files with h5py
+    url: how-to/scans/open-bec-hdf5-files-with-h5py.md
+  - title: Open BEC HDF5 files with silx
+    url: how-to/scans/open-bec-hdf5-files-with-silx.md
+---
+
 # Access Scan Data
 
 A guide to accessing scan data after acquisition. This guide assumes you are comfortable with [running a simple scan](../quick-start/04-run-your-first-scan.md){ data-preview } and observing the live data.
@@ -49,10 +59,5 @@ recorded series for later plotting, fitting, or custom analysis workflows.
 
 For each scan, an HDF5 file is written containing all the recorded signals and additional metadata about the scan which
 was run. It can be found in the `File: ` entry in the scan report, both for an active scan and one obtained from the
-history. You can open this file with your preferred HDF5 viewer.
-<!-- TODO: link to HDF5 viewer instructions -->
+history. You can open this file with your preferred HDF5 viewer, or with `h5py` in Python. For an introduction to working with the BEC HDF5 file structure, see [Open BEC HDF5 files with h5py](../../how-to/scans/open-bec-hdf5-files-with-h5py.md){ data-preview } and [Open BEC HDF5 files with silx](../../how-to/scans/open-bec-hdf5-files-with-silx.md){ data-preview } for a GUI-based approach.
 
-
-## Related pages
-
-[Where files are written](../../learn/file-writer/where-files-are-written.md){ data-preview }
