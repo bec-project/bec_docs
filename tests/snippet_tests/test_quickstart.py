@@ -496,9 +496,8 @@ AVAILABLE_WIDGETS_OUTPUT = """\
 
 
 @pytest.mark.timeout(100)
-@pytest.mark.output_capture("fd")
-@pytest.mark.expected_output(NumberUUIDSimilarOutputMatcher(AVAILABLE_WIDGETS_OUTPUT, ratio=0.6))
+@pytest.mark.expected_output(SimilarExpectedOutputMatcher(AVAILABLE_WIDGETS_OUTPUT, ratio=0.6))
 def test_available_widgets(gui):
     gui.available_widgets
-    print(gui.available_widgets)
+    print(gui.available_widgets)  # docs-hide
     sleep(2)  # docs-hide
