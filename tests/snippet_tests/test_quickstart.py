@@ -14,14 +14,14 @@ from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
 
 # fmt: off
 SHOW_ALL_COMMANDS_OUTPUT = """\
-              User macros              
+              User macros
 ┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
 ┃         Name          ┃ Description ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
 │      macro_test       │             │
 │ macro_test_takes_time │             │
 └───────────────────────┴─────────────┘
-                                     Scans                                      
+                                     Scans
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃            Name             ┃                  Description                   ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
@@ -456,7 +456,7 @@ def test_samx_line_scan(bec):
 
 
 AVAILABLE_WIDGETS_OUTPUT = """\
-                                                Available widgets for BEC CLI usage                                               
+                                                Available widgets for BEC CLI usage
 ┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Widget Name           ┃ Description                                                                                           ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
@@ -500,4 +500,5 @@ AVAILABLE_WIDGETS_OUTPUT = """\
 @pytest.mark.expected_output(NumberUUIDSimilarOutputMatcher(AVAILABLE_WIDGETS_OUTPUT, ratio=0.6))
 def test_available_widgets(gui):
     gui.available_widgets
-    sleep(1)  # docs-hide
+    print(gui.available_widgets)
+    sleep(2)  # docs-hide

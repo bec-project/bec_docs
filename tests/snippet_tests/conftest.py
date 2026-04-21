@@ -3,8 +3,23 @@ from time import sleep
 
 import pytest
 from bec_widgets.cli.client_utils import BECGuiClient
+from pytest import CollectReport, StashKey
 
 from bec_docs_pymdown_extensions.matchers import ExpectedOutputMatcher
+
+phase_report_key = StashKey[dict[str, CollectReport]]()
+
+
+@pytest.hookimpl(wrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    # execute all other hooks to obtain the report object
+    rep = yield
+
+    # store test results for each phase of a call, which can
+    # be "setup", "call", "teardown"
+    item.stash.setdefault(phase_report_key, {})[rep.when] = rep
+
+    return rep
 
 
 @pytest.fixture
@@ -18,7 +33,7 @@ def bec(bec_ipython_client_fixture):
 @pytest.fixture
 def gui_id():
     """New gui id each time, to ensure no 'gui is alive' zombie key can perturb"""
-    return f"figure_{random.randint(0,100)}"  # make a new gui id each time, to ensure no 'gui is alive' zombie key can perturb
+    return f"figure_{random.randint(0, 100)}"  # make a new gui id each time, to ensure no 'gui is alive' zombie key can perturb
 
 
 @pytest.fixture
@@ -70,9 +85,9 @@ def assert_expected_output(expected_output_matcher: ExpectedOutputMatcher | None
         raise TestSetupError(f"No expected_output marker defined for test {request.node.name}")
 
     def _assert(output: str):
-        assert expected_output_matcher.check(
-            output
-        ), f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
+        assert expected_output_matcher.check(output), (
+            f"Expected output matcher {type(expected_output_matcher)} failed for test: {request.node.name}. Diff:\n{expected_output_matcher.diff(output)}"
+        )
 
     return _assert
 
@@ -126,6 +141,10 @@ def expected_output_check(request: pytest.FixtureRequest):
             return
         capture = request.getfixturevalue(capture_fixture_name)
         yield
+        report = request.node.stash[phase_report_key]
+        if ("call" not in report) or report["call"].failed:
+            print(f"Skipping output assertion for failed test {request.node.name}")
+            return
         captured = capture.readouterr().out
         for _ in range(3):
             if matcher.check(captured):
@@ -134,6 +153,6 @@ def expected_output_check(request: pytest.FixtureRequest):
                 # Retry after waiting to finish
                 sleep(1)
                 captured += capture.readouterr().out
-        assert matcher.check(
-            captured
-        ), f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"
+        assert matcher.check(captured), (
+            f"Expected output matcher {type(matcher)} failed for test: {request.node.name}. Diff:\n{matcher.diff(captured)}"
+        )
