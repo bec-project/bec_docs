@@ -57,9 +57,9 @@ bec.config.update_session_with_file("<my-config.yaml>")
 You can also add the EPICS motor through the BEC main application. Open the Device Manager (DM) view, load your config file, and click on the "Add Device" button. Fill in the form with the relevant information for your motor, and click "Add Device".
 The device will be added to your config, and you can either first save the new config to a file before loading it into BEC, or directly load the updated config into BEC using the "Update Config" button. 
 
-In the video below, we show you the full process of adding an EPICS motor to the config through the GUI, and then loading the updated config into BEC. 
+<!-- In the video below, we show you the full process of adding an EPICS motor to the config through the GUI, and then loading the updated config into BEC.  -->
 
-<!-- Add video here -->
+<!-- TODO: Add video here -->
 
 !!! success "Congratulations!"
     You have successfully added an EPICS motor to your BEC config. You can now use this motor in your scans and other operations in BEC. The device should now be available in the GUIs and in the device container of the command line interface `dev.samx`.
