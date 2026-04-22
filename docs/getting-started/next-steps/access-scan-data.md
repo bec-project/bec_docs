@@ -12,9 +12,9 @@ related:
 
 A guide to accessing scan data after acquisition. This guide assumes you are comfortable with [running a simple scan](../quick-start/04-run-your-first-scan.md){ data-preview } and observing the live data.
 
-## Goal
+!!! Info "Goal"
 
-Learn how to access the data from your scans after they have finished.
+    Learn how to access the data from your scans after they have finished.
 
 ## Steps
 
@@ -61,3 +61,5 @@ For each scan, an HDF5 file is written containing all the recorded signals and a
 was run. It can be found in the `File: ` entry in the scan report, both for an active scan and one obtained from the
 history. You can open this file with your preferred HDF5 viewer, or with `h5py` in Python. For an introduction to working with the BEC HDF5 file structure, see [Open BEC HDF5 files with h5py](../../how-to/scans/open-bec-hdf5-files-with-h5py.md){ data-preview } and [Open BEC HDF5 files with silx](../../how-to/scans/open-bec-hdf5-files-with-silx.md){ data-preview } for a GUI-based approach.
 
+!!! success What you have learned
+    You have successfully accessed previous scans through `bec.history`, and know how to access the recorded data from your scans after they have finished. You can now use this data for further analysis, plotting, or custom workflows.
