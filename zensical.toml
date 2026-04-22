@@ -27,6 +27,7 @@ nav = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
+      { "Save and Switch GUI Profiles" = "getting-started/next-steps/save-and-switch-gui-profiles.md" },
       #{ "Run an Alignment Scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
       #{ "Write Your First Macro" = "getting-started/next-steps/write-your-first-macro.md" },
     ] },
