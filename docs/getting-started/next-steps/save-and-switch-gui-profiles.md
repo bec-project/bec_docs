@@ -1,10 +1,16 @@
 ---
 related:
-  - title: Manage GUI profiles
-    url: how-to/gui/manage-gui-profiles.md
+  - title: Switch GUI profiles
+    url: how-to/gui/switch-gui-profile.md
+  - title: Toggle GUI profile quick selection
+    url: how-to/gui/toggle-gui-profile-quick-selection.md
+  - title: Restore a GUI profile to its default
+    url: how-to/gui/restore-gui-profile-default.md
+  - title: Delete a GUI profile
+    url: how-to/gui/delete-gui-profile.md
   - title: Share a GUI profile with other accounts
     url: how-to/gui/share-gui-profile-with-other-accounts.md
-  - title: Learn how GUI profiles are stored
+  - title: Learn how GUI profiles work
     url: learn/gui/gui-profiles.md
 ---
 
@@ -35,10 +41,14 @@ The profile name appears in the profile selector in the dock area toolbar.
 
 ## 2. Change the layout and add more widgets
 
-Add another widget to make a visibly different workspace. For example, open `Add Device Control` and add a
-`PositionerBox` and also add another `Waveform` plot from the `Add Plot` menu.
+Create a second layout that is easy to recognize when you switch profiles:
 
-Arrange and configure the widgets so this layout and settings are different from the first one.
+1. Open `Add Device Control` and add twice `PositionerBox`.
+2. Open `Add Plot` and add another `Waveform`.
+3. Move the new widgets to the right side of the dock area.
+
+You should now have the original scan control and waveform plot, plus two positioner boxes and
+a second waveform plot.
 
 ![profile_new_layout.gif](../assets/profile_new_layout.gif)
 
@@ -70,6 +80,5 @@ The dock area reloads the layout saved in the first profile. Use the selector ag
 
 ## Next step
 
-To manage, delete, or inspect saved profiles, see [Manage GUI Profiles](../../how-to/gui/manage-gui-profiles.md). For
-a background on where profiles are stored and how shared profiles are deployed,
-see [GUI Profiles](../../learn/gui/gui-profiles.md).
+To remove a local profile, use [Delete a GUI Profile](../../how-to/gui/delete-gui-profile.md). For a background on
+profile inspection, storage, and sharing, see [GUI Profiles](../../learn/gui/gui-profiles.md).
