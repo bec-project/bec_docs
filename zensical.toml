@@ -44,6 +44,15 @@ nav = [
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
     ] },
+    { GUI = [
+      { "Dock Area Profiles" = [
+        { "Switch GUI Profiles" = "how-to/gui/switch-gui-profile.md" },
+        { "Toggle GUI Profile Quick Selection" = "how-to/gui/toggle-gui-profile-quick-selection.md" },
+        { "Restore a GUI Profile to Its Default" = "how-to/gui/restore-gui-profile-default.md" },
+        { "Delete a GUI Profile" = "how-to/gui/delete-gui-profile.md" },
+        { "Share a GUI Profile with Other Accounts" = "how-to/gui/share-gui-profile-with-other-accounts.md" },
+      ] },
+    ] },
     { "Devices" = [
       { "Adding Devices" = [
         { "Add an EPICS Motor" = "how-to/devices/add-an-epics-motor.md" },
@@ -100,8 +109,11 @@ nav = [
     ] },
     #{ "Operations and deployment" = [ TODO fill with content
     #] },
-    #{ "GUI framework" = [
-    #] },
+    { "GUI" = [
+      { "GUI Profiles" = "learn/gui/gui-profiles.md" },
+      { "The GUI Profile Manager" = "learn/gui/profile-manager.md" },
+      { "GUI Profile Copies and Namespaces" = "learn/gui/gui-profile-copies-and-namespaces.md" },
+    ] },
     #{ "Plugins and extensions" = [
     #] },
   ] },
