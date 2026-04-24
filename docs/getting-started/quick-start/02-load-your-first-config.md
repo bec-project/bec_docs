@@ -21,8 +21,7 @@ Continue with the same BEC session you opened in [01 Open BEC](01-open-bec.md).
 
 ## 1. Load the demo configuration
 
-We will load a config with simulated devices, including motors and detectors. This mimics a beamline environment for the
-purposes of learning and testing.
+We will load a config with simulated devices, including motors and detectors. This mimics a beamline environment for learning and testing.
 
 Load that demo configuration now:
 
@@ -41,7 +40,7 @@ BEC classifies them. In the demo configuration.
 
 !!! tip "Tab completion"
 
-    BEC provides tab completion throughout the shell. Try `dev.` and press `TAB` to discover available devices and attributes, or `scans.` to explore the scan interface.
+    BEC provides tab completion throughout the shell. Try `dev.` and press ++tab++ to discover available devices and attributes, or `scans.` to explore the scan interface.
     ![tab_completion.gif](../assets/tab_completion.gif)
 
 ## 3. Inspect one device
