@@ -6,6 +6,8 @@ related:
     url: how-to/gui/toggle-gui-profile-quick-selection.md
   - title: GUI Profile Copies and Namespaces
     url: learn/gui/gui-profile-copies-and-namespaces.md#user-and-default-copies
+  - title: Script GUI behaviour
+    url: how-to/gui/script-gui-behaviour.md
 ---
 
 # Restore a GUI Profile to Its Default
@@ -54,6 +56,18 @@ When you confirm, BEC restores the user copy from the default copy and reloads t
 !!! success "Result"
 
     The dock area uses the saved default layout for the restored profile.
+
+## Restore from the BEC IPython client
+
+Use the IPython client when a script should restore a known default profile without opening the
+confirmation dialog:
+
+```python
+gui.bec.restore_user_profile_from_default("alignment_cli", show_dialog=False)
+```
+
+Use [Script GUI Behaviour](script-gui-behaviour.md){ data-preview } for a complete
+profile-first scripting workflow.
 
 ## Common Pitfalls
 

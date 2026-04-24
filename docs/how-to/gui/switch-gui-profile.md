@@ -6,6 +6,8 @@ related:
     url: how-to/gui/delete-gui-profile.md
   - title: Learn about the profile manager
     url: learn/gui/profile-manager.md
+  - title: Script GUI behaviour
+    url: how-to/gui/script-gui-behaviour.md
 ---
 
 # Switch GUI Profiles
@@ -94,3 +96,5 @@ Replace `profile_name` with the name shown in the profile manager.
   in the toolbar selector.
 - Use [Restore a GUI Profile to Its Default](restore-gui-profile-default.md){ data-preview } when you want to discard local layout
   changes for the active profile.
+- Use [Script GUI Behaviour](script-gui-behaviour.md){ data-preview } when you want to load
+  profiles from an IPython script.

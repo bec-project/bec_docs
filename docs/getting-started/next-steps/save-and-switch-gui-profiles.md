@@ -12,6 +12,8 @@ related:
     url: how-to/gui/share-gui-profile-with-other-accounts.md
   - title: Learn how GUI profiles work
     url: learn/gui/gui-profiles.md
+  - title: Script GUI behaviour
+    url: how-to/gui/script-gui-behaviour.md
 ---
 
 # Save and Switch GUI Profiles
@@ -80,5 +82,9 @@ The dock area reloads the layout saved in the first profile. Use the selector ag
 
 ## Next step
 
-To remove a local profile, use [Delete a GUI Profile](../../how-to/gui/delete-gui-profile.md). For a background on
-profile inspection, storage, and sharing, see [GUI Profiles](../../learn/gui/gui-profiles.md).
+To automate a profile-based GUI workflow, use
+[Script GUI Behaviour](../../how-to/gui/script-gui-behaviour.md){ data-preview }.
+
+To remove a local profile, use [Delete a GUI Profile](../../how-to/gui/delete-gui-profile.md).
+For a background on profile inspection, storage, and sharing, see
+[GUI Profiles](../../learn/gui/gui-profiles.md).

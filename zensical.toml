@@ -28,6 +28,7 @@ nav = [
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
       { "Save and Switch GUI Profiles" = "getting-started/next-steps/save-and-switch-gui-profiles.md" },
+      { "Control the GUI from the IPython Client" = "getting-started/next-steps/gui-cli-interface.md" },
       #{ "Run an Alignment Scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
       #{ "Write Your First Macro" = "getting-started/next-steps/write-your-first-macro.md" },
     ] },
@@ -51,6 +52,11 @@ nav = [
         { "Restore a GUI Profile to Its Default" = "how-to/gui/restore-gui-profile-default.md" },
         { "Delete a GUI Profile" = "how-to/gui/delete-gui-profile.md" },
         { "Share a GUI Profile with Other Accounts" = "how-to/gui/share-gui-profile-with-other-accounts.md" },
+      ] },
+      { "GUI from the IPython Client" = [
+        { "Control a Waveform from the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
+        { "Use Simulated Models from the IPython Client" = "how-to/gui/use-simulated-models-from-ipython.md" },
+        { "Script GUI Behaviour" = "how-to/gui/script-gui-behaviour.md" },
       ] },
     ] },
     { "Devices" = [
@@ -113,6 +119,7 @@ nav = [
       { "GUI Profiles" = "learn/gui/gui-profiles.md" },
       { "The GUI Profile Manager" = "learn/gui/profile-manager.md" },
       { "GUI Profile Copies and Namespaces" = "learn/gui/gui-profile-copies-and-namespaces.md" },
+      { "RPC GUI Control" = "learn/gui/rpc-gui-control.md" },
     ] },
     #{ "Plugins and extensions" = [
     #] },
@@ -123,10 +130,9 @@ nav = [
     #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
     #    { "Scans" = "references/bec-core/scans.md" },
     #  ] },
-    #  { "BEC Widgets" = [
-    #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
-    #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
-    #  ] },
+    { "BEC Widgets" = [
+      { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
+    ] },
     { "Ophyd Devices" = [
       #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
       #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
