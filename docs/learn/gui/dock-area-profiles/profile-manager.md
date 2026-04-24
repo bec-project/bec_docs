@@ -1,20 +1,20 @@
 ---
 related:
-  - title: Learn what a GUI profile contains
-    url: learn/gui/gui-profiles.md
-  - title: Learn about user and default profile copies
-    url: learn/gui/gui-profile-copies-and-namespaces.md
-  - title: Switch GUI profiles
-    url: how-to/gui/switch-gui-profile.md
-  - title: Toggle GUI profile quick selection
-    url: how-to/gui/toggle-gui-profile-quick-selection.md
-  - title: Delete a GUI profile
-    url: how-to/gui/delete-gui-profile.md
-  - title: Share a GUI profile with other accounts
-    url: how-to/gui/share-gui-profile-with-other-accounts.md
+  - title: Dock Area Profiles
+    url: learn/gui/dock-area-profiles/index.md
+  - title: Runtime and baseline profile copies
+    url: learn/gui/dock-area-profiles/runtime-and-baseline-copies.md
+  - title: Switch Dock Area profiles
+    url: how-to/gui/switch-dock-area-profile.md
+  - title: Toggle Dock Area profile quick selection
+    url: how-to/gui/toggle-dock-area-profile-quick-selection.md
+  - title: Delete a Dock Area profile
+    url: how-to/gui/delete-dock-area-profile.md
+  - title: Share a Dock Area profile with other accounts
+    url: how-to/gui/share-dock-area-profile-with-other-accounts.md
 ---
 
-# The GUI Profile Manager
+# The Dock Area Profile Manager
 
 Use the profile manager when you want to inspect available profiles, check profile metadata, or act on a profile from
 the GUI.
@@ -23,11 +23,11 @@ the GUI.
 
 Open the profile manager with the **manage button** :material-account-cog: in the dock area toolbar.
 
-![dock_area_toolbar_profile_manager.png](../../how-to/gui/assets/dock_area_toolbar_profile_manager.png)
+![dock_area_toolbar_profile_manager.png](../../../how-to/gui/assets/dock_area_toolbar_profile_manager.png)
 
 The profile manager shows the available profiles, profile actions, profile metadata, and a screenshot preview.
 
-![dock_area_manager.png](../../how-to/gui/assets/dock_area_manager.png)
+![dock_area_manager.png](../../../how-to/gui/assets/dock_area_manager.png)
 
 ## Main areas of the profile manager
 
@@ -48,9 +48,9 @@ The profile manager has four main parts:
 
 Use the task pages when you want the step-by-step workflow:
 
-- [Switch GUI Profiles](../../how-to/gui/switch-gui-profile.md)
-- [Toggle GUI Profile Quick Selection](../../how-to/gui/toggle-gui-profile-quick-selection.md)
-- [Delete a GUI Profile](../../how-to/gui/delete-gui-profile.md)
+- [Switch Dock Area Profiles](../../../how-to/gui/switch-dock-area-profile.md)
+- [Toggle Dock Area Profile Quick Selection](../../../how-to/gui/toggle-dock-area-profile-quick-selection.md)
+- [Delete a Dock Area Profile](../../../how-to/gui/delete-dock-area-profile.md)
 
 ## Metadata shown for the selected profile
 
@@ -59,17 +59,17 @@ Use the task pages when you want the step-by-step workflow:
 | `Name` | The saved profile name. |
 | `Author` | The saved author metadata when available. |
 | `Created` | When the profile was first saved. |
-| `Modified` | When the selected copy was last updated. |
+| `Modified` | When the selected profile copy was last updated. |
 | `Quick select` | Whether the profile appears in the toolbar quick selector. |
 | `Widgets` | The number of widgets stored in the profile. |
 | `Size (KB)` | The file size of the selected profile data. |
-| `User path` | The path to the writable user copy. Use this when you need the original `.ini` file for sharing or inspection. |
-| `Default path` | The path to the default baseline copy used for restore. |
+| `Runtime path` | The path to the editable runtime profile. Use this when you need the current `.ini` file for sharing or inspection. |
+| `Baseline path` | The path to the baseline profile used when restoring runtime changes. |
 
 The screenshot preview is stored in the profile file when a screenshot is available during save.
 
-For the workflow that uses the `User path` field, see
-[Share a GUI Profile with Other Accounts](../../how-to/gui/share-gui-profile-with-other-accounts.md).
+For the workflow that uses the `Runtime path` field, see
+[Share a Dock Area Profile with Other Accounts](../../../how-to/gui/share-dock-area-profile-with-other-accounts.md).
 
 ## Inspect available profiles from the BEC IPython client
 
@@ -81,10 +81,11 @@ gui.bec.list_profiles()
 
 This returns the available profile names for the current namespace.
 
-Use the GUI profile manager when you need more than the names, such as metadata, the screenshot preview, or the
-`User path` and `Default path` fields.
+Use the Dock Area profile manager when you need more than the names, such as metadata, the screenshot preview, or the
+`Runtime path` and `Baseline path` fields.
 
 ## Related topics
 
-- To learn what the profile file contains and how it is restored, see [GUI Profiles](gui-profiles.md).
-- To learn how user and default copies behave, see [GUI Profile Copies and Namespaces](gui-profile-copies-and-namespaces.md).
+- To learn what profiles are, see [Dock Area Profiles](index.md).
+- To learn how runtime and baseline profile copies behave, see
+  [Runtime and Baseline Copies](runtime-and-baseline-copies.md).

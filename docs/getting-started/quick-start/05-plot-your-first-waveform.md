@@ -79,4 +79,6 @@ scans.line_scan(dev.samx, -5, 5, steps=10, exp_time=0.1, relative=False)
 
 ## Next step
 
-Continue with [06 Create Your First GUI](06-create-your-first-gui.md){ data-preview } if you would like to learn how to use the BEC GUI to create the same workflow with drag-and-drop widgets and no programming.
+Continue with [06 Create Your First GUI](06-create-your-first-gui.md){ data-preview } if you
+would like to learn how to use the BEC GUI to create the same workflow with drag-and-drop
+widgets and no programming.

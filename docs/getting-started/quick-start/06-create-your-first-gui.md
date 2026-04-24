@@ -54,5 +54,5 @@ widget.
 
 ## Next step
 
-Continue with [Save and Switch GUI Profiles](../next-steps/save-and-switch-gui-profiles.md){ data-preview } to save this
-layout and switch between different GUI profiles.
+Continue with [Save and Switch Dock Area Profiles](../next-steps/dock-area-profiles-tutorial.md){ data-preview } to save this
+layout and switch between different Dock Area profiles.
