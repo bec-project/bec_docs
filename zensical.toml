@@ -87,8 +87,17 @@ nav = [
       { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
       { "BEC Signals" = "learn/devices/bec-signals.md" },
     ] },
-    #{ "Scans and execution" = [ TODO fill with content
-    #] },
+    { "Scans" = [
+      { "Introduction to Scans" = "learn/scans/introduction.md" },
+      { "Learn by Example" = "learn/scans/learn-by-example.md" },
+      { "Scan Info" = "learn/scans/scan-info.md" },
+      { "Scan Actions" = "learn/scans/scan-actions.md" },
+      { "Scan Components" = "learn/scans/scan-components.md" },
+      { "Position Generators" = "learn/scans/position-generators.md" },
+      { "Fast Axis and Slow Axis" = "learn/scans/fast-axis-slow-axis.md" },
+      { "ScanArgument" = "learn/scans/scanargument.md" },
+      { "Scan Definition Info" = "learn/scans/scan-definition-info.md" },
+    ] },
     { "File Writing" = [
       { "Introduction" = "learn/file-writer/introduction.md" },
       { "Where Files Are Written" = "learn/file-writer/where-files-are-written.md" },
