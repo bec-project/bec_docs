@@ -1,9 +1,11 @@
 ---
 related:
+  - title: GUI tasks from the BEC IPython client
+    url: how-to/gui/ipython-client-gui.md
   - title: Control a Waveform from the IPython client
     url: how-to/gui/control-waveform-from-ipython.md
-  - title: Script GUI behaviour
-    url: how-to/gui/script-gui-behaviour.md
+  - title: Script GUI setup and run a line scan
+    url: how-to/gui/script-gui-setup-and-run-line-scan.md
   - title: LMFit built-in models
     url: https://lmfit.github.io/lmfit-py/builtin_models.html
 ---

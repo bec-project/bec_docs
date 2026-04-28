@@ -1,9 +1,9 @@
 ---
 related:
-  - title: Control the GUI from the IPython client
+  - title: BEC IPython GUI Commands
     url: getting-started/next-steps/gui-cli-interface.md
-  - title: Script GUI behaviour
-    url: how-to/gui/script-gui-behaviour.md
+  - title: Create Dock Area profiles from the BEC IPython client
+    url: getting-started/next-steps/create-dock-area-profiles-from-ipython.md
   - title: GUI RPC interface reference
     url: references/bec-widgets/gui-rpc-interface.md
 ---
@@ -59,7 +59,7 @@ Examples of exposed operations include:
 
 - `gui.bec.new(...)` to add a widget to a dock area.
 - `gui.bec.load_profile(...)` to load a dock area profile.
-- `gui.bec.restore_user_profile_from_default(..., show_dialog=False)` for scripted profile restore.
+- `gui.bec.restore_runtime_profile_from_baseline(..., show_dialog=False)` for scripted profile restore.
 - `wf.plot(...)` and `wf.get_dap_summary()` for Waveform control.
 
 ## Timeouts and long operations

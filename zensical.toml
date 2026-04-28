@@ -27,8 +27,9 @@ nav = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
-      { "Save and Switch GUI Profiles" = "getting-started/next-steps/save-and-switch-gui-profiles.md" },
-      { "Control the GUI from the IPython Client" = "getting-started/next-steps/gui-cli-interface.md" },
+      { "Dock Area Profiles" = "getting-started/next-steps/dock-area-profiles-tutorial.md" },
+      { "BEC IPython GUI Commands" = "getting-started/next-steps/gui-cli-interface.md" },
+      { "Create Dock Area Profiles from the BEC IPython Client" = "getting-started/next-steps/create-dock-area-profiles-from-ipython.md" },
       #{ "Run an Alignment Scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
       #{ "Write Your First Macro" = "getting-started/next-steps/write-your-first-macro.md" },
     ] },
@@ -47,16 +48,18 @@ nav = [
     ] },
     { GUI = [
       { "Dock Area Profiles" = [
-        { "Switch GUI Profiles" = "how-to/gui/switch-gui-profile.md" },
-        { "Toggle GUI Profile Quick Selection" = "how-to/gui/toggle-gui-profile-quick-selection.md" },
-        { "Restore a GUI Profile to Its Default" = "how-to/gui/restore-gui-profile-default.md" },
-        { "Delete a GUI Profile" = "how-to/gui/delete-gui-profile.md" },
-        { "Share a GUI Profile with Other Accounts" = "how-to/gui/share-gui-profile-with-other-accounts.md" },
+        { "Overview" = "how-to/gui/dock-area-profiles.md" },
+        { "Switch Dock Area Profiles" = "how-to/gui/switch-dock-area-profile.md" },
+        { "Toggle Dock Area Profile Quick Selection" = "how-to/gui/toggle-dock-area-profile-quick-selection.md" },
+        { "Restore a Dock Area Profile to Its Baseline" = "how-to/gui/restore-dock-area-profile-baseline.md" },
+        { "Delete a Dock Area Profile" = "how-to/gui/delete-dock-area-profile.md" },
+        { "Share a Dock Area Profile with Other Accounts" = "how-to/gui/share-dock-area-profile-with-other-accounts.md" },
       ] },
       { "GUI from the IPython Client" = [
+        { "Overview" = "how-to/gui/ipython-client-gui.md" },
         { "Control a Waveform from the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
         { "Use Simulated Models from the IPython Client" = "how-to/gui/use-simulated-models-from-ipython.md" },
-        { "Script GUI Behaviour" = "how-to/gui/script-gui-behaviour.md" },
+        { "Script GUI Setup and Run a Line Scan" = "how-to/gui/script-gui-setup-and-run-line-scan.md" },
       ] },
     ] },
     { "Devices" = [
@@ -116,9 +119,12 @@ nav = [
     #{ "Operations and deployment" = [ TODO fill with content
     #] },
     { "GUI" = [
-      { "GUI Profiles" = "learn/gui/gui-profiles.md" },
-      { "The GUI Profile Manager" = "learn/gui/profile-manager.md" },
-      { "GUI Profile Copies and Namespaces" = "learn/gui/gui-profile-copies-and-namespaces.md" },
+      { "Dock Area Profiles" = [
+        "learn/gui/dock-area-profiles/index.md",
+        { "Runtime and Baseline Copies" = "learn/gui/dock-area-profiles/runtime-and-baseline-copies.md" },
+        { "Qt Storage and Reconstruction" = "learn/gui/dock-area-profiles/qt-storage-and-reconstruction.md" },
+        { "The Dock Area Profile Manager" = "learn/gui/dock-area-profiles/profile-manager.md" },
+      ] },
       { "RPC GUI Control" = "learn/gui/rpc-gui-control.md" },
     ] },
     #{ "Plugins and extensions" = [

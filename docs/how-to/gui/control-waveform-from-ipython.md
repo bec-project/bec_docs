@@ -1,7 +1,11 @@
 ---
 related:
-  - title: Control the GUI from the IPython client
+  - title: GUI tasks from the BEC IPython client
+    url: how-to/gui/ipython-client-gui.md
+  - title: BEC IPython GUI Commands
     url: getting-started/next-steps/gui-cli-interface.md
+  - title: Script GUI setup and run a line scan
+    url: how-to/gui/script-gui-setup-and-run-line-scan.md
   - title: Use simulated models from the IPython client
     url: how-to/gui/use-simulated-models-from-ipython.md
   - title: GUI RPC interface reference
@@ -106,5 +110,5 @@ You can configure the same plot from the Waveform curve settings dialog:
 
 - Use [Use Simulated Models from the IPython Client](use-simulated-models-from-ipython.md){ data-preview }
   to make `bpm4i` produce Gaussian-shaped simulated data.
-- Use [Script GUI Behaviour](script-gui-behaviour.md){ data-preview } to apply the same setup
-  from a reusable script.
+- Use [Script GUI Setup and Run a Line Scan](script-gui-setup-and-run-line-scan.md){ data-preview }
+  to apply BEC IPython commands from a reusable Python function.

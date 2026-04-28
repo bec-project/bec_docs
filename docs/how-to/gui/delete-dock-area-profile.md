@@ -1,20 +1,20 @@
 ---
 related:
-  - title: Switch GUI profiles
-    url: how-to/gui/switch-gui-profile.md
-  - title: Restore a GUI profile to its default
-    url: how-to/gui/restore-gui-profile-default.md
-  - title: Share a GUI profile with other accounts
-    url: how-to/gui/share-gui-profile-with-other-accounts.md
+  - title: Switch Dock Area profiles
+    url: how-to/gui/switch-dock-area-profile.md
+  - title: Restore a Dock Area profile to its baseline
+    url: how-to/gui/restore-dock-area-profile-baseline.md
+  - title: Share a Dock Area profile with other accounts
+    url: how-to/gui/share-dock-area-profile-with-other-accounts.md
   - title: Learn about profile origins and metadata
-    url: learn/gui/gui-profile-copies-and-namespaces.md#profile-origins
+    url: learn/gui/dock-area-profiles/runtime-and-baseline-copies.md#profile-origins
 ---
 
-# Delete a GUI Profile
+# Delete a Dock Area Profile
 
 !!! Info "Goal"
 
-    Delete a locally created GUI profile from the dock area profile manager.
+    Delete a locally created Dock Area profile from the dock area profile manager.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ related:
 - The profile you want to delete was created locally.
 
 If you do not have profiles yet, first create one with
-[Save and Switch GUI Profiles](../../getting-started/next-steps/save-and-switch-gui-profiles.md){ data-preview }.
+[Save and Switch Dock Area Profiles](../../getting-started/next-steps/dock-area-profiles-tutorial.md){ data-preview }.
 
 Read-only profiles from BEC Widgets or the beamline plugin repository cannot be deleted from the GUI.
 
@@ -41,9 +41,9 @@ profiles cannot.
 
 ![dock_area_manager.png](assets/dock_area_manager.png)
 
-!!! learn "[Learn more about the profile manager fields](../../learn/gui/profile-manager.md){ data-preview }"
+!!! learn "[Learn more about the profile manager fields](../../learn/gui/dock-area-profiles/profile-manager.md){ data-preview }"
 
-!!! learn "[Learn about GUI profile origins](../../learn/gui/gui-profile-copies-and-namespaces.md#profile-origins){ data-preview }"
+!!! learn "[Learn about Dock Area profile origins](../../learn/gui/dock-area-profiles/runtime-and-baseline-copies.md#profile-origins){ data-preview }"
 
     The profile origin controls whether the profile can be deleted from the profile manager.
 

@@ -1,18 +1,18 @@
 ---
 related:
-  - title: Switch GUI profiles
-    url: how-to/gui/switch-gui-profile.md
-  - title: Delete a GUI profile
-    url: how-to/gui/delete-gui-profile.md
+  - title: Switch Dock Area profiles
+    url: how-to/gui/switch-dock-area-profile.md
+  - title: Delete a Dock Area profile
+    url: how-to/gui/delete-dock-area-profile.md
   - title: Learn about quick selection and profile metadata
-    url: learn/gui/profile-manager.md
+    url: learn/gui/dock-area-profiles/profile-manager.md
 ---
 
-# Toggle GUI Profile Quick Selection
+# Toggle Dock Area Profile Quick Selection
 
 !!! Info "Goal"
 
-    Show or hide a GUI profile in the dock area toolbar selector without deleting the profile.
+    Show or hide a Dock Area profile in the dock area toolbar selector without deleting the profile.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ related:
 
 
 If you do not have profiles yet, first create one with
-[Save and Switch GUI Profiles](../../getting-started/next-steps/save-and-switch-gui-profiles.md){ data-preview }.
+[Save and Switch Dock Area Profiles](../../getting-started/next-steps/dock-area-profiles-tutorial.md){ data-preview }.
 
 ## 1. Open the profile manager
 
@@ -37,7 +37,7 @@ Use the metadata panel to check the current quick-select state.
 
 ![dock_area_manager.png](assets/dock_area_manager.png)
 
-!!! learn "[Learn more about the profile manager fields](../../learn/gui/profile-manager.md){ data-preview }"
+!!! learn "[Learn more about the profile manager fields](../../learn/gui/dock-area-profiles/profile-manager.md){ data-preview }"
 
 ## 3. Toggle quick selection
 
@@ -68,5 +68,5 @@ Open the **profile selector** and confirm that the profile is shown or hidden as
 
 ## Next Steps
 
-- Use [Switch GUI Profiles](switch-gui-profile.md){ data-preview } to load a profile from the manager.
-- Use [Delete a GUI Profile](delete-gui-profile.md){ data-preview } if you want to remove a local profile completely.
+- Use [Switch Dock Area Profiles](switch-dock-area-profile.md){ data-preview } to load a profile from the manager.
+- Use [Delete a Dock Area Profile](delete-dock-area-profile.md){ data-preview } if you want to remove a local profile completely.

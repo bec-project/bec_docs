@@ -83,5 +83,5 @@ Continue with [06 Create Your First GUI](06-create-your-first-gui.md){ data-prev
 would like to learn how to use the BEC GUI to create the same workflow with drag-and-drop
 widgets and no programming.
 
-Use [Control the GUI from the IPython Client](../next-steps/gui-cli-interface.md){ data-preview }
+Use [BEC IPython GUI Commands](../next-steps/gui-cli-interface.md){ data-preview }
 when you want a longer CLI-driven GUI workflow that also saves a profile.

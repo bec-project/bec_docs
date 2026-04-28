@@ -2,97 +2,107 @@
 related:
   - title: Plot your first waveform
     url: getting-started/quick-start/05-plot-your-first-waveform.md
-  - title: Save and switch GUI profiles
-    url: getting-started/next-steps/save-and-switch-gui-profiles.md
+  - title: Dock Area Profiles
+    url: getting-started/next-steps/dock-area-profiles-tutorial.md
+  - title: Create Dock Area profiles from the BEC IPython client
+    url: getting-started/next-steps/create-dock-area-profiles-from-ipython.md
   - title: Learn about RPC GUI control
     url: learn/gui/rpc-gui-control.md
 ---
 
-# Control the GUI from the IPython Client
+# BEC IPython GUI Commands
 
 !!! info "Goal"
 
-    Use the BEC IPython client to create a GUI widget, configure it, run a scan, and save the
-    resulting dock area as a reusable profile.
+    Learn the BEC IPython objects used to inspect, create, and control GUI widgets.
+
+This page is a short orientation before the longer GUI command tutorials. It explains which objects are available in
+the BEC IPython client and how to discover the commands they expose.
 
 ## Before you start
 
 Open BEC with `Terminal + Dock`, as shown in
 [01 Open BEC](../quick-start/01-open-bec.md){ data-preview }.
 
-This tutorial assumes that your session contains the simulated devices `samx` and `bpm4i`.
+You should have a BEC IPython session and a dock area window.
 
-## 1. Inspect the GUI object
+## The `gui` object
 
-The IPython client provides a `gui` object. The default dock area is available as `gui.bec`.
+The BEC IPython client provides a `gui` object:
 
 ```python
 gui
+```
+
+Use it as the entry point for GUI windows, available widget classes, and the default dock area.
+
+## The default dock area
+
+The dock area opened by `Terminal + Dock` is available as:
+
+```python
 gui.bec
 ```
 
-List the widgets that can be created from the client:
+This object lets you add widgets, inspect widgets, load profiles, save profiles, and clear the dock area.
+
+## Available widgets
+
+List the widget classes that can be created from BEC IPython:
 
 ```python
 gui.available_widgets
 ```
 
-## 2. Create a Waveform
-
-Create a `Waveform` in the default dock area:
+Create a widget by passing one of those classes to `gui.bec.new(...)`:
 
 ```python
 wf = gui.bec.new(gui.available_widgets.Waveform)
 ```
 
-The widget is also available from the dock area namespace:
+## Widget references
 
-```python
-gui.bec.Waveform
-```
-
-!!! tip "Discover available methods"
-
-    Exposed widget methods are available through IPython tab completion. Type `wf.` and
-    press ++tab++ to inspect the methods available on the widget RPC object. To see the
-    parameters and documentation for a method, use `?`, for example `wf.plot?`.
-
-## 3. Plot device data
-
-Configure the waveform to plot `bpm4i` against `samx`:
+The variable returned by `gui.bec.new(...)` is a reference to the widget in the GUI process. Use it to call exposed
+widget methods:
 
 ```python
 wf.plot(device_x=dev.samx, device_y=dev.bpm4i)
 ```
 
-## 4. Run a scan
-
-Run a line scan and watch the waveform update:
+Created widgets are also available from the dock area namespace:
 
 ```python
-scans.line_scan(dev.samx, -5, 5, steps=10, exp_time=0.1, relative=False)
+gui.bec.Waveform
 ```
 
-## 5. Save the layout as a profile
+## Discover commands
 
-Save the current dock area as the `alignment_cli` profile:
+Use IPython tab completion to inspect available commands:
 
 ```python
-gui.bec.save_profile("alignment_cli")
+wf.
 ```
 
-Load the profile again when you want to return to this layout:
+Then press ++tab++.
+
+Use `?` to inspect parameters and documentation:
 
 ```python
-gui.bec.load_profile("alignment_cli")
+wf.plot?
+gui.bec.new?
+gui.bec.save_profile?
 ```
 
-!!! success "What you have learned"
+!!! note "What is exposed"
 
-    You used the RPC GUI interface to create and configure a widget from the IPython client,
-    then saved the GUI layout as a profile.
+    BEC IPython only exposes stable user-facing widget methods. Internal Qt implementation details are not exposed.
 
-## Next step
+## Where to go next
 
-Use [Script GUI Behaviour](../../how-to/gui/script-gui-behaviour.md){ data-preview } when you
-want to turn this workflow into a reusable script.
+- Use [Dock Area Profiles](dock-area-profiles-tutorial.md){ data-preview } to learn the profile workflow by clicking in
+  the GUI.
+- Use [Create Dock Area Profiles from the BEC IPython Client](create-dock-area-profiles-from-ipython.md){ data-preview }
+  to learn the same profile workflow from commands.
+- Use [Control a Waveform from the IPython Client](../../how-to/gui/control-waveform-from-ipython.md){ data-preview }
+  for a focused Waveform task.
+- Use [RPC GUI Control](../../learn/gui/rpc-gui-control.md){ data-preview } when you want the underlying concept.

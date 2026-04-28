@@ -1,20 +1,22 @@
 ---
 related:
-  - title: Toggle GUI profile quick selection
-    url: how-to/gui/toggle-gui-profile-quick-selection.md
-  - title: Delete a GUI profile
-    url: how-to/gui/delete-gui-profile.md
+  - title: Dock Area profile tasks
+    url: how-to/gui/dock-area-profiles.md
+  - title: Toggle Dock Area profile quick selection
+    url: how-to/gui/toggle-dock-area-profile-quick-selection.md
+  - title: Delete a Dock Area profile
+    url: how-to/gui/delete-dock-area-profile.md
   - title: Learn about the profile manager
-    url: learn/gui/profile-manager.md
-  - title: Script GUI behaviour
-    url: how-to/gui/script-gui-behaviour.md
+    url: learn/gui/dock-area-profiles/profile-manager.md
+  - title: BEC IPython GUI Commands
+    url: getting-started/next-steps/gui-cli-interface.md
 ---
 
-# Switch GUI Profiles
+# Switch Dock Area Profiles
 
 !!! Info "Goal"
 
-    Load a saved GUI profile into the dock area.
+    Load a saved Dock Area profile into the dock area.
 
 ## Prerequisites
 
@@ -22,7 +24,7 @@ related:
 - The profile you want to load is already available.
 
 If you do not have profiles yet, first create one with
-[Save and Switch GUI Profiles](../../getting-started/next-steps/save-and-switch-gui-profiles.md){ data-preview }.
+[Save and Switch Dock Area Profiles](../../getting-started/next-steps/dock-area-profiles-tutorial.md){ data-preview }.
 
 ## Option 1: Switch from the quick selector
 
@@ -37,14 +39,14 @@ The dock area loads the selected profile and replaces the current layout.
 !!! note "Quick selection"
 
     Not every profile is shown in the quick selector. A profile only appears there when quick selection is enabled for that
-    profile. Learn how to control this with [Toggle GUI Profile Quick Selection](toggle-gui-profile-quick-selection.md){ data-preview }.
+    profile. Learn how to control this with [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md){ data-preview }.
 
 ## Option 2: Switch from the profile manager
 
 Use the profile manager when the profile is not listed in the quick selector, or when you want to check the profile
 preview and metadata before loading it.
 
-!!! learn "[Learn more about the profile manager](../../learn/gui/profile-manager.md){ data-preview }"
+!!! learn "[Learn more about the profile manager](../../learn/gui/dock-area-profiles/profile-manager.md){ data-preview }"
 
 ### 1. Open the profile manager
 
@@ -88,13 +90,13 @@ Replace `profile_name` with the name shown in the profile manager.
 - Switching profiles replaces the current dock area layout with the saved layout from the selected profile.
 - If the profile does not appear in the quick selector, open the profile manager and switch from there.
 - To make a profile appear in the quick selector, enable quick selection for that profile. Learn how to do that with
-  [Toggle GUI Profile Quick Selection](toggle-gui-profile-quick-selection.md){ data-preview }.
+  [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md){ data-preview }.
 
 ## Next Steps
 
-- Use [Toggle GUI Profile Quick Selection](toggle-gui-profile-quick-selection.md){ data-preview } to control whether a profile appears
+- Use [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md){ data-preview } to control whether a profile appears
   in the toolbar selector.
-- Use [Restore a GUI Profile to Its Default](restore-gui-profile-default.md){ data-preview } when you want to discard local layout
+- Use [Restore a Dock Area Profile to Its Baseline](restore-dock-area-profile-baseline.md){ data-preview } when you want to discard local layout
   changes for the active profile.
-- Use [Script GUI Behaviour](script-gui-behaviour.md){ data-preview } when you want to load
-  profiles from an IPython script.
+- Use [BEC IPython GUI Commands](../../getting-started/next-steps/gui-cli-interface.md){ data-preview }
+  when you want to load profiles from the IPython client.

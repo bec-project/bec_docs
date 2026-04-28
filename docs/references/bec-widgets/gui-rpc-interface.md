@@ -4,8 +4,8 @@ related:
     url: learn/gui/rpc-gui-control.md
   - title: Control a Waveform from the IPython client
     url: how-to/gui/control-waveform-from-ipython.md
-  - title: Script GUI behaviour
-    url: how-to/gui/script-gui-behaviour.md
+  - title: Script GUI setup and run a line scan
+    url: how-to/gui/script-gui-setup-and-run-line-scan.md
 ---
 
 # GUI RPC Interface
@@ -42,7 +42,7 @@ This page lists common GUI RPC objects and methods used from the BEC IPython cli
 | `gui.bec.widget_list` | List widgets in the dock area. |
 | `gui.bec.load_profile("alignment_cli")` | Load a profile. |
 | `gui.bec.save_profile("alignment_cli")` | Save the current layout. |
-| `gui.bec.restore_user_profile_from_default("alignment_cli", show_dialog=False)` | Restore a profile from its default copy without a confirmation dialog. |
+| `gui.bec.restore_runtime_profile_from_baseline("alignment_cli", show_dialog=False)` | Restore a profile from its baseline without a confirmation dialog. |
 | `gui.bec.delete_profile("name")` | Delete a local profile. |
 
 ## Waveform
@@ -78,8 +78,8 @@ wf.clear_all()
 wf.plot(device_x=dev.samx, device_y=dev.bpm4i, dap="GaussianModel")
 ```
 
-Restore a shipped default profile from a script:
+Restore a shipped baseline profile from a script:
 
 ```python
-gui.bec.restore_user_profile_from_default("alignment_cli", show_dialog=False)
+gui.bec.restore_runtime_profile_from_baseline("alignment_cli", show_dialog=False)
 ```
