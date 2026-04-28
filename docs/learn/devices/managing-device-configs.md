@@ -2,6 +2,8 @@
 related:
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Load and Save a Device Session
     url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
   - title: Validate a Device Configuration
@@ -43,7 +45,7 @@ In the example config above, we combine two separate device configuration files 
 
 This effective configuration becomes the basis for the current device session in BEC once it is loaded.
 
-!!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-config-in-bec.md){ data-preview }"
+!!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-sessions-in-bec.md){ data-preview }"
 
 If you need to work with this configuration in practice, use the task-focused guides:
 

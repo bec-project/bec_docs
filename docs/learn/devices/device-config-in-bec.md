@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Load and Save a Device Session
     url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
   - title: Validate a Device Configuration
@@ -24,16 +26,9 @@ following the specifications given in the device configuration.
 The device configuration can be loaded from and stored to YAML files and contains
 the information needed to construct devices and manage their behavior in BEC.
 
-## Device configuration and device session
+This page focuses on the structure of a device configuration entry and the meaning of its fields.
 
-In BEC, it is useful to separate two closely related ideas:
-
-- The **device configuration** is the YAML description on disk.
-- The **device session** is the currently active set of devices loaded into the running BEC system.
-
-The device session usually starts from one or more YAML configuration files, but once loaded it becomes runtime state shared across the BEC services and clients.
-
-This distinction matters because you can inspect and modify the current session from the BEC client, and you can also export that active session back to a YAML file.
+!!! learn "[Learn how device configurations become live device sessions in BEC](device-sessions-in-bec.md){ data-preview }"
 
 !!! learn "[Learn how larger configurations can be composed from multiple files](managing-device-configs.md){ data-preview }"
 
@@ -159,32 +154,10 @@ initialization. Defaults to `5.0` seconds.
 
 `userParameter` stores user-managed auxiliary metadata for a device.
 
-## How BEC loads a device session
+## Related concepts
 
-When a device session is loaded, the device server reads the effective device configuration and turns each device entry into a live ophyd-backed object. The process is easiest to understand as three main steps.
+- A device configuration entry defines one device.
+- One or more configuration files can be combined into one effective configuration.
+- That effective configuration becomes the basis of the current device session when BEC loads it.
 
-### 1. Create a valid ophyd object
-
-For each device entry, BEC resolves the configured `deviceClass`, combines it with the corresponding `deviceConfig`, and constructs an ophyd object on the device server.
-
-Dependencies declared through `needs` are resolved first so devices are initialized in an order that satisfies those relationships.
-
-### 2. Try to connect to the device
-
-After creating the object, BEC tries to establish a connection to the underlying device. This is where timeouts, unreachable IOCs, or other connection problems surface.
-
-If the connection fails, BEC still tracks that outcome explicitly so the session state reflects that the device did not initialize successfully.
-
-### 3. Read and publish the device interface
-
-Once the object exists, BEC inspects its signal interface and serializes device information such as signals, methods, and metadata. The device server then publishes this interface and the device data endpoints through Redis.
-
-Other BEC services and clients connect to these published endpoints rather than directly to the ophyd object itself.
-
-## Why clients do not access ophyd objects directly
-
-The live ophyd object exists on the device server. Other services do not hold that object directly. Instead, they consume the published interface from Redis and generate proxy devices from it.
-
-This proxy layer is what lets users interact with devices through BEC's distributed architecture while the real ophyd object stays on the device server.
-
-In practice, this is why commands such as `dev.show_all()`, `dev.samx.read()`, or `dev.samx.read_configuration()` work from the BEC client even though the actual ophyd object was created somewhere else.
+!!! learn "[Learn more about device sessions and device-server initialization](device-sessions-in-bec.md){ data-preview }"

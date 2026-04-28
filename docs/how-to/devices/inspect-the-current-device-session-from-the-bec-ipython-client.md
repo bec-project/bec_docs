@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Load and Save a Device Session
@@ -69,6 +71,7 @@ If you only want to inspect the session, avoid changing values unintentionally.
 
 !!! tip "Before changing the config in runtime"
 
+    - Read [Device Sessions in BEC](../../learn/devices/device-sessions-in-bec.md) to understand the difference between config files and the live session.
     - Read [Device Configuration in BEC](../../learn/devices/device-config-in-bec.md) to understand what these fields mean.
     - Read [Select a Readout Priority](how-to-select-readout-priority.md) to understand the impact of readout priority.
 
@@ -82,12 +85,9 @@ dev.samx
 
 This will show you the current runtime configuration of the `samx` device, including the last values for signals from `read` and `read_configuration`.
 
-![dev_show_all.png](../../assets/inspect_dev_samx.png)
-```
-
 !!! success "Congratulations!"
 
-    You have succsessfully inspected the current device session.
+    You have successfully inspected the current device session.
 
 ## Common Pitfalls
 

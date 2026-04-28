@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Managing Device Configurations
@@ -31,7 +33,7 @@ This loads the file from disk and sends the resulting configuration to the runni
 
 If the file changes devices that already exist in the current session, BEC may prompt you to resolve conflicts before applying the update.
 
-!!! learn "[Learn more about the device configuration in BEC](../../learn/devices/device-config-in-bec.md){ data-preview }"
+!!! learn "[Learn more about device sessions and device configurations in BEC](../../learn/devices/device-sessions-in-bec.md){ data-preview }"
 
 ## 2. Verify that the new session is active
 
