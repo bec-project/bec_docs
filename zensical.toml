@@ -53,6 +53,11 @@ nav = [
         { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
         { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
       ] },
+      { "Configs and Session" = [
+        { "Inspect the Current Device Session" = "how-to/devices/inspect-the-current-device-session-from-the-bec-ipython-client.md" },
+        { "Load and Save a Device Session" = "how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md" },
+        { "Validate a Device Configuration" = "how-to/devices/validate-a-device-configuration.md" },
+      ] },
       { "Client Usage" = [
         { "Inspect a Device from the BEC IPython Client" = "how-to/devices/inspect-a-device-from-the-bec-ipython-client.md" },
         { "Change Config Signals from the BEC IPython Client" = "how-to/devices/change-config-signals-from-the-bec-ipython-client.md" },
@@ -81,6 +86,7 @@ nav = [
       { "ophyd Kind Values" = "learn/devices/ophyd-kinds.md" },
       { "Readout Priority" = "learn/devices/readout-priority.md" },
       { "Device Config in BEC" = "learn/devices/device-config-in-bec.md" },
+      { "Device Sessions in BEC" = "learn/devices/device-sessions-in-bec.md" },
       { "Managing Device Configs" = "learn/devices/managing-device-configs.md" },
       { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
       { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },

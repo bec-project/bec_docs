@@ -2,11 +2,17 @@
 related:
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
+  - title: Load and Save a Device Session
+    url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
+  - title: Validate a Device Configuration
+    url: how-to/devices/validate-a-device-configuration.md
 ---
 
 # Managing Device Configurations
 
-All devices from a beamline easily amounts to hundreds of devices. Managing this in a single file is often not practical. BEC supports splitting the device configuration into multiple files and loading them together. 
+A beamline can easily have hundreds of devices. Managing this in a single file is often not practical. BEC supports splitting the device configuration into multiple files and loading them together. 
 
 Conceptually, this allows teams to keep base, endstation, or subsystem device groups separate while still loading one effective session configuration.
 
@@ -37,19 +43,11 @@ Conceptually, this allows teams to keep base, endstation, or subsystem device gr
 
 In the example config above, we combine two separate device configuration files into one effective configuration. The `!include` syntax is a feature supported by BEC's YAML parser and allows including the contents of another YAML file at that location. The resulting device configuration is a combination of all included files and any additional entries defined directly in the main config. 
 
+This effective configuration becomes the basis for the current device session in BEC once it is loaded.
 
-## How to validate a device configuration
+!!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-sessions-in-bec.md){ data-preview }"
 
-To avoid errors during loading of the device config, the device config can be validated before loading it. We provided a command line tool for this called `ophyd_test` which is installed through `ophyd_devices` and available in the BEC Python environment. 
+If you need to work with this configuration in practice, use the task-focused guides:
 
-Once you activate the BEC Python environment, you can run the following command to validate a device config file:
-
-```bash
-ophyd_test --config ./path/to/my/config/file.yaml
-```
-
-This will perform a static validation of the device config and will print any errors that are found. For checking if the devices can be created and connect successfully, an additional flag can be passed:
-
-```bash
-ophyd_test --config ./path/to/my/config/file.yaml --connect
-```
+- [Load and save a device session from the BEC IPython client](../../how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md)
+- [Validate a device configuration](../../how-to/devices/validate-a-device-configuration.md)

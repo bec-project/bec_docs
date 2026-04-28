@@ -1,5 +1,13 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
+  - title: Load and Save a Device Session
+    url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
+  - title: Validate a Device Configuration
+    url: how-to/devices/validate-a-device-configuration.md
+  - title: Inspect the Current Device Session
+    url: how-to/devices/inspect-the-current-device-session-from-the-bec-ipython-client.md
   - title: Add an EPICS motor
     url: how-to/devices/add-an-epics-motor.md
   - title: Add a pseudo motor
@@ -17,6 +25,12 @@ following the specifications given in the device configuration.
 
 The device configuration can be loaded from and stored to YAML files and contains
 the information needed to construct devices and manage their behavior in BEC.
+
+This page focuses on the structure of a device configuration entry and the meaning of its fields.
+
+!!! learn "[Learn how device configurations become live device sessions in BEC](device-sessions-in-bec.md){ data-preview }"
+
+!!! learn "[Learn how larger configurations can be composed from multiple files](managing-device-configs.md){ data-preview }"
 
 ## Ophyd device configuration
 
@@ -139,3 +153,11 @@ initialization. Defaults to `5.0` seconds.
 ### `userParameter` (dictionary)
 
 `userParameter` stores user-managed auxiliary metadata for a device.
+
+## Related concepts
+
+- A device configuration entry defines one device.
+- One or more configuration files can be combined into one effective configuration.
+- That effective configuration becomes the basis of the current device session when BEC loads it.
+
+!!! learn "[Learn more about device sessions and device-server initialization](device-sessions-in-bec.md){ data-preview }"
