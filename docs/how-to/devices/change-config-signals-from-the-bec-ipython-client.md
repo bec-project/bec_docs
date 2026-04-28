@@ -6,6 +6,8 @@ related:
     url: learn/devices/device-config-in-bec.md
   - title: ophyd Kind in BEC
     url: learn/devices/ophyd-kinds.md
+  - title: Use simulated models from the IPython client
+    url: how-to/gui/use-simulated-models-from-ipython.md
 ---
 
 # Change Config Signals from the BEC IPython Client

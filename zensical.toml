@@ -27,6 +27,9 @@ nav = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
+      { "Dock Area Profiles" = "getting-started/next-steps/dock-area-profiles-tutorial.md" },
+      { "BEC IPython GUI Commands" = "getting-started/next-steps/gui-cli-interface.md" },
+      { "Create Dock Area Profiles from the BEC IPython Client" = "getting-started/next-steps/create-dock-area-profiles-from-ipython.md" },
       #{ "Run an Alignment Scan" = "getting-started/next-steps/run-an-alignment-scan.md" },
       #{ "Write Your First Macro" = "getting-started/next-steps/write-your-first-macro.md" },
     ] },
@@ -42,6 +45,22 @@ nav = [
     { "Working With Git" = [
       { "Add Changes to Your Plugin Repository" = "how-to/git/add-changes-to-plugin-repository.md" },
       { "Merge Changes to main" = "how-to/git/merge-changes-to-main.md" },
+    ] },
+    { GUI = [
+      { "Dock Area Profiles" = [
+        { "Overview" = "how-to/gui/dock-area-profiles.md" },
+        { "Switch Dock Area Profiles" = "how-to/gui/switch-dock-area-profile.md" },
+        { "Toggle Dock Area Profile Quick Selection" = "how-to/gui/toggle-dock-area-profile-quick-selection.md" },
+        { "Restore a Dock Area Profile to Its Baseline" = "how-to/gui/restore-dock-area-profile-baseline.md" },
+        { "Delete a Dock Area Profile" = "how-to/gui/delete-dock-area-profile.md" },
+        { "Share a Dock Area Profile with Other Accounts" = "how-to/gui/share-dock-area-profile-with-other-accounts.md" },
+      ] },
+      { "GUI from the IPython Client" = [
+        { "Overview" = "how-to/gui/ipython-client-gui.md" },
+        { "Control a Waveform from the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
+        { "Use Simulated Models from the IPython Client" = "how-to/gui/use-simulated-models-from-ipython.md" },
+        { "Script GUI Setup and Run a Line Scan" = "how-to/gui/script-gui-setup-and-run-line-scan.md" },
+      ] },
     ] },
     { "Devices" = [
       { "Adding Devices" = [
@@ -99,8 +118,15 @@ nav = [
     ] },
     #{ "Operations and deployment" = [ TODO fill with content
     #] },
-    #{ "GUI framework" = [
-    #] },
+    { "GUI" = [
+      { "Dock Area Profiles" = [
+        "learn/gui/dock-area-profiles/index.md",
+        { "Runtime and Baseline Copies" = "learn/gui/dock-area-profiles/runtime-and-baseline-copies.md" },
+        { "Qt Storage and Reconstruction" = "learn/gui/dock-area-profiles/qt-storage-and-reconstruction.md" },
+        { "The Dock Area Profile Manager" = "learn/gui/dock-area-profiles/profile-manager.md" },
+      ] },
+      { "RPC GUI Control" = "learn/gui/rpc-gui-control.md" },
+    ] },
     #{ "Plugins and extensions" = [
     #] },
   ] },
@@ -110,10 +136,9 @@ nav = [
     #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
     #    { "Scans" = "references/bec-core/scans.md" },
     #  ] },
-    #  { "BEC Widgets" = [
-    #    { "BECWidget vs BECConnector" = "references/bec-widgets/becwidget-vs-becconnector.md" },
-    #    { "Widget gallery" = "references/bec-widgets/widget-gallery.md" },
-    #  ] },
+    { "BEC Widgets" = [
+      { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
+    ] },
     { "Ophyd Devices" = [
       #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
       #    { "AsyncMultiSignal" = "references/ophyd-devices/async-multi-signal.md" },
