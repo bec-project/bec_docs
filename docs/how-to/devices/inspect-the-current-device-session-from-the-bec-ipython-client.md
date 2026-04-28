@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Load and Save a Device Session
@@ -13,7 +15,7 @@ related:
 # Inspect the Current Device Session
 
 !!! Info "Overview"
-    Inspect the current BEC device session from the IPython client so you can see which devices are active right now.
+    Inspect the current device session from the IPython client, so you can see which devices are active right now.
 
 ## Prerequisites
 
@@ -55,7 +57,7 @@ Use `dev.show_all()` when you want to check:
 
 Some session values can be changed at runtime from the client.
 
-For example, you can disable the simulated `samx` motor in the current session:
+For example, you can disable the motor `samx` in this session:
 
 ```py
 dev.samx.enabled = False
@@ -63,12 +65,13 @@ dev.samx.enabled = False
 
 If you run `dev.show_all()` again afterwards, `samx` will appear as disabled.
 
-Use this carefully: changing runtime device settings is not only a display change. Fields such as `enabled` and `readoutPriority` affect how BEC handles the device and its readings in the current session.
+!!! warning "Please use this carefully"
 
-If you only want to inspect the session, avoid changing values unintentionally.
+    Changing device settings in runtime is not only a display change. Fields such as `enabled` and `readoutPriority` affect how BEC handles the device and its readings in the current session. These changes do not automatically update the YAML file on disk, but they do affect how BEC handles the device in the current session.
 
 !!! tip "Before changing the config in runtime"
 
+    - Read [Device Sessions in BEC](../../learn/devices/device-sessions-in-bec.md) to understand the difference between config files and the live session.
     - Read [Device Configuration in BEC](../../learn/devices/device-config-in-bec.md) to understand what these fields mean.
     - Read [Select a Readout Priority](how-to-select-readout-priority.md) to understand the impact of readout priority.
 
@@ -82,12 +85,11 @@ dev.samx
 
 This will show you the current runtime configuration of the `samx` device, including the last values for signals from `read` and `read_configuration`.
 
-![dev_show_all.png](../../assets/inspect_dev_samx.png)
-```
+![inspect_dev_samx.png](../../assets/inspect_dev_samx.png)
 
 !!! success "Congratulations!"
 
-    You have succsessfully inspected the current device session.
+    You have successfully inspected the current device session.
 
 ## Common Pitfalls
 
