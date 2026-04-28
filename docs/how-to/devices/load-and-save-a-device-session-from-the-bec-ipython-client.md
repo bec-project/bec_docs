@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Managing Device Configurations
@@ -11,7 +13,7 @@ related:
 # Load and Save a Device Session
 
 !!! Info "Overview"
-    Load a device configuration file into the current BEC session and save the current session back to disk from the BEC IPython client.
+    Load a YAML configuration file as a new session to BEC, and save the current session to a YAML file on disk from the BEC IPython client.
 
 ## Prerequisites
 
@@ -19,7 +21,7 @@ related:
 - You know the path to the YAML file you want to load.
 - The YAML file is accessible from the machine where the BEC IPython client is running.
 
-## 1. Load a config file into the current session
+## 1. Load a YAML file into the current session
 
 To update the current device session from a YAML file, call:
 
@@ -29,11 +31,21 @@ bec.config.update_session_with_file("./path/to/my-config.yaml")
 
 This loads the file from disk and sends the resulting configuration to the running BEC services.
 
-If the file changes devices that already exist in the current session, BEC may prompt you to resolve conflicts before applying the update.
+!!! info
 
-!!! learn "[Learn more about the device configuration in BEC](../../learn/devices/device-config-in-bec.md){ data-preview }"
+    Every time you load a new YAML file, BEC automatically saves the previous session to a backup file in `~/bec/logs/device_configs/recovery_configs/` with a timestamp. This allows you to recover the previous session if needed.
 
-## 2. Verify that the new session is active
+In case you have a previous session with devices already active, the new file will update the current session with the new values. 
+If there are conflicts between device configurations as defined in the new file and the current session, BEC will prompt you with options to resolve them. 
+This allows you to review the differences and decide how to proceed instead of automatically overwriting the current session with the new file.
+
+!!! learn "[Learn more about device sessions and device configurations in BEC](../../learn/devices/device-sessions-in-bec.md){ data-preview }"
+
+!!! warning "What happens if the session update is not successful?"
+
+    If the YAML file contains invalid device configurations, BEC will report the errors in the terminal and flush the device session. We recommend to validate YAML files prior to loading them with `ophyd_test` to catch schema and connection issues early. Please refer to [Validate a YAML configuration file for BEC](validate-a-yaml-config-file.md) for more details. If a device from the new session fails to connect, BEC will automatically disable that device in the session, but continue to load the rest of the devices. Again, there is a report of which devices failed to connect in the terminal, and you can also check the session from the client to see which devices are disabled.
+
+## 2. Verify that the device session was loaded successfully
 
 After loading the file, inspect the current session from the client:
 
@@ -41,33 +53,32 @@ After loading the file, inspect the current session from the client:
 dev.show_all()
 ```
 
-Use this to confirm that the expected devices are present and that their status and class information match the file you loaded.
+Use this to confirm that the expected devices are present and that their status and class information match the file you loaded. In case of failed connections to devices, they will appear as disabled in the session, and you can check the terminal output for details about which devices failed to connect and why.
 
-## 3. Save the current session to disk
+## 3. Save the current device session to disk
 
-To write the currently active device session to a YAML file, call:
+From the BEC IPython client, you can also save the current session to a YAML file on disk. This is useful when you want to keep a copy of the active session, create a starting point for further edits, or persist runtime changes in a file before reusing them later.
 
 ```py
 bec.config.save_current_session("./config_saved.yaml")
 ```
 
-This exports the full current session as it exists in BEC at that moment.
+This exports the device session in BEC with all current values of its device configurations.
 
 Use this when you want to:
 
 - keep a copy of the active session
-- create a starting point for further edits
-- persist runtime changes in a file before reusing them later
+- create or update a YAML file based on the current session
 
-## 4. Reload a saved session later
+## 4. Reload a recovery file
 
-A saved session file can be loaded again with the same command:
+As previously mentioned, BEC automatically saves the previous session to a backup file `~/bec/logs/device_configs/recovery_configs/recovery_config_2026-05-04_08-39-23.yaml` with a timestamp every time you load a new YAML file. This allows you to recover the previous session if needed.
+
+You can load one of these recovery files with the same command as before:
 
 ```py
-bec.config.update_session_with_file("./config_saved.yaml")
+bec.config.update_session_with_file("~/bec/logs/device_configs/recovery_configs/recovery_config_2026-05-04_08-39-23.yaml")
 ```
-
-This is a practical workflow when you want to export the current session, edit the YAML file, and then apply it again.
 
 !!! success "Congratulations!"
 
@@ -75,11 +86,11 @@ This is a practical workflow when you want to export the current session, edit t
 
 ## Common Pitfalls
 
-- Loading a file updates the current session in BEC. It does not keep the previous session unless you saved it separately.
+- Updating the session with a new YAML file overwrites the current session values with the new file. There are currently no options to merely update a subset of devices or fields. All device configurations that should be loaded into the session must be included in the YAML file.
 - Runtime changes made in a session are not automatically written back to the original YAML file. Use `bec.config.save_current_session(...)` if you want a file on disk.
 - If BEC reports conflicts during loading, review them carefully instead of forcing the update unless you are sure the new file should replace the current session values.
 
 ## Next Steps
 
-- Use [Validate a Device Configuration](validate-a-device-configuration.md) before loading a new file when you want an extra check.
+- Use [Validate a YAML configuration file for BEC](validate-a-yaml-config-file.md) before loading a new file when you want an extra check.
 - Use [Inspect the Current Device Session](inspect-the-current-device-session-from-the-bec-ipython-client.md) to review what is currently active in the session.

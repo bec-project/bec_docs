@@ -8,14 +8,14 @@ related:
     url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
 ---
 
-# Validate a Device Configuration
+# Validate a YAML configuration file for BEC
 
 !!! Info "Overview"
-    Validate a device configuration file before loading it into BEC so you can catch schema and connection problems early.
+    Validate a YAML file before loading it to BEC, so you can catch syntax and connection problems early.
 
 ## Prerequisites
 
-- You have activated the BEC Python environment.
+- You have the BEC Python environment activated.
 - You know the path to the YAML file you want to validate.
 - If the connection should be tested, you can access the underlying devices from the machine where you run the validation.
 
@@ -37,7 +37,9 @@ If you also want to test device creation and connection, add `--connect`:
 ophyd_test --config ./path/to/my/config/file.yaml --connect
 ```
 
-Use this when the target environment has access to the underlying devices and you want to catch connection issues before loading the config into a running session.
+Use this when the target environment has access to the underlying devices, and you want to catch connection issues before loading the config into a running session.
+
+![ophyd_test_is_valid.png](../../assets/ophyd_test_is_valid.png)
 
 ## 3. Load the file after validation
 
@@ -52,17 +54,17 @@ bec.config.update_session_with_file("./path/to/my/config/file.yaml")
     You can now validate a device configuration with `ophyd_test` before loading it to BEC.
 
 
-!!! info "Validation was not successful"
+!!! warning "Validation was not successful"
 
-    If you encounter validation errors, they are printed in the terminal with details about the problem. In addition, the tests writes a report to `./device_test_reports/<file_name>.txt` in the current working directory. This file includes an overview of the encountered errors during the test run, and is helpful to identify and fix problems in the configuration file.
+    If you encounter validation errors, these details are printed in the terminal. In addition, running the test also writes a report to `./device_test_reports/<file_name>.txt` in the current working directory. This file includes an overview of the encountered errors during the test run, and is helpful to identify and fix problems in the configuration file.
 
     ![dev_show_all.png](../../assets/static_device_test_with_errors.png)
 
 ## Common Pitfalls
 
 - A static validation does not prove that all devices are reachable. Use `--connect` when you also need a connection check.
-- A successful validation does not replace reviewing the resulting session. After loading the file, inspect the session in the client as well.
-- Connection checks depend on the current environment. A file may validate on one machine but fail to connect on another.
+- A successful validation does not replace reviewing the loaded device session. After loading the file, inspect the device session using `dev.show_all()` in the client.
+- Connection checks depend on where they run. A file may validate on one machine but fail to connect on another machine if the network or device availability differs.
 
 ## Next Steps
 

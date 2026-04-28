@@ -2,10 +2,12 @@
 related:
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
+  - title: Device Sessions in BEC
+    url: learn/devices/device-sessions-in-bec.md
   - title: Load and Save a Device Session
     url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
-  - title: Validate a Device Configuration
-    url: how-to/devices/validate-a-device-configuration.md
+  - title: Validate a YAML configuration file for BEC
+    url: how-to/devices/validate-a-yaml-config-file.md
 ---
 
 # Managing Device Configurations
@@ -43,9 +45,9 @@ In the example config above, we combine two separate device configuration files 
 
 This effective configuration becomes the basis for the current device session in BEC once it is loaded.
 
-!!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-config-in-bec.md){ data-preview }"
+!!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-sessions-in-bec.md){ data-preview }"
 
 If you need to work with this configuration in practice, use the task-focused guides:
 
 - [Load and save a device session from the BEC IPython client](../../how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md)
-- [Validate a device configuration](../../how-to/devices/validate-a-device-configuration.md)
+- [Validate a YAML configuration file for BEC](../../how-to/devices/validate-a-yaml-config-file.md)
