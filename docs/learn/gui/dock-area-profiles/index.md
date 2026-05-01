@@ -12,7 +12,7 @@ related:
 
 # Dock Area Profiles
 
-Dock Area profiles are saved dock area configurations. They let BEC restore a useful GUI workspace with the same docked
+Dock Area profiles are saved Dock Area configurations. They let BEC restore a useful GUI workspace with the same docked
 widgets, widget settings, profile metadata, quick-selection state, and screenshot preview when one is available.
 
 Use profiles when a beamline workflow needs a repeatable GUI setup, for example an alignment layout, a motor-check

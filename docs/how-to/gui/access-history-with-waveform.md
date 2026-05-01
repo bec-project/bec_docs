@@ -19,7 +19,7 @@ related:
 Use `bec.history` when you want scan data as Python objects. Use a Waveform history curve when you want to inspect a
 previous scan in the GUI or attach a DAP curve to it.
 
-!!! note "Live curves and history curves"
+!!! info "Live curves and history curves"
 
     A Waveform curve is a live device curve unless you pass `scan_number` or `scan_id` to `wf.plot(...)`.
     For example, `wf.plot(device_x="samx", device_y="bpm4i")` follows live BEC scan updates. If the Waveform does

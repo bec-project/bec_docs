@@ -10,15 +10,15 @@ In the BEC launcher (see [01 Open BEC](01-open-bec.md){ data-preview }), select 
 
 ![BEC launcher](../assets/launcher.png)
 
-You should be greeted by the same terminal interface from the previous tutorials, and an additional dock area GUI
+You should be greeted by the same terminal interface from the previous tutorials, and an additional Dock Area GUI
 window:
 
-![The empty dock area](../assets/empty_dock_area.png)
+![The empty Dock Area](../assets/empty_dock_area.png)
 
 ## 2. Add some widgets
 
 From the `Add Device Control` menu, select `add scan control`. Then, from the `Add Plot` menu, select `add waveform`.
-This should add the two widgets to your dock area.
+This should add the two widgets to your Dock Area.
 
 ![Dock area with widgets](../assets/dock_with_widgets.png)
 

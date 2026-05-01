@@ -16,11 +16,11 @@ related:
 
 !!! Info "Goal"
 
-    Load a saved Dock Area profile into the dock area.
+    Load a saved Dock Area profile into the Dock Area.
 
 ## Prerequisites
 
-- You have BEC open with a dock area.
+- You have BEC open with a Dock Area.
 - The profile you want to load is already available.
 
 If you do not have profiles yet, first create one with
@@ -28,15 +28,15 @@ If you do not have profiles yet, first create one with
 
 ## Option 1: Switch from the quick selector
 
-Use the quick selector when the profile is listed in the dock area toolbar. This is the shortest way to switch profiles.
+Use the quick selector when the profile is listed in the Dock Area toolbar. This is the shortest way to switch profiles.
 
-Open the profile selector in the dock area toolbar and select the profile you want to load.
+Open the profile selector in the Dock Area toolbar and select the profile you want to load.
 
 ![profile_switch.gif](../../getting-started/assets/profile_switch.gif)
 
-The dock area loads the selected profile and replaces the current layout.
+The Dock Area loads the selected profile and replaces the current layout.
 
-!!! note "Quick selection"
+!!! tip "Quick selection"
 
     Not every profile is shown in the quick selector. A profile only appears there when quick selection is enabled for that
     profile. Learn how to control this with [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md){ data-preview }.
@@ -50,7 +50,7 @@ preview and metadata before loading it.
 
 ### 1. Open the profile manager
 
-Click the **manage button** :material-account-cog: in the dock area toolbar.
+Click the **manage button** :material-account-cog: in the Dock Area toolbar.
 
 ![dock_area_toolbar_profile_manager.png](assets/dock_area_toolbar_profile_manager.png)
 
@@ -66,7 +66,7 @@ Use the preview and metadata panel to confirm that you selected the correct prof
 
 Click the **switch profile button** :material-play-circle-outline:.
 
-The selected profile is loaded into the dock area and replaces the current layout. The active profile is shown with the
+The selected profile is loaded into the Dock Area and replaces the current layout. The active profile is shown with the
 filled green **switch profile button** icon <span style="color: green;">:material-play-circle:</span>.
 
 ## Option 3: Switch from the BEC IPython client
@@ -83,11 +83,11 @@ Replace `profile_name` with the name shown in the profile manager.
 
 !!! success "Result"
 
-    The dock area now uses the layout saved in the selected profile.
+    The Dock Area now uses the layout saved in the selected profile.
 
 ## Common Pitfalls
 
-- Switching profiles replaces the current dock area layout with the saved layout from the selected profile.
+- Switching profiles replaces the current Dock Area layout with the saved layout from the selected profile.
 - If the profile does not appear in the quick selector, open the profile manager and switch from there.
 - To make a profile appear in the quick selector, enable quick selection for that profile. Learn how to do that with
   [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md){ data-preview }.

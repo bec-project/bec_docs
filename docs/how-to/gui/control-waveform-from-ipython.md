@@ -14,7 +14,7 @@ related:
     url: references/bec-widgets/gui-rpc-interface.md
 ---
 
-# Control a Waveform from the IPython Client
+# Plot Data using the IPython Client
 
 !!! info "Goal"
 
@@ -23,23 +23,23 @@ related:
 
 ## Prerequisites
 
-- BEC is running with a dock area.
+- BEC is running with a Dock Area.
 - The `samx` and `bpm4i` devices are available in `dev`.
 
-!!! note "Device names"
+!!! info "Device names"
 
     In these examples, `samx` is a simulated positioner motor and `bpm4i` is a
     Beam Position Monitor.
 
 ## 1. Create a Waveform
 
-Create a new Waveform in the default dock area:
+Create a new Waveform in the default Dock Area:
 
 ```python
 wf = gui.bec.new(gui.available_widgets.Waveform)
 ```
 
-If the profile already contains a Waveform, use the widget from the dock area namespace instead:
+If the profile already contains a Waveform, use the widget from the Dock Area namespace instead:
 
 ```python
 wf = gui.bec.Waveform

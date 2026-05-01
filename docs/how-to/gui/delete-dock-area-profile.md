@@ -14,11 +14,11 @@ related:
 
 !!! Info "Goal"
 
-    Delete a locally created Dock Area profile from the dock area profile manager.
+    Delete a locally created Dock Area profile from the Dock Area profile manager.
 
 ## Prerequisites
 
-- You have BEC open with a dock area.
+- You have BEC open with a Dock Area.
 - The profile you want to delete was created locally.
 
 If you do not have profiles yet, first create one with
@@ -28,7 +28,7 @@ Read-only profiles from BEC Widgets or the beamline plugin repository cannot be 
 
 ## 1. Open the profile manager
 
-Click the manage button :material-account-cog: in the dock area toolbar.
+Click the manage button :material-account-cog: in the Dock Area toolbar.
 
 ![dock_area_toolbar_profile_manager.png](assets/dock_area_toolbar_profile_manager.png)
 

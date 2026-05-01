@@ -21,7 +21,7 @@ This page lists common GUI RPC objects and methods used from the BEC IPython cli
 | `gui`                   | GUI client entry point.                           |
 | `gui.bec`               | Default `BECDockArea` RPC reference.              |
 | `gui.available_widgets` | Widget classes available for remote creation.     |
-| `gui.bec.Waveform`      | Dynamic reference to a Waveform in the dock area. |
+| `gui.bec.Waveform`      | Dynamic reference to a Waveform in the Dock Area. |
 
 ## GUI client
 
@@ -39,9 +39,9 @@ This page lists common GUI RPC objects and methods used from the BEC IPython cli
 
 | API                                                                    | Use                                                                |
 |------------------------------------------------------------------------|--------------------------------------------------------------------|
-| `gui.bec.new(gui.available_widgets.Waveform)`                          | Add a widget to the dock area.                                     |
-| `gui.bec.widget_map`                                                   | Inspect named widgets in the dock area.                            |
-| `gui.bec.widget_list`                                                  | List widgets in the dock area.                                     |
+| `gui.bec.new(gui.available_widgets.Waveform)`                          | Add a widget to the Dock Area.                                     |
+| `gui.bec.widget_map`                                                   | Inspect named widgets in the Dock Area.                            |
+| `gui.bec.widget_list`                                                  | List widgets in the Dock Area.                                     |
 | `gui.bec.load_profile("alignment_cli")`                                | Load a profile.                                                    |
 | `gui.bec.load_profile("alignment_cli", restore_baseline=True)`         | Restore the runtime copy from baseline, then load the profile.     |
 | `gui.bec.save_profile("alignment_cli")`                                | Save the current layout.                                           |

@@ -16,17 +16,18 @@ related:
 
     Attach DAP model curves to Waveform data from the BEC IPython client and inspect the fit output.
 
-Use this guide when a Waveform already has a source curve and you want BEC DAP to fit that curve. For basic Waveform
+Use this guide when a Waveform already has a source curve, and you want to fit the curve and plot the fitted curve on
+top. For basic Waveform
 creation, plotting, and curve styling, start with
 [Control a Waveform from the IPython Client](control-waveform-from-ipython.md){ data-preview }.
 
 ## Prerequisites
 
-- BEC is running with a dock area.
+- BEC is running with a Dock Area.
 - The `samx` and `bpm4i` devices are available in `dev`.
 - A Waveform source curve exists, or you are ready to create one.
 
-!!! note "Device names"
+!!! info "Device names"
 
     In these examples, `samx` is a simulated positioner motor and `bpm4i` is a Beam Position Monitor.
 
@@ -49,7 +50,7 @@ The default source curve label is `bpm4i-bpm4i`, built from the y-axis device an
 
 ## 2. Add a DAP curve to an existing curve
 
-Attach a Gaussian DAP model to the existing `bpm4i-bpm4i` curve:
+Attach a Gaussian Data Analysis Pipeline (DAP) to the existing `bpm4i-bpm4i` curve:
 
 ```python
 wf.add_dap_curve(device_label="bpm4i-bpm4i", dap_name="GaussianModel")
@@ -57,9 +58,9 @@ wf.add_dap_curve(device_label="bpm4i-bpm4i", dap_name="GaussianModel")
 
 `device_label` is the existing source curve to fit. `dap_name` is the DAP model to attach to that source curve.
 
-## 3. Add DAP when creating the curve
+## 3. Initialize the curve with a fitting model
 
-If you know that the curve should have a DAP model from the start, add it in the initial `plot` call:
+If you know in advance that your plot should also include a fit, add it in the initial `plot` call:
 
 ```python
 wf.plot(device_x=dev.samx, device_y=dev.bpm4i, dap="GaussianModel")

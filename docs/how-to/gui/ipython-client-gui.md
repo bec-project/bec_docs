@@ -41,7 +41,7 @@ Most command-line plotting work follows this order:
    [small script](../../getting-started/next-steps/script-gui-interactions.md){ data-preview } only after the
    interactive workflow is useful.
 
-## Background
+## Learning material
 
 - [RPC GUI Control](../../learn/gui/rpc-gui-control.md){ data-preview } explains how GUI command objects work.
 - [GUI RPC Interface](../../references/bec-widgets/gui-rpc-interface.md){ data-preview } lists common exposed methods.

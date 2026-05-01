@@ -57,7 +57,7 @@ nav = [
       ] },
       { "Plotting and Data Analysis" = [
         { "Overview" = "how-to/gui/ipython-client-gui.md" },
-        { "Control a Waveform from the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
+        { "Plot Data using the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
         { "Fit Waveform Data with DAP" = "how-to/gui/fit-waveform-data-with-dap.md" },
         { "Access History with a Waveform" = "how-to/gui/access-history-with-waveform.md" },
       ] },

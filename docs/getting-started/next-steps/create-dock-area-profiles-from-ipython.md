@@ -23,12 +23,12 @@ actions as in the previous tutorial.
 Open BEC with `Terminal + Dock`, as shown in
 [01 Open BEC](../quick-start/01-open-bec.md){ data-preview }.
 
-Start with a dock area containing a `ScanControl` and a `Waveform` widgets. This is the layout created in
+Start with a Dock Area containing a `ScanControl` and a `Waveform` widgets. This is the layout created in
 [06 Create Your First GUI](../quick-start/06-create-your-first-gui.md){ data-preview }.
 
 ## 1. Save the current layout
 
-Save the current dock area as `alignment_scan`:
+Save the current Dock Area as `alignment_scan`:
 
 ```python
 gui.bec.save_profile("alignment_scan", quick_select=True)
@@ -82,7 +82,7 @@ pos_samy.set_positioner("samy")
 
 ## 3. Save the second profile
 
-Save the modified dock area as `motor_check`:
+Save the modified Dock Area as `motor_check`:
 
 ```python
 gui.bec.save_profile("motor_check", quick_select=True)

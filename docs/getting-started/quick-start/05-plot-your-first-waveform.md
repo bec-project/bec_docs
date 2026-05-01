@@ -9,7 +9,7 @@
 We will use the BEC launcher to start the BEC Ipython together with a Dock Area window. Please choose `Terminal + Dock` 
 from the BEC launcher  [01 Open BEC](01-open-bec.md){ data-preview }.
 
-You should now have a BEC IPython session running, and a dock area window open.
+You should now have a BEC IPython session running, and a Dock Area window open.
 
 ![BEC launcher](../assets/fresh_terminal_and_dock_area.png)
 
@@ -19,7 +19,7 @@ You should now have a BEC IPython session running, and a dock area window open.
     
 ## 1. Inspect the startup GUI objects
 
-The BEC startup gives you a `gui` object. The default dock area opened by `Terminal + Dock` is available as `gui.bec`.
+The BEC startup gives you a `gui` object. The default Dock Area opened by `Terminal + Dock` is available as `gui.bec`.
 
 ```python
 gui.bec
@@ -35,7 +35,7 @@ This will print a table of widget classes available programmatically, including 
 
 ## 3. Add a waveform widget
 
-Create a new `Waveform` directly in the existing `bec` dock area, and assign it to the variable `wf`:
+Create a new `Waveform` directly in the existing `bec` Dock Area, and assign it to the variable `wf`:
 
 ```python
 wf = gui.bec.new(gui.available_widgets.Waveform)
@@ -44,11 +44,11 @@ wf = gui.bec.new(gui.available_widgets.Waveform)
 !!! Note
 
     By assigning the created widget to a variable, you can access it directly from there. 
-    However, you can also access it through the dock area widget tree, in the example above this would be 
+    However, you can also access it through the Dock Area widget tree, in the example above this would be 
     ``` python
     gui.bec.Waveform
     ``` 
-    since this is the first `Waveform` created in that dock area.
+    since this is the first `Waveform` created in that Dock Area.
 
 ## 4. Configure the waveform
 

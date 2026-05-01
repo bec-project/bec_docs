@@ -12,21 +12,21 @@ related:
 
 !!! info "Goal"
 
-    In this tutorial you will save two dock area reusable configurations as Dock Area profiles and switch between them.
+    In this tutorial you will save two Dock Area reusable configurations as Dock Area profiles and switch between them.
 
 !!! tip "What is a Dock Area profile?"
 
-    A Dock Area profile is a saved configuration of the dock area, including the widgets it contains and their configuration.
+    A Dock Area profile is a saved configuration of the Dock Area, including the widgets it contains and their configuration.
     Profiles allow you to quickly switch between different GUI setups for different tasks.
     Learn more about how profiles work in [Dock Area Profiles](../../learn/gui/dock-area-profiles/index.md){ data-preview }.
 
 This tutorial continues from [06 Create Your First GUI](../quick-start/06-create-your-first-gui.md){ data-preview }.
-Start with BEC open in the `Terminal + Dock` interface and a dock area containing a `ScanControl` and a `Waveform`
+Start with BEC open in the `Terminal + Dock` interface and a Dock Area containing a `ScanControl` and a `Waveform`
 widgets.
 
 ## 1. Save the current layout
 
-In the dock area toolbar, click the save button :material-content-save-outline:.
+In the Dock Area toolbar, click the save button :material-content-save-outline:.
 
 Enter the profile name:
 
@@ -38,7 +38,7 @@ Keep `Include in quick selection` enabled, then click `Save`.
 
 ![save_profile.gif](../assets/save_profile.gif)
 
-The profile name appears in the profile selector in the dock area toolbar.
+The profile name appears in the profile selector in the Dock Area toolbar.
 
 ## 2. Change the layout and add more widgets
 
@@ -46,7 +46,7 @@ Create a second layout that is easy to recognize when you switch profiles:
 
 1. Open `Add Device Control` and add twice `PositionerBox`.
 2. Open `Add Plot` and add another `Waveform`.
-3. Move the new widgets to the right side of the dock area.
+3. Move the new widgets to the right side of the Dock Area.
 
 You should now have the original scan control and waveform plot, plus two positioner boxes and
 a second waveform plot.
@@ -69,15 +69,15 @@ Keep `Include in quick selection` enabled, then click `Save`.
 
 ## 4. Switch between profiles
 
-Use the profile selector in the dock area toolbar to switch back to `alignment_scan`.
+Use the profile selector in the Dock Area toolbar to switch back to `alignment_scan`.
 
-The dock area reloads the layout saved in the first profile. Use the selector again to switch to `motor_check`.
+The Dock Area reloads the layout saved in the first profile. Use the selector again to switch to `motor_check`.
 
 ![profile_switch.gif](../assets/profile_switch.gif)
 
 !!! success "What you have learned"
 
-    You have saved two Dock Area profiles and used the dock area toolbar to switch between different layouts.
+    You have saved two Dock Area profiles and used the Dock Area toolbar to switch between different layouts.
 
 ## Next step
 
