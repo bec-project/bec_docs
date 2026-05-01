@@ -16,16 +16,16 @@ related:
 
 !!! Info "Goal"
 
-    Find the `.ini` file for a locally saved Dock Area profile so you can share it with another eAccount or add it to
+    Find the `.ini` file for a locally saved Dock Area profile so you can share it with another e-account or add it to
     the beamline plugin repository.
 
 ## Prerequisites
 
 - You have saved and tested the profile locally.
-- You can access the eAccount or beamline plugin repository where the profile should be copied.
+- You can access the e-account or beamline plugin repository where the profile should be copied.
 - You can open a Gitea pull request if the profile should become part of the plugin repository.
 
-An eAccount is the experiment account assigned to an experiment. It has limited storage access and owns the writable
+An e-account is the experiment account assigned to an experiment. It has limited storage access and owns the writable
 Dock Area profile settings for that experiment.
 
 !!! learn "[Learn how runtime and baseline profile copies are stored](../../learn/gui/dock-area-profiles/runtime-and-baseline-copies.md){ data-preview }"
@@ -36,7 +36,7 @@ Open the profile manager from the dock area toolbar and select the profile.
 
 Read the `Runtime path` field in the metadata panel. This is the editable `.ini` file for the saved profile.
 
-Use this path as the source file when you copy the profile to another eAccount or add the profile to the plugin
+Use this path as the source file when you copy the profile to another e-account or add the profile to the plugin
 repository.
 
 !!! learn "[Learn more about the profile manager fields](../../learn/gui/dock-area-profiles/profile-manager.md){ data-preview }"
@@ -45,7 +45,7 @@ repository.
 
 /// tab | :material-source-branch: Plugin repository
 
-Use this option for durable beamline reuse. The profile becomes available to every eAccount that uses the deployed
+Use this option for durable beamline reuse. The profile becomes available to every e-account that uses the deployed
 plugin revision.
 
 ### Copy the profile into the plugin repository
@@ -97,19 +97,19 @@ After the pull request is approved and merged, the profile is available as a bun
 uses that commit.
 
 ///
-/// tab | :material-account-switch: Another eAccount
+/// tab | :material-account-switch: Another e-account
 
-Use this option for ad hoc sharing between two eAccounts. Copy the profile directly only when the profile does not need
+Use this option for ad hoc sharing between two e-accounts. Copy the profile directly only when the profile does not need
 to be reviewed, versioned, or distributed through the plugin repository.
 
-### Copy the profile to another eAccount
+### Copy the profile to another e-account
 
-Copy the profile INI file into the target eAccount's writable profile directory:
+Copy the profile INI file into the target e-account's writable profile directory:
 
 /// tab | :material-file-tree: Template path
 
 ```text
-/sls/<xname>/data/<target_eAccount>/raw/widget_settings/profiles/runtime/<namespace>/
+/sls/<xname>/data/<target_e-account>/raw/widget_settings/profiles/runtime/<namespace>/
 ```
 
 ///
@@ -121,12 +121,12 @@ Copy the profile INI file into the target eAccount's writable profile directory:
 
 ///
 
-If the profile should also be the restore point in the target eAccount, copy it to the matching baseline directory:
+If the profile should also be the restore point in the target e-account, copy it to the matching baseline directory:
 
 /// tab | :material-file-tree: Template path
 
 ```text
-/sls/<xname>/data/<target_eAccount>/raw/widget_settings/profiles/baseline/<namespace>/
+/sls/<xname>/data/<target_e-account>/raw/widget_settings/profiles/baseline/<namespace>/
 ```
 
 ///
@@ -144,7 +144,7 @@ Use the same file name in both locations.
 
 ## 3. Check the shared profile
 
-After deployment or after copying the profile to another eAccount, open BEC with a dock area.
+After deployment or after copying the profile to another e-account, open BEC with a dock area.
 
 Open the profile manager and verify that the profile is listed. Bundled profiles appear as read-only profiles and cannot
 be overwritten or deleted from the GUI.

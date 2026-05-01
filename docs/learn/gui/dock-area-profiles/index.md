@@ -22,7 +22,7 @@ layout, or a scan-monitoring layout.
 
 | Page | Use it when you want to understand |
 | --- | --- |
-| [Runtime and Baseline Copies](runtime-and-baseline-copies.md) | where profiles are stored, how profile copies work, and how profiles move between eAccounts and plugin repositories |
+| [Runtime and Baseline Copies](runtime-and-baseline-copies.md) | where profiles are stored, how profile copies work, and how profiles move between e-accounts and plugin repositories |
 | [Qt Storage and Reconstruction](qt-storage-and-reconstruction.md) | how BEC stores dock layout and widget state in profile files |
 | [The Dock Area Profile Manager](profile-manager.md) | how the GUI displays profile metadata, paths, previews, and actions |
 | [RPC GUI Control](../rpc-gui-control.md) | how the BEC IPython client creates, loads, restores, and scripts GUI widgets |
@@ -36,4 +36,4 @@ layout, or a scan-monitoring layout.
 - Use [Restore a Dock Area Profile to Its Baseline](../../../how-to/gui/restore-dock-area-profile-baseline.md) when you
   need to discard runtime changes for a profile.
 - Use [Share a Dock Area Profile with Other Accounts](../../../how-to/gui/share-dock-area-profile-with-other-accounts.md)
-  when a profile should be reused outside the current eAccount.
+  when a profile should be reused outside the current e-account.
