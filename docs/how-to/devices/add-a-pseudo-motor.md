@@ -18,7 +18,7 @@ related:
 !!! tip
     Before writing a new pseudo positioner, check whether `ophyd_devices` already provides one that matches your use case. For example, it already includes pseudo positioners such as `VirtualSlitCenter` and `VirtualSlitWidth`.
 
-## Pre-requisites
+## Prerequisites
 - A beamline plugin repository or local `ophyd_devices` development checkout is available.
 - The real motors used by the pseudo positioner already exist in the BEC device config.
 - You know which real devices your pseudo positioner depends on, for example a monochromator angle motor.

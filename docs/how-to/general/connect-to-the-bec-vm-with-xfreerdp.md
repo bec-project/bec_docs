@@ -11,7 +11,7 @@ related:
 
     This is a PSI-specific guide. It assumes that your beamline provides a BEC VM that is reachable from your current network.
 
-## Pre-requisites
+## Prerequisites
 - You are on a Linux machine with `xfreerdp` installed.
 - You know the hostname of the BEC VM, for example `x99sa-bec-001.psi.ch`.
 - You are a PSI beamline scientist or staff member with access to the BEC VM.

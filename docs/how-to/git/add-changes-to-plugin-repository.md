@@ -13,7 +13,7 @@ related:
 
     If you are familiar with Git, this How-To will be straightforward for you. If you are new to Git, don't worry, we will guide you through the process step by step.
 
-## Pre-requisites
+## Prerequisites
 - You are a beamline scientist and have access to your plugin repository on `/sls/<XNAME>/config/bec`, e.g. `/sls/x01da/config/bec`.
 
 ## Steps to add changes to your plugin repository

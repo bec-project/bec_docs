@@ -12,7 +12,7 @@ related:
     Install BEC in a local Python environment, start the required services, and open a working BEC client session on
     your own machine.
 
-## Pre-requisites
+## Prerequisites
 - You have Python 3.11 or newer available.
 - You can install Python packages in a virtual environment or Conda environment.
 - You can install and run `redis-server`.

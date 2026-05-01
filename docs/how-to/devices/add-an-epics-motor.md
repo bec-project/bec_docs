@@ -16,7 +16,7 @@ related:
 
 
 
-## Pre-requisites
+## Prerequisites
 - You decided for a name for the motor in BEC, for example `samx`
 - You already know the IOC prefix for the motor you want to add, for example `X01DA-MO-USER-01:`
 - You are working at the beamline and the IOC is accessible in the beamline network

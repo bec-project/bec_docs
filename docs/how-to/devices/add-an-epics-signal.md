@@ -9,7 +9,7 @@ related:
 !!! Info "Overview"
     Add a simple EPICS-backed signal to your BEC device configuration using the YAML config file or the GUI.
 
-## Pre-requisites
+## Prerequisites
 
 - You decided on a name for the signal in BEC, for example `beamstop_open`
 - You already know the EPICS PV or prefix you want to connect

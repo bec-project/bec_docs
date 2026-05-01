@@ -12,7 +12,7 @@ related:
     Please note that this is a PSI-specific guide and will not be applicable to other installations of BEC. For other installations, please refer to the installation guide.
 
 
-## Pre-requisites
+## Prerequisites
 - You are a beamline scientist or are responsible for maintaining BEC at the beamline.
 - You are within the PSI intranet.
 

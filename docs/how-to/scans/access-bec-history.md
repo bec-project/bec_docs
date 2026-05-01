@@ -9,7 +9,7 @@ related:
 !!! Info "Overview"
     Retrieve previous scans from `bec.history` and inspect their metadata and data in a BEC client session.
 
-## Pre-requisites
+## Prerequisites
 - You are connected to a running BEC client session.
 - The scans you want to inspect are still available in the BEC history and their files are readable from your current machine.
 
