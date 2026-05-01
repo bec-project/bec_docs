@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Add Widgets to a Dock Area
+    url: how-to/gui/add-widgets-to-dock-area.md
   - title: Create Dock Area profiles from the BEC IPython client
     url: getting-started/next-steps/create-dock-area-profiles-from-ipython.md
   - title: RPC GUI Control
@@ -21,6 +23,7 @@ underlying command model. To create and switch Dock Area profiles from commands,
 
 | Situation | Use this guide | What it gives you |
 | --- | --- | --- |
+| You want to add a widget to the Dock Area before plotting. | [Add Widgets to a Dock Area](add-widgets-to-dock-area.md) | Creates widgets and controls their dock placement from BEC IPython commands. |
 | You want to plot live device data or style Waveform curves. | [Control a Waveform from the IPython Client](control-waveform-from-ipython.md) | Creates and configures Waveform plots from BEC IPython commands. |
 | You want to attach DAP models to plotted data. | [Fit Waveform Data with DAP](fit-waveform-data-with-dap.md) | Adds one or more DAP model curves and reads fit parameters. |
 | You want to inspect data from an already completed scan. | [Access History with a Waveform](access-history-with-waveform.md) | Plots history data in Waveform or reads raw values from `bec.history`. |
@@ -33,11 +36,13 @@ Most command-line plotting work follows this order:
 
 1. Configure a real or
    [simulated device signal](../devices/use-simulated-models-from-ipython.md){ data-preview }.
-2. [Plot live data in a Waveform](control-waveform-from-ipython.md){ data-preview }.
-3. [Add a DAP curve](fit-waveform-data-with-dap.md){ data-preview } when you need a fitted model.
-4. [Inspect scan history](access-history-with-waveform.md){ data-preview } when you need to compare with previous scans.
-5. Read plotted data back from the Waveform with `wf.get_all_data()` for quick checks or small transformations.
-6. Move repeated commands into a
+2. [Add a widget to the Dock Area](add-widgets-to-dock-area.md){ data-preview } when the layout does not already
+   contain the widget you need.
+3. [Plot live data in a Waveform](control-waveform-from-ipython.md){ data-preview }.
+4. [Add a DAP curve](fit-waveform-data-with-dap.md){ data-preview } when you need a fitted model.
+5. [Inspect scan history](access-history-with-waveform.md){ data-preview } when you need to compare with previous scans.
+6. Read plotted data back from the Waveform with `wf.get_all_data()` for quick checks or small transformations.
+7. Move repeated commands into a
    [small script](../../getting-started/next-steps/script-gui-interactions.md){ data-preview } only after the
    interactive workflow is useful.
 

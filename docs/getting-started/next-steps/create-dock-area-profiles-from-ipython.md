@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Add Widgets to a Dock Area
+    url: how-to/gui/add-widgets-to-dock-area.md
   - title: Dock Area Profiles
     url: getting-started/next-steps/dock-area-profiles-tutorial.md
   - title: RPC GUI Control
@@ -17,6 +19,9 @@ related:
 This tutorial creates the same `alignment_scan` and `motor_check` profiles as
 [Dock Area Profiles](dock-area-profiles-tutorial.md){ data-preview }, but uses BEC IPython commands instead of toolbar
 actions as in the previous tutorial.
+
+For a shorter task guide that only covers adding widgets and choosing their dock placement, see
+[Add Widgets to a Dock Area](../../how-to/gui/add-widgets-to-dock-area.md){ data-preview }.
 
 ## Before you start
 
