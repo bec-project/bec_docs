@@ -30,7 +30,7 @@ Dock Area profiles have three origins:
 
 | Origin | Source | Delete? | Update baseline? |
 | --- | --- | --- | --- |
-| eAccount settings | Active BEC widgets settings profile root | :material-check: | :material-check: |
+| e-account settings | Active BEC widgets settings profile root | :material-check: | :material-check: |
 | Beamline plugin | `<beamline_repo>/<beamline_package>/bec_widgets/profiles/` | :material-close: | :material-close: |
 | BEC Widgets | Built-in BEC Widgets profiles | :material-close: | :material-close: |
 
@@ -39,21 +39,21 @@ read-only.
 
 ## Profile hierarchy
 
-An eAccount is the experiment account assigned to an experiment. It has limited storage access and owns the writable
+An e-account is the experiment account assigned to an experiment. It has limited storage access and owns the writable
 profile settings for that experiment.
 
-Profiles can come from read-only bundled sources or from writable eAccount settings:
+Profiles can come from read-only bundled sources or from writable e-account settings:
 
 | Layer | Path | Role |
 | --- | --- | --- |
 | BEC Widgets core library | `bec_widgets/widgets/containers/dock_area/profiles/<profile>.ini` | Built-in read-only baseline source. |
 | Beamline plugin repository | `<beamline_repo>/<beamline_package>/bec_widgets/profiles/<profile>.ini` | Shared read-only baseline source deployed with the plugin revision. |
-| eAccount writable baseline | `widget_settings/profiles/baseline/<namespace>/<profile>.ini` | Local restore point for one eAccount and namespace. |
-| eAccount writable runtime | `widget_settings/profiles/runtime/<namespace>/<profile>.ini` | Editable working copy loaded by the Dock Area. |
+| e-account writable baseline | `widget_settings/profiles/baseline/<namespace>/<profile>.ini` | Local restore point for one e-account and namespace. |
+| e-account writable runtime | `widget_settings/profiles/runtime/<namespace>/<profile>.ini` | Editable working copy loaded by the Dock Area. |
 
-When a bundled profile is used, BEC creates writable eAccount copies so the running session can edit the profile without
+When a bundled profile is used, BEC creates writable e-account copies so the running session can edit the profile without
 modifying the bundled source. For durable sharing, commit the profile to the beamline plugin repository. For short-term
-sharing between two eAccounts, copy the eAccount profile file directly.
+sharing between two e-accounts, copy the e-account profile file directly.
 
 ## Beamline plugin profiles
 
@@ -72,12 +72,12 @@ Here, `<beamline_repo>` is the Git repository directory and `<beamline_package>`
 that repository. For example, a repository named `debye_bec` can contain a Python package directory also named
 `debye_bec`, so the profile directory is `debye_bec/debye_bec/bec_widgets/profiles/`.
 
-Profiles committed there are shared with all eAccounts that use that beamline plugin revision. BEC treats those files as
-read-only bundled baseline sources; local runtime and baseline copies are created in the eAccount settings area when the
+Profiles committed there are shared with all e-accounts that use that beamline plugin revision. BEC treats those files as
+read-only bundled baseline sources; local runtime and baseline copies are created in the e-account settings area when the
 profile is used.
 
 Use this plugin directory when a Dock Area profile should be distributed as part of the beamline GUI setup. For ad hoc
-sharing between two eAccounts, copy the profile file between the eAccount settings directories instead.
+sharing between two e-accounts, copy the profile file between the e-account settings directories instead.
 
 ## Namespace-specific profile directories
 

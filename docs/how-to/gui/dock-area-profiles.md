@@ -25,7 +25,7 @@ same profiles from BEC IPython commands, use
 | The profile exists, but it is missing from the toolbar selector. | [Toggle Dock Area Profile Quick Selection](toggle-dock-area-profile-quick-selection.md)         | Shows or hides the profile in the quick selector without deleting it. |
 | The active profile has local layout changes you want to discard. | [Restore a Dock Area Profile to Its Baseline](restore-dock-area-profile-baseline.md)            | Replaces the runtime profile with its saved baseline.                 |
 | A local profile is no longer useful.                             | [Delete a Dock Area Profile](delete-dock-area-profile.md)                                       | Removes the writable local profile from the profile manager.          |
-| Another eAccount or beamline deployment needs the same profile.  | [Share a Dock Area Profile with Other Accounts](share-dock-area-profile-with-other-accounts.md) | Copies the profile directly or adds it to the plugin repository.      |
+| Another e-account or beamline deployment needs the same profile.  | [Share a Dock Area Profile with Other Accounts](share-dock-area-profile-with-other-accounts.md) | Copies the profile directly or adds it to the plugin repository.      |
 
 ## Common profile workflow
 
