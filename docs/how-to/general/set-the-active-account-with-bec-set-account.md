@@ -11,7 +11,7 @@ related:
 
     This is a PSI-specific guide. It assumes that you already know the correct process-group account, for example `p12345`.
 
-## Pre-requisites
+## Prerequisites
 - You are in the beamline config directory that contains the `bec-set-account` wrapper, for example `/sls/x99sa/config/bec/production`.
 - You have write access to the config directory and permission to change the active account, typically a PSI beamline scientist or staff member.
 - You know the process-group account you want to activate, for example `p12345`.

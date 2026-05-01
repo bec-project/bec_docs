@@ -13,7 +13,7 @@ related:
 !!! info "Overview"
     Open a BEC scan file with `h5py`, inspect its metadata and recorded datasets, and locate linked external files when present.
 
-## Pre-requisites
+## Prerequisites
 
 - `h5py` is installed in the Python environment you are using.
 - You know the path to the BEC HDF5 file you want to inspect.

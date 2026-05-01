@@ -12,7 +12,7 @@ related:
 
     Define a custom NeXuS layout for files written by BEC. This is done by subclassing `DefaultFormat` and writing your custom layout in the `format()` method.
 
-## Pre-requisites
+## Prerequisites
 - A beamline plugin repository is available and installed.
 - Write access (beamline manager) to the beamline plugin package.
 

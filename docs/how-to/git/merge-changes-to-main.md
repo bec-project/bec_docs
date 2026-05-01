@@ -13,7 +13,7 @@ related:
 
     Use this after you have committed and pushed your changes to a branch and you want to make them part of the main line of development.
 
-## Pre-requisites
+## Prerequisites
 - You have already pushed your changes to the remote repository.
 - You can access your repository in Gitea.
 - Your branch is ready to be reviewed and merged.

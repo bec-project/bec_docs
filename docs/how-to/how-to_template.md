@@ -9,8 +9,8 @@ related:
 !!! Info "Goal"
     State the goal of this how-to guide. What will the user be able to do after following the steps in this guide?
 
-## Pre-requisites
-List any pre-requisites, remove if not needed.
+## Prerequisites
+List any prerequisites, remove if not needed.
 
 ## Your own section titles
 List any steps needed to achieve the goal.

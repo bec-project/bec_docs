@@ -13,7 +13,7 @@ related:
 !!! info "Overview"
     Open a BEC scan file in `silx`, inspect its metadata and recorded signals, and locate linked detector files when present. `silx` is a graphical HDF5 viewer commonly available on all beamline consoles at PSI.
 
-## Pre-requisites
+## Prerequisites
 - The file is readable from your current machine.
     
 BEC usually writes one master file per scan, often named like `S01234_master.h5`. Start with that file rather than a detector file, because the master file contains the main BEC structure and can link to additional files.
