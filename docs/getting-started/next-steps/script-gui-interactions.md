@@ -19,10 +19,10 @@ related:
 !!! info "Goal"
 
     Try a small BEC history analysis in the IPython client, smooth the data locally, fit it with a Waveform DAP curve,
-    and then save the workflow as a script if you want to reuse it.
+    and continue adjusting the plot interactively.
 
-Start directly in the BEC IPython client. When the commands do what you want, move them into a small Python function in
-your beamline or plugin repository.
+Start directly in the BEC IPython client. This page shows how normal Python analysis can be combined with Waveform
+plotting without turning the workflow into an automated control script.
 
 ## Prerequisites
 
@@ -90,157 +90,32 @@ y_shifted = y_from_waveform - np.min(y_from_waveform)
 wf.plot(x=x_from_waveform, y=y_shifted, label="smoothed shifted")
 ```
 
-!!! tip "Start in IPython, save later"
+## 3. Continue interactively
 
-    Build the commands interactively first. After the plot and fit look useful, copy the working commands into a Python
-    file so you can reuse them in later BEC IPython sessions.
-
-## 3. Save the working commands as a script
-
-Create a Python file in your script folder, for example:
-
-```text
-<beamline_plugin_repository>/scripts/history_gui_analysis.py
-```
-
-Put the working commands into a function. Keep `motor_name` explicit so the script is easy to read and does not need to
-guess scan metadata:
+Use the Waveform reference when you want to inspect fit results or adjust the plot:
 
 ```python
-import numpy as np
-from scipy.ndimage import gaussian_filter1d
-
-
-def plot_smoothed_history_with_dap(
-    gui,
-    bec,
-    *,
-    motor_name,
-    device_name="bpm4i",
-    signal_name=None,
-    count=3,
-    smoothing_sigma=2.0,
-    waveform=None,
-):
-    """Plot recent history scans, smoothed curves, gradients, and Gaussian DAP fits."""
-    signal_name = signal_name or device_name
-    scans = bec.history[-count:]
-    if not scans:
-        raise ValueError("No scans are available in bec.history.")
-
-    if waveform is None:
-        gui.bec.delete_all()
-        wf = gui.bec.new(gui.available_widgets.Waveform)
-    else:
-        wf = waveform
-        wf.clear_all()
-
-    wf.title = f"{device_name} smoothed history fit"
-    wf.x_label = motor_name
-    wf.y_label = f"{device_name}-{signal_name}"
-
-    plotted = []
-
-    for index, scan in enumerate(scans, start=1):
-        metadata = scan.metadata.get("bec", {})
-        scan_number = metadata.get("scan_number", index)
-        label_prefix = f"scan {scan_number}"
-
-        x = np.asarray(scan.devices[motor_name][motor_name].read()["value"])
-        y = np.asarray(scan.devices[device_name][signal_name].read()["value"])
-        smoothed = gaussian_filter1d(y, sigma=smoothing_sigma)
-        gradient = np.gradient(smoothed)
-
-        wf.plot(x=x, y=y, label=f"{label_prefix}: measured")
-        wf.plot(x=x, y=smoothed, label=f"{label_prefix}: smoothed", dap="GaussianModel")
-        wf.plot(x=x, y=gradient, label=f"{label_prefix}: gradient")
-
-        plotted.append(
-            {
-                "scan": scan,
-                "scan_number": scan_number,
-                "x": x,
-                "measured": y,
-                "smoothed": smoothed,
-                "gradient": gradient,
-            }
-        )
-
-    return {
-        "waveform": wf,
-        "plotted": plotted,
-    }
-```
-
-## 4. Import the script
-
-Beamline and plugin repositories are usually installed in the BEC environment in editable mode. If your script is inside
-the plugin package, import it with the normal package path:
-
-```python
-from <plugin_package>.scripts import history_gui_analysis
-```
-
-For example, if your plugin package is called `my_beamline`:
-
-```python
-from my_beamline.scripts import history_gui_analysis
-```
-
-!!! tip "After editing the script"
-
-    If the BEC IPython client is already running while you edit the file, restart the client or reload the module before
-    calling the function again:
-
-    ```python
-    from importlib import reload
-
-    reload(history_gui_analysis)
-    ```
-
-## 5. Run the scripted interaction
-
-Call the function from the BEC IPython client:
-
-```python
-analysis = history_gui_analysis.plot_smoothed_history_with_dap(
-    gui,
-    bec,
-    motor_name="samx",
-    count=3,
-)
-```
-
-The function creates a Waveform, plots the last three measured curves, plots smoothed and gradient curves, and attaches
-Gaussian DAP fits to the smoothed curves.
-
-## 6. Continue interactively
-
-Use the returned objects when you want to inspect fit results or adjust the plot:
-
-```python
-wf = analysis["waveform"]
 data = wf.get_all_data()
 
 wf.get_dap_summary()
 wf.title = "Updated smoothed history comparison"
 ```
 
-!!! tip "Combine scripts with Dock Area profiles"
+You can keep adding derived curves while you inspect the data:
 
-    A script does not have to create the full GUI from scratch. You can load a profile first, then fill the widgets that
-    already exist in that profile:
+```python
+gradient_abs = np.abs(gradient)
+wf.plot(x=x, y=gradient_abs, label="absolute gradient")
+```
+
+!!! tip "Use a profile when the layout already exists"
+
+    You do not have to create the Waveform from scratch. You can load a Dock Area profile first, then fill the widgets
+    that already exist in that profile:
 
     ```python
     gui.bec.load_profile("alignment_scan")
     wf = gui.bec.Waveform
-    analysis = history_gui_analysis.plot_smoothed_history_with_dap(
-        gui,
-        bec,
-        motor_name="samx",
-        count=3,
-        waveform=wf,
-    )
     ```
 
     To start from the saved baseline version of a profile, use:
@@ -258,4 +133,12 @@ wf.title = "Updated smoothed history comparison"
 
 !!! success "Result"
 
-    You have a reusable script pattern that combines BEC history access, Python analysis, and GUI plotting.
+    You combined BEC history access, Python analysis, Waveform plotting, and DAP fitting from the BEC IPython client.
+
+<!--
+TODO: Revisit as a dedicated, safety-reviewed scripting tutorial.
+
+The script-saving workflow was intentionally removed from the published page for now.
+When this topic returns, write it as a dedicated tutorial with clear boundaries for
+which GUI interactions are appropriate to automate and which should remain manual.
+-->
