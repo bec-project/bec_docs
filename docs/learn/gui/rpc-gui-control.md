@@ -16,7 +16,7 @@ configure plots, load profiles, and script GUI behaviour from the command line.
 `gui` is the client-side GUI entry point. It exposes windows, available widget classes, and
 helpers to create or show GUI elements.
 
-`gui.bec` is the default dock area opened by the `Terminal + Dock` launcher mode. It is a
+`gui.bec` is the default Dock Area opened by the `Terminal + Dock` launcher mode. It is a
 client-side reference to a `BECDockArea` running in the GUI process.
 
 `gui.available_widgets` lists widget classes that can be created remotely:
@@ -36,7 +36,7 @@ wf = gui.bec.new(gui.available_widgets.Waveform)
 wf.plot(device_x=dev.samx, device_y=dev.bpm4i)
 ```
 
-The dock area also exposes created widgets through a dynamic namespace. The first Waveform in
+The Dock Area also exposes created widgets through a dynamic namespace. The first Waveform in
 `gui.bec` can usually be reached as:
 
 ```python
@@ -44,7 +44,7 @@ gui.bec.Waveform
 ```
 
 If a widget is deleted, an existing RPC reference to that widget is no longer useful. Get a new
-reference from the dock area namespace, create the widget again, or reload the profile that
+reference from the Dock Area namespace, create the widget again, or reload the profile that
 contains it.
 
 ## CLI access pattern
@@ -91,8 +91,8 @@ internal Qt implementation details.
 
 Examples of exposed operations include:
 
-- `gui.bec.new(...)` to add a widget to a dock area.
-- `gui.bec.load_profile(...)` to load a dock area profile.
+- `gui.bec.new(...)` to add a widget to a Dock Area.
+- `gui.bec.load_profile(...)` to load a Dock Area profile.
 - `gui.bec.load_profile(..., restore_baseline=True)` to load the baseline version of a profile.
 - `gui.bec.restore_baseline_profile(..., show_dialog=False)` for scripted profile restore.
 - `wf.plot(...)` and `wf.get_dap_summary()` for Waveform control.

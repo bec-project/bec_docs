@@ -19,7 +19,7 @@ Dock Area profiles use two profile copies:
 
 When BEC loads a profile, it prefers the runtime profile. If a runtime profile is not available, it falls back to the
 baseline profile. When a profile is restored, BEC replaces the runtime profile with the baseline profile and reloads the
-dock area.
+Dock Area.
 
 For locally created profiles, saving again with the same name updates both the runtime profile and the baseline profile.
 For bundled profiles from BEC Widgets or a beamline plugin repository, the bundled source remains read-only.
@@ -28,11 +28,11 @@ For bundled profiles from BEC Widgets or a beamline plugin repository, the bundl
 
 Dock Area profiles have three origins:
 
-| Origin | Source | Delete? | Update baseline? |
-| --- | --- | --- | --- |
-| e-account settings | Active BEC widgets settings profile root | :material-check: | :material-check: |
-| Beamline plugin | `<beamline_repo>/<beamline_package>/bec_widgets/profiles/` | :material-close: | :material-close: |
-| BEC Widgets | Built-in BEC Widgets profiles | :material-close: | :material-close: |
+| Origin             | Source                                                     | Delete?          | Update baseline? |
+|--------------------|------------------------------------------------------------|------------------|------------------|
+| e-account settings | Active BEC widgets settings profile root                   | :material-check: | :material-check: |
+| Beamline plugin    | `<beamline_repo>/<beamline_package>/bec_widgets/profiles/` | :material-close: | :material-close: |
+| BEC Widgets        | Built-in BEC Widgets profiles                              | :material-close: | :material-close: |
 
 The profile manager uses the origin to decide whether the delete action is enabled and whether a profile is treated as
 read-only.
@@ -85,7 +85,7 @@ Within the writable profile root, BEC stores profiles in separate namespace dire
 `baseline/`.
 
 The namespace distinguishes different subsets of profiles for different dock areas. This lets BEC keep one set of
-profiles for one type of dock area and a different set for another type of dock area, instead of mixing all profiles
+profiles for one type of Dock Area and a different set for another type of Dock Area, instead of mixing all profiles
 into one shared list.
 
 In practice, a namespaced profile layout looks like this:
@@ -98,16 +98,16 @@ widget_settings/profiles/
 
 BEC slugifies the namespace before it is used as a directory name.
 
-## How BEC resolves the dock area namespace
+## How BEC resolves the Dock Area namespace
 
-Each dock area uses a `profile_namespace` to scope its profile set.
+Each Dock Area uses a `profile_namespace` to scope its profile set.
 
 If `profile_namespace` is passed explicitly, BEC uses that value. If it is not passed and automatic namespace resolution
 is enabled, BEC derives the namespace in this order:
 
-1. the dock area's `objectName()`
-2. the dock area's `windowTitle()`
-3. the current dock area mode, as `<mode>_workspace`
+1. the Dock Area's `objectName()`
+2. the Dock Area's `windowTitle()`
+3. the current Dock Area mode, as `<mode>_workspace`
 
 If automatic namespace resolution is disabled and no explicit namespace is passed, BEC uses `general`.
 
@@ -115,7 +115,7 @@ The profile utilities then use the resolved namespace for profile lookup and sto
 written to the namespace-specific directory. Profile lookup can also see unscoped profile files for compatibility, but
 new Dock Area profile sets should use a clear namespace.
 
-This keeps different dock area types and contexts from accidentally sharing the same profile list.
+This keeps different Dock Area types and contexts from accidentally sharing the same profile list.
 
 ## Last-used profile state
 
@@ -125,7 +125,7 @@ BEC stores the last-used profile separately from the profile INI files:
 widget_settings/profiles/_meta.ini
 ```
 
-The last-used profile key is scoped by namespace and can also be scoped by dock area instance ID. When an instance ID is
+The last-used profile key is scoped by namespace and can also be scoped by Dock Area instance ID. When an instance ID is
 present, BEC first checks the instance-specific entry and can then fall back to the namespace-wide entry.
 
 ## Related topics

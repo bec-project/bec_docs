@@ -70,28 +70,9 @@ dev.bpm4i.sim.params = {
 `ref_motor` tells the simulation which motor position to use as the model input. For `bpm4i`, `samx` is a good
 default for the examples in this documentation.
 
-## 4. Use the simulated device in a Waveform
-
-Plot the simulated device and attach the matching DAP model:
-
-```python
-wf = gui.bec.new(gui.available_widgets.Waveform)
-wf.plot(device_x=dev.samx, device_y=dev.bpm4i, dap="GaussianModel")
-scans.line_scan(dev.samx, -5, 5, steps=25, exp_time=0.1, relative=False)
-```
-
-Inspect the DAP output:
-
-```python
-wf.get_dap_summary()
-```
-
-For more DAP examples, see [Fit Waveform Data with DAP](../gui/fit-waveform-data-with-dap.md){ data-preview }.
-
 !!! success "Result"
 
-    The simulated `bpm4i` signal produces Gaussian-shaped data, and the Waveform can display
-    both the measured curve and the DAP fit.
+    The simulated `bpm4i` signal produces Gaussian-shaped data.
 
 ## Make the simulation persistent
 

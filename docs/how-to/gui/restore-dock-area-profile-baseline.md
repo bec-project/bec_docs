@@ -16,7 +16,7 @@ related:
 
 ## Prerequisites
 
-- You have BEC open with a dock area.
+- You have BEC open with a Dock Area.
 - The profile you want to restore is the active profile.
 
 If you do not have profiles yet, first create one with
@@ -30,11 +30,11 @@ Use [Switch Dock Area Profiles](switch-dock-area-profile.md) if you need to acti
 
 ## 2. Start the restore action
 
-Click the reset button :material-arrow-u-left-top: in the dock area toolbar.
+Click the reset button :material-arrow-u-left-top: in the Dock Area toolbar.
 
 ![restore_profile_toolbar.png](assets/restore_profile_toolbar.png)
 
-The dock area shows a confirmation dialog with previews of the current layout and the saved baseline layout.
+The Dock Area shows a confirmation dialog with previews of the current layout and the saved baseline layout.
 
 ![restore_profile_dialog.png](assets/restore_profile_dialog.png)
 
@@ -44,7 +44,7 @@ Check the previews in the confirmation dialog.
 
 Confirm the restore only if you want to replace the current runtime profile with the saved baseline profile.
 
-When you confirm, BEC restores the runtime profile from the baseline profile and reloads the dock area.
+When you confirm, BEC restores the runtime profile from the baseline profile and reloads the Dock Area.
 
 !!! learn "[Learn about runtime and baseline profiles](../../learn/gui/dock-area-profiles/runtime-and-baseline-copies.md){ data-preview }"
 
@@ -53,7 +53,7 @@ When you confirm, BEC restores the runtime profile from the baseline profile and
 
 !!! success "Result"
 
-    The dock area uses the saved baseline layout for the restored profile.
+    The Dock Area uses the saved baseline layout for the restored profile.
 
 ## Restore from the BEC IPython client
 

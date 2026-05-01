@@ -32,7 +32,7 @@ Dock Area profile settings for that experiment.
 
 ## 1. Find the saved profile
 
-Open the profile manager from the dock area toolbar and select the profile.
+Open the profile manager from the Dock Area toolbar and select the profile.
 
 Read the `Runtime path` field in the metadata panel. This is the editable `.ini` file for the saved profile.
 
@@ -144,7 +144,7 @@ Use the same file name in both locations.
 
 ## 3. Check the shared profile
 
-After deployment or after copying the profile to another e-account, open BEC with a dock area.
+After deployment or after copying the profile to another e-account, open BEC with a Dock Area.
 
 Open the profile manager and verify that the profile is listed. Bundled profiles appear as read-only profiles and cannot
 be overwritten or deleted from the GUI.

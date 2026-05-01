@@ -21,7 +21,7 @@ the GUI.
 
 ## Open the profile manager
 
-Open the profile manager with the **manage button** :material-account-cog: in the dock area toolbar.
+Open the profile manager with the **manage button** :material-account-cog: in the Dock Area toolbar.
 
 ![dock_area_toolbar_profile_manager.png](../../../how-to/gui/assets/dock_area_toolbar_profile_manager.png)
 
@@ -40,11 +40,11 @@ The profile manager has four main parts:
 
 ## Actions in the profile manager
 
-| Button | Meaning |
-| --- | --- |
-| **switch profile button** :material-play-circle-outline: | Load the selected profile into the dock area. |
-| **toggle quick selection button** :material-star-outline: | Show or hide the profile in the toolbar quick selector. |
-| **delete button** :material-trash-can-outline: | Delete a writable local profile. This button is disabled for bundled read-only profiles. |
+| Button                                                    | Meaning                                                                                  |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------------|
+| **switch profile button** :material-play-circle-outline:  | Load the selected profile into the Dock Area.                                            |
+| **toggle quick selection button** :material-star-outline: | Show or hide the profile in the toolbar quick selector.                                  |
+| **delete button** :material-trash-can-outline:            | Delete a writable local profile. This button is disabled for bundled read-only profiles. |
 
 Use the task pages when you want the step-by-step workflow:
 
@@ -73,7 +73,7 @@ For the workflow that uses the `Runtime path` field, see
 
 ## Inspect available profiles from the BEC IPython client
 
-To inspect which profiles are available in the current dock area namespace from the BEC IPython client, call:
+To inspect which profiles are available in the current Dock Area namespace from the BEC IPython client, call:
 
 ```python
 gui.bec.list_profiles()

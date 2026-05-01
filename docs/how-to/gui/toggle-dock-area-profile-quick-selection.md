@@ -12,11 +12,11 @@ related:
 
 !!! Info "Goal"
 
-    Show or hide a Dock Area profile in the dock area toolbar selector without deleting the profile.
+    Show or hide a Dock Area profile in the Dock Area toolbar selector without deleting the profile.
 
 ## Prerequisites
 
-- You have BEC open with a dock area.
+- You have BEC open with a Dock Area.
 - The profile you want to change is already available.
 
 
@@ -25,7 +25,7 @@ If you do not have profiles yet, first create one with
 
 ## 1. Open the profile manager
 
-Click the **manage button** :material-account-cog: in the dock area toolbar.
+Click the **manage button** :material-account-cog: in the Dock Area toolbar.
 
 ![toolbar_profile_quick_select.png](assets/toolbar_profile_quick_select.png)
 
@@ -43,7 +43,7 @@ Use the metadata panel to check the current quick-select state.
 
 Click the **toggle quick selection button** <span style="color: #FA9E00;">:material-star:</span>.
 
-If quick selection is enabled, the profile appears in the dock area toolbar selector. If quick selection is disabled,
+If quick selection is enabled, the profile appears in the Dock Area toolbar selector. If quick selection is disabled,
 the profile stays available in the profile manager but is hidden from the toolbar selector.
 
 If you load a profile from the profile manager after disabling quick selection, the profile name can still appear in the
@@ -52,7 +52,7 @@ the selector.
 
 ## 4. Check the toolbar selector
 
-Close the profile manager or return to the dock area toolbar.
+Close the profile manager or return to the Dock Area toolbar.
 
 Open the **profile selector** and confirm that the profile is shown or hidden as expected.
 
