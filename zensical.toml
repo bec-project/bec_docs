@@ -124,6 +124,7 @@ nav = [
     #{ "Operations and deployment" = [ TODO fill with content
     #] },
     { "GUI" = [
+      { "Introduction" = "learn/gui/introduction.md" },
       { "Dock Area Profiles" = [
         "learn/gui/dock-area-profiles/index.md",
         { "Runtime and Baseline Copies" = "learn/gui/dock-area-profiles/runtime-and-baseline-copies.md" },
