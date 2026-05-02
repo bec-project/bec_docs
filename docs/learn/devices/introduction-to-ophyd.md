@@ -124,6 +124,14 @@ The device-and-signal model makes it possible to:
 
 That makes ophyd a practical abstraction layer for scientific instrumentation software.
 
+!!! info "What to remember"
+    - In ophyd, a `Signal` models one value and a `Device` groups related signals.
+    - `Component` declarations define a reusable device structure that can be instantiated with
+      different prefixes.
+    - `read()` and `read_configuration()` serve different purposes.
+    - `Kind` controls whether a signal behaves like measured data, configuration data, or is
+      omitted from normal reads.
+
 ## What to read next
 
 If you are learning ophyd specifically for BEC, the next useful pages are:
