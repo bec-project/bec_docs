@@ -81,6 +81,13 @@ data updates, Qt property support, and RPC exposure for user-facing methods. In 
 is used to build beamline-specific views that can then be reused in BEC Designer, the Dock Area,
 and scripted RPC workflows.
 
+!!! info "What to remember"
+    - BEC Widgets runs in a separate process, so GUI load does not affect scan execution.
+    - Live widget updates come from Redis events through the BEC Dispatcher into Qt signals/slots.
+    - You can build UIs in four ways: BEC Designer, Dock Area profiles, RPC scripting, or custom
+      `BECWidget` subclasses.
+    - GUI workflows can stay fully graphical, fully scripted, or mixed in the same experiment.
+
 ## What to read next
 
 - [RPC GUI Control](rpc-gui-control.md) explains how the BEC IPython client communicates with

@@ -27,3 +27,10 @@ BEC file writing is organized around a few distinct pieces:
 - plugin-provided writer classes, which can extend that structure
 - file references, which let devices announce externally created files so they can be linked into the master file
 - async writing, which continuously writes data while the scan is still running
+
+!!! info "What to remember"
+    - BEC writes scan data to HDF5 files after every scan.
+    - The default layout is defined by `DefaultFormat` and does not strictly enforce NeXuS.
+    - Beamlines can extend or replace the default layout through a plugin-provided writer class.
+    - Devices can link externally created files into the master file using file references.
+    - Async writing keeps data flowing into the file while the scan is still in progress.
