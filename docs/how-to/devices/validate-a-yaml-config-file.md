@@ -1,7 +1,7 @@
 ---
 related:
-  - title: Managing Device Configurations
-    url: learn/devices/managing-device-configs.md
+  - title: Managing YAML Configs
+    url: learn/devices/managing-yaml-configs.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Load and Save a Device Session

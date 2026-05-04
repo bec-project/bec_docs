@@ -30,7 +30,7 @@ This page focuses on the structure of a device configuration entry and the meani
 
 !!! learn "[Learn how device configurations become live device sessions in BEC](device-sessions-in-bec.md){ data-preview }"
 
-!!! learn "[Learn how larger configurations can be composed from multiple files](managing-device-configs.md){ data-preview }"
+!!! learn "[Learn how larger configurations can be composed from multiple files](managing-yaml-configs.md){ data-preview }"
 
 ## Ophyd device configuration
 

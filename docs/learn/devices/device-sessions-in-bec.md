@@ -2,8 +2,8 @@
 related:
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
-  - title: Managing Device Configurations
-    url: learn/devices/managing-device-configs.md
+  - title: Managing YAML Configs
+    url: learn/devices/managing-yaml-configs.md
   - title: Load and Save a Device Session
     url: how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md
   - title: Inspect the Current Device Session
@@ -12,7 +12,7 @@ related:
 
 # Device Sessions in BEC
 
-Device session is what we call the currently active set of devices in the active BEC sessions. It is the result of loading a list of device configurations, for example from a YAML file, and is shared across all BEC services and clients. This means that any change to the session, whether from loading a new YAML config or from runtime changes in the client, affects all clients and services of that session.
+The device session is what we call the currently active set of devices in the active BEC sessions. It is the result of loading a list of device configurations, for example from a YAML file, and is shared across all BEC services and clients. This means that any change to the session, whether from loading a new YAML config or from runtime changes in the client, affects all clients and services of that session.
 
 Understanding the concept behind a device session gives you more control about how devices are handled within BEC. It allows you to understand the device interface from perspective of the client, and how runtime changes to device configurations affect your data acquisition with BEC.
 
@@ -28,62 +28,53 @@ A device session usually starts from a list of device configurations, which can 
 
 !!! learn "[Learn more about the fields available in a device configuration](device-config-in-bec.md){ data-preview }"
 
-!!! learn "[Learn how multiple config files can be combined into one effective configuration](managing-device-configs.md){ data-preview }"
+!!! learn "[Learn how multiple config files can be combined into one effective configuration](managing-yaml-configs.md){ data-preview }"
 
 ## From configuration files to a device session
 
-BEC can load device confi from a single YAML file or from several files composed together, for example with `!include`. 
-Once the configuration is loaded, BEC will try to (1) initialized an ophyd object for each device based on the provide device config, (2) connect to all underlying signals of the device, and (3) publish the resulting device interface in Redis. 
+When you load a YAML configuration file into BEC, the device server parses the file and tries to create a device session based on the provided device configurations. 
+This process includes: 
+
+1. *Initializing ophyd objects* for each device based on the provided device configuration. 
+2. *Trying to establish a connection* to the underlying signals of the device. 
+3. *Read and publish the device interface* in Redis to make it available to all clients and services.
 
 ![device_session_yaml_config.png](../../learn/assets/device_session_yaml_config.png){align="center" width="80%"}
 
 ### 1. Initialize ophyd objects
-On the device server, the configuration turns into a list of device definitions, each specified by the device config provided in the config file (see (./device-config-in-bec.md) for details about the device config fields). 
-For each device entry, BEC resolves the configured `deviceClass`, combines it with the device's `deviceConfig`, and constructs an ophyd object on the device server.
 
-If a device declares dependencies through `needs`, BEC resolves those dependencies first such that the device specified in `needs` is initialized first. This allows the dependent device to reference the ophyd object of the needed device.
+The device server uses the device configuration to initialize ophyd objects for each device. The `deviceClass` field in the config is used to resolve the ophyd class, and the `deviceConfig` field provides the necessary keyword arguments for initialization. If a device has dependencies on other devices (specified in the `needs` field), BEC first initializes those needed devices before initializing the dependent device. This allows the dependent device to reference the ophyd objects of the needed devices during its own initialization.
 
 ![device_session_with_ophyd_object.png](../../learn/assets/device_session_with_ophyd_object.png){align="center" width="80%"}
 
 !!! warning "Device initialization fails"
 
-    Once a single device fails to initialize, BEC treats that as a failure for the entire session and will flush all devices from the current sessions. This means that if one device fails to initialize, the whole session will be empty and no devices will be available from the client until a new configuration is loaded.
+    If the ophyd objects fails to initialize, we consider that a critical failure. Therefore, the entire session is flushed and no devices are loaded into the current device session. We recommend to validate YAML files prior to loading them with `ophyd_test` to catch schema and connection issues early. Please refer to [Validate a YAML config file](../../how-to/devices/validate-a-yaml-config-file.md) for more details.
 
 ### 2. Try to establish a connection
 
-Directly after initialization of the ophyd object, BEC tries to connect to the underlying signals of the device. This is where connection timeouts, unreachable IOCs, or other backend-specific connection problems appear. Per default, BEC waits up to 10 seconds for a successful connection before giving up and marking the device as failed. You can adjust this timeout with the `connectionTimeout` field in the device config.
-
+After the initialization of the ophyd object, BEC attempts to connect to all signals of the device within the configured connection timeout. The default timeout is 5s per device, but it can be adjusted with the `connectionTimeout` field in the device configuration of your YAML file.
 
 !!! warning "Device connection fails"
 
-    If a device fails to connect within the configured timeout, BEC will disable the device in the current session, but continue to load the rest of the devices. This means that if one device fails to connect, the other devices may still be available from the client, but the failed device will be marked as disabled. 
+    If a device fails to connect within the configured timeout, BEC will disable the device in the current session, but continue to load the rest of the devices. You will also be informed about the failed connection when you update your device session. 
 
 ### 3. Read and publish the device interface
 
-Once the ophyd objects are initialized and connected to, BEC inspects its interface and publishes the relevant device information through Redis.
-
-This published interface includes information such as:
-
-- signals
-- methods
-- metadata
-
-BEC also publishes the `read()` and `read_configuration()` data for each device during the initial publishing step.
+Once the ophyd objects are initialized and connected, BEC inspects the device interface for each device and publishes the relevant information to Redis. This includes all signals of the device class, as well as methods specified in the class attribute `USER_ACCESS`, which is a list of strings that specifies which methods of the device class should be accessible from the client.
+In addition, BEC also publishes the `read()` and `read_configuration()` data for each device during the initial publishing step, so that clients are up-to-date with the latest values for all signals during the initial load of the session. 
 
 ### 4. Device Interface from the client perspective
 
-Every BEC service and client is connected to Redis and subscribes to the published device information. When a new device session is loaded, all clients receive the updated device information and can use these devices in runtime. The interface exposes a proxy representation of the device (*RPC object*), which looks and feels like the original ophyd object, but is not the same object. Calling methods such as `read()` and `read_configuration()` from the client triggers a communication with the device server to execute these methods on the original ophyd object, and then returns the result back to the client. This allows clients to share the same device session and use the same devices without direct access to the original ophyd objects on the device server.
-
+Any BEC client or service is subscribed to the published device information in Redis, and will use this information to construct a proxy representation of the device, which we call the *RPC object*. This RPC object looks and feels like the original ophyd object on the device server, but it is not the same object. When you call methods such as `read()` and `read_configuration()` from the client, it triggers a communication with the device server to execute these methods on the original ophyd object, and then returns the result back to the client. This allows clients to share the same device session and use the same devices without direct access to the original ophyd objects on the device server.
 
 ![device_session_with_rpc_objects.png](../../learn/assets/device_session_with_rpc_objects.png){align="center" width="80%"}
 
+## Why this matters in practice
 
-## Why this distinction matters in practice
-
-Now that we have established the difference between a device configuration, the device session, and the client interface, we have a clearer picture of how BEC handles devices across its distributed architecture. Even with multiple clients and services, there is only one active device session at a time, which is shared across the system. This means that any change to the session, whether from loading a new config file or from runtime changes in the client, affects all clients and services that rely on that session.
-It further explains why there can be differences between the original YAML file on disk and the current device session.
+The architecture of BEC allows for multiple clients and services to share access to the same devices. This requires coordination and control, which is achieved through this concept of a shared device session, and *RPC objects* in the clients. Any client has access to all devices, while the actual device object and connection is handled by the device server. The device server thereby provides a layer of abstraction and control, which allows for a controlled and shared access to devices across multiple clients and services.
 
 ## What to learn next
 
-- Continue with [Device Configuration in BEC](device-config-in-bec.md) to learn the individual fields in a device entry.
-- Continue with [Managing Device Configurations](managing-device-configs.md) to learn how larger configurations are composed.
+- Continue with [Device Configuration in BEC](../../learn/devices/device-config-in-bec.md) to learn the individual fields in a device entry.
+- Continue with [Managing YAML Configs](../../learn/devices/managing-yaml-configs.md) to learn how larger configurations are composed.
