@@ -4,8 +4,8 @@ related:
     url: learn/devices/device-sessions-in-bec.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
-  - title: Managing Device Configurations
-    url: learn/devices/managing-device-configs.md
+  - title: Managing YAML Configs
+    url: learn/devices/managing-yaml-configs.md
   - title: Inspect the Current Device Session
     url: how-to/devices/inspect-the-current-device-session-from-the-bec-ipython-client.md
 ---
