@@ -2,12 +2,16 @@
 related:
   - title: Device Sessions in BEC
     url: learn/devices/device-sessions-in-bec.md
+  - title: Error Handling During Session Updates
+    url: learn/devices/error-handling-during-session-updates.md
   - title: Device Configuration in BEC
     url: learn/devices/device-config-in-bec.md
   - title: Managing YAML Configs
     url: learn/devices/managing-yaml-configs.md
   - title: Inspect the Current Device Session
     url: how-to/devices/inspect-the-current-device-session-from-the-bec-ipython-client.md
+  - title: Validate a YAML configuration file for BEC
+    url: how-to/devices/validate-a-yaml-config-file.md
 ---
 
 # Load and Save a Device Session
@@ -33,17 +37,13 @@ This loads the file from disk and sends the resulting configuration to the runni
 
 !!! info
 
-    Every time you load a new YAML file, BEC automatically saves the previous session to a backup file in `~/bec/logs/device_configs/recovery_configs/` with a timestamp. This allows you to recover the previous session if needed.
+    Every time you load a new YAML file, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp. If not changed, the default path is `~/bec/logs/device_configs/recovery_configs/`. This allows you to recover the previous session if needed.
 
 In case you have a previous session with devices already active, the new file will update the current session with the new values. 
 If there are conflicts between device configurations as defined in the new file and the current session, BEC will prompt you with options to resolve them. 
 This allows you to review the differences and decide how to proceed instead of automatically overwriting the current session with the new file.
 
 !!! learn "[Learn more about device sessions and device configurations in BEC](../../learn/devices/device-sessions-in-bec.md){ data-preview }"
-
-!!! warning "What happens if the session update is not successful?"
-
-    If the YAML file contains invalid device configurations, BEC will report the errors in the terminal and flush the device session. We recommend to validate YAML files prior to loading them with `ophyd_test` to catch schema and connection issues early. Please refer to [Validate a YAML configuration file for BEC](validate-a-yaml-config-file.md) for more details. If a device from the new session fails to connect, BEC will automatically disable that device in the session, but continue to load the rest of the devices. Again, there is a report of which devices failed to connect in the terminal, and you can also check the session from the client to see which devices are disabled.
 
 ## 2. Verify that the device session was loaded successfully
 
@@ -54,6 +54,8 @@ dev.show_all()
 ```
 
 Use this to confirm that the expected devices are present and that their status and class information match the file you loaded. In case of failed connections to devices, they will appear as disabled in the session, and you can check the terminal output for details about which devices failed to connect and why.
+
+!!! learn "[Learn more about error handling during session updates](../../learn/devices/error-handling-during-session-updates.md){ data-preview }"
 
 ## 3. Save the current device session to disk
 
@@ -72,7 +74,7 @@ Use this when you want to:
 
 ## 4. Reload a recovery file
 
-As previously mentioned, BEC automatically saves the previous session to a backup file `~/bec/logs/device_configs/recovery_configs/recovery_config_2026-05-04_08-39-23.yaml` with a timestamp every time you load a new YAML file. This allows you to recover the previous session if needed.
+As previously mentioned, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp every time you load a new YAML file. If not changed, the default path is `~/bec/logs/device_configs/recovery_configs/`. This allows you to recover the previous session if needed.
 
 You can load one of these recovery files with the same command as before:
 

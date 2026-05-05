@@ -47,7 +47,7 @@ This effective configuration becomes the basis for the current device session in
 
 !!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-sessions-in-bec.md){ data-preview }"
 
-If you need to work with this configuration in practice, use the task-focused guides:
+For more task-focused guides, take a look at the following how-tos:
 
 - [Load and save a device session from the BEC IPython client](../../how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md)
 - [Validate a YAML configuration file for BEC](../../how-to/devices/validate-a-yaml-config-file.md)

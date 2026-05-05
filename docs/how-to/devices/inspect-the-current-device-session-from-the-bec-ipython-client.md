@@ -20,7 +20,7 @@ related:
 ## Prerequisites
 
 - You have a running BEC IPython client session.
-- A device configuration is already loaded into BEC.
+- A device session is already loaded into BEC.
 
 ## 1. Show all devices in the current session
 
@@ -83,7 +83,7 @@ You may also inspect a specific device in more detail from the client.
 dev.samx
 ```
 
-This will show you the current runtime configuration of the `samx` device, including the last values for signals from `read` and `read_configuration`.
+This will show you the current runtime configuration of the `samx` device, including the latest values for signals from `read` and `read_configuration`.
 
 ![inspect_dev_samx.png](../../assets/inspect_dev_samx.png)
 
