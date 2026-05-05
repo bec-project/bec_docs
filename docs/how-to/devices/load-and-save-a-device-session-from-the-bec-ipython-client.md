@@ -37,7 +37,7 @@ This loads the file from disk and sends the resulting configuration to the runni
 
 !!! info
 
-    Every time you load a new YAML file, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp. If not changed, the default path is `~/bec/logs/device_configs/recovery_configs/`. This allows you to recover the previous session if needed.
+    Every time you load a new YAML file, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp. The path is defined in the `client_data_base_path` field of the deployment config for your beamline, but it will also be printed in the terminal whenever you update your session.
 
 In case you have a previous session with devices already active, the new file will update the current session with the new values. 
 If there are conflicts between device configurations as defined in the new file and the current session, BEC will prompt you with options to resolve them. 
