@@ -12,7 +12,7 @@ related:
 
 # Device Sessions in BEC
 
-The device session is what we call the currently active set of devices in the active BEC sessions. It is the result of loading a list of device configurations, for example from a YAML file, and is shared across all BEC services and clients. This means that any change to the session, whether from loading a new YAML config or from runtime changes in the client, affects all clients and services of that session.
+The device session is the set of currently active device in BEC. It is the result of loading a list of device configurations, for example from a YAML file, and is shared across all BEC services and clients. This means that any change to the session, whether from loading a new YAML config or from runtime changes in the client, affects all clients and services of that session.
 
 Understanding the concept behind a device session gives you more control about how devices are handled within BEC. It allows you to understand the device interface from perspective of the client, and how runtime changes to device configurations affect your data acquisition with BEC.
 
