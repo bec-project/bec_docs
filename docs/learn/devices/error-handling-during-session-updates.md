@@ -12,37 +12,16 @@ related:
 
 # Error Handling During Session Updates
 
-When updating a device session, BEC will handle errors differently depending on their severity. Some problems affect only one device, while others make the whole session update unreliable and therefore stop the update entirely. There are two possible outcomes:
-
-1. A loaded session, with one or more devices that are disabled
-2. A failed session update, where the session is cleared and no devices are loaded
-
-## Two kinds of failures
-
 During a session update, there are two main stages for each device:
 
 1. Creation of the Python object from the device configuration.
-2. Connection of that object to the underlying signals.
+2. Connection of that object to the underlying hardware.
 
-Failures in the second stage are usually handled per device. Failures in the first stage are treated as critical, because BEC cannot safely continue building the session.
+Failures in the first step are treated as critical as BEC will not be able to build the device without changes to the device source code.
 
-## When a device cannot connect
+Failures during the second stage can occur e.g. if the device is not yet plugged in or temporarily unavailable. These errors can be handled on a per-device level.\
 
-Sometimes BEC can create the device object, but the device does not connect within the configured timeout. In that case, the session update continues, but that device is marked as disabled.
-
-This means:
-
-- the rest of the devices can still be loaded
-- the failing device remains in the session configuration
-- the failing device is disabled so that clients and services do not use it as if it were available
-
-![device_sessions_update_error_cannot_connect.png](../../learn/assets/device_sessions_update_error_cannot_connect.png){align="center" width="100%"}
-
-!!! tip
-
-    If you have devices that require a long time to connect, consider increasing the `connectionTimeout` field in your [device configuration](../../learn/devices/device-config-in-bec.md) to avoid unnecessary connection failures. The default timeout is 5s per device, but it can be adjusted based on the expected connection time of your devices.
-
-## When the Python object cannot be created
+## Scenario 1: A device cannot be created from the configuration
 
 If BEC cannot create a device based on the device configuration, the failure is treated as critical.
 
@@ -56,15 +35,35 @@ In this case, BEC does not keep loading the rest of the session as if nothing ha
 
 ![device_sessions_update_error_invalid_class.png](../../learn/assets/device_sessions_update_error_invalid_class.png){align="center" width="100%"}
 
+!!! tip
+
+    To prevent this type of failure, validate your YAML files before loading them. This can catch issues with missing or invalid fields, and it also checks that the specified device classes can be imported successfully. See [Validate a YAML configuration file for BEC](../../how-to/devices/validate-a-yaml-config-file.md) for more details.
+
+
+## Scenario 2: A device cannot connect to the hardware
+
+If a device cannot connect to the hardware within the configured timeout, the session update continues, but the device will be disabled.
+
+This means:
+
+- the rest of the devices can still be loaded
+- the failing device is disabled and clients and services cannot use it during operation until it is re-enabled
+
+![device_sessions_update_error_cannot_connect.png](../../learn/assets/device_sessions_update_error_cannot_connect.png){align="center" width="100%"}
+
+!!! tip
+
+    If you have devices that require a long time to connect, consider increasing the `connectionTimeout` field in your [device configuration](../../learn/devices/device-config-in-bec.md) to avoid unnecessary connection failures. The default timeout is 5s per device, but it can be adjusted based on the expected connection time of your devices.
+
 ## What happens if the device upload is aborted
 
 If the upload of a new session is cancelled by the user (CTRL-C in the terminal) while the device server is building the new session, BEC will stop the upload of the new session at the next possible point, and reset the active session to a clean state. This means that the current session is flushed, and no devices are loaded.
 
 ![device_sessions_update_abort.png](../../learn/assets/device_sessions_update_abort.png){align="center" width="100%"}
 
-!!! note
+!!! info
 
-    If you cancel the upload while devices are being initialized or connected to, it can take a few seconds for BEC to properly stop. During this time, the terminal may appear unresponsive, but it is important to give BEC the time it needs to safely stop the upload and reset the session.
+    If you cancel the upload while devices are trying to connect to the hardware, it may take a few seconds for BEC to properly stop the initialization. This is due to the blocking behavior of the connection attempt. Only after reaching the timeout, the user-triggered abort can be processed. During this time, the terminal may appear unresponsive.
 
 ## Why connection failures are handled differently
 
@@ -75,13 +74,6 @@ That is why:
 - connection failures lead to disabled devices
 - object-creation failures lead to an aborted update
 - cancelled uploads lead to a reset of the active configuration
-
-## What this means for everyday use
-
-When you load a YAML file, it helps to interpret failures in these two categories:
-
-- If one or more devices are disabled, the session update likely succeeded overall, but some devices could not connect.
-- If the session is flushed or reloaded after an error, the update likely failed before BEC could build a safe session.
 
 To reduce the chance of critical failures, validate YAML files before loading them and check device dependencies carefully.
 
