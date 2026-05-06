@@ -54,7 +54,7 @@ from bec_server.scan_server.scans.scan_modifier import scan_hook
 
 class Acquire(ScanBase):
     scan_type = ScanType.SOFTWARE_TRIGGERED  # (1)!
-    scan_name = "_v4_acquire"  # (2)!
+    scan_name = "acquire"  # (2)!
 
     gui_config = {  # (3)!
         "Scan Parameters": [
@@ -250,7 +250,7 @@ In this case, there is no special cleanup needed.
 
 The `acquire` scan is a compact example of the shared scan shape:
 
-- the same lifecycle from [Scan Lifecycle](lifecycle.md) appears here unchanged
+- the same lifecycle from [Scan Lifecycle](lifecycle.md){data-preview} appears here unchanged
 - each hook stays small and focused, even though the page now looks at them one by one
 - `prepare_scan` and `scan_core` are the most informative hooks for understanding what this scan actually does
 - `at_each_point` shows how per-acquisition work can be factored out of the main loop
@@ -259,11 +259,11 @@ The `acquire` scan is a compact example of the shared scan shape:
 
 ## Next Step
 
-After this example, the next useful topic is [scan info](scan-info.md), because `acquire`
+After this example, the next useful topic is [scan info](scan-info.md){data-preview}, because `acquire`
 updates `scan_info` in `__init__` and `prepare_scan` and then relies on that shared runtime
 metadata for progress reporting and scan status messages.
 
-After `scan info`, continue with [scan actions](scan-actions.md) to see the building blocks used in scans for common operations. Afterwards, [scan components](scan-components.md) show how to combine scan actions into reusable scan building blocks.
+After `scan info`, continue with [scan actions](scan-actions.md){data-preview} to see the building blocks used in scans for common operations. Afterwards, [scan components](scan-components.md){data-preview} show how to combine scan actions into reusable scan building blocks.
 
 ## What to Remember
 
