@@ -12,8 +12,8 @@ related:
     url: learn/scans/scan-info.md
   - title: ScanArgument
     url: learn/scans/scanargument.md
-  - title: Scan Definition Info
-    url: learn/scans/scan-definition-info.md
+  - title: GUI Config
+    url: learn/scans/gui-config.md
 ---
 
 # Learn by Example
