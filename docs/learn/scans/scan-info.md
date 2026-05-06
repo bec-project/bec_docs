@@ -12,14 +12,7 @@ related:
 
 # Scan Info
 
-`scan_info` is the runtime metadata object attached to every scan.
-
-In the current implementation, `self.scan_info` is an instance of the `ScanInfo` model created by
-`ScanBase` when the scan object is initialized. The scan then keeps refining that object during
-`prepare_scan` and the later lifecycle hooks.
-
-This is the authoritative internal description of the running scan. The queue, scan actions,
-clients, bundler, and file writer all rely on it directly or on message payloads derived from it.
+A scan must keep track of its runtime metadata and parameters in a structured way. In BEC, that is the role of the `ScanInfo` model. Every scan has an instance of `ScanInfo` that is created by `ScanBase` when the scan object is initialized and then updated by the concrete scan during its lifecycle. It is accessible as `self.scan_info` from any scan hook or method, although it is most commonly updated through a helper method called `update_scan_info(...)` that can update both known top-level fields and extra scan-specific parameters in one call. 
 
 ## What `scan_info` Is For
 
@@ -34,6 +27,8 @@ request arguments, device instructions, and status messages.
 - which devices should be reported
 - which request inputs the user originally sent
 - which extra scan-specific parameters should travel with the scan
+
+The `ScanInfo` model is the single source of truth for the scan's runtime metadata and is the main content for published scan status messages. Any device or client that needs to know about the scan relies on it for the most accurate and up-to-date description.
 
 ## The `ScanInfo` Model
 
@@ -187,72 +182,13 @@ The current `ScanInfo` model contains the following fields.
   </tbody>
 </table>
 
-## How Scans Fill It
-
-The important pattern is simple:
-
-1. `ScanBase` creates the initial `scan_info` object from stable request and class metadata.
-2. The concrete scan updates known runtime fields through `update_scan_info(...)`.
-3. Helper methods in `self.actions` also update related reporting state such as scan-report instructions and readout-priority overrides.
-
-`update_scan_info(...)` has one especially important behavior: if you pass a keyword that matches a
-real `ScanInfo` field, that field is updated directly. If you pass a keyword that does not exist on
-the model, it is stored under `additional_scan_parameters` instead.
-
-That means scans can attach extra scan-specific metadata without having to extend the shared model
-for every new scan type.
-
-## `request_inputs`
-
-`request_inputs` stores the original request in structured form.
-
-BEC keeps three buckets here:
-
-- `arg_bundle` for repeated positional bundles
-- `inputs` for fixed signature-bound inputs
-- `kwargs` for extra keyword-style inputs
-
-This matters because the system no longer needs to reconstruct the user's request from a flattened
-argument list later on. GUIs, history, file writing, and diagnostics can all refer back to the same
-structured input representation.
-
-## `scan_info` Versus Published Scan Status Messages
-
-`scan_info` is the internal runtime model, but the public scan status messages are compatibility
-views built from it.
-
-In practice:
-
-- the scan status message top level exposes a smaller legacy-style subset such as `scan_name`, `num_points`, `scan_parameters`, and `request_inputs`
-- the `info` payload contains a full dumped view of `scan_info`, plus compatibility fields such as resolved `readout_priority` and `file_components`
-- the internal `scan_info.scan_type` values are `software_triggered` and `hardware_triggered`, while the legacy top-level message field may only contain older values such as `step` or `fly`
-
-So when reading older code or older docs, keep the distinction clear: `scan_info` is now the
-authoritative in-process model, and some message fields are compatibility projections of it rather
-than the model itself.
-
-## Why `prepare_scan` Matters So Much
-
-`prepare_scan` is often where the scan's final runtime description becomes complete.
-
-That is usually where a scan:
-
-- finalizes `num_points`
-- writes prepared `positions`
-- computes `num_monitored_readouts`
-- records timing or movement options
-- publishes scan-report instructions
-- selects report devices
-
-This is why `scan_info` shows up so often in real scan implementations: it is the shared place
-where the scan turns its user inputs into a concrete runtime description.
 
 ## Next Step
 
-After `scan_info`, continue with [scan actions](scan-actions.md).
+After `scan_info`, continue with [scan actions](scan-actions.md){data-preview}.
 
 That page covers the high-level scan operations used to publish scan state and coordinate device
-work. After that, move on to [scan components](scan-components.md) for the reusable scan patterns
+work. After that, move on to [scan components](scan-components.md){data-preview} for the reusable scan patterns
 built on top of those operations.
 
 ## What To Remember
@@ -261,4 +197,4 @@ built on top of those operations.
     - `scan_info` is the shared runtime metadata model for a scan.
     - `ScanBase` creates it, and concrete scans usually finish populating it during `prepare_scan`.
     - Known updates go to named `ScanInfo` fields; unknown updates go to `additional_scan_parameters`.
-    - Published scan status messages are derived from `scan_info`, but they are not a 1:1 copy of the internal model.
+    - Published scan status messages are derived from `scan_info`.

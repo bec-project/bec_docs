@@ -2,34 +2,21 @@
 related:
   - title: Position Generators
     url: learn/scans/position-generators.md
-  - title: Scan Definition Info
-    url: learn/scans/scan-definition-info.md
+  - title: Argument Bundles
+    url: learn/scans/argument-bundles.md
+  - title: GUI Config
+    url: learn/scans/gui-config.md
   - title: Learn by Example
     url: learn/scans/learn-by-example.md
 ---
 
 # ScanArgument
 
-`ScanArgument(...)` is the main way a scan attaches rich metadata to one of its inputs.
+`ScanArgument(...)` enables a scan to attach rich metadata to one of its inputs.
 
-In practice, this metadata is usually carried through `Annotated[..., ScanArgument(...)]` in a
-scan's `__init__` signature. That makes the input definition useful not only to Python, but also to
-validation, GUIs, and client-side scan discovery.
+As a result, the signature can provide more information to users and clients, such as which units an input uses, which bounds apply, and how the input should be labeled in a GUI.
 
-## Why `ScanArgument` Matters
-
-Without `ScanArgument`, a scan input would mostly just have a Python type.
-
-With `ScanArgument`, the same input can also describe:
-
-- how it should be labeled in a GUI
-- which units it uses
-- whether it should use the units of another input
-- which bounds or limits apply
-- which extra explanatory text should be shown to the user
-
-That is what lets one scan signature serve as both an implementation interface and a user-facing
-definition.
+!!! Warning "It is highly recommended to use `ScanArgument` for any scan input."
 
 ## A Typical Example
 
@@ -51,6 +38,31 @@ This says several things at once:
 - GUIs should label it as `Exposure Time`
 - the value is expressed in seconds
 - the value must be greater than or equal to zero
+
+## Reusing Common Annotations With `DefaultArgType`
+
+Writing out full `Annotated[..., ScanArgument(...)]` definitions is useful when a scan needs a
+custom input definition. However, BEC already provides shared aliases for the common internal scan
+parameters that are represented in [scan info](scan-info.md){data-preview} and used in many scans.
+
+To avoid repeating those annotations in every scan class, these common definitions are collected in
+`DefaultArgType`.
+
+For example, the typical example above is equivalent to:
+
+```py
+from bec_lib.scan_args import DefaultArgType
+
+
+exp_time: DefaultArgType.ExposureTime = 0
+```
+
+The same pattern is used for other internal scan parameters such as `FramesPerTrigger`,
+`SettlingTime`, `SettlingTimeAfterTrigger`, `ReadoutTime`, `BurstAtEachPoint`, and also for common
+boolean scan options such as `Relative`.
+
+This keeps scan signatures shorter while still preserving the same `ScanArgument` metadata for
+validation, GUI generation, and scan discovery.
 
 ## Common `ScanArgument` Fields
 
@@ -89,27 +101,17 @@ Some of the most commonly used fields are listed below.
     <tr>
       <td style="white-space: nowrap;"><code>units</code></td>
       <td>Declares the explicit unit for the input, such as seconds or degrees.</td>
-      <td>timing or physical values</td>
+      <td>user-facing display</td>
     </tr>
     <tr>
       <td style="white-space: nowrap;"><code>reference_units</code></td>
       <td>Tells BEC to interpret the value in the units of another input, such as a motor argument.</td>
-      <td>position-like inputs</td>
+      <td>user-facing display</td>
     </tr>
     <tr>
       <td style="white-space: nowrap;"><code>gt</code>, <code>ge</code>, <code>lt</code>, <code>le</code></td>
       <td>Applies numeric bounds to the input.</td>
       <td>validation</td>
-    </tr>
-    <tr>
-      <td style="white-space: nowrap;"><code>reference_limits</code></td>
-      <td>Uses the limits of another input as a validation reference.</td>
-      <td>device-related bounds</td>
-    </tr>
-    <tr>
-      <td style="white-space: nowrap;"><code>alternative_group</code></td>
-      <td>Associates inputs that represent alternative ways to express a similar choice.</td>
-      <td>advanced GUI behavior</td>
     </tr>
   </tbody>
 </table>
@@ -133,23 +135,10 @@ Reference units:
 Reference units are especially useful for scan inputs such as start, stop, or step size, where the
 value should automatically use the same unit as a related device input.
 
-## How It Fits Into Scan Definitions
-
-`ScanArgument` does not replace the scan signature. It enriches it.
-
-The usual pattern is:
-
-1. define the Python parameter in `__init__`
-2. wrap it in `Annotated[..., ScanArgument(...)]`
-3. let BEC serialize that richer input definition for validation and GUI generation
-
-This is why `ScanArgument` shows up so often in real scan definitions: it is the bridge between the
-scan's code-level inputs and its user-facing definition.
-
 ## Next Step
 
-After `ScanArgument`, continue with [scan definition info](scan-definition-info.md), which covers
-the broader scan-definition model around the signature, grouped positional inputs, and `gui_config`.
+After `ScanArgument`, continue with [argument bundles](argument-bundles.md){data-preview} for
+repeated positional inputs and [GUI config](gui-config.md){data-preview} for graphical grouping.
 
 ## What To Remember
 
