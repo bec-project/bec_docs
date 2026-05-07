@@ -27,30 +27,70 @@ related:
 
 1. Open the **Pull Requests** tab.
 
-1. Create a new pull request.
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![NewPullRequest](./merge_to_main_assets/pull_request_tab.png){width="90%"}
+    </figure>
 
-    Make sure:
+1. On the right, click on the **New Pull Request** button.
 
-    - the base branch is `main`
-    - the compare branch is your feature branch
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![NewPullRequestButton](./merge_to_main_assets/new_pull_request.png){width="90%"}
+    </figure>
 
-1. Review the diff carefully.
+    This will open the pull request creation page, where you can select the base and compare branches.
 
-    Check that:
 
-    - the changed files are the ones you intended to modify
-    - no temporary or unrelated files are included
-    - the branch title and description clearly explain the change
+1. Select the base branch (left) as `main` and the compare branch as your feature branch (right).
 
-1. Create the pull request.
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![SelectBranches](./merge_to_main_assets/select_branches.png){width="90%"}
+    </figure>
 
-1. If your repository requires review, wait for approval and address any requested changes.
+1. On the right, click the **New Pull Request** button to create the pull request.
+
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![CreatePullRequest](./merge_to_main_assets/create_pull_request.png){width="90%"}
+    </figure>
+
+1. Add a title and description for your pull request, then click **Create Pull Request** again.
+
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![PullRequestDetails](./merge_to_main_assets/review_and_create.png){width="100%"}
+    </figure>
+
+1. Request a review from your team members.
+    It is always good practice to have at least one other person review your changes before merging.
+    Gitea allows you to request specific reviewers on the pull request page by adding them in the "Reviewers" section.
+    You can also add someone from the BEC team as a reviewer if you want feedback.
+
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![RequestReview](./merge_to_main_assets/request_review.png){width="90%"}
+    </figure>
+
+1. Review your changes carefully.
+
+1. Make sure all checks pass.
+
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![Checks](./merge_to_main_assets/checks_pass.png){width="90%"}
+    </figure>
+
+    If any checks fail, fix the issues in your branch and push the changes again. The pull request will update automatically. If you need help understanding or fixing failed checks, ask for help from your team or the BEC team.
+
+1. If your branch is not up to date with `main`, you may need to update it before merging. You can do this by merging `main` into your branch or rebasing your branch onto `main`. After updating, push the changes to the remote repository. Gitea offers a button to update the branch if it is behind `main`.
+
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![UpdateBranch](./merge_to_main_assets/out_of_date_branch.png){width="90%"}
+    </figure>
 
 1. Merge the pull request into `main`.
 
+    <figure markdown="span" style="padding: 0.75rem 0;">
+      ![MergePullRequest](./merge_to_main_assets/merge_pr.png){width="90%"}
+    </figure>
+
     After the merge, Gitea may offer to delete the feature branch. This is usually fine if you no longer need it.
 
-1. Confirm that the pull request is marked as merged and that `main` now contains your changes.
 
 ## Common Pitfalls
 - If the pull request shows unexpected files, go back to your branch and check `git status` and `git diff`.
