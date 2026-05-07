@@ -74,12 +74,11 @@ Use this when you want to:
 
 ## 4. Reload a recovery file
 
-As previously mentioned, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp every time you load a new YAML file. If not changed, the default path is `~/bec/logs/device_configs/recovery_configs/`. This allows you to recover the previous session if needed.
-
-You can load one of these recovery files with the same command as before:
+As mentioned in step 1, every time you load a new YAML file, BEC automatically saves the previous session to a backup file in a beamline-defined path together with a timestamp. This allows you to recover the previous session if needed.
+Let's assume the path to the recovery directory is `<file_dir>` and the file name is `recovery_config_2026-05-04_08-39-23.yaml`. You can load this recovery file with the same command as before:
 
 ```py
-bec.config.update_session_with_file("~/bec/logs/device_configs/recovery_configs/recovery_config_2026-05-04_08-39-23.yaml")
+bec.config.update_session_with_file("<file_dir>/recovery_config_2026-05-04_08-39-23.yaml")
 ```
 
 !!! success "Congratulations!"
