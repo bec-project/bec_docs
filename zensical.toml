@@ -82,6 +82,13 @@ nav = [
           { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
           { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
         ] },
+        { "BEC Signals" = [
+          { "Add a Progress Signal" = "how-to/devices/add-a-progress-signal.md" },
+          { "Add a Preview Signal" = "how-to/devices/add-a-preview-signal.md" },
+          { "Add a File Event Signal" = "how-to/devices/add-a-file-event-signal.md" },
+          { "Add an Async Signal" = "how-to/devices/add-an-async-signal.md" },
+          { "Add an Async Multi Signal" = "how-to/devices/add-an-async-multi-signal.md" },
+        ] },
         { "Simulation" = [
           { "Use Simulated Models from the IPython Client" = "how-to/devices/use-simulated-models-from-ipython.md" },
         ] },
