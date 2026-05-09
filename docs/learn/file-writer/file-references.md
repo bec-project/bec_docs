@@ -6,6 +6,10 @@ related:
     url: learn/file-writer/default-format.md
   - title: Add a custom NeXuS structure for the file writer
     url: how-to/customize-bec/add-a-custom-nexus-structure.md
+  - title: BEC Signals for Custom Devices
+    url: learn/devices/bec-signals.md
+  - title: Add a File Event Signal
+    url: how-to/devices/add-a-file-event-signal.md
 ---
 
 # File References from Devices
