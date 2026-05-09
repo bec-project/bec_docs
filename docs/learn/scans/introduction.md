@@ -33,6 +33,11 @@ That is true even when the middle of the scan is very different.
 
 For example, a line scan, a grid scan, and a continuous scan may move differently, but they still fit into one common scan framework.
 
+!!! tip "Most custom workflows do not need a new scan"
+    If your goal is to combine several existing scan calls, react to results, or add beamline-specific decision logic, it is usually simpler to write a normal Python script around the built-in scans first.
+
+    Create a new scan class only when you need new server-side scan behavior, lifecycle integration, or a reusable scan that should appear as its own `scans.<name>(...)` entry.
+
 ## What Happens During A Scan
 
 !!! Note "Dataflow during a scan"
