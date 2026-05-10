@@ -29,3 +29,9 @@ Each class expects a slightly different `deviceConfig` section in the BEC config
 - `ophyd_devices.EpicsSignal`: `read_pv`, and optionally `write_pv` if the write PV differs from the read PV
 - `ophyd_devices.EpicsSignalRO`: `read_pv`
 - `ophyd_devices.EpicsSignalWithRBV`: `prefix`
+
+!!! info "What to remember"
+    - Use EPICS signal classes when you want to expose a single EPICS PV in BEC rather than a full motor device.
+    - Choose `EpicsSignal` for read/write PVs, `EpicsSignalRO` for read-only PVs, and `EpicsSignalWithRBV` when setpoint and readback follow the usual RBV pattern.
+    - The correct `deviceConfig` fields depend on the chosen class.
+    - Picking the right EPICS signal variant keeps the BEC device model aligned with the underlying EPICS record behavior.

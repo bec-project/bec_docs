@@ -80,3 +80,10 @@ To reduce the chance of critical failures, validate YAML files before loading th
 !!! learn "[Learn how to load and save a device session from the BEC IPython client](../../how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md){ data-preview }"
 
 !!! learn "[Learn how to validate a YAML configuration file before loading it](../../how-to/devices/validate-a-yaml-config-file.md){ data-preview }"
+
+!!! info "What to remember"
+    - BEC treats device creation failures and device connection failures differently during session updates.
+    - If BEC cannot create the Python object for a device, the session update is aborted.
+    - If a device object is created but cannot connect in time, that device is disabled while the rest of the session can still load.
+    - Cancelling a session upload resets the active session to a clean state rather than keeping a partially updated configuration.
+    - Validating YAML files and setting realistic `connectionTimeout` values helps avoid avoidable update failures.

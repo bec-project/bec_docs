@@ -22,3 +22,8 @@ The right choice depends on your EPICS motor implementation.
 - If you have a VME user motor, choose `ophyd_devices.EpicsUserMotorVME` to get VME-specific signals and behavior.
 - For everything else, start with `ophyd_devices.EpicsMotor` as the normal default.
 
+!!! info "What to remember"
+    - BEC provides several EPICS motor classes because different motor backends expose different behavior and signals.
+    - `ophyd_devices.EpicsMotor` is the normal default choice.
+    - Use `ophyd_devices.EpicsMotorEC` for ECMC-based motors and `ophyd_devices.EpicsUserMotorVME` for VME user motors.
+    - Choosing the closest matching motor class gives you the right backend-specific interface in BEC.

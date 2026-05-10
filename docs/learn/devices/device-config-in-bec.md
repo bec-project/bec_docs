@@ -161,3 +161,10 @@ initialization. Defaults to `5.0` seconds.
 - That effective configuration becomes the basis of the current device session when BEC loads it.
 
 !!! learn "[Learn more about device sessions and device-server initialization](device-sessions-in-bec.md){ data-preview }"
+
+!!! info "What to remember"
+    - A BEC device configuration entry tells the device server which class to build and how to manage it.
+    - `enabled`, `deviceClass`, and `readoutPriority` are the required fields.
+    - `deviceConfig` carries the class-specific constructor arguments for the selected device class.
+    - Optional fields such as `needs`, `connectionTimeout`, `readOnly`, and `onFailure` control runtime behavior in BEC.
+    - One device entry becomes part of a larger effective configuration, which BEC then turns into the active device session.
