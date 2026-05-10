@@ -136,3 +136,8 @@ Users cannot escape this base path from the client side.
 
 This prevents one user from writing into another user's directory.
 
+!!! info "What to remember"
+    - The file writer always starts from the server-configured `file_writer.base_path`.
+    - The active account influences the effective write path, either by replacing `$account` or by being appended as a subdirectory.
+    - BEC uses a scan-number-based directory and filename structure by default.
+    - Scan arguments such as `file_suffix` and `file_directory` can customize parts of the layout, but they cannot escape the configured base path.

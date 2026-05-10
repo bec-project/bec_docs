@@ -59,3 +59,9 @@ Some common operations include:
 - add datasets with `create_dataset(...)`
 - add data through links, either soft links to existing groups or datasets with `create_soft_link(...)` or external links to datasets in external files with `create_ext_link(...)`.
 - use helper methods such as `self.get_entry(...)` to access device values from scan data
+
+!!! info "What to remember"
+    - `DefaultFormat` defines the built-in base HDF5 layout that BEC relies on for scan data and metadata.
+    - BEC creates the core `/entry/collection/...` structure before any custom formatting runs.
+    - Custom file writers should extend the existing storage tree rather than overwrite BEC-managed groups.
+    - Readout groups, configuration data, file references, and beamline states are all part of the default structure.
