@@ -51,3 +51,9 @@ For more task-focused guides, take a look at the following how-tos:
 
 - [Load and save a device session from the BEC IPython client](../../how-to/devices/load-and-save-a-device-session-from-the-bec-ipython-client.md)
 - [Validate a YAML configuration file for BEC](../../how-to/devices/validate-a-yaml-config-file.md)
+
+!!! info "What to remember"
+    - Large BEC device setups can be split across multiple YAML files instead of living in one file.
+    - BEC supports `!include` so smaller config files can be composed into one effective configuration.
+    - The effective configuration, not any single source file, is what BEC loads into the active device session.
+    - Separating configs by subsystem or beamline area makes large device setups easier to maintain.

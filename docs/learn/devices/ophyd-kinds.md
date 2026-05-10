@@ -101,3 +101,9 @@ The `Kind` attribute determines which signals are included in `device.read()` an
 `device.read_configuration()`. To understand when BEC calls these methods during data
 acquisition, see [*Readout Priority*](../../learn/devices/readout-priority.md){ data-preview }
 or the how-to guide on [*Select a readout priority*](../../how-to/devices/how-to-select-readout-priority.md){ data-preview }.
+
+!!! info "What to remember"
+    - `Kind` controls whether a signal participates in `read()`, `read_configuration()`, or neither.
+    - `normal` and `hinted` signals appear in `read()`, while `config` signals appear in `read_configuration()`.
+    - `omitted` signals are hidden from both standard reads but can still be accessed directly.
+    - Parent and child `Kind` values combine when you use sub-devices, which can change what is visible from the root device.

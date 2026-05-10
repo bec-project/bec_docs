@@ -10,10 +10,6 @@ related:
 
 `readoutPriority` is a key part of the device configuration that controls when BEC reads a device during a scan. It is independent of the ophyd `Kind` attribute, which controls which signals are included in those `device.read()` or `device.read_configuration()` operations. Together they determine which data will be included in scan data, configuration data or excluded.
 
-!!! info "Readout Priority vs. ophyd Kind"
-    - `Kind` controls which signals are included in `read()` and `read_configuration()`.
-    - `readoutPriority` controls if a device's `read()` is requested during a scan.
-
 ## Readout Priority Options
 
 BEC supports four readout priorities that can be assigned to devices in the configuration. The
@@ -33,11 +29,9 @@ If the user requests to scan a motor that is not configured as `monitored`, the 
 - Choose `on_request` for devices that should only be read when explicitly requested.
 - Choose `async` for devices like large-area detectors that produce asynchronous data streams.
 
-!!! info "Keep `readoutPriority` separate from ophyd `Kind`"
-
-    `Kind` controls which signals a device exposes through `read()` and
-    `read_configuration()`. `readoutPriority` controls when BEC asks that device for
-    those readings during a scan. In other words, `Kind` defines the contents of a
-    device readout, while `readoutPriority` defines when that readout participates in
-    acquisition. This separation lets you adjust scan behavior without changing the
-    device's underlying read interface.
+!!! info "What to remember"
+    - `readoutPriority` controls when BEC reads a device during acquisition.
+    - Keep `readoutPriority` separate from ophyd `Kind`: `Kind` defines which signals appear in `read()` and `read_configuration()`, while `readoutPriority` defines when BEC asks for those readings during a scan.
+    - `monitored`, `baseline`, `on_request`, and `async` serve different scan roles and should be chosen intentionally.
+    - Scan motors may be promoted to `monitored` for a specific scan even if their static config says otherwise.
+    - `readoutPriority` and ophyd `Kind` solve different problems: timing versus content.
