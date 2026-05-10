@@ -118,10 +118,12 @@ nav = [
         { "Managing YAML Configs" = "learn/devices/managing-yaml-configs.md" },
         { "EPICS Motor Variants" = "learn/devices/epics-motors.md" },
         { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
+        { "set() vs put()" = "learn/devices/set-vs-put.md" },
       ] },
       { "Development" = [
         { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
         { "BEC Signals" = "learn/devices/bec-signals.md" },
+        { "EPICS put completion" = "learn/devices/epics-put-completion.md" },
         { "Simulated Devices" = "learn/devices/simulated-devices.md" },
       ] },
     ] },
