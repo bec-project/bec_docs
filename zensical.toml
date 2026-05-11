@@ -158,6 +158,31 @@ nav = [
     #  ] },
     { "BEC Widgets" = [
       { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
+      { "Widget Gallery" = [
+        "references/bec-widgets/widget-gallery/index.md",
+        { Waveform = "references/bec-widgets/widget-gallery/waveform/waveform_page.md" },
+        { MultiWaveform = "references/bec-widgets/widget-gallery/multi_waveform/multi_waveform_page.md" },
+        { ScatterWaveform = "references/bec-widgets/widget-gallery/scatter_waveform/scatter_waveform_page.md" },
+        { Image = "references/bec-widgets/widget-gallery/image/image_page.md" },
+        { Heatmap = "references/bec-widgets/widget-gallery/heatmap/heatmap_page.md" },
+        { MotorMap = "references/bec-widgets/widget-gallery/motor_map/motor_map_page.md" },
+        { ScanControl = "references/bec-widgets/widget-gallery/scan_control/scan_control_page.md" },
+        { DeviceBrowser = "references/bec-widgets/widget-gallery/device_browser/device_browser_page.md" },
+        { PositionerBox = "references/bec-widgets/widget-gallery/positioner_box/positioner_box_page.md" },
+        { PositionerBox2D = "references/bec-widgets/widget-gallery/positioner_box_2d/positioner_box_2d_page.md" },
+        { PositionerGroup = "references/bec-widgets/widget-gallery/positioner_group/positioner_group_page.md" },
+        { PositionIndicator = "references/bec-widgets/widget-gallery/position_indicator/position_indicator_page.md" },
+        { BECQueue = "references/bec-widgets/widget-gallery/bec_queue/bec_queue_page.md" },
+        { BECStatusBox = "references/bec-widgets/widget-gallery/bec_status_box/bec_status_box_page.md" },
+        { RingProgressBar = "references/bec-widgets/widget-gallery/ring_progress_bar/ring_progress_bar_page.md" },
+        { BECProgressBar = "references/bec-widgets/widget-gallery/bec_progressbar/bec_progressbar_page.md" },
+        { TextBox = "references/bec-widgets/widget-gallery/text_box/text_box_page.md" },
+        { WebsiteWidget = "references/bec-widgets/widget-gallery/website_widget/website_widget_page.md" },
+        { SignalLabel = "references/bec-widgets/widget-gallery/signal_label/signal_label_page.md" },
+        { LogPanel = "references/bec-widgets/widget-gallery/log_panel/log_panel_page.md" },
+        { PdfViewerWidget = "references/bec-widgets/widget-gallery/pdf_viewer_widget/pdf_viewer_widget_page.md" },
+        { DapComboBox = "references/bec-widgets/widget-gallery/dap_combo_box/dap_combo_box_page.md" },
+      ] },
     ] },
     { "Ophyd Devices" = [
       #    { "AsyncSignal" = "references/ophyd-devices/async-signal.md" },
@@ -223,6 +248,7 @@ paths = [
   "../bec/bec_lib",
   "../bec/bec_server",
   "../bec/bec_ipython_client",
+  "../bec_widgets",
   "../bec-widgets",
   "../ophyd_devices",
 ]
@@ -255,6 +281,9 @@ emoji_generator = "zensical.extensions.emoji.to_svg"
 emoji_index = "zensical.extensions.emoji.twemoji"
 [project.markdown_extensions.pymdownx.highlight]
 [project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.snippets]
+base_path = ["docs"]
+check_paths = true
 [project.markdown_extensions.pymdownx.keys]
 [project.markdown_extensions.pymdownx.mark]
 [project.markdown_extensions.pymdownx.smartsymbols]
