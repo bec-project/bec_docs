@@ -124,3 +124,9 @@ The underlying real devices must provide:
 - `setpoint` or `user_setpoint`
 - `motor_is_moving`
 - `move()`
+
+!!! info "What to remember"
+    - A pseudo positioner exposes a derived coordinate while delegating motion to one or more real motors.
+    - `PSIPseudoMotorBase` gives you the shared pseudo-motor behavior, but you must provide the coordinate transform logic yourself.
+    - `forward_calculation()`, `inverse_calculation()`, and `motors_are_moving()` must match the configured `positioners` mapping.
+    - The pseudo motor depends on real devices that provide readable positions, writable targets, motion state, and `move()`.

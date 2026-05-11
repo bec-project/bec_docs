@@ -6,6 +6,10 @@ related:
     url: learn/file-writer/default-format.md
   - title: Add a custom NeXuS structure for the file writer
     url: how-to/customize-bec/add-a-custom-nexus-structure.md
+  - title: BEC Signals for Custom Devices
+    url: learn/devices/bec-signals.md
+  - title: Add a File Event Signal
+    url: how-to/devices/add-a-file-event-signal.md
 ---
 
 # File References from Devices
@@ -34,3 +38,9 @@ This mechanism is useful when:
 - a beamline-specific layout wants links under `entry/instrument/...` or `entry/data`
 
 In those cases, the custom writer can use `self.file_references` together with `create_ext_link(...)` to place links in the desired structure.
+
+!!! info "What to remember"
+    - File references let devices contribute externally written files to the BEC master file instead of sending all data through BEC directly.
+    - Devices usually report these files through helper signals such as `FileEventSignal`.
+    - `DefaultFormat` collects file references under `/entry/collection/file_references` and creates external links for them.
+    - Custom writers can reuse the collected file references and place additional links in beamline-specific NeXuS locations.

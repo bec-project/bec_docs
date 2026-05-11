@@ -24,3 +24,9 @@ The selection logic is:
 - if no file-writer plugin is installed, BEC uses the built-in default format
 - if exactly one custom writer class is available, BEC uses it automatically
 - if multiple custom writer classes are available, BEC uses the class name configured in `file_writer.plugin`
+
+!!! info "What to remember"
+    - BEC discovers custom file-writer formats through the `bec.file_writer` entry point group.
+    - The plugin module must expose the writer classes that BEC should consider.
+    - Without a plugin, BEC falls back to the built-in default format.
+    - When multiple custom writer classes are available, `file_writer.plugin` selects which one BEC uses.

@@ -74,6 +74,13 @@ Any BEC client or service is subscribed to the published device information in R
 
 The architecture of BEC allows for multiple clients and services to share access to the same devices. This requires coordination and control, which is achieved through this concept of a shared device session, and *RPC objects* in the clients. Any client has access to all devices, while the actual device object and connection is handled by the device server. The device server thereby provides a layer of abstraction and control, which allows for a controlled and shared access to devices across multiple clients and services.
 
+!!! info "What to remember"
+    - A device configuration, a YAML configuration file, and a device session are related but different concepts.
+    - The device session is the currently active shared set of devices in BEC, and it can differ from the YAML file that was originally loaded.
+    - Building a device session means initializing ophyd objects, connecting their signals, and publishing the device interface to Redis.
+    - Clients interact with RPC objects that represent the server-side devices, not with the original ophyd objects directly.
+    - Initialization failures abort the whole session load, while connection failures disable only the affected devices.
+
 ## What to learn next
 
 - Continue with [Device Configuration in BEC](../../learn/devices/device-config-in-bec.md) to learn the individual fields in a device entry.

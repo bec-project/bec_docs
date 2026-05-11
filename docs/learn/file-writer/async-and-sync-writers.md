@@ -36,3 +36,11 @@ The async writer supports multiple async update modes to accommodate different d
 - `add`
 - `add_slice`
 - `replace`
+
+To learn how to use these modes, see [BEC Signals](../devices/bec-signals.md){data-preview}.
+
+!!! info "What to remember"
+    - BEC uses both sync writing and async writing during normal operation.
+    - Sync writing creates the final master file after the scan from data collected in scan storage.
+    - Async writing handles device data that arrives continuously and may be too large or irregular to buffer until the end of the scan.
+    - Async update modes such as `add`, `add_slice`, and `replace` define how incoming async data is aggregated in the file.

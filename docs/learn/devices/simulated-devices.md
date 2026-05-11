@@ -96,3 +96,9 @@ bpm4i:
 
 Use `sim_init` when a simulated device should always start with the same model in a beamline, plugin, or test
 configuration.
+
+!!! info "What to remember"
+    - Simulated devices use a simulation object to generate readback values instead of real hardware.
+    - Simulation controls are available only for device classes that expose a `sim` interface to the client.
+    - Runtime changes through `dev.<device>.sim` are best for interactive exploration and temporary testing.
+    - Use `sim_init` in the device configuration when a simulated device should always start with a specific model and parameter set.
