@@ -125,8 +125,28 @@ nav = [
         { "Simulated Devices" = "learn/devices/simulated-devices.md" },
       ] },
     ] },
-    #{ "Scans and execution" = [ TODO fill with content
-    #] },
+    { "Scans" = [
+      { "Overview" = [
+        { "Introduction to Scans" = "learn/scans/introduction.md" },
+        { "Scan Lifecycle" = "learn/scans/lifecycle.md" },
+        { "Learn by Example" = "learn/scans/learn-by-example.md" },
+        { "Motions" = "learn/scans/motions.md" },
+      ] },
+      { "Runtime Model" = [
+        { "Scan Info" = "learn/scans/scan-info.md" },
+        { "Scan Actions" = "learn/scans/scan-actions.md" },
+        { "Scan Components" = "learn/scans/scan-components.md" },
+      ] },
+      { "Defining Scan Inputs" = [
+        { "ScanArgument" = "learn/scans/scanargument.md" },
+        { "Argument Bundles" = "learn/scans/argument-bundles.md" },
+        { "GUI Config" = "learn/scans/gui-config.md" },
+      ] },
+      { "Motion Patterns" = [
+        { "Position Generators" = "learn/scans/position-generators.md" },
+        { "Fast Axis and Slow Axis" = "learn/scans/fast-axis-slow-axis.md" },
+      ] },
+    ] },
     { "File Writing" = [
       { "Introduction" = "learn/file-writer/introduction.md" },
       { "Where Files Are Written" = "learn/file-writer/where-files-are-written.md" },
@@ -152,10 +172,11 @@ nav = [
   ] },
   { References = [
     "references/index.md",
-    #  { "BEC Core" = [ TODO add references again once available
-    #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
-    #    { "Scans" = "references/bec-core/scans.md" },
-    #  ] },
+    { "BEC Core" = [
+      { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
+      { "Scans" = "references/bec-core/scans.md" },
+      { "ScanActions Methods" = "references/bec-core/scan-actions-methods.md" },
+    ] },
     { "BEC Widgets" = [
       { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
     ] },
