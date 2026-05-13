@@ -94,46 +94,58 @@ At this point the Python object exists, but you should assume that signals are n
 This is the right place for:
 
 - setting default signal values
-- assigning `kind`
+- any setup that needs signal access
 - installing callbacks or subscriptions
-- any setup that needs live signal access
 
 ### Stage and unstage
 
-- `on_stage()` is the place to prepare the device for the upcoming scan.
-- `on_unstage()` is the place to undo temporary scan setup and return the device to a known state.
+`on_stage()` is the main entry point for scan preparation logic. It is called during `stage()`, which BEC calls before a scan starts.
+
+- use relevant scan metadata from the `ScanStatusMessage` accessible through `self.scan_info.msg` to set up the device for the specific scan configuration.
+- if stage is called twice, it will raise an exception. Therefore you can assume that staging is a deliberate action that only happens once per scan, and is undone by `unstage()`.
+
+`on_unstage()` is the place to undo temporary scan setup and return the device to a known state.
+
+- it should be idempotent because BEC calls it during cleanup after a scan, even if staging failed or was interrupted.
+- the right place to reset scan-dependent state such as counters, temporary files, or backend resources that should not persist after the scan is over.
 
 Typical tasks in this phase are applying scan-dependent settings, allocating temporary resources, and resetting transient state once the scan is over.
 
 ### Pre-scan
 
-BEC adds one extra phase that is not part of the standard ophyd `Device` API.
-
-This hook is useful for setup that must happen immediately before scan execution starts on all participating devices. Typical examples are:
+`on_pre_scan()` is a hook that BEC adds, which is not part of the standard ophyd `Device` API. It is useful for setup that must happen immediately before scan execution starts on all participating devices. Typical examples are:
 
 - arming a detector backend
 - opening a shutter
 - checking readiness of an external controller
 
-Because this phase sits close to actual acquisition, it is often where devices change from a configured state into an armed or ready state.
+Because this phase sits close to actual acquisition, it is often where devices change from a configured state into an armed or ready state. It is most often also implemented as an asynchronous hook that returns a status object, so BEC can wait for the device to become ready before starting the scan.
 
 ### Trigger and complete
 
-`on_trigger()` is usually the place for step-scan acquisition logic, while `on_complete()` is where a device reports whether its acquisition or backend work has actually finished.
+If a scan is software triggered, `on_trigger()` is the main entry point for acquisition logic. It is called from the `at_each_point` hook in the scan interface, so it runs once per scan point, and should be implemented as an asynchronous hook that returns a status object.
 
-This split is important for detectors and other asynchronous devices. Triggering an action and observing its completion are often not the same thing.
+- trigger the acquisition on the device or its backend
+- return a status object that resolves when the acquisition is done
+
+At the end of a scan, BEC checks whether the device has finished by calling `on_complete()`. This is where the device should report whether acquisition or backend work has actually completed successfully. It is an asynchronous hook that returns a status object.
+
+- check that the acquisition is done, all files are successfully written and BEC can move on to for example linking files
+- Raise an exception if the acquisition failed
+- It is typically helpful to implement a timeout logic in this hook, so that if the device or backend hangs, the scan will fail at some point with a meaningful error instead of hanging indefinitely.
 
 ### Kickoff
 
-Use `on_kickoff()` when the device starts a longer-running acquisition explicitly instead of performing one trigger per point.
+`on_kickoff()` is a separate hook fairly similar to `on_pre_scan()`. It is part of the fly-scan interface from ophyd, and is an asynchronous hook that returns a status object. The status should resolved once the kickoff action is done and the device is actively acquiring.
 
-This is the typical entry point for fly-scan style devices, streamers, and other devices that need to start a run once and then stay active while the scan progresses.
+- use it for a fly-scan acquisition, for example to start a trajectory motion on a controller
+- resolve immediately after the controller starts moving, NOT after the move finished. That way, the kickoff status only represents the time it takes to start the acquisition, and the rest of the scan can proceed while the acquisition is still running. Dependening on the logic of your scan, BEC will check for acquisition completion either in `on_complete()` or in a custom method.
 
 ### Stop and destroy
 
-`on_stop()` should usually be fast and non-blocking. Its job is to tell the device to stop what it is doing and let the rest of the BEC stop logic proceed.
+`on_stop()` should usually be fast and non-blocking. Any cleanup logic needed to stop the device should go here.
 
-`on_destroy()` is the final cleanup hook. Use it for resources that should disappear when the device object is torn down, such as threads, sockets, or file handles.
+`on_destroy()` is the final cleanup hook. Use it for resources that should disappear when the device object is torn down, such as threads, sockets, or file handles. It should be safe to call and not raise an exception.
 
 ## Status objects and asynchronous work
 
@@ -141,7 +153,7 @@ The most important design choice when implementing a hook is whether the action 
 
 A synchronous action finishes before the hook returns. In that case, the hook can simply perform the work and return `None`.
 
-An asynchronous action starts now but finishes later. This is common for detectors, shutters, motion controllers, and file-writing backends. In that case, the hook should return a `StatusBase` or `DeviceStatus` object.
+An asynchronous action starts now but finishes later. This is common for the integration of detectors or other more complex devices. In that case, the hook should return a `StatusBase` or `DeviceStatus` object.
 
 You can think of these status objects as future-like objects. They represent work that is still in progress and will later resolve either:
 
@@ -163,82 +175,13 @@ In practice, a status object answers questions such as:
 
 `PSIDeviceBase` also helps with interruption handling through `cancel_on_stop(status)`. If a scan is stopped, the base class marks registered status objects as failed with `DeviceStoppedError`. That keeps long-running acquisitions from hanging forever after an abort.
 
-## Waiting for hardware conditions
+!!! info 
 
-`PSIDeviceBase.wait_for_condition(...)` is a convenience wrapper for simple polling loops. It repeatedly checks a callable until it becomes true or a timeout is reached.
-
-It is especially useful when:
-
-- a device has no native status object
-- a hardware controller exposes only state PVs
-- the loop must react to an external BEC stop
-
-With `check_stopped=True`, the helper raises `DeviceStoppedError` as soon as the device has been stopped, which is usually better than waiting for the full timeout.
-
-## CompareStatus and TransitionStatus
-
-For many devices, asynchronous completion can be expressed directly in terms of signal values. `ophyd_devices` provides two helper status classes for this: `CompareStatus` and `TransitionStatus`.
-
-Both classes are specialized subscription-based status objects. They listen to a signal and resolve automatically when a certain condition becomes true. This makes them a natural fit for hooks such as `on_pre_scan()`, `on_trigger()`, `on_complete()`, or `on_kickoff()`.
-
-!!! learn "[Review the general status-object model first](#status-objects-and-asynchronous-work)"
-
-### `CompareStatus`
-
-`CompareStatus` waits until one signal value matches a comparison against a target value.
-
-Use it when success can be expressed as a single condition such as:
-
-- `acquire == 1`
-- `ready == 1`
-- `state == "armed"`
-- `temperature < threshold`
-
-It supports comparison operators such as `==`, `!=`, `<`, `<=`, `>`, and `>=`. It can also be configured with failure values that immediately raise an exception if the signal enters an invalid state.
-
-This makes it a good fit for actions such as:
-
-- waiting for a detector to report that acquisition has started
-- waiting for a shutter to report open or closed
-- checking that a controller reached a ready state without entering an error state
-
-### `TransitionStatus`
-
-`TransitionStatus` waits for a signal to move through a sequence of values in order.
-
-Use it when success is not one static value, but a state transition pattern such as:
-
-- `0 -> 1`
-- `1 -> 0`
-- `0 -> 1 -> 0`
-- `"idle" -> "arming" -> "armed"`
-
-This is especially useful for signals that encode progress through a small state machine. A common example is an acquire PV that changes to `1` when acquisition starts and back to `0` when acquisition is finished.
-
-`TransitionStatus` supports two modes:
-
-- `strict=True`: each expected transition must be seen from the previous expected value to the next one
-- `strict=False`: intermediate unrelated values are tolerated as long as the expected values are eventually observed in order
-
-You can also define `failure_states` that should immediately fail the status if encountered.
-
-### When to choose which helper
-
-- Use `CompareStatus` when one value tells you that the action has succeeded.
-- Use `TransitionStatus` when success means that the signal must move through a sequence of states.
-
-For example:
-
-- `on_pre_scan()` often uses `CompareStatus` to wait until a detector has become armed.
-- `on_complete()` often uses `TransitionStatus` to wait until an acquire signal transitions back to idle.
-
-!!! learn "[See a practical how-to with both helpers](../../how-to/devices/development/use-status-objects-in-a-custom-device.md){ data-preview }"
+    If you interested in more details about status objects, how to create them, and how to use them in custom devices, check out the [Use status objects in a custom ophyd device](../../how-to/devices/development/use-status-objects-in-a-custom-device.md) guide.
 
 ## How scan metadata reaches the device
 
 Custom devices often need information about the active scan: exposure time, number of frames, scan type, or user metadata. `PSIDeviceBase` stores that context on `self.scan_info`.
-
-When the device is used outside a real scan, the base class falls back to a mocked scan-info object from `ophyd_devices.tests.utils.get_mock_scan_info(...)`. That makes local development and testing easier because the device can still access scan-related fields without a running BEC scan server.
 
 In current BEC scan implementations, the scan object builds a `ScanInfo` model and updates it with values such as:
 
