@@ -82,6 +82,10 @@ nav = [
           { "Select a Signal Kind" = "how-to/devices/how-to-select-an-ophyd-kind.md" },
           { "Select a Readout Priority" = "how-to/devices/how-to-select-readout-priority.md" },
         ] },
+        { "Custom Devices" = [
+          { "Write a Custom Ophyd Device" = "how-to/devices/development/write-a-custom-device.md" },
+          { "Use Status Objects in a Custom Ophyd Device" = "how-to/devices/development/use-status-objects-in-a-custom-device.md" },
+        ] },
         { "Simulation" = [
           { "Use Simulated Models from the IPython Client" = "how-to/devices/use-simulated-models-from-ipython.md" },
         ] },
@@ -120,6 +124,7 @@ nav = [
         { "EPICS Signal Variants" = "learn/devices/epics-signals.md" },
       ] },
       { "Development" = [
+        { "Custom Ophyd Devices" = "learn/devices/custom-ophyd-devices.md" },
         { "Pseudo Positioners" = "learn/devices/pseudo-positioners.md" },
         { "BEC Signals" = "learn/devices/bec-signals.md" },
         { "Simulated Devices" = "learn/devices/simulated-devices.md" },
