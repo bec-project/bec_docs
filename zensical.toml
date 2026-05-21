@@ -95,6 +95,9 @@ nav = [
     { "Customize BEC" = [
       { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
     ] },
+    { "Messaging Services" = [
+      { "Send Messages to SciLog" = "how-to/general/send-messages-to-scilog.md" },
+    ] },
   ] },
   { Learn = [
     { "System Architecture" = [
