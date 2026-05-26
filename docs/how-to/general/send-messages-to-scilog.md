@@ -50,7 +50,11 @@ msg.send()
 
 - `bold=True`
 - `italic=True`
-- `color="red"`, `"yellow"`, `"green"`, `"blue"`, or `"pink"`
+- `color="red"`, `"green"`, `"yellow"`, `"pink"`, `"blue"` or `"black"`
+
+!!! tip "Pen Colors vs Markers"
+
+    In SciLog, `black`, `red`, and `green` are pen colors. `yellow`, `pink`, and `blue` are markers.
 
 BEC adds the default `bec` tag automatically if you do not provide tags yourself.
 
@@ -115,4 +119,3 @@ msg.send()
 - `bec.messaging.scilog.new()` raises an error if SciLog messaging is not enabled for the current deployment or session.
 - `add_attachment(...)` fails if the file does not exist or is larger than 5 MB.
 - Default tags are added automatically. If you call `set_default_tags(...)`, those tags are used for later messages in the current client session.
-
