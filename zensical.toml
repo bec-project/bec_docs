@@ -104,6 +104,7 @@ nav = [
     ] },
     { "Messaging Services" = [
       { "Send Messages to SciLog" = "how-to/general/send-messages-to-scilog.md" },
+      { "Send Messages to Signal" = "how-to/general/send-messages-to-signal.md" },
     ] },
   ] },
   { Learn = [
