@@ -105,6 +105,8 @@ nav = [
     { "Messaging Services" = [
       { "Send Messages to SciLog" = "how-to/general/send-messages-to-scilog.md" },
       { "Send Messages to Signal" = "how-to/general/send-messages-to-signal.md" },
+      { "Set Up Auto Notifications" = "how-to/general/set-up-auto-notifications.md" },
+      { "Send a Custom Notification Event" = "how-to/general/send-a-custom-notification-event.md" },
     ] },
   ] },
   { Learn = [
