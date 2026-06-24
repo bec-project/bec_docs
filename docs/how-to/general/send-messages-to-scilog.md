@@ -110,9 +110,55 @@ msg.add_attachment("/path/to/scan_summary.pdf")
 msg.send()
 ```
 
+## 5. Use SciLog wrapper helpers
+
+BEC also provides wrapper methods for common SciLog use cases. These are convenient when you want to send structured content directly without building the message element by element.
+
+### Log device positions as a table
+
+Use `log_positions()` to capture the current state of devices in SciLog. It collects the same kind of position information you would inspect with `dev.wm(...)` and sends it as a formatted table.
+
+For example, log all sample-positioning devices that match a wildcard:
+
+```py
+bec.messaging.scilog.log_positions(
+    devices="sam*",
+    title="Current sample positions",
+    tags="snapshot",
+)
+```
+
+This creates a SciLog entry with columns for:
+
+- `device`
+- `readback`
+- `setpoint`
+- `limits`
+
+You can also pass other device selections accepted by `dev.wm(...)`, for example a list of device names or device objects.
+
+### Log source code
+
+Use `log_code()` to send source code to SciLog as a Python code block. This is useful for macros, helper functions, or other small snippets that should be recorded alongside a measurement.
+
+Log the source of a function directly:
+
+```py
+def align_sample():
+    samx.set(1.2)
+    samy.set(-0.4)
+
+
+bec.messaging.scilog.log_code(
+    align_sample,
+    title="Alignment macro used for this run",
+    tags="code",
+)
+```
+
 !!! success "Congratulations!"
 
-    You can now send SciLog messages from the BEC IPython client, add tags, and attach files when needed.
+    You can now send SciLog messages from the BEC IPython client, log device positions and source code, add tags, and attach files when needed.
 
 ## Common pitfalls
 
