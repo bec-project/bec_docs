@@ -99,8 +99,8 @@ nav = [
       { "Open BEC HDF5 Files with h5py" = "how-to/scans/open-bec-hdf5-files-with-h5py.md" },
       { "Open BEC HDF5 Files with silx" = "how-to/scans/open-bec-hdf5-files-with-silx.md" },
     ] },
-    { "Customize BEC" = [
-      { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
+    { "File Writing" = [
+      { "Add Custom NeXuS Structure" = "how-to/file_writing/add-a-custom-nexus-structure.md" },
     ] },
     { "Messaging Services" = [
       { "Send Messages to SciLog" = "how-to/general/send-messages-to-scilog.md" },
