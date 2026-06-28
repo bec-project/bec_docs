@@ -59,6 +59,9 @@ Some common operations include:
 - add datasets with `create_dataset(...)`
 - add data through links, either soft links to existing groups or datasets with `create_soft_link(...)` or external links to datasets in external files with `create_ext_link(...)`.
 - use helper methods such as `self.get_entry(...)` to access device values from scan data
+- use `self.safe_dataset(...)` to add device-backed datasets that should be skipped automatically when a device or signal is missing from the scan
+
+`safe_dataset(...)` is useful in custom writers because device availability can vary between scans. By default it creates a soft link to `/entry/collection/devices/<device>/<signal>/value`. If you pass `softlink=False`, it writes a new dataset instead and can attach `units`, `description`, and arbitrary attributes.
 
 !!! info "What to remember"
     - `DefaultFormat` defines the built-in base HDF5 layout that BEC relies on for scan data and metadata.

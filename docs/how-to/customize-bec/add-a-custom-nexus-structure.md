@@ -57,6 +57,37 @@ class BeamlineNeXusFormat(DefaultFormat):
 
 Use helper accessors such as `self.get_entry(...)` when you want values from device data.
 
+If you want to add device data without failing when a device is missing from a scan, prefer `self.safe_dataset(...)`.
+This helper reads from the BEC scan data, skips missing devices silently, and can either create a soft link back to `/entry/collection/devices/...` or write a new dataset with attributes.
+
+``` py
+from bec_server.file_writer.default_writer import DefaultFormat
+
+
+class BeamlineNeXusFormat(DefaultFormat):
+    """Beamline-specific NeXuS structure for BEC output files."""
+
+    def format(self) -> None:
+        entry = self.storage.create_group("entry")
+        sample = entry.create_group("sample")
+        sample.attrs["NX_class"] = "NXsample"
+
+        # Create a soft link to the recorded device value
+        self.safe_dataset(sample, name="x", device="samx")
+
+        # Copy a specific signal into a new dataset and add NeXuS-style metadata
+        self.safe_dataset(
+            sample,
+            name="temperature",
+            device="temperature_controller",
+            signal="readback",
+            units="K",
+            description="sample temperature",
+            attributes={"long_name": "sample_temperature"},
+            softlink=False,
+        )
+```
+
 ## 3. Add file references or links if needed
 
 If a detector writes its own file, you can add an external link through a file reference.
