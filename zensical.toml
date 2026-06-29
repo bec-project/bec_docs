@@ -99,6 +99,11 @@ nav = [
       { "Open BEC HDF5 Files with h5py" = "how-to/scans/open-bec-hdf5-files-with-h5py.md" },
       { "Open BEC HDF5 Files with silx" = "how-to/scans/open-bec-hdf5-files-with-silx.md" },
     ] },
+    { "Automation" = [
+      { "Add a beamline state" = "how-to/automation/add-a-beamline-state.md" },
+      { "Configure the scan interlock" = "how-to/automation/configure-scan-interlock.md" },
+      { "Run a procedure" = "how-to/automation/run-procedure.md" },
+    ] },
     { "Customize BEC" = [
       { "Add Custom NeXuS Structure" = "how-to/customize-bec/add-a-custom-nexus-structure.md" },
     ] },
@@ -162,6 +167,9 @@ nav = [
     ] },
     #{ "Plugins and extensions" = [
     #] },
+    { "Automation" = [
+        {"Overview" = "learn/automation/overview.md"}
+    ] },
   ] },
   { References = [
     "references/index.md",
@@ -247,7 +255,7 @@ heading_level = 2
 
 
 [project.markdown_extensions.bec_docs_pymdown_extensions]
-
+[project.markdown_extensions.tables]
 [project.markdown_extensions.abbr]
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.attr_list]
