@@ -12,7 +12,7 @@ related:
 
 # Managing Device Configurations
 
-A beamline can easily have hundreds of devices. Managing this in a single file is often not practical. BEC supports splitting the device configuration into multiple files and loading them together. 
+A beamline can easily have hundreds of devices. Managing this in a single file is often not practical. BEC supports splitting the device configuration into multiple files and loading them together.
 
 Conceptually, this allows teams to keep base, endstation, or subsystem device groups separate while still loading one effective session configuration.
 
@@ -41,9 +41,17 @@ Conceptually, this allows teams to keep base, endstation, or subsystem device gr
     ```
 
 
-In the example config above, we combine two separate device configuration files into one effective configuration. The `!include` syntax is a feature supported by BEC's YAML parser and allows including the contents of another YAML file at that location. The resulting device configuration is a combination of all included files and any additional entries defined directly in the main config. 
+In the example config above, we combine two separate device configuration files into one effective configuration. The `!include` syntax is a feature supported by BEC's YAML parser and allows including the contents of another YAML file at that location. The resulting device configuration is a combination of all included files and any additional entries defined directly in the main config.
 
 This effective configuration becomes the basis for the current device session in BEC once it is loaded.
+
+BEC can also export the active session back into a split YAML bundle with:
+
+```py
+bec.config.save_current_session("./device_config_bundle", split_by_tag=True)
+```
+
+This writes a `main.yaml` manifest plus one YAML file per `deviceTags` value. The manifest links the split files using `!include`, which can be a good starting point for reorganizing large beamline configs.
 
 !!! learn "[Learn more about device sessions and how BEC turns config entries into live devices](device-sessions-in-bec.md){ data-preview }"
 
@@ -56,4 +64,5 @@ For more task-focused guides, take a look at the following how-tos:
     - Large BEC device setups can be split across multiple YAML files instead of living in one file.
     - BEC supports `!include` so smaller config files can be composed into one effective configuration.
     - The effective configuration, not any single source file, is what BEC loads into the active device session.
+    - `bec.config.save_current_session(..., split_by_tag=True)` can generate a split YAML bundle from the active session.
     - Separating configs by subsystem or beamline area makes large device setups easier to maintain.
