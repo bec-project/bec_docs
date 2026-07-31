@@ -21,7 +21,9 @@ def _normalize_read_configuration_output(output: str) -> str:
 READ_CONFIGURATION_OUTPUT = f"""\
 {{'samx_velocity': {{'value': 100, 'timestamp': {PLACEHOLDER_TOKEN}}},
  'samx_acceleration': {{'value': 1, 'timestamp': {PLACEHOLDER_TOKEN}}},
- 'samx_tolerance': {{'value': 0.01, 'timestamp': {PLACEHOLDER_TOKEN}}}}}
+ 'samx_tolerance': {{'value': 0.01, 'timestamp': {PLACEHOLDER_TOKEN}}},
+ 'samx_settle_time': {{'value': 0, 'timestamp': {PLACEHOLDER_TOKEN}}},
+ 'samx_timeout': {{'value': 0, 'timestamp': {PLACEHOLDER_TOKEN}}}}}\
 """
 
 

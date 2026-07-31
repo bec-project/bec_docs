@@ -57,6 +57,7 @@ ScanReport:
 	Scan ID: {PLACEHOLDER_TOKEN}
 	Scan number: {PLACEHOLDER_TOKEN}
 	Number of points: 5
+	Number of monitored readouts: 5
 	File: {PLACEHOLDER_TOKEN}
 """
 
@@ -84,7 +85,8 @@ ScanDataContainer:
 \tScan number: {PLACEHOLDER_TOKEN}
 \tScan name: line_scan
 \tStatus: closed
-\tNumber of points (monitored): 5
+\tNumber of points: 5
+\tNumber of monitored readouts: 5
 \tFile: {PLACEHOLDER_TOKEN}
 """
 

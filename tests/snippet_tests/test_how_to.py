@@ -53,14 +53,15 @@ def _master_file_path(scan_report):
 
 SCAN_HISTORY_CONTAINER_OUTPUT = f"""\
 ScanDataContainer:
-    Start time: {PLACEHOLDER_TOKEN}
+     Start time: {PLACEHOLDER_TOKEN}
     End time: {PLACEHOLDER_TOKEN}
     Elapsed time: {PLACEHOLDER_TOKEN} s
     Scan ID: {PLACEHOLDER_TOKEN}
     Scan number: {PLACEHOLDER_TOKEN}
     Scan name: line_scan
     Status: closed
-    Number of points (monitored): 5
+    Number of points: 5
+    Number of monitored readouts: 5
     File: {PLACEHOLDER_TOKEN}
 """
 
