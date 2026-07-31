@@ -1,5 +1,7 @@
 import random
+import time
 from time import sleep
+from typing import Callable
 
 import pytest
 from bec_widgets.cli.client_utils import BECGuiClient
@@ -21,18 +23,34 @@ def gui_id():
     return f"figure_{random.randint(0,100)}"  # make a new gui id each time, to ensure no 'gui is alive' zombie key can perturb
 
 
+def _wait_until(condition: Callable[[], bool], timeout: float = 10, interval: float = 0.1) -> None:
+    """Block until ``condition`` returns True.
+
+    Deliberately not using ``pytest-qt``'s ``qtbot.waitUntil``: the GUI itself runs in a
+    separate process, so no Qt event loop is needed here, and ``pytest-qt`` is not part of
+    the environment the snippet tests run in on CI.
+    """
+
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if condition():
+            return
+        sleep(interval)
+    raise TimeoutError(f"Condition not met within {timeout} s")
+
+
 @pytest.fixture
-def gui(bec, gui_id, qtbot):
+def gui(bec, gui_id):
     gui = BECGuiClient(gui_id=gui_id)
     try:
         gui.start(wait=True)
-        qtbot.waitUntil(lambda: hasattr(gui, "bec"), timeout=5000)
+        _wait_until(lambda: hasattr(gui, "bec"), timeout=5)
         gui.bec.delete_all()  # ensure clean state
-        qtbot.waitUntil(lambda: len(gui.bec.widget_list()) == 0, timeout=10000)
+        _wait_until(lambda: len(gui.bec.widget_list()) == 0, timeout=10)
         yield gui
     finally:
         gui.bec.delete_all()  # ensure clean state
-        qtbot.waitUntil(lambda: len(gui.bec.widget_list()) == 0, timeout=10000)
+        _wait_until(lambda: len(gui.bec.widget_list()) == 0, timeout=10)
         gui.kill_server()
 
 

@@ -27,6 +27,13 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
 
+    # Snippets that use the `gui` fixture start a real bec-gui-server; keep the Qt setup in
+    # sync with the bec_widgets workflows so it can run headless.
+    env:
+      QTWEBENGINE_DISABLE_SANDBOX: 1
+      QT_QPA_PLATFORM: "offscreen"
+      QTWEBENGINE_CHROMIUM_FLAGS: "--disable-gpu"
+
     steps:
       - uses: actions/checkout@v4
       - name: Run tests on code snippets
