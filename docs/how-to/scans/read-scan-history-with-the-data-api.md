@@ -62,7 +62,25 @@ You can also ask for the estimate without subscribing:
 estimate = bec.data_api.estimate_bytes([("waveform", "waveform_waveform")], scan_id)
 ```
 
-## 3. Use the columns
+## 3. Follow the progress of a large read
+
+A big scan is read from the file in slabs on a worker thread. Pass `progress_callback` to see how
+far it has come — the fraction runs from 0 to 1 and reaches 1.0 once, just before the update is
+delivered:
+
+```python
+subscription = bec.data_api.subscribe(
+    sources=[("waveform", "waveform_waveform")],
+    scan=scan_id,
+    callback=updates.append,
+    progress_callback=lambda fraction: print(f"\rloading {fraction:.0%}", end=""),
+)
+```
+
+The callback runs on the reading thread, so keep it cheap and never touch GUI objects from it —
+widgets use the bridge's `progress` signal for that.
+
+## 4. Use the columns
 
 ```python
 update = updates[-1]

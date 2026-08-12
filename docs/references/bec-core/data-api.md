@@ -31,6 +31,7 @@ created `client.data_api` facade.
 | `min_emit_interval` | Live-emission coalescing interval in seconds (default `0.1`; `0` disables coalescing).     |
 | `max_points`        | Per-source retention cap; oldest points dropped beyond it.                                 |
 | `size_limit_bytes`  | Arm the size gate: withhold loads whose up-front estimate exceeds the limit.               |
+| `progress_callback` | Called with the load fraction (0..1) while a history read runs; invoked from the worker thread. |
 
 Raises `ValueError` when a concrete scan id cannot be served and `CorrelationGroupError` when the
 source list is empty.
@@ -85,6 +86,7 @@ source list is empty.
 | `bridge.scan_id`, `bridge.sources`    | Pass-throughs to the underlying subscription.                       |
 | `bridge.healthy`                      | `False` while any declared source is not delivering.                |
 | `bridge.size_gated`, `bridge.estimated_bytes`, `bridge.confirm_size()` | Size-gate pass-throughs.           |
+| `bridge.progress`                     | Qt signal emitting the history load fraction (0..1) on the Qt thread. |
 | `bridge.set_min_emit_interval(s)`     | Change the coalescing interval at runtime.                          |
 | `bridge.close()`                      | Close; also triggered by the Qt parent's destruction.               |
 

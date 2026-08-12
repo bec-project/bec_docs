@@ -97,6 +97,21 @@ class MyWidget(PlotBase):
   [script how-to](../scans/subscribe-to-live-data-with-the-data-api.md).
 - For history-bound widgets pass `size_limit_bytes`; a gated bridge reports `size_gated` and
   `estimated_bytes`, letting the widget ask the user before calling `confirm_size()`.
+- A confirmed large load still takes seconds to read from disk. Connect `bridge.progress` to show
+  it, instead of leaving the user in front of a window that looks frozen:
+
+```python
+self._bridge.progress.connect(self._on_load_progress)
+
+@SafeSlot(float)
+def _on_load_progress(self, fraction: float):
+    self._progress_row.setVisible(fraction < 1.0)
+    self._progress_bar.setValue(int(fraction * 100))
+```
+
+  The signal is emitted on the Qt thread (the backend reports from its worker thread and the
+  bridge marshals it), so the slot may touch widgets directly. `Waveform` does this with a
+  labelled bar below the plot.
 
 !!! note "Health checks"
     `bridge.healthy` is `False` while any declared source is not delivering — use it to show a

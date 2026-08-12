@@ -121,6 +121,12 @@ deliveries, not streams.
   serving plugin can estimate the payload up front (history scans), a subscription whose estimate
   exceeds the limit withholds the load until `confirm_size()` is called. Nothing is read in the
   meantime.
+- `progress_callback` reports how far a history read has come, as a fraction from 0 to 1. Large
+  datasets are read from the file in slabs rather than in one call, so the fraction advances
+  during the read and reaches 1.0 exactly once, when the update is about to be delivered. The
+  callback runs on the reading worker thread; Qt consumers use the
+  [bridge's `progress` signal](../../how-to/gui/build-a-widget-on-the-data-api.md) instead, which
+  marshals it onto the GUI thread.
 
 !!! info "What to remember"
     - One subscription = one source set, one scan scope, one callback.
@@ -133,4 +139,4 @@ deliveries, not streams.
     - `reason` tells the consumer whether to append (`"live"`) or rebuild (`"backfill"`,
       `"history"`, `"rebind"`).
     - Coalescing bounds the update rate without losing data; `max_points` and the size gate bound
-      memory.
+      memory, and `progress_callback` reports how a large read is advancing.
