@@ -68,6 +68,27 @@ The important fields:
 `aligned()` and `axis()` are memoized on the immutable snapshot, so calling them repeatedly is
 free.
 
+### Column types
+
+A column is a *sequence*, not necessarily a tuple. Live data accumulates point by point and is
+delivered as tuples, while a file-backed history read hands the file's arrays through untouched —
+`values`, `timestamps` and the columns from `aligned()` are then `numpy.ndarray`. Keeping the
+arrays intact is what makes a multi-million-point history load cheap: converting such a column to
+Python objects and back costs seconds, on the thread that is trying to draw it.
+
+Consumers must therefore accept either type, which mainly means never testing a column for
+truthiness:
+
+```python
+if values is None or len(values) == 0:   # correct for tuples and arrays alike
+    return
+if not values:                           # WRONG: ValueError on a multi-element array
+    return
+```
+
+`np.asarray(column)` is a no-op when the column already is an array, so rendering code can call it
+unconditionally.
+
 ### Update reasons
 
 - `"backfill"` — the initial delivery after subscribing, containing everything already recorded
@@ -107,6 +128,8 @@ deliveries, not streams.
       by design.
     - `aligned()` gives equal-length columns; `axis()` resolves the x-axis — consumers do not
       trim, pair, or buffer data themselves.
+    - Columns are tuples for live data and numpy arrays for history reads: length-check them,
+      never test them for truthiness.
     - `reason` tells the consumer whether to append (`"live"`) or rebuild (`"backfill"`,
       `"history"`, `"rebind"`).
     - Coalescing bounds the update rate without losing data; `max_points` and the size gate bound

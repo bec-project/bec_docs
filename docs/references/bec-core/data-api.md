@@ -62,6 +62,7 @@ source list is empty.
 | `update.axis(mode, source)`  | X-axis column: `"index"`, `"timestamp"`, or `"device"`.                        |
 | `update.get(device, entry)`  | One source's snapshot, or `None`.                                              |
 | `update.complete`            | `True` when no source has gaps and all share one frontier.                     |
+| `update.aligned_contiguous`  | `True` when the aligned ordinals are the contiguous range `0..n-1`.            |
 | `update.metadata`            | Group label, lagging sources, and plugin-specific extras.                      |
 
 ## `SourceData`
@@ -71,7 +72,7 @@ source list is empty.
 | `device`, `entry`   | Source identity.                                               |
 | `kind`              | `"monitored"`, `"async"`, or `"unindexed"`.                    |
 | `ordinals`          | Correlation keys of the stored points (sorted).                |
-| `values`, `timestamps` | Columns parallel to `ordinals`.                             |
+| `values`, `timestamps` | Columns parallel to `ordinals`; tuples for live data, `numpy.ndarray` for file-backed history reads. |
 | `complete`          | Whether ordinals 0..frontier are all present.                  |
 | `metadata`          | Async update type, acquisition group, max shape, and similar.  |
 

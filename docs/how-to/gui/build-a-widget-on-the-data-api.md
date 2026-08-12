@@ -67,6 +67,16 @@ def _on_data_update(self, update):
 Use `update.reason` to distinguish appends (`"live"`) from situations that require rebuilding
 cached display state.
 
+!!! warning "Never test a column for truthiness"
+    Columns arrive as tuples from the live path but as `numpy.ndarray` from history reads, and
+    `if not values:` raises `ValueError` on an array with more than one element. Inside a
+    `SafeSlot` that surfaces as a widget that simply shows nothing. Length-check instead:
+
+    ```python
+    if values is None or len(values) == 0:
+        return
+    ```
+
 ## 3. Respect the widget update rate
 
 Widgets deriving from `PlotBase` expose an `update_rate` property (Hz, clamped to 1–100,
