@@ -24,7 +24,7 @@ related:
 ## 1. Subscribe with a concrete scan id
 
 ```python
-scan_id = bec.history[-1].metadata.bec.scan_id
+scan_id = bec.history[-1].metadata.bec["scan_id"]
 
 updates = []
 subscription = bec.data_api.subscribe(
