@@ -62,7 +62,7 @@ The important fields:
 | `update.reason`      | Why it was emitted: `"live"`, `"backfill"`, `"history"`, or `"rebind"`.     |
 | `update.sources`     | Mapping of `(device, entry)` to a per-source `SourceData` snapshot.         |
 | `update.aligned()`   | Equal-length value columns restricted to ordinals present in every source.  |
-| `update.axis(mode)`  | An x-axis column parallel to `aligned()`: `"index"`, `"timestamp"`, or `"device"`. |
+| `update.axis(mode, source)` | An x-axis column parallel to `aligned()`: `"index"` (0..n-1), `"timestamp"` (of `source`, default first), or `"device"` (the values of `source` itself, e.g. a motor position as x). |
 | `update.complete`    | `True` when no source has known gaps and all sources reached the same frontier. |
 
 `aligned()` and `axis()` are memoized on the immutable snapshot, so calling them repeatedly is

@@ -19,8 +19,7 @@ This page explains the mechanism behind that promise.
 Redis delivers messages reliably, but consumers can subscribe mid-scan, messages from different
 endpoints interleave freely, and async detectors emit at their own pace. A consumer that pairs
 readings by position — "the 5th x value belongs to the 5th y value" — silently corrupts its data
-the moment one source skips or repeats a message. Earlier plotting code carried exactly this
-fragility.
+the moment one source skips or repeats a message. 
 
 ## Ordinals
 
@@ -54,7 +53,8 @@ subscribe to a mixed source set and still receive correctly-scoped snapshots.
 
 ## Aligned columns and completeness
 
-Within a group, `update.aligned()` returns the values at the ordinals present in **every** source
+Each source has a **frontier** — the ordinal just past the highest point it has delivered. Within
+a group, `update.aligned()` returns the values at the ordinals present in **every** source
 of the group. A source that has not yet delivered ordinal 7 simply holds back ordinal 7 from the
 aligned view — it does not shift later points. The full per-source state remains available in
 `update.sources` for consumers that want leading, unaligned data.
