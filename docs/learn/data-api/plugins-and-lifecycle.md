@@ -36,6 +36,17 @@ failing the subscription.
 
 A subscription created with `scan="live"` moves through a well-defined lifecycle:
 
+```mermaid
+flowchart TD
+    A["subscribe(scan=live)"] --> B["<b>bind + backfill</b><br/>snapshot of everything<br/>recorded so far"]
+    B --> C["<b>live delivery</b><br/>coalesced live updates"]
+    C -->|new scan opens| D["<b>rebind</b><br/>snapshot of the new scan;<br/>consumer resets per-scan state"]
+    D --> C
+    C -->|scan reaches a<br/>terminal state| E["<b>terminal flush</b><br/>final live state"]
+    E -->|scan file appears<br/>in the history| F["<b>history re-route</b><br/>authoritative history snapshot<br/>from the scan file"]
+    F -->|next scan opens| D
+```
+
 1. **Bind and backfill.** If a scan is already running, the live plugin claims it and immediately
    delivers a `"backfill"` snapshot containing every point recorded so far. Subscribing mid-scan
    therefore never misses data.
