@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Load Your First Config
     url: getting-started/quick-start/02-load-your-first-config.md
   - title: ophyd Kind in BEC

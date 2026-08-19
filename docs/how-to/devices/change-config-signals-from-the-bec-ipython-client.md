@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Inspect a Device from the BEC IPython Client
     url: how-to/devices/inspect-a-device-from-the-bec-ipython-client.md
   - title: Device Configuration in BEC

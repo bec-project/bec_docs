@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Plotting and Data Analysis
     url: how-to/gui/ipython-client-gui.md
   - title: Access History with a Waveform

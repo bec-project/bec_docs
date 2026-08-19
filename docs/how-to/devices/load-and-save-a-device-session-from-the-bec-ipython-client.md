@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Device Sessions in BEC
     url: learn/devices/device-sessions-in-bec.md
   - title: Error Handling During Session Updates

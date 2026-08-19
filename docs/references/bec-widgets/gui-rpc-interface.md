@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: RPC GUI control
     url: learn/gui/rpc-gui-control.md
   - title: Control a Waveform from the IPython client
