@@ -6,6 +6,8 @@ related:
     url: how-to/general/install-bec-locally.md
   - title: Connect to the BEC VM
     url: how-to/general/connect-to-the-bec-vm-with-xfreerdp.md
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
 ---
 
 # Restart the BEC server

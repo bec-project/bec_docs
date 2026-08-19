@@ -166,10 +166,9 @@ nav = [
   ] },
   { References = [
     "references/index.md",
-    #  { "BEC Core" = [ TODO add references again once available
-    #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
-    #    { "Scans" = "references/bec-core/scans.md" },
-    #  ] },
+    { "BEC Core" = [
+      { "Important Commands" = "references/bec-core/important-commands.md" },
+    ] },
     { "BEC Widgets" = [
       { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
     ] },

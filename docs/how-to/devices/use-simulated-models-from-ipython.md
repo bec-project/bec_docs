@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Simulated Devices
     url: learn/devices/simulated-devices.md
   - title: Inspect a Device from the BEC IPython Client

@@ -1,5 +1,7 @@
 ---
 related:
+  - title: Important BEC Commands
+    url: references/bec-core/important-commands.md
   - title: Add Widgets to a Dock Area
     url: how-to/gui/add-widgets-to-dock-area.md
   - title: Dock Area Profiles
