@@ -18,16 +18,22 @@ If you are not sure which parameters a scan expects, ask the IPython client dire
 scans.line_scan?
 ```
 
-This will display the scan documentation, including its signature and an **example** of use:
+This will display the scan documentation, including its live signature and an example. The exact
+output depends on the scans currently published by your scan server. A typical `line_scan` help
+entry looks like this:
 
 ```python
 • default@bec [4/19] ❯❯ scans.line_scan?
 Signature:
 scans.line_scan(
     *args,
+    steps: int,
+    relative: bool,
     exp_time: float = 0,
-    steps: int = None,
-    relative: bool = False,
+    frames_per_trigger: int = 1,
+    settling_time: float = 0,
+    settling_time_after_trigger: float = 0,
+    readout_time: float = 0,
     burst_at_each_point: int = 1,
     **kwargs,
 )
@@ -35,18 +41,21 @@ Docstring:
 A line scan for one or more motors.
 
 Args:
-    *args (Device, float, float): pairs of device / start position / end position
-    exp_time (float): exposure time in s. Default: 0
-    steps (int): number of steps. Default: 10
-    relative (bool): if True, the start and end positions are relative to the current position. Default: False
-    burst_at_each_point (int): number of acquisition per point. Default: 1
+    *args (Device, float, float): pairs of device / start / stop arguments
+    steps (int): number of points along the line
+    relative (bool): if True, interpret start and stop relative to the current position
+    exp_time (float): exposure time in seconds. Default: 0
+    frames_per_trigger (int): number of frames acquired per trigger. Default: 1
+    settling_time (float): settling time in seconds. Default: 0
+    settling_time_after_trigger (float): settling time after trigger in seconds. Default: 0
+    readout_time (float): readout time in seconds. Default: 0
+    burst_at_each_point (int): number of exposures at each point. Default: 1
 
 Returns:
     ScanReport
 
 Examples:
     >>> scans.line_scan(dev.motor1, -5, 5, dev.motor2, -5, 5, steps=10, exp_time=0.1, relative=True)
-File:      ~/PSI/bec/bec_lib/bec_lib/scans.py
 Type:      function
 ```
 

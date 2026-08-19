@@ -27,7 +27,7 @@ For an intro to running scans, see the example linked above. We will use the sca
 
 ## 1. Inspect the output from a scan you have just run
 
-Having run the scan above, we can see inspect its status:
+Having run the scan above, we can inspect its status:
 
 --[]->[]--test_snippet--test_next_steps.py:test_scan_report:Inspect the scan report
 
@@ -40,9 +40,11 @@ Fetch the most recent scan history entry:
 
 This gives you a handle to the scan data after execution.
 
-!!! tip "Scan history is a list of all past scans"
-    `bec.history` behaves like a normal Python list. Index `0` accesses the first stored scan, while negative indices such as `-1`
-    access entries from the end, so `bec.history[-1]` gives you the most recent scan.
+!!! tip "Scan history behaves like a Python list"
+    `bec.history` behaves like a normal Python list, but it only keeps a bounded local history of
+    recent readable scans. In the current client implementation, that history keeps up to 50
+    readable scans. Index `0` accesses the oldest stored entry, while negative indices such as
+    `-1` access entries from the end, so `bec.history[-1]` gives you the most recent scan.
 
 ## 3. Read one signal from the stored result
 
