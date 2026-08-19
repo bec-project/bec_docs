@@ -6,8 +6,6 @@ related:
     url: how-to/general/install-bec-locally.md
   - title: Connect to the BEC VM
     url: how-to/general/connect-to-the-bec-vm-with-xfreerdp.md
-  - title: Debug a BEC server service in VS Code
-    url: how-to/general/debug-a-bec-server-service.md
 ---
 
 # Restart the BEC server
