@@ -60,6 +60,7 @@ nav = [
         { "Plot Data using the IPython Client" = "how-to/gui/control-waveform-from-ipython.md" },
         { "Fit Waveform Data with DAP" = "how-to/gui/fit-waveform-data-with-dap.md" },
         { "Access History with a Waveform" = "how-to/gui/access-history-with-waveform.md" },
+        { "Build a Widget on the Data API" = "how-to/gui/build-a-widget-on-the-data-api.md" },
       ] },
     ] },
     { "Devices" = [
@@ -96,6 +97,8 @@ nav = [
     ] },
     { "Data Access" = [
       { "Access BEC History" = "how-to/scans/access-bec-history.md" },
+      { "Subscribe to Live Data with the Data API" = "how-to/scans/subscribe-to-live-data-with-the-data-api.md" },
+      { "Read Scan History with the Data API" = "how-to/scans/read-scan-history-with-the-data-api.md" },
       { "Open BEC HDF5 Files with h5py" = "how-to/scans/open-bec-hdf5-files-with-h5py.md" },
       { "Open BEC HDF5 Files with silx" = "how-to/scans/open-bec-hdf5-files-with-silx.md" },
     ] },
@@ -160,11 +163,20 @@ nav = [
       ] },
       { "RPC GUI Control" = "learn/gui/rpc-gui-control.md" },
     ] },
+    { "Data API" = [
+      "learn/data-api/index.md",
+      { "Subscriptions and Updates" = "learn/data-api/subscriptions-and-updates.md" },
+      { "Ordinal Alignment" = "learn/data-api/ordinal-alignment.md" },
+      { "Plugins and Scan Lifecycle" = "learn/data-api/plugins-and-lifecycle.md" },
+    ] },
     #{ "Plugins and extensions" = [
     #] },
   ] },
   { References = [
     "references/index.md",
+    { "BEC Core" = [
+      { "Data API" = "references/bec-core/data-api.md" },
+    ] },
     #  { "BEC Core" = [ TODO add references again once available
     #    { "Scan Base and stubs" = "references/bec-core/scan-base-and-stubs.md" },
     #    { "Scans" = "references/bec-core/scans.md" },

@@ -88,6 +88,16 @@ The same curve can usually also be reached through the Waveform namespace:
 wf.bpm4i_bpm4i.set_color("red")
 ```
 
+Every plot widget also exposes its data update rate (Hz, clamped to 1–100). Lower it for expensive
+plots or remote desktop sessions, raise it when you want snappier live feedback:
+
+```python
+wf.update_rate = 5   # redraw at most 5 times per second
+```
+
+Data is never lost by a low rate — each update carries the full current state, so the next redraw
+always shows everything measured so far.
+
 !!! tip "Discover available methods"
 
     Use tab completion on `wf.` or `curve.` to see exposed methods and properties. Use `?` to inspect the docstring for

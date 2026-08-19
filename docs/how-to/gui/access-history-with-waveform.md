@@ -140,6 +140,27 @@ data["latest bpm4i history"]["x"]
 data["latest bpm4i history"]["y"]
 ```
 
+## Large datasets
+
+History curves can be big — an async detector can easily store hundreds of millions of points in one scan. The
+Waveform protects the GUI in three ways, without hiding any data:
+
+- **Confirmation before loading.** When the stored dataset exceeds the size limit (10 MB by default), a
+  *Large dataset detected* dialog reports the affected signal and its size before anything is read. You can load it
+  anyway, adjust the limit, or suppress the dialog for the session. The same knobs are scriptable:
+
+    ```python
+    wf.max_dataset_size_mb = 100          # raise the limit
+    wf.skip_large_dataset_warning = True  # no dialog for this session
+    ```
+
+- **Loading progress.** While a confirmed large dataset is read from the file, a progress bar below the plot shows
+  how far the load has come — the GUI stays responsive during the read.
+
+- **Detail-preserving display.** Curves beyond a million points are drawn as a min/max envelope, so spikes and
+  outliers remain visible at full zoom-out. The raw data is kept: zooming in re-renders the visible window at
+  progressively finer detail, down to the individual samples.
+
 !!! success "Result"
 
     You can inspect scan history directly through `bec.history`, plot it in a Waveform, fit history curves with DAP,
