@@ -139,13 +139,14 @@ Scans such as `acquire`, `time_scan`, `line_scan`, and `grid_scan` usually follo
 In many cases this logic is handled through `components.step_scan(...)` and
 `components.trigger_and_read()`.
 
-### Hardware-triggered or continuous scans
+### Continuous scans
 
-Scans such as `cont_line_fly_scan` or `monitor_scan` use the same lifecycle, but their
+Scans such as `cont_line_scan` or `line_sweep_scan` use the same lifecycle, but their
 `scan_core` hook looks different:
 
 - the motor may move continuously between only a start and stop point
-- per-point work may be driven by readback updates or by repeated trigger/read cycles while motion is still active
+- per-point work may be driven by readback updates or by repeated trigger/read cycles while
+  motion is still active
 - progress is often reported through readback instructions rather than a fixed point table
 
 So the framework stays the same, but the reused execution pattern changes to suit the scan style.

@@ -67,7 +67,8 @@ implementations. Otherwise the running server will continue using the old versio
 ## Next Step
 
 If you want to see `gui_config` and related scan-definition details in a richer real scan, read the
-[worked example: hexagonal scan](hexagonal-scan-example.md).
+[learn-by-example walkthrough](learn-by-example.md) and then compare it with
+[position generators](position-generators.md) for a more trajectory-heavy scan family.
 
 ## What To Remember
 

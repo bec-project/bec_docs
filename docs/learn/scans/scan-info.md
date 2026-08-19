@@ -61,7 +61,7 @@ The current `ScanInfo` model contains the following fields.
     </tr>
     <tr>
       <td style="white-space: nowrap;"><code>scan_type</code></td>
-      <td>Internal scan type, currently <code>software_triggered</code> or <code>hardware_triggered</code>.</td>
+      <td>Internal scan type, usually <code>software_triggered</code> or <code>hardware_triggered</code>, and <code>None</code> for motion-style commands such as <code>mv</code> or <code>umv</code>.</td>
       <td><code>ScanBase</code> from the class attribute</td>
     </tr>
     <tr>
@@ -178,6 +178,11 @@ The current `ScanInfo` model contains the following fields.
       <td style="white-space: nowrap;"><code>num_monitored_readouts</code></td>
       <td>Total number of monitored readouts expected for the run.</td>
       <td>Usually <code>prepare_scan</code></td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap;"><code>file_components</code></td>
+      <td>Computed file-path components for the scan output, including the base path and file suffix.</td>
+      <td>Usually populated while opening the scan</td>
     </tr>
   </tbody>
 </table>

@@ -13,7 +13,9 @@ related:
 - You are connected to a running BEC client session.
 - The scans you want to inspect are still available in the BEC history and their files are readable from your current machine.
 
-`bec.history` keeps a local history of recent scans. In current BEC, this history is limited to the last 10 000 readable scans. Each lookup returns a `ScanDataContainer`, the same data container type you also get from scan reports.
+`bec.history` keeps a local history of recent scans. In the current client implementation, this
+history keeps up to 50 readable scans. Each lookup returns a `ScanDataContainer`, the same data
+container type you also get from scan reports.
 
 The structure of this container is similar to the layout BEC writes under `entry/collection` in the HDF5 file. For example, `metadata` corresponds to `entry/collection/metadata`, and the device and readout access paths are built from `entry/collection/readout_groups`.
 

@@ -121,13 +121,18 @@ def prepare_scan(self):
 
     self.actions.add_scan_report_instruction_scan_progress(  
         points=self.scan_info.num_monitored_readouts,
-        show_table=False,
+        show_table=True,
     )
 
     self._baseline_readout_status = self.actions.read_baseline_devices(wait=False)  
 ```
 
-Once the scan info is updated with the correct parameters, we can send the information about the upcoming acquisitions to any clients that may want to report on the scan progress. In this case, we use `add_scan_report_instruction_scan_progress` to suggest that clients report progress based on the number of monitored readouts, which is the most relevant measure of progress for this scan. The `show_table=False` argument indicates that clients should not show a progress table with individual point statuses, just a progress bar.
+Once the scan info is updated with the correct parameters, we can send the information about the
+upcoming acquisitions to any clients that may want to report on the scan progress. In this case,
+we use `add_scan_report_instruction_scan_progress` to suggest that clients report progress based on
+the number of monitored readouts, which is the most relevant measure of progress for this scan. In
+the current implementation, `show_table=True` allows clients to show the usual live progress table
+alongside the progress bar.
 
 Finally, `prepare_scan` triggers a readout of all devices of readout priority `baseline`. This is done asynchronously by passing `wait=False`, so the scan can proceed to `open_scan` while the baseline readout is still in progress. The resulting status object is stored in `self._baseline_readout_status` so that we can check on it later (in `close_scan`) and make sure the baseline readout has finished before closing the scan.
 
@@ -147,7 +152,7 @@ Any device that implements runtime logic based on the scan info metadata will no
 
 ## `stage`
 
-Stageing tells devices to get ready for the upcoming acquisition.
+Staging tells devices to get ready for the upcoming acquisition.
 
 ```py
 @scan_hook
@@ -194,7 +199,8 @@ def at_each_point(self):
     self.components.trigger_and_read() 
 ```
 
-The `trigger_and_read` component is a shared helper that triggers all devices that are set to `softwareTrigger=True` before starting a readout of all devices of readout priority `monitored`. 
+The `trigger_and_read` component is a shared helper that triggers the devices configured for
+software triggering before starting a readout of all devices of readout priority `monitored`.
 
 ## `post_scan`
 

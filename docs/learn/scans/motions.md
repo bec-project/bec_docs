@@ -29,9 +29,9 @@ There are two flags that a scan can set to indicate that it is not a data-taking
 - `is_scan=False` indicates that the operation is not a scan, so it should be kept separate from ordinary scan entries in user interfaces.
 - `scan_type=None` indicates that the operation is neither hardware-triggered nor software-triggered, so it should not be confused with acquisition scans.
 
-## `move` and `updated_move`
+## `mv` and `umv`
 
-Both `move` and `updated_move` are motion commands implemented through the scan interface.
+The built-in motion commands are `mv` and `umv`.
 
 They accept repeated motor/target bundles, support relative motion, and run through the same hook
 structure as other scans.
@@ -63,7 +63,7 @@ In motion-only scans, most lifecycle hooks are kept empty or very simple. In par
 
 !!! info "What to remember"
     - In BEC, a scan does not have to acquire data to use the scan framework.
-    - Coordinated motions such as `move` and `updated_move` can use the same lifecycle and reporting model as scans.
+    - Coordinated motions such as `mv` and `umv` can use the same lifecycle and reporting model as scans.
     - Motion-only commands can still reuse argument bundles, actions, components, and scan status reporting.
     - To mark a motion-only command, set `is_scan=False` and `scan_type=None` in the scan class.
     - Lifecycle hooks must be defined, but they can be kept simple or empty if they are not needed.

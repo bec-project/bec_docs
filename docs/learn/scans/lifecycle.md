@@ -11,8 +11,8 @@ related:
 # Scan Lifecycle
 
 BEC uses one shared scan structure across the system. Concrete scans such as `line_scan`,
-`grid_scan`, `time_scan`, or `monitor_scan` all follow that same structure, even if they move
-different devices or collect data in different ways.
+`grid_scan`, `time_scan`, `cont_line_scan`, or `line_sweep_scan` all follow that same structure,
+even if they move different devices or collect data in different ways.
 
 Scans implement these hooks as normal methods and the scan server calls those hooks in a fixed order, which gives every BEC scan its recognizable shape.
 

@@ -14,11 +14,11 @@ When a scan moves more than one axis, the order of those axes matters.
 
 BEC follows one consistent convention:
 
-- the outermost axis is the slow axis
-- the innermost axis is the fast axis
+- the first user-provided axis is the fast axis
+- the last user-provided axis is the slow axis
 
-That means the fast axis changes most often, while the slow axis changes only after the inner sweep
-has finished.
+That means the fast axis changes most often, while the slow axis changes only after the fast-axis
+sweep has finished.
 
 ## What That Means In Practice
 
@@ -28,11 +28,11 @@ For every point in `samx` from `-5` to `5`, move `samy` from `-10` to `10`.
 
 In that example:
 
-- `samx` is the slow axis
-- `samy` is the fast axis
+- `samx` is the fast axis
+- `samy` is the slow axis
 
-So the scan stays on one `samx` value while it sweeps through the full `samy` range, then advances
-to the next `samx` value and repeats.
+So the scan sweeps through all `samx` values while `samy` stays fixed, then advances `samy` to its
+next value and repeats.
 
 !!! example
     A 2D grid scan like this:
@@ -41,14 +41,15 @@ to the next `samx` value and repeats.
     scans.grid_scan(dev.samx, -5, 5, 3, dev.samy, -10, 10, 5, snaked=False, relative=False)
     ```
 
-    would have `samx` as the slow axis and `samy` as the fast axis, so the scan would:
+    would have `samx` as the fast axis and `samy` as the slow axis, so the scan would:
 
-    1. keep `samx` fixed at `-5` while it sweeps `samy` from `-10` to `10`
-    2. advance `samx` to the next value (in this case `0`) while it again sweeps `samy` from `-10` to `10`
-    3. advance `samx` to the next value (in this case `5`) while it again sweeps `samy` from `-10` to `10`
-    4. finish the scan after the last `samx` value has been reached and its inner sweep has completed
+    1. keep `samy` fixed at `-10` while it sweeps `samx` from `-5` to `5`
+    2. advance `samy` to the next value (in this case `-5`) while it again sweeps `samx` from `-5` to `5`
+    3. continue until the last `samy` value has been reached and its `samx` sweep has completed
+    4. finish the scan after the last row of fast-axis points has been acquired
 
-    If the requirement is to have `samy` as the slow axis and `samx` as the fast axis, one would just swap the order of the motor arguments:
+    If the requirement is to have `samy` as the fast axis and `samx` as the slow axis, swap the
+    order of the motor arguments:
 
     ```py
     scans.grid_scan(dev.samy, -10, 10, 5, dev.samx, -5, 5, 3, snaked=False, relative=False)
@@ -60,7 +61,8 @@ This convention affects how you read and define multi-axis scans:
 
 - the order of axes in a grid or nested scan is meaningful
 - the generated point order follows that nesting
-- snaking typically changes the traversal direction of the fast axis while keeping the same slow-axis structure
+- snaking typically changes the traversal direction of the fast axis while keeping the same
+  slow-axis structure
 
 Keeping that convention stable makes scan definitions easier to reason about and makes generated
 point lists more predictable.
@@ -88,14 +90,14 @@ for point in positions:
 
 Here the first axis is the outer loop and the second axis is the inner loop:
 
-- axis 1: slow axis
-- axis 2: fast axis
+- axis 1: fast axis
+- axis 2: slow axis
 
 So the point order follows this pattern:
 
-1. keep the first axis fixed
-2. sweep the second axis through all of its values
-3. advance the first axis
+1. keep the second axis fixed
+2. sweep the first axis through all of its values
+3. advance the second axis
 4. repeat
 
 ## How To Read Existing Scan Code
@@ -111,11 +113,12 @@ positions = position_generators.nd_grid_positions(
 
 read it as:
 
-- the first tuple defines the slow axis
-- the second tuple defines the fast axis
+- the first tuple defines the fast axis
+- the second tuple defines the slow axis
 
-That same idea also applies more generally to nested point generation: outer definitions correspond
-to slower-changing axes, and inner definitions correspond to faster-changing axes.
+That same idea also applies more generally to nested point generation in BEC's grid helpers: early
+user-provided axis definitions correspond to faster-changing axes, and later ones correspond to
+slower-changing axes.
 
 ## Next Step
 
@@ -126,6 +129,6 @@ That page covers the rich input metadata used in scan signatures.
 ## What To Remember
 
 !!! info "What to remember"
-    - In BEC, the outermost axis is the slow axis and the innermost axis is the fast axis.
+    - In BEC grid-style scans, the first user-provided axis is the fast axis and later axes change more slowly.
     - The fast axis changes most often within the generated point list.
     - This convention makes multi-axis scan definitions and point ordering easier to read.

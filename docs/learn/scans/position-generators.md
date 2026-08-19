@@ -160,7 +160,7 @@ Not every scan needs a position generator.
 For example:
 
 - `acquire` does not move through a point list at all
-- monitor-style scans may react to live updates instead of a precomputed trajectory
+- `line_sweep_scan` reacts to live readback updates instead of a precomputed point table
 - some scans generate their next point on the fly rather than preparing the full array up front
 
 So position generators are common, but they are most useful when the scan can describe its path in
