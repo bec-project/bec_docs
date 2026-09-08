@@ -1,4 +1,5 @@
 # OS generated files
+/AGENTS_PERSONAL.md
 **/*_venv
 **/.idea
 **/.DS_Store
