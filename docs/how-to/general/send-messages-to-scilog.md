@@ -7,7 +7,7 @@ related:
 # Send messages to SciLog
 
 !!! Info "Overview"
-    Send text, tags, and attachments from the BEC IPython client to a configured [SciLog](https://scilog.psi.ch) messaging service.
+    Send text, tables, tags, and attachments from the BEC IPython client to a configured [SciLog](https://scilog.psi.ch) messaging service.
 
 ## Prerequisites
 
@@ -110,7 +110,29 @@ msg.add_attachment("/path/to/scan_summary.pdf")
 msg.send()
 ```
 
-## 5. Use SciLog wrapper helpers
+## 5. Build custom tables
+
+Pass a list of headings to `msg.add_table(columns=[...])` to create all columns in one call, then loop over your data to add rows. For example, calculate quadratic values in a simple loop:
+
+```py
+msg = bec.messaging.scilog.new()
+table = msg.add_table(
+    columns=["x", "x²"], title="Quadratic values"
+)
+
+for x in range(5):
+    table.add_row(str(x), str(x**2))
+
+msg.send()
+```
+
+The table is attached to `msg` immediately. Populate it before calling `msg.send()`; it keeps its position among the message's text and attachments. Define all columns before adding rows, and provide one string per column.
+
+Convert values with `str(value)` or format them yourself, for example `f"{value:.4f}"` for four decimal places. You can also calculate a value before formatting it for a cell.
+
+Use an empty string for an empty cell. Newlines produce line breaks. Titles, headings, and cell values are treated as plain text and escaped automatically.
+
+## 6. Use SciLog wrapper helpers
 
 BEC also provides wrapper methods for common SciLog use cases. These are convenient when you want to send structured content directly without building the message element by element.
 
@@ -158,7 +180,7 @@ bec.messaging.scilog.log_code(
 
 !!! success "Congratulations!"
 
-    You can now send SciLog messages from the BEC IPython client, log device positions and source code, add tags, and attach files when needed.
+    You can now send SciLog messages from the BEC IPython client, build custom tables, log device positions and source code, add tags, and attach files when needed.
 
 ## Common pitfalls
 
