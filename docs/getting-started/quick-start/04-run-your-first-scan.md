@@ -1,80 +1,95 @@
-# Run Your First Scan
+# Run your first scan
 
-!!! Info "Goal"
-
-    In this tutorial you will submit a simple line scan and observe the result.
+!!! info "Goal"
+    Discover a scan, run it with a simulated motor, and keep the report that identifies
+    your measurement.
 
 ## Before you start
 
-Continue in the same session with the demo configuration loaded and the tutorial motor `samx` available.
+Continue in the BEC IPython session from [Move a device](03-move-a-device.md), with the
+demo configuration loaded and `dev.samx` available.
 
-!!! tip "Tab completion for scans"
-    BEC provides tab completion for the full scan interface. Type `scans.` and press `TAB` to discover available scan
-    commands and their names.
+## 1. Discover the line scan
 
-If you are not sure which parameters a scan expects, ask the IPython client directly with `?`:
+Type `scans.` and press ++tab++ to see the scans available from your running server.
+For this exercise, inspect the line scan:
 
 ```python
 scans.line_scan?
 ```
 
-This will display the scan documentation, including its signature and an **example** of use:
+This displays the scan documentation, including its signature and **examples** of use.
+For the built-in line scan, an abbreviated help display looks like this:
 
-```python
-• default@bec [4/19] ❯❯ scans.line_scan?
+```text
 Signature:
 scans.line_scan(
     *args,
+    steps: int,
+    relative: bool,
     exp_time: float = 0,
-    steps: int = None,
-    relative: bool = False,
+    frames_per_trigger: int = 1,
+    settling_time: float = 0,
+    settling_time_after_trigger: float = 0,
+    readout_time: float = 0,
     burst_at_each_point: int = 1,
-    **kwargs,
 )
 Docstring:
 A line scan for one or more motors.
 
 Args:
-    *args (Device, float, float): pairs of device / start position / end position
-    exp_time (float): exposure time in s. Default: 0
-    steps (int): number of steps. Default: 10
-    relative (bool): if True, the start and end positions are relative to the current position. Default: False
-    burst_at_each_point (int): number of acquisition per point. Default: 1
+    *args (device: DeviceBase, start: float, stop: float): repeated scan argument bundles.
+    steps (int): steps.
+    relative (bool): Whether the positions are relative to the current position.
+    exp_time (float [s]): Exposure time in seconds. Default: 0 s
+    ...
 
 Returns:
     ScanReport
 
 Examples:
-    >>> scans.line_scan(dev.motor1, -5, 5, dev.motor2, -5, 5, steps=10, exp_time=0.1, relative=True)
-File:      ~/PSI/bec/bec_lib/bec_lib/scans.py
-Type:      function
+    Minimum:
+        >>> scans.line_scan(dev.device1, -1.0, 1.0, steps=10, relative=False)
+    ...
 ```
 
-## 1. Submit a simple line scan
+Find `steps`, `exp_time`, and `relative`: we will set all three explicitly below.
+Available scans and their defaults can differ between deployments, so use the help from
+your own session.
 
-Run a short line scan over the simulated `samx` motor:
+## 2. Run a scan and keep its report
+
+Run a short scan over the simulated `samx` motor, assigning the returned report to
+`scan_report`:
 
 --[]->[]--test_snippet--test_quickstart.py:test_samx_line_scan:Run a line scan with the `samx` motor
 
-<!-- TODO: link to learn about signals -->
-This runs a scan where the `samx` motor is moved from the position `-1` to `1`, and all the 
-"[monitored](../../learn/devices/readout-priority.md){ data-preview }" devices and signals in BEC are recorded at each of five points,
-evenly spaced along this trajectory. For devices which expect an exposure time, `exp_time=0.1` indicates that they should
-expose for `0.1` seconds. The keyword `relative` determines whether the start and end positions are relative to the
-current motor position or absolute positions.
+The motor visits five equally spaced positions: `-1`, `-0.5`, `0`, `0.5`, and `1`.
+`relative=False` makes these absolute positions, independent of the motor's starting
+position. `exp_time=0.1` requests a 0.1-second exposure from devices that use this setting.
 
-BEC shows a progress bar while the scan runs, together with a table of the monitored devices used during the scan.
+At each position, BEC records the
+[monitored devices](../../learn/devices/readout-priority.md){ data-preview }.
+The client shows progress and a table of their readings. Simulated readbacks can differ
+slightly from the requested positions, and detector values will vary between runs.
 
-## 2. Let the scan finish in the client
+## 3. Identify your scan
 
-For this short tutorial scan, you can simply let the scan complete and observe the output in the console.
+The report belongs to this particular request. Inspect its scan ID:
 
-!!! success "What you have learned"
+```python
+scan_report.scan.scan_id
+```
 
-    You submitted a line scan, and observed the output in the BEC console.
+Keep `scan_report` in your session. You will use it to find this measurement again in
+[Access scan data](../next-steps/access-scan-data.md){ data-preview }.
 
 ## Next step
 
-Continue with [05 Plot Your First Waveform](05-plot-your-first-waveform.md){ data-preview }, where you will start using the Dock Area and draw a plot from a scan.
+Continue with [05 Plot your first waveform](05-plot-your-first-waveform.md){ data-preview }
+to plot scan data, or follow [Access scan data](../next-steps/access-scan-data.md){ data-preview }
+to inspect the recorded values and find the saved file.
 
-Alternatively, you can check out the more in-depth tutorial on [accessing your scan data](../next-steps/access-scan-data.md){ data-preview }.
+!!! success "What you have learned"
+    You discovered a scan with IPython help, ran an absolute five-point measurement,
+    and kept its report and scan ID for accessing the result.
