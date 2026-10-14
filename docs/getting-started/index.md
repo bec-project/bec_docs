@@ -20,7 +20,8 @@ Follow the **Quick Start** tutorials in order. Start with [01 Open BEC](quick-st
 startup tab that matches your environment, and then continue with [02 Load your first config](quick-start/02-load-your-first-config.md).
 
 After **Quick Start**, continue with the **Next Steps** pages when you are ready to work with your own configs, devices,
-data, and automation.
+data, and automation. To develop an experimental procedure, follow
+[Write an alternating-position scan](next-steps/write-a-scan.md).
 
 !!! warning "Use a safe session for the Quick Start tutorials"
 
