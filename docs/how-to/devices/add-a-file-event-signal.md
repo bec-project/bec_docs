@@ -36,6 +36,10 @@ class MyDetector(PSIDeviceBase):
     file_event = Cpt(FileEventSignal, name="file_event")
 ```
 
+Define only one `FileEventSignal` in the entire root device tree, including subdevices.
+Adding a second file-event signal to the same tree raises `RuntimeError` because both
+would publish through the root device's file-event endpoint.
+
 ## 2. Emit the initial file event before acquisition starts
 
 As soon as the final output path is known, publish an initial file event with `done=False`.

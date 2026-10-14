@@ -49,7 +49,7 @@ This defines one grouped async signal with two sub-signals:
 
 The `async_update` metadata is part of the signal definition. In this example, each new update is appended to the async stream.
 
-`max_size` controls how much async data BEC keeps in memory for that signal.
+`max_size` limits the number of updates retained in the signal's Redis stream; it does not limit the HDF5 dataset shape.
 
 The resulting data output for a device named `my_flyer` will look like:
 

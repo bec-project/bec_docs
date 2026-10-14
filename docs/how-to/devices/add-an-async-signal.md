@@ -45,7 +45,7 @@ This defines one asynchronous signal named `waveform`.
 
 - `ndim` describes the payload dimensionality
 - `async_update` tells BEC how incoming updates should be stored
-- `max_size` controls how much async data BEC keeps in memory for that signal
+- `max_size` limits the number of updates retained in the signal's Redis stream; it does not limit the HDF5 dataset shape
 
 ## 2. Define `async_update` on the signal
 

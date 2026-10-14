@@ -36,6 +36,10 @@ class MyDetector(Device):
 
 This creates one signal that emits BEC progress messages.
 
+Define only one `ProgressSignal` in the entire root device tree, including subdevices.
+Adding a second progress signal to the same tree raises `RuntimeError` because both
+would publish through the root device's progress endpoint.
+
 ## 2. Decide what progress means for the device
 
 Choose one quantity that moves toward completion in a clear way.
