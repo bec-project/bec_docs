@@ -88,7 +88,8 @@ Keep `scan_report` in your session. You will use it to find this measurement aga
 
 Continue with [05 Plot your first waveform](05-plot-your-first-waveform.md){ data-preview }
 to plot scan data, or follow [Access scan data](../next-steps/access-scan-data.md){ data-preview }
-to inspect the recorded values and find the saved file.
+to inspect the recorded values and find the saved file. For other scan types, consult the
+[built-in scan catalog](../../references/bec-core/scans.md).
 
 !!! success "What you have learned"
     You discovered a scan with IPython help, ran an absolute five-point measurement,

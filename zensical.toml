@@ -168,6 +168,9 @@ nav = [
     "references/index.md",
     { "BEC Core" = [
       { "Important Commands" = "references/bec-core/important-commands.md" },
+      { "Scans" = [
+        { "Built-in scan catalog" = "references/bec-core/scans.md" },
+      ] },
     ] },
     { "BEC Widgets" = [
       { "GUI RPC Interface" = "references/bec-widgets/gui-rpc-interface.md" },
