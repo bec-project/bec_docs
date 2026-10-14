@@ -11,3 +11,8 @@ They are here to give you reliable facts in a form you can return to whenever yo
 
 Reference pages are usually not meant to be read from beginning to end. In most cases, you will arrive here by
 following links from examples, how-to guides, or learning material when you need to check a specific technical detail.
+
+## BEC Core
+
+- [Important BEC commands](bec-core/important-commands.md) — shell commands and client helpers.
+- [Built-in scan catalog](bec-core/scans.md) — trajectories, inputs, acquisition options, and examples.
