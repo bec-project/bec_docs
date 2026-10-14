@@ -12,7 +12,7 @@ related:
 
 # BEC Signals for Custom Devices
 
-Ophyd devices typically use `Signal` and `Component` objects to communicate with hardware. `BECSignal`s are building their counterparts designed to communicate with BEC instead of hardware. This allows devices to send structured messages and inform BEC about e.g. progress updates, file events, and asynchronous data streams.
+Ophyd devices typically use `Signal` and `Component` objects to communicate with hardware. The BEC signal classes in `ophyd_devices` inherit from `BECMessageSignal` and send structured messages to BEC. They report progress, external files, preview data, and asynchronous data streams.
 
 !!! info "BEC Signals are internal components"
     BEC signals are not meant to be read out directly through the command-line interface. They are internal components that allow devices to send structured messages to BEC. 
@@ -75,10 +75,20 @@ BEC provides several signal classes for different use cases. Some of them are de
 BEC signals are defined as normal ophyd components:
 
 ```python
+from ophyd import Component as Cpt, Device
+from ophyd_devices import (
+    AsyncMultiSignal,
+    AsyncSignal,
+    FileEventSignal,
+    PreviewSignal,
+    ProgressSignal,
+)
+
+
 class MyDevice(Device):
     progress = Cpt(ProgressSignal, name="progress")
     file_event = Cpt(FileEventSignal, name="file_event")
-    preview = Cpt(PreviewSignal, name="preview", ndim=2, max_shape=[1024, 1024])
+    preview = Cpt(PreviewSignal, name="preview", ndim=2)
     async_signal = Cpt(
         AsyncSignal,
         name="async_signal",
@@ -90,7 +100,9 @@ class MyDevice(Device):
         AsyncMultiSignal,
         name="async_multi_signal",
         signals=["temperature", "pressure"],
-        async_update={"type": "add", "max_shape": [None, None]},
+        ndim=0,
+        max_size=1000,
+        async_update={"type": "add", "max_shape": [None]},
     )
 ```
 
@@ -102,6 +114,17 @@ self.progress.put(value=50, max_value=100, done=False)
 
 The exact signature depends on the signal class but in general, the `put(...)` can be used to pass in either the data values directly or a structured message object.
 
+Here, `async_signal` publishes 1D waveforms of length `1000`, while each update of
+`async_multi_signal` contains scalar temperature and pressure values. `ndim` describes
+each payload's dimensionality; `async_update.max_shape` describes the stored dataset.
+`max_size` limits the number of updates retained in the Redis stream, not the shape of
+the HDF5 dataset. `PreviewSignal` takes `ndim` but has no `max_shape` argument.
+
+Each root device tree can contain at most one `ProgressSignal` and one `FileEventSignal`,
+including components on subdevices. These signals publish through endpoints identified
+by the root device name. Creating a second signal of either type in the same tree raises
+`RuntimeError`.
+
 For more details on how to use each signal class, see the following how-to guides:
 
 - [Add a Progress Signal](../../how-to/devices/add-a-progress-signal.md)
@@ -109,6 +132,46 @@ For more details on how to use each signal class, see the following how-to guide
 - [Add a Preview Signal](../../how-to/devices/add-a-preview-signal.md)
 - [Add an Async Signal](../../how-to/devices/add-an-async-signal.md)
 - [Add an Async Multi Signal](../../how-to/devices/add-an-async-multi-signal.md)
+
+### Signal information
+
+BEC signals expose their metadata through the `signal_info` model. On the device server, 
+you can inspect it directly:
+
+```python
+device = MyDevice(name="detector")
+info = device.async_multi_signal.signal_info
+print(info.ndim)
+print(info.signals)
+```
+
+`describe()` includes the serialized model under the signal's `signal_info` key.
+The model describes the signal's role, dimensionality, sub-signals, scope, and whether
+its data is saved. `rpc_access` defaults to `False`, so BEC signals are normally hidden
+from the client's device proxy. They publish through their message streams.
+
+Use `correlation_group` to identify related signals, for example to associate an async
+stream with monitored readouts:
+
+```python
+waveform = Cpt(
+    AsyncSignal,
+    name="waveform",
+    ndim=1,
+    max_size=1000,
+    correlation_group="monitored",
+    async_update={"type": "add", "max_shape": [None, 1024]},
+)
+```
+
+This labels the relationship; it does not change the device's `readoutPriority` or
+generate synchronized acquisitions. 
+
+The published `SignalInfo` can also advertise subscriptions in `transports`, using
+Redis or ZMQ descriptors. Consumers choose a supported transport from those advertised.
+`transports=None` means that transport metadata is unavailable, so consumers retain
+their existing routing. A descriptor describes a subscription; it does not start a
+publisher or mean that every signal provides both transports.
 
 ## Async update metadata
 
@@ -298,8 +361,10 @@ When to use it:
 - when old async data should be superseded instead of extended
 
 !!! info "What to remember"
-    - `BECSignal` classes are ophyd-style components for sending structured messages from devices into BEC instead of talking directly to hardware.
+    - BEC signal classes inherit from `BECMessageSignal` and send structured messages from devices into BEC.
     - Choose the signal class based on the kind of information your device publishes: progress updates, file events, preview data, or asynchronous data streams.
     - Declare BEC signals on the device class like normal ophyd components, then publish updates with `put(...)` from the device code.
+    - Use `signal_info` for signal metadata and `correlation_group` to identify related streams.
+    - A root device tree supports one progress signal and one file-event signal.
     - `AsyncSignal`, `AsyncMultiSignal`, and `DynamicSignal` need `async_update` metadata so BEC knows how incoming async data should be written into the scan dataset.
     - For async streams, use `add` by default, use `add_slice` for indexed slice updates, and use `replace` when each update should overwrite the previous result.
