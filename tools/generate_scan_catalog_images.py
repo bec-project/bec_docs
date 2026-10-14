@@ -1,6 +1,6 @@
 """Render the catalog's example trajectories using BEC's position generators.
 
-Run from the repository root with BEC and matplotlib installed:
+Run from the repository root with bec-lib and matplotlib installed:
     python tools/generate_scan_catalog_images.py
 """
 
@@ -8,7 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
-from bec_server.scan_server.scans import position_generators as positions
+from bec_lib import position_generators as positions
 
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "docs/assets/scan-catalog"
 
