@@ -27,6 +27,7 @@ nav = [
       #{ "Add Your First Device" = "getting-started/next-steps/add-your-first-device.md" },
       #{ "Load and Export a Config" = "getting-started/next-steps/load-and-export-a-config.md" },
       { "Access Scan Data" = "getting-started/next-steps/access-scan-data.md" },
+      { "Write an alternating-position scan" = "getting-started/next-steps/write-a-scan.md" },
       { "Dock Area Profiles" = "getting-started/next-steps/dock-area-profiles-tutorial.md" },
       { "Create Dock Area Profiles from the BEC IPython Client" = "getting-started/next-steps/create-dock-area-profiles-from-ipython.md" },
       { "Script GUI Interactions" = "getting-started/next-steps/script-gui-interactions.md" },
@@ -95,6 +96,11 @@ nav = [
         ] },
       ] },
     ] },
+    { "Scans" = [
+      { "Development" = [
+        { "Test a scan" = "how-to/scans/test-a-scan.md" },
+      ] },
+    ] },
     { "Data Access" = [
       { "Access BEC History" = "how-to/scans/access-bec-history.md" },
       { "Open BEC HDF5 Files with h5py" = "how-to/scans/open-bec-hdf5-files-with-h5py.md" },
@@ -139,8 +145,11 @@ nav = [
         { "Simulated Devices" = "learn/devices/simulated-devices.md" },
       ] },
     ] },
-    #{ "Scans and execution" = [ TODO fill with content
-    #] },
+    { "Scans" = [
+      { "Building scans" = [
+        { "Scan lifecycle and authoring responsibilities" = "learn/scans/scan-lifecycle.md" },
+      ] },
+    ] },
     { "File Writing" = [
       { "Introduction" = "learn/file-writer/introduction.md" },
       { "Where Files Are Written" = "learn/file-writer/where-files-are-written.md" },
@@ -170,6 +179,7 @@ nav = [
       { "Important Commands" = "references/bec-core/important-commands.md" },
       { "Scans" = [
         { "Built-in scan catalog" = "references/bec-core/scans.md" },
+        { "Scan development API" = "references/bec-core/scan-base-and-stubs.md" },
       ] },
     ] },
     { "BEC Widgets" = [

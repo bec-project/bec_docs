@@ -16,3 +16,4 @@ following links from examples, how-to guides, or learning material when you need
 
 - [Important BEC commands](bec-core/important-commands.md) — shell commands and client helpers.
 - [Built-in scan catalog](bec-core/scans.md) — trajectories, inputs, acquisition options, and examples.
+- [Scan development API](bec-core/scan-base-and-stubs.md) — hooks, runtime operations, and statuses for custom scans.

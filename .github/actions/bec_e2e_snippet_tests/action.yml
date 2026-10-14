@@ -89,4 +89,6 @@ runs:
         pip install -e .
         # xvfb-run provides the DISPLAY that BECGuiClient requires before it launches a
         # GUI server; Qt itself still renders offscreen (see QT_QPA_PLATFORM).
-        xvfb-run -a pytest -v --start-servers ./tests/snippet_tests ./tests/test_scan_catalog.py
+        # The tutorial plugin must be installed before this isolated server session starts.
+        xvfb-run -a pytest -v --start-servers ./tests/test_scan_authoring_integration.py
+        xvfb-run -a pytest -v --start-servers ./tests/snippet_tests ./tests/test_scan_catalog.py ./tests/test_scan_authoring.py
