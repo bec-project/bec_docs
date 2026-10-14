@@ -22,54 +22,39 @@ SHOW_ALL_COMMANDS_OUTPUT = """\
 │ macro_test_takes_time │             │
 └───────────────────────┴─────────────┘
                                      Scans                                      
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃            Name             ┃                  Description                   ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│           acquire           │ A simple acquisition at the current position.  │
-│       cont_line_scan        │  A continuous line scan. Use this scan if you  │
-│                             │       want to move a motor continuously        │
-│         fermat_scan         │       A scan following Fermat's spiral.        │
-│          grid_scan          │       Scan two or more motors in a grid.       │
-│       hexagonal_scan        │  Scan two motors in a hexagonal grid pattern.  │
-│          line_scan          │      A line scan for one or more motors.       │
-│       line_sweep_scan       │   Read out monitored devices while a single    │
-│                             │         device moves continuously from         │
-│          list_scan          │ A scan following the positions specified in a  │
-│                             │                     list.                      │
-│          log_scan           │       A scan for one or more motors with       │
-│                             │       logarithmically spaced positions.        │
-│             mv              │   Simple move command that moves one or more   │
-│                             │       motors to the specified positions.       │
-│   multi_region_grid_scan    │    Scan two motors on multiple independent     │
-│                             │             rectangular sub-grids.             │
-│   multi_region_line_scan    │  Scan one motor across multiple disjoint line  │
-│                             │                    regions.                    │
-│       round_roi_scan        │   A scan following a round-roi-like pattern.   │
-│         round_scan          │  A scan following a round shell-like pattern   │
-│                             │ with increasing number of points in each ring. │
-│                             │  The scan starts at the inner ring and moves   │
-│                             │                   outwards.                    │
-│          time_scan          │     Trigger and readout devices at a fixed     │
-│                             │                   interval.                    │
-│             umv             │   Simple move command that moves one or more   │
-│                             │       motors to the specified positions.       │
-│   _close_interactive_scan   │  An interactive scan for one or more motors.   │
-│      close_scan_group       │                                                │
-│     cont_line_fly_scan      │  A continuous line fly scan. Use this scan if  │
-│                             │   you want to move a motor continuously from   │
-│                             │         start to stop position whilst          │
-│ _interactive_read_monitored │  Read the devices that are on readoutPriority  │
-│                             │                  "monitored".                  │
-│    _interactive_trigger     │ Send a trigger to all enabled devices that are │
-│                             │            on softwareTrigger mode.            │
-│        monitor_scan         │ Readout all primary devices at each update of  │
-│                             │             the monitored device.              │
-│   _open_interactive_scan    │  An interactive scan for one or more motors.   │
-│       round_scan_fly        │    A fly scan following a round shell-like     │
-│                             │                    pattern.                    │
-│     custom_testing_scan     │      A line scan for one or more motors.       │
-│  device_progress_grid_scan  │ A scan that simulates device progress updates. │
-└─────────────────────────────┴────────────────────────────────────────────────┘
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃           Name            ┃                   Description                    ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│          acquire          │  A simple acquisition at the current position.   │
+│      cont_line_scan       │   A continuous line scan. Use this scan if you   │
+│                           │        want to move a motor continuously         │
+│        fermat_scan        │        A scan following Fermat's spiral.         │
+│         grid_scan         │        Scan two or more motors in a grid.        │
+│      hexagonal_scan       │   Scan two motors in a hexagonal grid pattern.   │
+│         line_scan         │       A line scan for one or more motors.        │
+│      line_sweep_scan      │ Read out monitored devices while a single device │
+│                           │             moves continuously from              │
+│         list_scan         │  A scan following the positions specified in a   │
+│                           │                      list.                       │
+│         log_scan          │        A scan for one or more motors with        │
+│                           │        logarithmically spaced positions.         │
+│            mv             │    Simple move command that moves one or more    │
+│                           │        motors to the specified positions.        │
+│  multi_region_grid_scan   │     Scan two motors on multiple independent      │
+│                           │              rectangular sub-grids.              │
+│  multi_region_line_scan   │   Scan one motor across multiple disjoint line   │
+│                           │                     regions.                     │
+│      round_roi_scan       │    A scan following a round-roi-like pattern.    │
+│        round_scan         │ A scan following a round shell-like pattern with │
+│                           │  increasing number of points in each ring. The   │
+│                           │     scan starts at the inner ring and moves      │
+│                           │                    outwards.                     │
+│         time_scan         │ Trigger and readout devices at a fixed interval. │
+│            umv            │    Simple move command that moves one or more    │
+│                           │        motors to the specified positions.        │
+│    custom_testing_scan    │       A line scan for one or more motors.        │
+│ device_progress_grid_scan │  A scan that simulates device progress updates.  │
+└───────────────────────────┴──────────────────────────────────────────────────┘
 """
 # fmt: on
 
