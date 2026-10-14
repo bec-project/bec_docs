@@ -8,7 +8,6 @@ import pytest
 from bec_docs_pymdown_extensions.matchers import (
     ContainsExpectedOutputMatcher,
     SignalArrayOutputMatcher,
-    SimilarExpectedOutputMatcher,
 )
 from bec_docs_pymdown_extensions.snippet_preprocessor import PLACEHOLDER_TOKEN
 
@@ -69,7 +68,6 @@ def test_scan_report(bec, assert_expected_output):
     scan_report = scans.line_scan(  # docs-hide
         dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False  # docs-hide
     )  # docs-hide
-    scan_report.wait(num_points=True, file_written=True)  # docs-hide
     _wait_for_scan_in_history(bec, scan_report)  # docs-hide
     print(scan_report)  # docs-hide
     scan_report
@@ -98,11 +96,18 @@ def test_scan_history_container_summary(bec, assert_expected_output):
     scan_report = scans.line_scan(  # docs-hide
         dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False  # docs-hide
     )  # docs-hide
-    scan_report.wait(num_points=True, file_written=True)  # docs-hide
     _wait_for_scan_in_history(bec, scan_report)  # docs-hide
-    latest = bec.history[-1]
-    print(latest)  # docs-display
-    assert_expected_output(_normalize_scan_container_summary(repr(latest)))  # docs-hide
+    scan = bec.history[-1]
+    print(scan)  # docs-display
+    assert scan._msg.scan_id == scan_report.scan.scan_id  # docs-hide
+    assert_expected_output(_normalize_scan_container_summary(repr(scan)))  # docs-hide
+    other_report = scans.line_scan(  # docs-hide
+        dev.samx, -0.5, 0.5, steps=3, exp_time=0.1, relative=False  # docs-hide
+    )  # docs-hide
+    _wait_for_scan_in_history(bec, other_report)  # docs-hide
+    assert bec.history[-1]._msg.scan_id != scan_report.scan.scan_id  # docs-hide
+    selected = bec.history.get_by_scan_id(scan_report.scan.scan_id)  # docs-hide
+    assert selected._msg.scan_id == scan_report.scan.scan_id  # docs-hide
 
 
 @pytest.mark.timeout(100)
@@ -114,6 +119,9 @@ def test_scan_history_signal_arrays(bec):
     scan_report = scans.line_scan(  # docs-hide
         dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False  # docs-hide
     )  # docs-hide
-    scan_report.wait(num_points=True, file_written=True)  # docs-hide
-    latest = _wait_for_scan_in_history(bec, scan_report)  # docs-hide
-    print(latest.devices.samx.samx.read())  # docs-display
+    scan = _wait_for_scan_in_history(bec, scan_report)  # docs-hide
+    signal = scan.devices.samx.samx.read()
+    print(signal)  # docs-display
+    assert signal["value"] == pytest.approx([-1, -0.5, 0, 0.5, 1], abs=0.05)  # docs-hide
+    assert len(signal["timestamp"]) == 5  # docs-hide
+    assert all(b >= a for a, b in zip(signal["timestamp"], signal["timestamp"][1:]))  # docs-hide

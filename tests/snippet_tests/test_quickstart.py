@@ -445,7 +445,13 @@ Starting scan 1.
 # different set of columns while still checking the overall table structure.
 @pytest.mark.expected_output(NumberUUIDSimilarOutputMatcher(SCAN_OUTPUT, ratio=0.45))
 def test_samx_line_scan(bec):
-    scans.line_scan(dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False)
+    scan_report = scans.line_scan(
+        dev.samx, -1, 1, steps=5, exp_time=0.1, relative=False
+    )
+    assert scan_report.status == "COMPLETED"  # docs-hide
+    assert scan_report.scan.scan_id is not None  # docs-hide
+    values = scan_report.scan.live_data["samx"]["samx"].val  # docs-hide
+    assert values == pytest.approx([-1, -0.5, 0, 0.5, 1], abs=0.05)  # docs-hide
 
 
 AVAILABLE_WIDGETS_OUTPUT = """\
