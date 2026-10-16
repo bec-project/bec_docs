@@ -225,6 +225,33 @@ def _closes_fence(stripped: str, open_fence: str) -> bool:
     )
 
 
+def _drop_autodoc(text: str) -> list[str]:
+    """The page's lines without mkdocstrings autodoc directives and their indented options."""
+    kept: list[str] = []
+    # the fence string that opened the current code block, and the indentation of the autodoc
+    # directive being skipped (None outside either)
+    open_fence: str | None = None
+    autodoc_indent: int | None = None
+    for line in text.splitlines():
+        stripped = line.strip()
+        if autodoc_indent is not None:
+            if stripped and len(line) - len(line.lstrip()) > autodoc_indent:
+                continue
+            autodoc_indent = None
+        if open_fence is None:
+            autodoc = _AUTODOC_RE.match(line)
+            if autodoc:
+                autodoc_indent = len(autodoc.group(1))
+                continue
+            fence = _FENCE_RE.match(stripped)
+            if fence:
+                open_fence = fence.group(1)
+        elif _closes_fence(stripped, open_fence):
+            open_fence = None
+        kept.append(line)
+    return kept
+
+
 def _split_sections(text: str, snippet_dir: Path | None) -> tuple[str | None, list[dict[str, Any]]]:
     """Split markdown into sections at its headings; returns the first H1 and the sections."""
     title: str | None = None
@@ -243,20 +270,8 @@ def _split_sections(text: str, snippet_dir: Path | None) -> tuple[str | None, li
         if section_text:
             sections.append({"heading": heading, "level": level, "text": section_text})
 
-    # indentation of the autodoc directive being skipped (None outside one)
-    autodoc_indent: int | None = None
-
-    for raw_line in text.splitlines():
+    for raw_line in _drop_autodoc(text):
         stripped = raw_line.strip()
-        if autodoc_indent is not None:
-            indent = len(raw_line) - len(raw_line.lstrip())
-            if stripped and indent > autodoc_indent:
-                continue
-            autodoc_indent = None
-        autodoc_match = _AUTODOC_RE.match(raw_line) if open_fence is None else None
-        if autodoc_match:
-            autodoc_indent = len(autodoc_match.group(1))
-            continue
         if open_fence is not None:
             if _closes_fence(stripped, open_fence):
                 open_fence = None
