@@ -17,7 +17,8 @@ The short version is:
 - use `put()` for a direct low-level write
 - use `set()` when you want a write operation with completion tracking
 
-That distinction matters in BEC because user-facing device operations often need clear completion semantics, while device-internal helper signals often just need to publish a new value immediately.
+!!! note "Using the BEC client"
+    This page describes direct ophyd signal objects, as used in device implementation code on the device server. In the BEC client, `dev` exposes proxy objects with different method signatures. These proxies simplify device access so users do not need to worry about the underlying ophyd `put()` versus `set()` distinction. For a typical client workflow, see [Change config signals from the BEC IPython client](../../how-to/devices/change-config-signals-from-the-bec-ipython-client.md).
 
 ## What `put()` does
 
@@ -25,7 +26,7 @@ That distinction matters in BEC because user-facing device operations often need
 
 It sends a value to the signal and returns immediately. It does not return a `Status` object and is therefore not the right abstraction when the caller needs to wait for completion in a structured way.
 
-`put()` is a direct wrapper around the underlying control layer, i.e. in the case of pyepics (default for ophyd_devices), it is calling `epics.PV.put()`. 
+For `EpicsSignal` using the pyepics control layer (the default for ophyd_devices), `put()` wraps `epics.PV.put()`. If `use_complete` is omitted or set to `None`, it defaults to the signal's configured `put_complete` value. Passing `use_complete=True` or `use_complete=False` overrides that setting for the individual call.
 
 Typical uses of `put()` include:
 
