@@ -61,6 +61,26 @@ For `EpicsSignal.set()`, `put_complete` changes the completion condition:
 
 This can be useful for EPICS signals where the EPICS put-completion callback is the right completion signal for the write.
 
+## Example: areaDetector acquisition
+
+An areaDetector camera's `Acquire` PV illustrates the difference when its IOC sends the put-completion callback only after acquisition finishes. The following examples use direct ophyd signals on the device server. Replace the example PV name with your camera's `Acquire` PV and configure a finite acquisition before trying either example. Run them separately, starting with an idle camera each time.
+
+```python
+from ophyd import EpicsSignal
+
+acquire = EpicsSignal("CAMERA:cam1:Acquire", name="acquire", put_complete=False)
+acquire.set(1).wait()
+# Returns when the Acquire PV reaches 1; acquisition may still be running.
+```
+
+```python
+acquire = EpicsSignal("CAMERA:cam1:Acquire", name="acquire", put_complete=True)
+acquire.set(1).wait()
+# Waits for the IOC's put-completion callback, after acquisition finishes.
+```
+
+The difference is what completes the `Status`: observing the requested value (`1`) or receiving the IOC's callback. `put_complete=True` does not itself make the IOC wait for acquisition. The record and driver implementation determine when the callback is sent. If the IOC acknowledges the write as soon as acquisition starts, the second example also returns before acquisition finishes. Verify the callback behavior for your IOC before using it as an acquisition-completion signal.
+
 ## What it does not change
 
 `put_complete` changes how `set()` finishes, but it does not change the role of `put()`.
