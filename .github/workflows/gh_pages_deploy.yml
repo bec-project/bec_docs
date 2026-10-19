@@ -12,7 +12,8 @@ permissions:
 
 concurrency:
     group: pages
-    cancel-in-progress: true
+    # Let package replacement finish before another run starts.
+    cancel-in-progress: false
 
 jobs:
     build:
@@ -44,12 +45,13 @@ jobs:
         steps:
             - uses: actions/deploy-pages@v4
 
-    mcp-docs-index-branch:
-        # git mirrors (e.g. an internal gitea) carry branches but not the Pages site, so the same
-        # index is also the single commit of the mcp-docs-index branch, readable as a raw file
+    mcp-docs-index-package:
+        # Internal clients can download the index from the Gitea generic package registry:
+        # https://gitea.psi.ch/api/packages/bec/generic/bec_docs_index/latest/bec_docs_index.json.gz
+        if: github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
         permissions:
-            contents: write
+            contents: read
         steps:
             - uses: actions/checkout@v4
 
@@ -60,14 +62,7 @@ jobs:
             - name: Build the MCP docs search index
               run: python tools/build_mcp_docs_index.py . --name bec_docs --output "$RUNNER_TEMP/index/bec_docs_index.json.gz"
 
-            - name: Replace the mcp-docs-index branch with one commit holding the index
-              working-directory: ${{ runner.temp }}/index
+            - name: Publish the index to the Gitea package registry
               env:
-                  TOKEN: ${{ github.token }}
-              run: |
-                  git init -q -b mcp-docs-index
-                  git config user.name "github-actions[bot]"
-                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git add bec_docs_index.json.gz
-                  git commit -q -m "chore: docs search index for ${GITHUB_SHA::7}"
-                  git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" mcp-docs-index
+                  GITEA_REGISTRY_TOKEN: ${{ secrets.GITEA_REGISTRY_TOKEN }}
+              run: bash tools/publish_mcp_docs_index.sh "$RUNNER_TEMP/index/bec_docs_index.json.gz"
