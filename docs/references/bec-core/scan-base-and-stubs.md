@@ -77,7 +77,7 @@ a per-point target passed to a component has shape `(M,)`.
 | `frames_per_trigger` | `1` | Positive detector frame count per trigger |
 | `burst_at_each_point` | `1` | Positive number of trigger/read cycles per logical point |
 | `scan_report_devices` | `[]` | Devices included in scan reporting; device objects are stored by name |
-| `run_on_exception_hook` | `True` | Whether exception cleanup is enabled; halt can disable it |
+| `run_on_exception_hook` | `True` | Whether exception cleanup is requested. Halt skips the hook through a queue-item override; this field remains unchanged |
 
 Set positions, counts, and acquisition settings before `open_scan`. For standard step
 acquisition, expected monitored readouts are `num_points * burst_at_each_point`.
@@ -122,10 +122,13 @@ own settings are fully initialized when recovery begins.
 objects are accepted by the operations below where their signatures allow them.
 Runtime actions check the worker's interruption state and operate with the scan's device
 ownership. They are not ordinary client scan submissions.
+Most actions require a running scan and belong in lifecycle hooks. Configuration methods
+such as `set_device_readout_priority` can also be called in `__init__`.
 
 The following methods cover opening/closing, device preparation, movement, readout selection,
-and acquisition. `readout_time` is device configuration; the trigger/read component applies
-exposure and settling delays.
+and acquisition. `readout_time` is a scan argument published to devices. The standard
+step-scan components do not apply it as an additional delay. The trigger/read component
+applies exposure and settling delays.
 
 ::: bec_server.scan_server.scans.scan_actions.ScanActions
     options:
@@ -161,8 +164,9 @@ and do not return a `ScanStatus` for callers to wait on.
   callback receives `(motors, position_row, last_positions=...)`; the initial
   `last_positions` is one combined position of shape `(M,)`, not a whole trajectory.
 - The default per-point operation moves and waits, then calls `trigger_and_read`.
-  Triggering waits for the exposure multiplied by frames per trigger, as well as device
-  completion, before reading monitored devices.
+  When the scan owns software-triggered devices, triggering waits for exposure time
+  multiplied by frames per trigger and for device completion before reading monitored
+  devices. With no such devices, the trigger action returns immediately.
 
 ::: bec_server.scan_server.scans.scan_components.ScanComponents
     options:
