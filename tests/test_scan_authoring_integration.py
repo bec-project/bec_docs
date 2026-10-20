@@ -169,13 +169,16 @@ def test_documented_plugin_tests(tutorial_plugin):
     tests = root / "tests"
     tests.mkdir()
     (tests / "conftest.py").write_text(
-        'pytest_plugins = ["bec_lib.tests.fixtures", '
-        '"bec_server.scan_server.tests.scan_fixtures"]\n'
+        'pytest_plugins = ["bec_server.scan_server.tests.scan_fixtures"]\n'
     )
     (tests / "test_alternating_scan.py").write_text(documented_tests())
+    # Exercise the documented setup with bec_lib's pytest entry point enabled,
+    # even if the parent test run disabled plugin autoload.
+    env = os.environ.copy()
+    env.pop("PYTEST_DISABLE_PLUGIN_AUTOLOAD", None)
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "-q", str(tests)],
-        env={**os.environ, "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"},
+        env=env,
         capture_output=True,
         text=True,
         timeout=60,

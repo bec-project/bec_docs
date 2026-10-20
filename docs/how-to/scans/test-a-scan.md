@@ -24,15 +24,16 @@ The examples test the
 
 ## 1. Load the scan fixtures
 
-Create `tests/conftest.py` in your plugin, or add these entries to its existing
+Create `tests/conftest.py` in your plugin, or add this entry to its existing
 `pytest_plugins` list:
 
 ```python
 pytest_plugins = [
-    "bec_lib.tests.fixtures",
     "bec_server.scan_server.tests.scan_fixtures",
 ]
 ```
+
+`bec_lib` loads its fixtures automatically through its pytest plugin entry point.
 
 `scan_assembler` creates a scan with mocked server resources and motors. It discovers the
 scan through your installed plugin. Its default mocked motor limits are -10 to 10, and
