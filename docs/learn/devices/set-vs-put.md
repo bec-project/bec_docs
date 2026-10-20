@@ -18,7 +18,7 @@ The short version is:
 - use `set()` when you want a write operation with completion tracking
 
 !!! note "Using the BEC client"
-    This page describes direct ophyd signal objects, as used in device implementation code on the device server. In the BEC client, `dev` exposes proxy objects with different method signatures. These proxies simplify device access so users do not need to worry about the underlying ophyd `put()` versus `set()` distinction. For a typical client workflow, see [Change config signals from the BEC IPython client](../../how-to/devices/change-config-signals-from-the-bec-ipython-client.md).
+    Prefer `.set()` for general use. In the BEC client, `dev` proxies hide the complexity of remote device access while preserving this distinction: `.put(value)` returns no `Status`, while `.set(value)` returns one. Client `.put(value, wait=True)` calls `.set(value).wait()`, and client `.set()` does not accept ophyd's `timeout` or `settle_time`. See [Change config signals from the BEC IPython client](../../how-to/devices/change-config-signals-from-the-bec-ipython-client.md).
 
 ## What `put()` does
 
