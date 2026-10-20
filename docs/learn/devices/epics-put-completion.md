@@ -69,15 +69,17 @@ An areaDetector camera's `Acquire` PV illustrates the difference when its IOC se
 from ophyd import EpicsSignal
 
 acquire = EpicsSignal("CAMERA:cam1:Acquire", name="acquire", put_complete=False)
-acquire.set(1).wait()
+acquire.set(1, timeout=10).wait()
 # Returns when the Acquire PV reaches 1; acquisition may still be running.
 ```
 
 ```python
 acquire = EpicsSignal("CAMERA:cam1:Acquire", name="acquire", put_complete=True)
-acquire.set(1).wait()
+acquire.set(1, timeout=10).wait()
 # Waits for the IOC's put-completion callback, after acquisition finishes.
 ```
+
+The timeout bounds the operation, and `.wait()` raises if the operation times out. Choose a timeout that allows for your configured acquisition duration. With `put_complete=False`, a very short acquisition can finish before readback polling observes `1`, causing the operation to time out even though acquisition finished.
 
 The difference is what completes the `Status`: observing the requested value (`1`) or receiving the IOC's callback. `put_complete=True` does not itself make the IOC wait for acquisition. The record and driver implementation determine when the callback is sent. If the IOC acknowledges the write as soon as acquisition starts, the second example also returns before acquisition finishes. Verify the callback behavior for your IOC before using it as an acquisition-completion signal.
 
